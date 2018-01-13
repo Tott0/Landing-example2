@@ -1,0 +1,74 @@
+<div class="main-container bg-car-top">
+
+  <div class="bg-dividers top"></div>
+  <div class="bg-dividers bottom"></div>
+
+  <div class="main-content">
+
+    <div class="main-title">
+      <p size-2>Registrarse</p>
+    </div>
+
+    <div class="floating-card" id="signup-card">
+      <div class="content">
+        <form [formGroup]="signupForm">
+
+          <mat-form-field>
+            <mat-select size-4 placeholder="Tipo de persona" [formControl]="type_user">
+              <mat-option [value]="PersonType.NATURAL">Persona Natural</mat-option>
+              <mat-option [value]="PersonType.JURIDICA">Persona Jurídica</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field>
+            <input size-4 matInput [placeholder]="type_user.value == PersonType.NATURAL ? 'Nombre y Apellidos' : 'Razón Social'" type="text"
+              [formControl]="name" appForceAlphabetic (input)="errors.name = undefined;">
+            <mat-error *ngIf="name.invalid || errors.name">{{getErrorMessage(name, errors.name)}}</mat-error>
+          </mat-form-field>
+
+
+          <mat-form-field>
+            <input size-4 matInput [placeholder]="type_user.value == PersonType.NATURAL ? 'Cédula' : 'Nit'" [formControl]="identification"
+              appForceNumeric (input)="errors.identification = undefined;">
+            <mat-error *ngIf="identification.invalid || errors.identification">{{getErrorMessage(identification, errors.identification)}}</mat-error>
+          </mat-form-field>
+
+          <mat-form-field>
+            <input size-4 matInput placeholder="Teléfono" type="tel" [formControl]="phone_number" appForceNumeric (input)="errors.phone_number = undefined;">
+            <mat-error *ngIf="phone_number.invalid || errors.phone_number">{{getErrorMessage(phone_number, errors.phone_number)}}</mat-error>
+          </mat-form-field>
+
+          <mat-form-field>
+            <input size-4 matInput placeholder="Dirección" type="text" [formControl]="address" (input)="errors.address = undefined;">
+            <mat-error *ngIf="address.invalid || errors.address">{{getErrorMessage(address, errors.address)}}</mat-error>
+          </mat-form-field>
+
+          <mat-form-field>
+            <input size-4 matInput placeholder="Correo" type="text" [formControl]="email" (input)="errors.email = undefined;">
+            <mat-error *ngIf="email.invalid || errors.email">{{getErrorMessage(email, errors.email)}}</mat-error>
+          </mat-form-field>
+
+          <mat-form-field>
+            <input size-4 matInput placeholder="Contraseña" type="password" [formControl]="password" (input)="errors.password = undefined;">
+            <mat-error *ngIf="password.invalid || errors.password">{{getErrorMessage(password, errors.password)}}</mat-error>
+          </mat-form-field>
+
+          <mat-checkbox size-5 [formControl]="agreement">
+            Acepto los
+            <a size-5 mat-button routerLink="/terminos" class="terms">Términos y condiciones</a>
+          </mat-checkbox>
+
+          <div *ngIf="errors.message" class="form-errors">
+            <p>{{ errors.message }}</p>
+          </div>
+
+          <button mat-button size-4 id="signup-btn" [disabled]="!signupForm.valid || !agreement.value" (click)="onSubmit()">
+            Registrarse
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+
+</div>

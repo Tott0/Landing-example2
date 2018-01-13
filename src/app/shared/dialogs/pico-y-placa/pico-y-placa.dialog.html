@@ -1,0 +1,36 @@
+<div class="bg-yellow-top">
+  <div class="bg-dividers top"></div>
+  <div class="bg-dividers bottom"></div>
+
+  <p size-5 mat-dialog-title>{{ day.date.getDate() + ' de ' + monthNames[day.date.getMonth()] + ' del ' + day.date.getFullYear() }}</p>
+  <div mat-dialog-content>
+    <div id="time-selector">
+      <div id="morning" (click)="selectedJornada = 0" *ngIf="day.intervals[0]" [ngClass]="{'selected': selectedJornada === 0}">
+        <span size-6>{{ day.intervals[0].description }}</span>
+      </div>
+      <div id="afternoon" (click)="selectedJornada = 1" *ngIf="day.intervals[1]" [ngClass]="{'selected': selectedJornada === 1}">
+        <span size-6>{{ day.intervals[1].description }}</span>
+      </div>
+    </div>
+    <div id="placas">
+      <div id="car">
+        <div class="placa">
+          <span size-5 class="digits" *ngIf="day.intervals[selectedJornada].pp_car">{{ day.intervals[selectedJornada].pp_car }}</span>
+        </div>
+      </div>
+      <div id="bike">
+        <div class="placa">
+          <span size-5 class="digits" *ngIf="day.intervals[selectedJornada].pp_bike">{{ day.intervals[selectedJornada].pp_bike }}</span>
+        </div>
+      </div>
+      <div id="taxi">
+        <div class="placa">
+          <span size-5 class="digits" *ngIf="day.intervals[selectedJornada].pp_taxi">{{ day.intervals[selectedJornada].pp_taxi }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div mat-dialog-actions>
+    <button class="cancel-btn" mat-button tabindex="-1" [mat-dialog-close]="">Cerrar</button>
+  </div>
+</div>

@@ -1,0 +1,50 @@
+<div class="main-container">
+
+  <div class="results">
+    <span class="title">Ciudad Seleccionada</span>
+    <mat-form-field>
+      <mat-select placeholder="Ciudad">
+        <mat-option [value]="1">Barranquilla</mat-option>
+        <mat-option [value]="2">Bogotá</mat-option>
+        <mat-option [value]="3">Cartagena</mat-option>
+        <mat-option [value]="4">Cali</mat-option>
+      </mat-select>
+      <!-- <mat-error *ngIf="city.invalid">{{getErrorMessage(city)}}</mat-error> -->
+    </mat-form-field>
+
+    <div class="filler"></div>
+
+    <span class="title filter-wrapper">
+      Resultados de Búsqueda
+      <div class="filler"></div>
+      <span matTooltip="Filtrar Búsqueda" matTooltipPosition="above" [matTooltipClass]="'tooltip'" (click)="$event.stopPropagation();">
+      <button mat-icon-button (click)="filters()">
+        <i class="fa fa-cog" aria-hidden="true"></i>
+      </button>
+    </span>
+    </span>
+
+    <mat-nav-list>
+
+      <mat-divider></mat-divider>
+      <ng-container *ngFor="let i of [1,2,3,4,5]">
+        <mat-list-item class="result" (click)="details(i)">
+          <img src="https://www.joc.com/sites/default/files/field_feature_image/warehouse%2043.jpg" alt="foto" class="">
+          <span class="text-vertical-group">
+            <span class="name">Nombre Bodega</span>
+            <span class="addr">Dirección ### ######## #####</span>
+          </span>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+      </ng-container>
+
+    </mat-nav-list>
+    <mat-paginator [length]="5" [pageSize]="5" (page)="onPage($event.pageIndex)">
+    </mat-paginator>
+  </div>
+
+  <agm-map [latitude]="iLat" [longitude]="iLng" [zoom]="zoom" [streetViewControl]="false" [zoomControl]="false">
+
+  </agm-map>
+
+</div>

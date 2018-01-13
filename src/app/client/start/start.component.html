@@ -1,0 +1,32 @@
+<div class="main-container">
+
+  <div class="start-filter container">
+    <span class="title">Busca Almacenamiento en Bódega</span>
+  
+    <form [formGroup]="filterForm" (ngSubmit)="onSubmit()" class="row">
+  
+      <mat-form-field>
+        <mat-select placeholder="Ciudad" [formControl]="city">
+          <mat-option [value]="1">Barranquilla</mat-option>
+          <mat-option [value]="2">Bogotá</mat-option>
+          <mat-option [value]="3">Cartagena</mat-option>
+          <mat-option [value]="4">Cali</mat-option>
+        </mat-select>
+        <mat-error *ngIf="city.invalid">{{getErrorMessage(city)}}</mat-error>
+      </mat-form-field>
+  
+      <mat-form-field>
+        <input matInput placeholder="Unidades Palet*" type="text" formControlName="uPallet" name="uPallet">
+        <mat-error *ngIf="uPallet.invalid">{{getErrorMessage(uPallet)}}</mat-error>
+      </mat-form-field>
+  
+      <button color="primary" mat-raised-button class="submit-button" (click)="onSubmit()">
+        <i class="fa fa-search" aria-hidden="true"></i>
+        <span class="btn-text">Buscar</span>
+      </button>
+    </form>
+  
+    <mat-error *ngIf="errors.message">{{ errors.message }}</mat-error>
+  
+  </div>
+</div>

@@ -1,0 +1,54 @@
+<div class="main-container bg-yellow-top">
+  <div class="bg-dividers top"></div>
+  <div class="bg-dividers bottom"></div>
+
+  <div class="main-content">
+
+    <img class="logo-alto" src="assets/images/logo-alto.png" alt="logo" />
+
+    <div class="floating-card" id="login-card">
+      <div class="content">
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+
+          <mat-form-field>
+            <input size-4 matInput placeholder="Correo" type="text" formControlName="email" name="email" (input)="errors.message = undefined;">
+            <mat-error *ngIf="email.invalid || errors.email">{{getErrorMessage(email, errors.email)}}</mat-error>
+          </mat-form-field>
+
+          <mat-form-field>
+            <input size-4 matInput placeholder="Contraseña" type="password" formControlName="password" name="password" (input)="errors.message = undefined;">
+            <mat-error *ngIf="password.invalid || errors.password">{{getErrorMessage(password, errors.password)}}</mat-error>
+          </mat-form-field>
+
+          <div *ngIf="errors.message" class="form-errors">
+            <p>{{ errors.message }}</p>
+          </div>
+
+          <button [style.visibility]="'hidden'"> </button>
+        </form>
+
+        <button mat-button id="forgot-password" routerLink="/forgot">
+          <span size-5 class="ion-button-text">Olvidé mi contraseña</span>
+        </button>
+      </div>
+
+      <div class="actions">
+        <button mat-button class="login-button" [disabled]="!loginForm.valid" (click)="onSubmit()">
+          <i size-3 class="fa fa-arrow-right" aria-hidden="true"></i>
+          <!-- <ion-icon size-1 name="md-arrow-dropright"></ion-icon> -->
+          <span size-2>Comencemos!</span>
+        </button>
+      </div>
+    </div>
+
+    <div id="signup">
+      <button mat-button (click)="openSignUp()">
+        <span size-5 class="ion-button-text">Regístrate </span>
+        <span size-5 class="ion-button-text highlight">Nueva cuenta</span>
+      </button>
+    </div>
+  </div>
+
+
+
+</div>

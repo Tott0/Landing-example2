@@ -1,0 +1,84 @@
+/* You can add global styles to this file, and also import other style files */
+
+$primary: #80DEEA;
+$light: #FAFAFA;
+$dark: #212121;
+*:not(.mat-form-field-label-wrapper) {
+  box-sizing: border-box !important;
+}
+
+html {
+  font-size: calc(0.6em + 1vw);
+}
+
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  margin: 0; // background: $dark url(/assets/images/bg.png) repeat;
+}
+
+app-root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.main-container {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+}
+
+// @media
+.container {
+  width: 1200px !important;
+}
+
+.row {
+  display: flex;
+  width: 100%;
+}
+
+.filler {
+  flex: 1 0 0;
+  &:not(.no-min) {
+    min-height: 1rem;
+    min-width: 1rem;
+  }
+}
+
+.text-vertical-group{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.mat-typography {
+  a,
+  p,
+  span,
+  mat-icon.mat-icon {
+    line-height: normal;
+    margin: 0;
+    font-size: 1rem;
+  }
+}
+
+.mat-tooltip.tooltip {
+  margin: 0;
+}
+
+router-outlet#root-outlet + *{
+  display: flex;
+  flex: 1 0 auto;
+
+}
+
+router-outlet:not(#root-outlet) + *{
+  display: flex;
+  width: 100%;
+  height: 100%;
+}

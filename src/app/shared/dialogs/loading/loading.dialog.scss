@@ -1,0 +1,25 @@
+
+$light : #f5f5f5;
+$primary-light: #FFD54F;
+$light: #212121;
+.dialog-loading {
+  mat-dialog-container{
+    background: $light;
+    width: 35vw;
+  }
+  .mat-dialog-content {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    overflow: hidden;
+    p{
+      color: $light;
+    }
+    mat-spinner {
+      circle {
+        stroke: $primary-light;
+      }
+    }
+  }
+}

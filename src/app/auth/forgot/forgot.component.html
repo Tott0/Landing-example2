@@ -1,0 +1,34 @@
+<div class="bg-car-top">
+
+  <div class="bg-dividers top"></div>
+  <div class="bg-dividers bottom"></div>
+
+  <div class="main-content">
+
+    <div class="main-title">
+      <p size-2>Recuperar Contraseña</p>
+    </div>
+
+    <div class="floating-card" id="forgot-card">
+      <div class="content">
+        <form [formGroup]="forgotForm">
+
+          <mat-card class="mat-elevation-z3">
+            <p size-5 class="guide">Ingresa el correo electrónico con el que te registraste y recibirás instrucciones para recuperar tu contraseña.</p>
+          </mat-card>
+
+          <mat-form-field>
+            <input size-5 matInput placeholder="Correo" type="text" [formControl]="email" (input)="errors.email = undefined;">
+            <mat-error *ngIf="email.invalid || errors.email">{{getErrorMessage(email, errors.email)}}</mat-error>
+          </mat-form-field>
+
+          <button mat-button size-4 id="forgot-btn" [disabled]="!forgotForm.valid" (click)="onSubmit()">
+            Enviar
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+
+</div>

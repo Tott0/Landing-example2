@@ -1,0 +1,30 @@
+@import '~@angular/material/theming';
+
+@include mat-core();
+
+$alto-app-primary: mat-palette($mat-cyan, 200, 100, 700);
+$alto-app-accent:  mat-palette($mat-deep-orange, 500, 300, 700);
+
+$alto-app-warn:    mat-palette($mat-red);
+
+$alto-app-theme: mat-light-theme($alto-app-primary, $alto-app-accent, $alto-app-warn);
+
+@include angular-material-theme($alto-app-theme);
+
+.background-theme {
+  $background-primary: mat-palette($mat-grey, 900);
+  $background-accent:  mat-palette($mat-deep-orange, 500, 300, 700);
+  
+  $background-theme: mat-light-theme($background-primary, $background-accent);
+
+  @include angular-material-theme($background-theme);
+}
+
+.background-theme-dark2 {
+  $background-primary: mat-palette($mat-blue-grey, 900);
+  $background-accent:  mat-palette($mat-deep-orange, 500, 300, 700);
+
+  $background-theme: mat-light-theme($background-primary, $background-accent);
+
+  @include angular-material-theme($background-theme);
+}

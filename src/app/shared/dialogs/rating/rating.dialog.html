@@ -1,0 +1,20 @@
+<div id="rating">
+  <button tabIndex="-1" mat-icon-button class="top-close-btn" [mat-dialog-close]="">
+    <mat-icon size-4>close</mat-icon>
+  </button>
+  <div class="content">
+
+    <p size-4 class="title">
+      Calificación del cliente
+    </p>
+
+    <span class="rating">
+      <mat-icon size-3>star_rate</mat-icon>
+      <p size-3>{{ rating }}</p>
+    </span>
+
+    <p size-5 *ngIf="message">
+      {{ message }}
+    </p>
+  </div>
+</div>

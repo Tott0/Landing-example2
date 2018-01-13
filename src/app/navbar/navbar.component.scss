@@ -1,0 +1,61 @@
+$primary: #80DEEA;
+$primary-dark: #00838F;
+$light: #FAFAFA;
+:host ::ng-deep .logo .mat-button-focus-overlay {
+  display: none;
+}
+
+mat-toolbar {
+  padding: 1vh;
+  height: auto;
+  nav,
+  ul {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    li {
+      list-style: none;
+      padding: 0.25em;
+      margin: 0 0.5em;
+      &:hover {
+        cursor: pointer;
+        &:not(.highlight){
+          a{
+            padding-bottom: 0.2em;
+            border-bottom: solid 1px $primary;
+          }
+        }
+      }
+      &.highlight {
+        border: solid 1px $primary;
+        border-radius: 0.5em;
+        &:hover {
+          border: solid 1px $primary-dark;
+          background: $primary-dark;
+        }
+      }
+    }
+  }
+}
+
+.logo {
+  margin-right: 2vw;
+
+  &:hover{
+    cursor: pointer;
+    box-shadow: 0 1px 0 0 transparentize($primary, 0.6);
+  }
+  img {
+    // width: 10vh;
+    // height: 6vh;
+  }
+}
+
+a,
+.title,
+.menu-toggle {
+  color: $light;
+  text-decoration: none;
+}

@@ -1,0 +1,20 @@
+$danger: #d50000;
+$processed: #689F38;
+.dialog-case-reject {
+  max-width: 40vw;
+  width: 40vw;
+  mat-form-field {
+    width: 100%;
+  }
+
+  .mat-dialog-actions {
+    justify-content: flex-end;
+  }
+
+  .reject-btn {
+    color: $danger;
+    &.success {
+      color: $processed;
+    }
+  }
+}

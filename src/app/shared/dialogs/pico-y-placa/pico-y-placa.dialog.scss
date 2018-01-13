@@ -1,0 +1,124 @@
+$light: #212121;
+$light: #f5f5f5;
+.dialog-pico-y-placa {
+  width: 40vw;
+  height: 70vh;
+  mat-dialog-container {
+    overflow: hidden;
+    padding: 0;
+    background: none;
+    .bg-yellow-top {
+      position: relative;
+      height: 100%;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      padding: 3vh;
+      box-sizing: border-box;
+    }
+  }
+  .bg-dividers {
+    position: absolute;
+    left: 0;
+    right: 0;
+    width: 40vw;
+    &.top {
+      height: 35vh;
+    }
+    &.bottom {
+      height: 35vh;
+    }
+  }
+  .mat-dialog-title {
+    width: 100%;
+    background: $light;
+    text-align: center;
+    padding: 0.5vh;
+  }
+  .mat-dialog-actions {
+    justify-content: flex-end;
+    .cancel-btn {
+      background: $light;
+      color: $light;
+    }
+  }
+  .mat-dialog-content {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    .selected {
+      border: solid 1px $light;
+      box-shadow: 1px 1px 1px $light;
+    }
+    #time-selector {
+      display: flex;
+      height: 10vh;
+      margin: 2vh 0;
+      justify-content: space-around;
+      &>div:not(.filler) {
+        width: 15vw;
+        height: 100%;
+        background-repeat: no-repeat !important;
+        background-size: 100% 100% !important;
+        position: relative;
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+        span {
+          margin-bottom: 0.5vh;
+          font-weight: 500;
+        }
+        &:hover {
+          cursor: pointer;
+        }
+      }
+      #morning {
+        background: url(/assets/images/jornada-manana.png);
+      }
+      #afternoon {
+        background: url(/assets/images/jornada-tarde.png);
+      }
+    }
+    #placas {
+      display: flex;
+      flex-direction: column;
+      flex: 1 0 auto;
+      background: $light;
+      margin: 1.5vh 0;
+      &>div {
+        display: flex;
+        flex: 0 0 10vh;
+        background-repeat: no-repeat !important;
+        background-size: 100% 100% !important;
+        background-position: center !important;
+        position: relative;
+        margin: 1vh 0;
+        .placa {
+          align-items: center;
+          justify-content: center;
+          display: flex;
+          flex-direction: column;
+          position: absolute;
+          right: 4vw;
+          width: 12vw;
+          height: 8vh;
+          padding-top: 0.25vh;
+          span {
+            color: $light;
+            font-weight: 700;
+            white-space: nowrap;
+          }
+        }
+      }
+      #car {
+        background: url(/assets/images/pico-y-placa-carro.png);
+      }
+      #bike {
+        background: url(/assets/images/pico-y-placa-moto.png);
+      }
+      #taxi {
+        background: url(/assets/images/pico-y-placa-taxi.png);
+      }
+    }
+  }
+}
