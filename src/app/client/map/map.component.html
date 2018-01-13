@@ -27,12 +27,16 @@
     <mat-nav-list>
 
       <mat-divider></mat-divider>
-      <ng-container *ngFor="let i of [1,2,3,4,5]">
+      <ng-container *ngFor="let r of results">
         <mat-list-item class="result" (click)="details(i)">
           <img src="https://www.joc.com/sites/default/files/field_feature_image/warehouse%2043.jpg" alt="foto" class="">
           <span class="text-vertical-group">
-            <span class="name">Nombre Bodega</span>
-            <span class="addr">Dirección ### ######## #####</span>
+            <span class="name">{{r.name}}</span>
+            <span class="addr">{{r.address}}</span>
+          </span>
+          <div class="filler"></div>
+          <span class="details">Detalles
+            <i class="fa fa-caret-right" aria-hidden="true"></i>
           </span>
         </mat-list-item>
         <mat-divider></mat-divider>
@@ -44,7 +48,7 @@
   </div>
 
   <agm-map [latitude]="iLat" [longitude]="iLng" [zoom]="zoom" [streetViewControl]="false" [zoomControl]="false">
-
+    <agm-marker *ngFor="let r of results" [latitude]="r.lat" [longitude]="r.lng" [markerDraggable]="false"></agm-marker>
   </agm-map>
 
 </div>

@@ -4,7 +4,7 @@ $dark: #212121;
 ::ng-deep {
   .results .result .mat-list-item-content {
     width: 100%;
-    padding: 1em !important;
+    padding: 0.5em !important;
   }
 }
 
@@ -20,6 +20,10 @@ $dark: #212121;
   height: 100%;
   justify-content: flex-start;
   padding: 2em;
+  
+  .title{
+    margin-bottom: 0.5em;
+  }
   .result {
     display: flex;
     align-items: center;
@@ -38,6 +42,11 @@ $dark: #212121;
         font-size: 1em;
         color: lighten($dark, 0.3);
       }
+    }
+    .details{
+      font-size: 1.25em;
+      color: darken($primary, 25);
+      border-bottom: solid 1px transparentize($primary, 0.3);
     }
   }
   .filter-wrapper {

@@ -35,6 +35,8 @@ $dark: #212121;
         border-radius: 50%;
         padding: 3em 2.5em;
         font-size: 2em;
+        color: $dark;
+        text-decoration: none;
 
         &:hover{
           background: $primary;

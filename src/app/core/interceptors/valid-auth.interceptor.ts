@@ -16,25 +16,23 @@ export class ValidAuthInterceptor implements HttpInterceptor {
   }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    if (true) {
       return next.handle(req); // FIXME
-    }
-    const aService: AuthService = this.inj.get(AuthService);
-    if (aService.token && req.url.includes(AppConstants.API_ENDPOINT) && !req.url.includes('/check')) {
-      return next.handle(req)
-        .do((event) => { },
-        (err: HttpErrorResponse) => {
-          if (err instanceof HttpErrorResponse) {
-            if (err.status === 401) {
-              aService.logout();
-              alert('Sesión Expirada');
-            }
-          }
-          return Observable.throw(event);
-        });
+    // const aService: AuthService = this.inj.get(AuthService);
+    // if (aService.token && req.url.includes(AppConstants.API_ENDPOINT) && !req.url.includes('/check')) {
+    //   return next.handle(req)
+    //     .do((event) => { },
+    //     (err: HttpErrorResponse) => {
+    //       if (err instanceof HttpErrorResponse) {
+    //         if (err.status === 401) {
+    //           aService.logout();
+    //           alert('Sesión Expirada');
+    //         }
+    //       }
+    //       return Observable.throw(event);
+    //     });
 
-    } else {
-      return next.handle(req);
-    }
+    // } else {
+    //   return next.handle(req);
+    // }
   }
 }
