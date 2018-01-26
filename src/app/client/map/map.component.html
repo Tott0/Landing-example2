@@ -1,9 +1,9 @@
 <div class="main-container">
 
   <div class="results">
-    <span class="title">Ciudad Seleccionada</span>
+    <!-- <span class="title">Ciudad Seleccionada</span> -->
     <mat-form-field>
-      <mat-select placeholder="Ciudad">
+      <mat-select placeholder="Ciudad" [(ngModel)]="selectedCityId">
         <mat-option [value]="1">Barranquilla</mat-option>
         <mat-option [value]="2">Bogotá</mat-option>
         <mat-option [value]="3">Cartagena</mat-option>
@@ -27,7 +27,7 @@
     <mat-nav-list>
 
       <mat-divider></mat-divider>
-      <ng-container *ngFor="let r of results">
+      <ng-container *ngFor="let r of warehouses">
         <mat-list-item class="result" (click)="details(i)">
           <img src="https://www.joc.com/sites/default/files/field_feature_image/warehouse%2043.jpg" alt="foto" class="">
           <span class="text-vertical-group">
@@ -48,7 +48,7 @@
   </div>
 
   <agm-map [latitude]="iLat" [longitude]="iLng" [zoom]="zoom" [streetViewControl]="false" [zoomControl]="false">
-    <agm-marker *ngFor="let r of results" [latitude]="r.lat" [longitude]="r.lng" [markerDraggable]="false"></agm-marker>
+    <agm-marker *ngFor="let r of warehouses" [latitude]="r.lat" [longitude]="r.lng" [markerDraggable]="false"></agm-marker>
   </agm-map>
 
 </div>

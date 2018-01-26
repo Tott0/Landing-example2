@@ -1,5 +1,5 @@
 // truncate.ts
-import { Pipe, PipeTransform } from "@angular/core";
+import { Pipe, PipeTransform } from '@angular/core';
 /*
  * Formats Currency Value (COP)
  * Takes:

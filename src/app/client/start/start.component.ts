@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Validators, FormBuilder, FormGroup, AbstractControl } from '@angular/forms';
 import { ModalManager } from '../../core/providers/modal-manager';
 import { StaticMethods } from '../../utils/static-methods';
+import { ClientService } from '../client.service';
 
 @Component({
   selector: 'app-start',
@@ -21,6 +22,7 @@ export class StartComponent implements OnInit {
     private route: ActivatedRoute,
     private formBuilder: FormBuilder,
     private mm: ModalManager,
+    private cService: ClientService
   ) { }
 
   ngOnInit() {
@@ -33,43 +35,20 @@ export class StartComponent implements OnInit {
   onSubmit() {
     // this.mm.showLoadingDialog();
     const u = {
-      city: this.city.value,
-      uPallet: this.uPallet.value,
+      cd: this.city.value,
+      up: this.uPallet.value,
     };
-    // this.authService.filter(u)
-    //   .subscribe(res => {
-    //     this.mm.closeLoadingDialog();
-    //     switch (res.user.type_user) {
-    //       case PersonType.ABOGADO:
-    //         this.router.navigate(['/abogado']);
-    //         break;
-    //       case PersonType.ADMIN:
-    //         this.router.navigate(['/admin']);
-    //         break;
-    //       default:
-    //         this.router.navigate(['/usuario']);
-    //         break;
-    //     }
-    //   },
-    //   (err) => {
-    //     this.mm.closeLoadingDialog();
 
-    //     if (typeof err === 'string') {
-    //       this.errors = {
-    //         message: err
-    //       };
-    //     } else {
-    //       this.errors = err;
-    //       for (const control of Object.keys(this.filterForm.controls)) {
-    //         this.filterForm.get(control).markAsDirty();
-    //         this.filterForm.get(control).markAsTouched();
-    //       }
-    //     }
-    //   });
+    this.mm.showLoadingDialog();
+    setTimeout(() => {
+      this.router.navigate(['temproute_map', u], {
+        relativeTo: this.route
+      }).then(
+        success => this.errors.message = success ? '' : 'No se encontraton bódegas con los parametros seleccionados',
+        err => console.error(err)
+        );
+    }, 500);
 
-    this.router.navigate(['temproute_map'], {
-      relativeTo: this.route
-    });
   }
 
   getErrorMessage(formControl: AbstractControl, error) {

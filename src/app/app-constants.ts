@@ -1,4 +1,3 @@
-import { MultaCode } from './shared/shared.model';
 export class AppConstants {
 
   static skipGuide = false;
@@ -47,8 +46,6 @@ export class AppConstants {
       dayShortNames: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab']
     };
   }
-
-  static multaCodes: MultaCode[];
 }
 
 

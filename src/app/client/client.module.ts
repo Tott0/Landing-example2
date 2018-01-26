@@ -9,6 +9,7 @@ import { ClientRoutingModule } from './client.routing';
 import { StartComponent } from './start/start.component';
 import { MapComponent } from './map/map.component';
 import { AgmCoreModule } from '@agm/core';
+import { ClientService } from './client.service';
 
 @NgModule({
   imports: [
@@ -22,6 +23,7 @@ import { AgmCoreModule } from '@agm/core';
     MapComponent
   ],
   providers: [
+    ClientService
   ]
 })
 export class ClientModule { }

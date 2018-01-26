@@ -2,28 +2,23 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/take';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { merge } from 'rxjs/operators';
 import {
   Router, Resolve, RouterStateSnapshot,
   ActivatedRouteSnapshot
 } from '@angular/router';
-
+import { Parameter } from '../shared/models/warehouse.model';
 import { ModalManager } from '../core/providers/modal-manager';
-
-import { Ciudad } from './models/shared.model';
 import { SharedService } from '../core/providers/shared.service';
 
 @Injectable()
-export class CiudadesResolver implements Resolve<Ciudad[]> {
+export class WarehouseParametersResolver implements Resolve<Parameter[]> {
   constructor(
-    private sharedService: SharedService,
+    private service: SharedService,
     private router: Router,
     private mm: ModalManager) { }
 
-  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Ciudad[]> {
-
+  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Parameter[]> {
     this.mm.showLoadingDialog();
-    return this.sharedService.getCiudades();
+    return this.service.getParameters();
   }
 }
-

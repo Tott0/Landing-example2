@@ -1,5 +1,5 @@
 // truncate.ts
-import { Pipe, PipeTransform } from "@angular/core";
+import { Pipe, PipeTransform } from '@angular/core';
 /*
  * Truncates String Value
  * Takes:
@@ -14,7 +14,7 @@ import { Pipe, PipeTransform } from "@angular/core";
   name: 'plate'
 })
 export class PlatePipe implements PipeTransform {
-  transform(value: string) : string {
+  transform(value: string): string {
     let val = ''
     val = value.substr(0, 3) + ' ' + value.substring(3);
     return val;

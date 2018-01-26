@@ -1,4 +1,4 @@
-import { Pipe, PipeTransform } from "@angular/core";
+import { Pipe, PipeTransform } from '@angular/core';
 import { AppConstants } from '../../app-constants';
 /*
  * Formats Date Value

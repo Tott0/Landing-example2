@@ -4,6 +4,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { ClientComponent } from './client.component';
 import { StartComponent } from './start/start.component';
 import { MapComponent } from './map/map.component';
+import { WarehouseFilterResolver } from './warehouse-filter-resolver.service';
+import { WarehouseParametersResolver } from './warehouse-parameters-resolver.service';
 
 // import { LoginAuthGuard, PersonAuthGuard } from '../core/providers/auth-guard.service';
 
@@ -23,7 +25,11 @@ const caseRoutes: Routes = [
       },
       {
         path: 'temproute_map',
-        component: MapComponent
+        component: MapComponent,
+        resolve: {
+          warehouses: WarehouseFilterResolver,
+          parameters: WarehouseParametersResolver,
+        }
       }
     ]
   }
@@ -37,10 +43,8 @@ const caseRoutes: Routes = [
     RouterModule
   ],
   providers: [
-    // CaseDetailResolver,
-    // MultaCodesResolver,
-    // LoginAuthGuard,
-    // PersonAuthGuard
+    WarehouseFilterResolver,
+    WarehouseParametersResolver,
   ]
 })
 

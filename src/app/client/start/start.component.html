@@ -16,7 +16,13 @@
       </mat-form-field>
   
       <mat-form-field>
-        <input matInput placeholder="Unidades Palet*" type="text" formControlName="uPallet" name="uPallet">
+        <mat-select placeholder="Cantidad de Pallets*" [formControl]="uPallet">
+          <mat-option [value]="1">1-50</mat-option>
+          <mat-option [value]="50">50-250</mat-option>
+          <mat-option [value]="250">250-500</mat-option>
+          <mat-option [value]="500">500-1000</mat-option>
+          <mat-option [value]="1000">1000+</mat-option>
+        </mat-select>
         <mat-error *ngIf="uPallet.invalid">{{getErrorMessage(uPallet)}}</mat-error>
       </mat-form-field>
   
@@ -26,7 +32,7 @@
       </button>
     </form>
   
-    <mat-error *ngIf="errors.message">{{ errors.message }}</mat-error>
+    <mat-error [style.visibility]="errors.message ? 'visible' : 'hidden'">{{ errors.message + (errors.message ? '' : 'a') }}</mat-error>
   
   </div>
 </div>
