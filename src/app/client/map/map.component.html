@@ -3,7 +3,7 @@
   <div class="results">
     <!-- <span class="title">Ciudad Seleccionada</span> -->
     <mat-form-field>
-      <mat-select placeholder="Ciudad" [(ngModel)]="selectedCityId">
+      <mat-select placeholder="Ciudad" [(ngModel)]="currentFilters.cd" disabled>
         <mat-option [value]="1">Barranquilla</mat-option>
         <mat-option [value]="2">Bogotá</mat-option>
         <mat-option [value]="3">Cartagena</mat-option>
@@ -18,7 +18,7 @@
       Resultados de Búsqueda
       <div class="filler"></div>
       <span matTooltip="Filtrar Búsqueda" matTooltipPosition="above" [matTooltipClass]="'tooltip'" (click)="$event.stopPropagation();">
-      <button mat-icon-button (click)="filters()">
+      <button class="btn-filter" mat-icon-button (click)="filters()">
         <i class="fa fa-cog" aria-hidden="true"></i>
       </button>
     </span>
@@ -28,7 +28,7 @@
 
       <mat-divider></mat-divider>
       <ng-container *ngFor="let r of warehouses">
-        <mat-list-item class="result" (click)="details(i)">
+        <mat-list-item class="result" (click)="focusOn(r)">
           <img src="https://www.joc.com/sites/default/files/field_feature_image/warehouse%2043.jpg" alt="foto" class="">
           <span class="text-vertical-group">
             <span class="name">{{r.name}}</span>
@@ -47,7 +47,7 @@
     </mat-paginator>
   </div>
 
-  <agm-map [latitude]="iLat" [longitude]="iLng" [zoom]="zoom" [streetViewControl]="false" [zoomControl]="false">
+  <agm-map [latitude]="iLat" [longitude]="iLng" [zoom]="zoom" [streetViewControl]="false" [zoomControl]="false" [usePanning]="true">
     <agm-marker *ngFor="let r of warehouses" [latitude]="r.lat" [longitude]="r.lng" [markerDraggable]="false"></agm-marker>
   </agm-map>
 

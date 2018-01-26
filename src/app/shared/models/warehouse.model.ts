@@ -14,7 +14,7 @@ export class WareHouse {
   positions: Position[];
 
   // all characteristics of warehouse are grouped here
-  parameters: Parameter[];
+  parameters: Parameter[]|number[];
 }
 
 export enum ParameterType {
@@ -45,6 +45,6 @@ export class Position {
   height: number;
   max_weight: number;
   //
-  refrigerated = false;
-  dangerous = false;
+  refrigerated?: boolean;
+  dangerous?: boolean;
 }

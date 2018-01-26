@@ -2,9 +2,14 @@ $primary: #80DEEA;
 $light: #FAFAFA;
 $dark: #212121;
 ::ng-deep {
-  .results .result .mat-list-item-content {
-    width: 100%;
-    padding: 0.5em !important;
+  .results{
+    .result .mat-list-item-content {
+      width: 100%;
+      padding: 0.5em !important;
+    }
+    .btn-filter .mat-button-focus-overlay{
+      opacity: 0 !important;
+    }
   }
 }
 
@@ -53,7 +58,7 @@ $dark: #212121;
     width: 100%;
     display: flex;
     align-items: center;
-    button {
+    .btn-filter {
       justify-self: flex-end;
     }
   }

@@ -38,6 +38,7 @@ export class MapComponent implements OnInit {
   selectedCityId: number;
   uPallets: number;
   currentFilters: any;
+  focusedWareHouse: WareHouse;
 
   ngOnInit() {
     const subscription = this.route.data
@@ -93,33 +94,41 @@ export class MapComponent implements OnInit {
 
         this.mm.closeLoadingDialog();
         // subscription.unsubscribe();
+
+        this.map.centerChange.subscribe(center => {
+          console.log(center);
+          this.iLat = center.lat;
+          this.iLng = center.lng;
+        });
+        this.map.zoomChange.subscribe(zoom => {
+          this.zoom = zoom;
+        });
       });
 
-    this.route.paramMap.pipe(
-      switchMap(params => {
-        // console.log(params);
-        this.selectedCityId = +params.get('cd');
-        this.currentFilters.cd = this.selectedCityId;
-        this.uPallets = +params.get('up');
-        this.currentFilters.up = this.uPallets;
-        this.mm.showLoadingDialog();
-        return this.cService.filterWarehouses(params);
-      }),
-      catchError(err => {
-        return Observable.of<WareHouse[]>([]);
-      }),
-    )
-      .subscribe(warehouses => {
-        this.warehouses = warehouses;
-        setTimeout(() => {
+    // this.route.paramMap.pipe(
+    //   switchMap(params => {
+    //     // console.log(params);
+    //     this.selectedCityId = +params.get('cd');
+    //     this.currentFilters.cd = this.selectedCityId;
+    //     this.uPallets = +params.get('up');
+    //     this.currentFilters.up = this.uPallets;
+    //     this.mm.showLoadingDialog();
+    //     return this.cService.filterWarehouses(params);
+    //   }),
+    //   catchError(err => {
+    //     return Observable.of<WareHouse[]>([]);
+    //   }),
+    // )
+    //   .subscribe(warehouses => {
+    //     this.warehouses = warehouses;
+    //     setTimeout(() => {
 
-          this.mm.closeLoadingDialog();
-        }, 300);
-      });
+    //       this.mm.closeLoadingDialog();
+    //     }, 300);
+    //   });
   }
 
   filters() {
-    console.log(this.currentFilters);
     this.mm.showWarehouseFiltersDialog({
       data: {
         storage: this.currentFilters.str,
@@ -127,7 +136,6 @@ export class MapComponent implements OnInit {
       }
     }).subscribe(data => {
       if (data) {
-        console.log(data);
         const filter: any = {
           cd: this.selectedCityId,
           up: this.uPallets,
@@ -139,12 +147,10 @@ export class MapComponent implements OnInit {
           filter.prm = [];
           for (const params of Object.keys(data.parameters)) {
             filter.prm = filter.prm.concat(data.parameters[params].filter(p => p.checked).map(p => p.id));
-            console.log('prm', filter.prm);
           }
         }
 
         for (const f of Object.keys(filter)) {
-          console.log(filter[f]);
           if (!filter[f] || (Array.isArray(filter[f]) && !filter[f].length)) {
             delete filter[f];
           }
@@ -160,6 +166,13 @@ export class MapComponent implements OnInit {
 
       }
     });
+  }
+
+  focusOn(warehouse: WareHouse) {
+    this.focusedWareHouse = warehouse;
+    this.iLat = warehouse.lat;
+    this.iLng = warehouse.lng;
+    this.zoom = 15;
   }
 
 }
