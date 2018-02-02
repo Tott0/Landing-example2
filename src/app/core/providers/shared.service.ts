@@ -180,7 +180,7 @@ export class SharedService {
       })
     );
 
-    // return this.http.get<WareHouse[]>(`${AppConstants.API_ENDPOINT}warehouses${StaticMethods.getParams(params)}`, params)
+    // return this.http.get<Warehouse[]>(`${AppConstants.API_ENDPOINT}warehouses${StaticMethods.getParams(params)}`, params)
     //   .pipe(
     //   catchError((err, caught) => {
     //     this.mm.closeLoadingDialog();

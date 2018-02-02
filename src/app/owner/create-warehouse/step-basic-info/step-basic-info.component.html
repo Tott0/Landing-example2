@@ -1,0 +1,136 @@
+<mat-accordion multi="true">
+
+  <mat-expansion-panel [expanded]="true" class="basic">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Información Básica
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+
+    <mat-form-field>
+      <span class="wrapper">
+        <input matInput placeholder="Nombre de Bodega*">
+        <span class="guide"></span>
+      </span>
+    </mat-form-field>
+
+    <mat-form-field>
+      <span class="wrapper">
+        <input matInput placeholder="Dirección*">
+        <span class="guide"></span>
+      </span>
+    </mat-form-field>
+
+    <span class="wrapper-place">
+
+      <mat-form-field>
+        <mat-select placeholder="Departamento*">
+          <mat-option [value]="1">Atlántico</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-select placeholder="Ciudad*">
+          <mat-option [value]="1">Barranquilla</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </span>
+
+    <mat-form-field>
+      <span class="wrapper">
+        <textarea matInput placeholder="Descripción de la bodega (Opcional)" matTextareaAutosize matAutosizeMinRows="3" matAutosizeMaxRows="3"></textarea>
+        <span class="guide"></span>
+      </span>
+    </mat-form-field>
+
+
+  </mat-expansion-panel>
+
+  <mat-expansion-panel [expanded]="true" class="schedule">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Horario de la Bodega
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+
+    <div class="days">
+      <mat-radio-group (change)="dayModeChaged($event.value)">
+        <mat-radio-button value="1" [checked]="true">Seleccionar días de la semana</mat-radio-button>
+        <mat-radio-button value="2">Disponible los 7 días de la semana</mat-radio-button>
+      </mat-radio-group>
+
+      <span>
+        <mat-checkbox [disabled]="!daysEnabled" [(ngModel)]="daysSelected[0]">Lunes</mat-checkbox>
+        <mat-checkbox [disabled]="!daysEnabled" [(ngModel)]="daysSelected[1]">Martes</mat-checkbox>
+        <mat-checkbox [disabled]="!daysEnabled" [(ngModel)]="daysSelected[2]">Miércoles</mat-checkbox>
+        <mat-checkbox [disabled]="!daysEnabled" [(ngModel)]="daysSelected[3]">Jueves</mat-checkbox>
+        <mat-checkbox [disabled]="!daysEnabled" [(ngModel)]="daysSelected[4]">Viernes</mat-checkbox>
+        <mat-checkbox [disabled]="!daysEnabled" [(ngModel)]="daysSelected[5]">Sábado</mat-checkbox>
+        <mat-checkbox [disabled]="!daysEnabled" [(ngModel)]="daysSelected[6]">Domingo</mat-checkbox>
+      </span>
+
+    </div>
+
+    <div class="time">
+      <mat-radio-group (change)="timeModeChanged($event.value)">
+        <mat-radio-button value="1" [checked]="true">Seleccionar rango horario</mat-radio-button>
+        <mat-radio-button value="2">Disponible 24 horas</mat-radio-button>
+      </mat-radio-group>
+
+      <div class="interval-wrapper">
+        <div class="interval-input">
+          <input matInput type="number" [(ngModel)]="timeRange[0]" appForceNumeric appForceValue [max]="12" [min]="0" [disabled]="!timeEnabled">
+          <span>:</span>
+          <input matInput type="number" [(ngModel)]="timeRange[4]" appForceNumeric appForceValue [max]="60" [min]="0" [disabled]="!timeEnabled">
+          <button mat-button (click)="timeRange[1] = timeRange[1] === 'am' ? 'pm' : 'am'" [disabled]="!timeEnabled">
+            {{ timeRange[1] }}
+          </button>
+          <span>&ndash;</span>
+          <input matInput type="number" [(ngModel)]="timeRange[2]" appForceNumeric appForceValue [max]="12" [min]="0" [disabled]="!timeEnabled">
+          <span>:</span>
+          <input matInput type="number" [(ngModel)]="timeRange[5]" appForceNumeric appForceValue [max]="60" [min]="0" [disabled]="!timeEnabled">
+          <button mat-button (click)="timeRange[3] = timeRange[3] === 'am' ? 'pm' : 'am'" [disabled]="!timeEnabled">
+            {{ timeRange[3] }}
+          </button>
+        </div>
+      </div>
+
+    </div>
+
+
+  </mat-expansion-panel>
+
+  <mat-expansion-panel [expanded]="true" class="media">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Fotos y Videos
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+
+    <span>Fotos de la bodega* (Máximo 5)</span>
+    <div class="file-input">
+      <input #fileInput id="fileInput" type="file" (change)="onFile($event.target.files)" multiple>
+      <button mat-raised-button (click)="fileInput.click()">
+        Seleccionar Archivo...
+      </button>
+      <!-- <p *ngIf="this.currentFile"> {{ this.currentFile.name }}</p> -->
+    </div>
+    <div class="photos">
+      <span class="photo" *ngFor="let p of photos; let i = index">
+        <img [src]="domSanitizer.bypassSecurityTrustUrl(p.url)" />
+        <button mat-icon-button class="remove-btn" (click)="photos.splice(i, 1); $event.stopPropagation()">
+          <i class="far fa-times-circle"></i>
+        </button>
+      </span>
+    </div>
+  </mat-expansion-panel>
+
+  <!-- <mat-expansion-panel [expanded]="true" class="extra">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Información Adicional
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+  </mat-expansion-panel> -->
+
+</mat-accordion>

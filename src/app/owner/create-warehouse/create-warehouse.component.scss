@@ -1,0 +1,17 @@
+$primary: #80DEEA;
+$light: #FAFAFA;
+$dark: #212121;
+$danger: #d50000;
+.actions {
+  display: flex;
+  width: 100%;
+  padding: 0 2em;
+  margin-bottom: 5em;
+  button {
+    padding: 0.25em;
+    width: 15em;
+  }
+  .btn-next {
+      color: $light;
+  }
+}

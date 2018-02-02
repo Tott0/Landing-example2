@@ -6,18 +6,18 @@ import {
   Router, Resolve, RouterStateSnapshot,
   ActivatedRouteSnapshot
 } from '@angular/router';
-import { WareHouse } from '../shared/models/warehouse.model';
+import { Warehouse } from '../shared/models/warehouse.model';
 import { ClientService } from './client.service';
 import { ModalManager } from '../core/providers/modal-manager';
 
 @Injectable()
-export class WarehouseFilterResolver implements Resolve<WareHouse[]> {
+export class WarehouseFilterResolver implements Resolve<Warehouse[]> {
   constructor(
     private service: ClientService,
     private router: Router,
     private mm: ModalManager) { }
 
-  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<WareHouse[]> {
+  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Warehouse[]> {
     console.log(route.params);
     const params = route.params;
 

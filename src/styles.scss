@@ -1,8 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
 
 $primary: #80DEEA;
+$primary-light: #b4ffff;
+$primary-dark: #4bacb8;
 $light: #FAFAFA;
 $dark: #212121;
+$danger: #d50000;
 *:not(.mat-form-field-label-wrapper) {
   box-sizing: border-box !important;
 }
@@ -34,6 +37,8 @@ app-root {
 // @media
 .container {
   width: 1200px !important;
+  //
+  border: solid 1px $danger;
 }
 
 .row {
@@ -64,6 +69,29 @@ app-root {
     line-height: normal;
     margin: 0;
     font-size: 1rem;
+  }
+
+  input.mat-input-element, textarea.mat-input-element, .mat-radio-label-content{
+    font-size: 1rem;
+    line-height: normal;
+  }
+
+  .mat-icon{
+    height: auto !important;
+    width: auto !important;
+  }
+
+  .mat-step-icon, .mat-step-icon-not-touched{
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+
+  .mat-button-wrapper{
+    height: 1em;
+    width: 1em;
+    .svg-inline--fa{
+      vertical-align: inherit;
+    }
   }
 }
 

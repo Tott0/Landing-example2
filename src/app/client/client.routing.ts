@@ -13,7 +13,7 @@ import { WarehouseParametersResolver } from './warehouse-parameters-resolver.ser
 // import { MultaCodesResolver } from '../shared/shared-resolvers.service';
 
 
-const caseRoutes: Routes = [
+const routes: Routes = [
   {
     path: '',
     component: ClientComponent,
@@ -37,7 +37,7 @@ const caseRoutes: Routes = [
 
 @NgModule({
   imports: [
-    RouterModule.forChild(caseRoutes)
+    RouterModule.forChild(routes)
   ],
   exports: [
     RouterModule

@@ -1,14 +1,20 @@
 $primary: #80DEEA;
+$primary-light: #b4ffff;
+$primary-dark: #4bacb8;
 $light: #FAFAFA;
 $dark: #212121;
+$danger: #d50000;
 ::ng-deep {
-  .results{
+  .results {
     .result .mat-list-item-content {
       width: 100%;
       padding: 0.5em !important;
     }
-    .btn-filter .mat-button-focus-overlay{
-      opacity: 0 !important;
+    .btn-filter,
+    .btn-back {
+      .mat-button-focus-overlay {
+        opacity: 0 !important;
+      }
     }
   }
 }
@@ -17,7 +23,7 @@ $dark: #212121;
   flex-direction: row;
 }
 
-.results {
+.left-area {
   border-right: solid 1px transparentize($dark, 0.6);
   display: flex;
   flex: 4 0 0;
@@ -25,8 +31,10 @@ $dark: #212121;
   height: 100%;
   justify-content: flex-start;
   padding: 2em;
-  
-  .title{
+}
+
+.results {
+  .title {
     margin-bottom: 0.5em;
   }
   .result {
@@ -48,7 +56,7 @@ $dark: #212121;
         color: lighten($dark, 0.3);
       }
     }
-    .details{
+    .details {
       font-size: 1.25em;
       color: darken($primary, 25);
       border-bottom: solid 1px transparentize($primary, 0.3);
@@ -60,6 +68,95 @@ $dark: #212121;
     align-items: center;
     .btn-filter {
       justify-self: flex-end;
+    }
+  }
+}
+
+.result-focus {
+  position: relative;
+  font-size: 1rem;
+  padding: 1em;
+  .top-title {
+    align-items: center;
+    display: flex;
+    left: 0.4em;
+    position: absolute;
+    top: 0.25em;
+    font-size: 1.5em;
+    .btn-back {
+      color: $dark;
+      display: flex;
+      font-size: 1.5em;
+      height: auto;
+      width: auto;
+      margin-right: 0.3em;
+    }
+  }
+  .line{
+    display: flex;
+    align-items: center;
+    i.fa{
+      color: $primary-dark;
+      font-size: 0.75em;
+      margin-right: 0.25em;
+    }
+  }
+  .name {
+    font-size: 1.25em;
+    margin-top: 1em;
+  }
+  .wh-img{
+    width: 100%;
+    height: 30%;
+    position: relative;
+    overflow: hidden;
+
+    img{
+      position: absolute;
+      top: -25%;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+  }
+  .sub-title{
+    font-size: 1.25em;
+    margin-top: 0.5em;
+    margin-bottom: 0.25em;
+  }
+  .storage{
+    display: flex;
+    .str{
+      flex: 0 0 33%;
+      display: flex;
+      align-items: center;
+      border: solid 1px $danger;
+      img {
+        width: 2em;
+        margin-right: 0.2em;
+      }
+    }
+  }
+  .prices{
+    span{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      font-size: 0.9em;
+
+      i{
+        font-size: 1.25em;
+      }
+    }
+  }
+  .btn-go{
+    padding: 1em;
+    display: flex;
+    align-self: center;
+    span.btn-text{
+      font-size: 1em;
+      color: $light;
+      text-align: center;
     }
   }
 }

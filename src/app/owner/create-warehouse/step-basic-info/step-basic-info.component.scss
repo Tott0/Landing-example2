@@ -1,0 +1,117 @@
+$primary: #80DEEA;
+$primary-light: #b4ffff;
+$primary-dark: #4bacb8;
+$light: #FAFAFA;
+$dark: #212121;
+$danger: #d50000;
+::ng-deep app-step-basic-info {
+  .mat-expansion-panel-body {
+    display: flex;
+    flex-direction: column;
+  }
+  .mat-form-field-underline {
+    width: 60%;
+  }
+  .wrapper-place .mat-form-field-underline {
+    width: 100%;
+  }
+}
+
+mat-accordion {
+  .basic {
+    .wrapper {
+      display: flex;
+      input,
+      textarea {
+        flex: 6 0 0;
+      }
+      .guide {
+        flex: 4 0 0;
+      }
+    }
+    .wrapper-place {
+      display: flex;
+      width: 60%;
+      mat-form-field {
+        flex: 1 0 0;
+        margin: 0 0.25em;
+      }
+    }
+  }
+  .schedule {
+    .days,
+    .time {
+      display: flex;
+      flex-direction: column;
+      margin: 0.5em 0;
+      mat-radio-button {
+        &:not(:last-of-type) {
+          margin-right: 0.5em;
+        }
+      }
+      mat-checkbox {
+        &:not(:last-of-type) {
+          margin-right: 0.25em;
+        }
+      }
+    }
+    .interval-wrapper {
+      width: 50%;
+      display: flex;
+      flex-direction: column;
+      margin: 1em 0;
+      .interval-input {
+        display: flex;
+        input,
+        button {
+          flex: 1 0 0;
+          text-align: center;
+        }
+        input {
+          border-bottom: solid 1px transparentize($dark, 0.5);
+        }
+        button {
+          min-width: 0;
+          padding: 0.5vh;
+        }
+      }
+    }
+  }
+  .media{
+    .file-input {
+      margin: 0.25em 0;
+      display: flex;
+      align-items: center;
+      #fileInput {
+        position: absolute;
+        left: -100vw;
+      }
+    }
+    .photos{
+      display: flex;
+      .photo{
+        position: relative;
+        &:not(:last-of-type){
+          margin-right: 0.25em 0;
+        }
+        img{
+          width: 7.5em;
+          height: 7.5em;
+        }
+        .remove-btn {
+          background: $light;
+          color: $danger;
+          height: auto;
+          position: absolute;
+          top: 0.25em;
+          right: 0.25em;
+          width: auto;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          
+        }
+      }
+    }
+  }
+}

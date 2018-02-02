@@ -8,6 +8,10 @@ const appRoutes: Routes = [
     path: 'temproute_client',
     loadChildren: 'app/client/client.module#ClientModule'
   },
+  {
+    path: 'temproute_owner',
+    loadChildren: 'app/owner/owner.module#OwnerModule'
+  },
   { path: '', component: LandingComponent },
   { path: '**', component: LandingComponent }, // TODO fix this
 ];

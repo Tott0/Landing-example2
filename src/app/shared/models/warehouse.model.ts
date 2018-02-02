@@ -2,7 +2,7 @@
 import { Ciudad } from './shared.model';
 import { WhOwner } from './user.model';
 
-export class WareHouse {
+export class Warehouse {
   whOwner?: WhOwner; // FIXME this is obligatory
   name: string;
   lat: number;
@@ -14,7 +14,22 @@ export class WareHouse {
   positions: Position[];
 
   // all characteristics of warehouse are grouped here
-  parameters: Parameter[]|number[];
+  parameters: Parameter[] | number[];
+
+  has_rack?(): boolean { return this.positions.some(p => p.type === PositionType.RACK); }
+  has_floor_closed?(): boolean { return this.positions.some(p => p.type === PositionType.FLOOR_CLOSED); }
+  has_floor_open?(): boolean { return this.positions.some(p => p.type === PositionType.FLOOR_OPEN); }
+
+  constructor(wh: Warehouse) {
+    this.whOwner = wh.whOwner;
+    this.name = wh.name;
+    this.lat = wh.lat;
+    this.lng = wh.lng;
+    this.city = wh.city;
+    this.address = wh.address;
+    this.positions = wh.positions;
+    this.parameters = wh.parameters;
+  }
 }
 
 export enum ParameterType {

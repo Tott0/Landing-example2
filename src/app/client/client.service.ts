@@ -7,7 +7,7 @@ import { catchError, tap, map } from 'rxjs/operators';
 
 import { Subject } from 'rxjs/Subject';
 
-import { WareHouse, Parameter, ParameterType, PositionType, Position } from '../shared/models/warehouse.model';
+import { Warehouse, Parameter, ParameterType, PositionType, Position } from '../shared/models/warehouse.model';
 
 import { AppConstants } from '../app-constants';
 import { StaticMethods } from '../utils/static-methods';
@@ -27,7 +27,7 @@ export class ClientService {
     name: 'Barranquilla'
   }];
 
-  warehouses: WareHouse[] = [
+  warehouses: Warehouse[] = [
     {
       name: 'Bodega 1',
       address: 'Calle c Kra 2',
@@ -158,8 +158,8 @@ export class ClientService {
   ];
 
 
-  filterWarehouses(params): Observable<WareHouse[]> {
-    return Observable.of<WareHouse[]>(
+  filterWarehouses(params): Observable<Warehouse[]> {
+    return Observable.of<Warehouse[]>(
       this.warehouses.filter(wh => {
         console.log('--- wh ---');
         if (params.cd && wh.city.id !== +params.cd) {
@@ -211,7 +211,7 @@ export class ClientService {
       })
     );
 
-    // return this.http.get<WareHouse[]>(`${AppConstants.API_ENDPOINT}warehouses${StaticMethods.getParams(params)}`, params)
+    // return this.http.get<Warehouse[]>(`${AppConstants.API_ENDPOINT}warehouses${StaticMethods.getParams(params)}`, params)
     //   .pipe(
     //   catchError((err, caught) => {
     //     this.mm.closeLoadingDialog();

@@ -1,16 +1,14 @@
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { Validators, FormBuilder, FormGroup, AbstractControl } from '@angular/forms';
-import { ModalManager } from '../../core/providers/modal-manager';
-import { StaticMethods } from '../../utils/static-methods';
-import { ClientService } from '../client.service';
+import { StaticMethods } from '../../../utils/static-methods';
 
 @Component({
-  selector: 'app-start',
-  templateUrl: './start.component.html',
-  styleUrls: ['./start.component.scss']
+  selector: 'app-step-storage',
+  templateUrl: './step-storage.component.html',
+  styleUrls: ['./step-storage.component.scss']
 })
-export class StartComponent implements OnInit {
+export class StepStorageComponent implements OnInit {
 
   errors: any = {};
   filterForm: FormGroup;
@@ -21,8 +19,6 @@ export class StartComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private formBuilder: FormBuilder,
-    private mm: ModalManager,
-    private cService: ClientService
   ) { }
 
   ngOnInit() {
@@ -34,21 +30,6 @@ export class StartComponent implements OnInit {
 
   onSubmit() {
     // this.mm.showLoadingDialog();
-    const u = {
-      cd: this.city.value,
-      up: this.uPallet.value,
-    };
-
-    this.mm.showLoadingDialog();
-    setTimeout(() => {
-      this.router.navigate(['temproute_map', u], {
-        relativeTo: this.route
-      }).then(
-        success => this.errors.message = success ? '' : 'No se encontraton bodegas con los parametros seleccionados',
-        err => console.error(err)
-        );
-    }, 500);
-
   }
 
   getErrorMessage(formControl: AbstractControl, error) {

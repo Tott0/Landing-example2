@@ -9,7 +9,7 @@ import { HomeComponent } from './home.component';
 // import { MultaCodesResolver } from '../shared/shared-resolvers.service';
 
 
-const caseRoutes: Routes = [
+const routes: Routes = [
   {
     path: '',
     component: HomeComponent,
@@ -19,7 +19,7 @@ const caseRoutes: Routes = [
 
 @NgModule({
   imports: [
-    RouterModule.forChild(caseRoutes)
+    RouterModule.forChild(routes)
   ],
   exports: [
     RouterModule

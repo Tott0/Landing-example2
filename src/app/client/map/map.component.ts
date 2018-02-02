@@ -3,7 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { ModalManager } from '../../core/providers/modal-manager';
 
 import { AgmMap, MouseEvent } from '@agm/core';
-import { WareHouse } from '../../shared/models/warehouse.model';
+import { Warehouse } from '../../shared/models/warehouse.model';
 
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
@@ -31,18 +31,16 @@ export class MapComponent implements OnInit {
 
   iLat = 10.9838314;
   iLng = -74.8136909;
-  zoom = 14;
+  zoom = 13;
   warehouses: any[] = [];
   parameters: any;
 
-  selectedCityId: number;
-  uPallets: number;
   currentFilters: any;
-  focusedWareHouse: WareHouse;
+  focusedWarehouse: Warehouse;
 
   ngOnInit() {
     const subscription = this.route.data
-      .subscribe((data: { warehouses: WareHouse[], parameters: any }) => {
+      .subscribe((data: { warehouses: Warehouse[], parameters: any }) => {
         console.log(data);
         this.warehouses = data.warehouses;
         this.parameters = data.parameters;
@@ -116,7 +114,7 @@ export class MapComponent implements OnInit {
     //     return this.cService.filterWarehouses(params);
     //   }),
     //   catchError(err => {
-    //     return Observable.of<WareHouse[]>([]);
+    //     return Observable.of<Warehouse[]>([]);
     //   }),
     // )
     //   .subscribe(warehouses => {
@@ -137,8 +135,8 @@ export class MapComponent implements OnInit {
     }).subscribe(data => {
       if (data) {
         const filter: any = {
-          cd: this.selectedCityId,
-          up: this.uPallets,
+          cd: this.currentFilters.cd,
+          up: this.currentFilters.up,
         };
         if (data.storage) {
           filter.str = data.storage.map(str => str ? 1 : 0);
@@ -168,11 +166,22 @@ export class MapComponent implements OnInit {
     });
   }
 
-  focusOn(warehouse: WareHouse) {
-    this.focusedWareHouse = warehouse;
+  focusOn(warehouse: Warehouse) {
+    this.focusedWarehouse = new Warehouse(this.warehouses[0]);
     this.iLat = warehouse.lat;
     this.iLng = warehouse.lng;
     this.zoom = 15;
+  }
+
+  markerClick(warehouse: Warehouse) {
+    this.focusOn(warehouse);
+  }
+
+  clearFocus() {
+    this.focusedWarehouse = undefined;
+    this.iLat = 10.9838314;
+    this.iLng = -74.8136909;
+    this.zoom = 13;
   }
 
 }
