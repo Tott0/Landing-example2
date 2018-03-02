@@ -1,17 +1,27 @@
-/* You can add global styles to this file, and also import other style files */
-
-$primary: #80DEEA;
-$primary-light: #b4ffff;
-$primary-dark: #4bacb8;
-$light: #FAFAFA;
-$dark: #212121;
-$danger: #d50000;
+@import './src/scss/variables.scss';
+  
 *:not(.mat-form-field-label-wrapper) {
   box-sizing: border-box !important;
 }
 
+//FIXME look for proper font sizes
 html {
-  font-size: calc(0.6em + 1vw);
+  @include for-phone-only {
+    font-size: 16px;
+  }
+  @include for-tablet-portrait-up {
+    font-size: 16px;
+  }
+  @include for-tablet-landscape-up {
+    font-size: 20px;
+  }
+  @include for-desktop-up {
+    font-size: 20px;
+  }
+  @include for-big-desktop-up {
+    font-size: 22px;
+  }
+  
 }
 
 body {
@@ -34,11 +44,18 @@ app-root {
   width: 100vw;
 }
 
-// @media
 .container {
-  width: 1200px !important;
-  //
-  border: solid 1px $danger;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+  width: 100%;
+  @include for-desktop-up{
+    width: 1200px !important;
+  }
+  @include for-big-desktop-up {
+    width: 1800px !important;
+  }
 }
 
 .row {
@@ -65,33 +82,13 @@ app-root {
   a,
   p,
   span,
-  mat-icon.mat-icon {
+  mat-icon.mat-icon,
+  i, .svg-inline--fa,
+  mat-header-cell,
+  mat-cell {
     line-height: normal;
     margin: 0;
-    font-size: 1rem;
-  }
-
-  input.mat-input-element, textarea.mat-input-element, .mat-radio-label-content{
-    font-size: 1rem;
-    line-height: normal;
-  }
-
-  .mat-icon{
-    height: auto !important;
-    width: auto !important;
-  }
-
-  .mat-step-icon, .mat-step-icon-not-touched{
-    width: 1.5rem;
-    height: 1.5rem;
-  }
-
-  .mat-button-wrapper{
-    height: 1em;
-    width: 1em;
-    .svg-inline--fa{
-      vertical-align: inherit;
-    }
+    // font-size: 1em;
   }
 }
 

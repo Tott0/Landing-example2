@@ -17,7 +17,7 @@ export class AuthHeadersInterceptor implements HttpInterceptor {
     let authReq;
     const authService = this.inj.get(AuthService);
     if (authService.token && req.url.includes(AppConstants.API_ENDPOINT)) {
-      authReq = req.clone({ setHeaders: { Authorization: authService.token } });
+      authReq = req.clone({ setHeaders: { token: authService.token } });
     }
     return next.handle(authReq ? authReq : req);
   }

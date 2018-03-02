@@ -1,3 +1,9 @@
+export enum UserType {
+  OWNER,
+  CLIENT,
+  ADMIN
+}
+
 export class User {
   username: string;
 }

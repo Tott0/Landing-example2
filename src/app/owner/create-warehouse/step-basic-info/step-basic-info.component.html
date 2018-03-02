@@ -107,7 +107,7 @@
       </mat-panel-title>
     </mat-expansion-panel-header>
 
-    <span>Fotos de la bodega* (Máximo 5)</span>
+    <span class="desc">Fotos de la bodega* (Máximo 5)</span>
     <div class="file-input">
       <input #fileInput id="fileInput" type="file" (change)="onFile($event.target.files)" multiple>
       <button mat-raised-button (click)="fileInput.click()">
@@ -119,7 +119,7 @@
       <span class="photo" *ngFor="let p of photos; let i = index">
         <img [src]="domSanitizer.bypassSecurityTrustUrl(p.url)" />
         <button mat-icon-button class="remove-btn" (click)="photos.splice(i, 1); $event.stopPropagation()">
-          <i class="far fa-times-circle"></i>
+          <i class="far fa-lg fa-times-circle"></i>
         </button>
       </span>
     </div>

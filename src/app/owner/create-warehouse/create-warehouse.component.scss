@@ -1,17 +1,37 @@
-$primary: #80DEEA;
-$light: #FAFAFA;
-$dark: #212121;
-$danger: #d50000;
-.actions {
-  display: flex;
+@import './src/scss/variables.scss';
+mat-card {
+  margin-top: 3em;
+  margin-bottom: 1em;
+  font-size: 0.75rem;
   width: 100%;
-  padding: 0 2em;
-  margin-bottom: 5em;
-  button {
-    padding: 0.25em;
-    width: 15em;
+  &>* {
+    font-size: 1rem;
   }
-  .btn-next {
+  mat-card-title {
+    font-size: 1.5em;
+    padding: 0.1em;
+  }
+  mat-card-content {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    padding: 1em;
+    font-size: 1em;
+    
+    mat-horizontal-stepper{
+      width: 100%;
+    }
+  }
+  mat-card-actions {
+    display: flex;
+    margin: 0 !important;
+    font-size: 1em;
+    button {
+      width: 10em;
+    }
+    .btn-next {
       color: $light;
+    }
   }
 }

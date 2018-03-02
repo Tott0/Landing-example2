@@ -1,9 +1,4 @@
-$primary: #80DEEA;
-$primary-light: #b4ffff;
-$primary-dark: #4bacb8;
-$light: #FAFAFA;
-$dark: #212121;
-$danger: #d50000;
+@import './src/scss/variables.scss';
 ::ng-deep app-step-basic-info {
   .mat-expansion-panel-body {
     display: flex;
@@ -18,6 +13,20 @@ $danger: #d50000;
 }
 
 mat-accordion {
+  mat-expansion-panel{
+    border-radius: 0.5em;
+    border: solid 1px $primary-dark;
+
+    mat-expansion-panel-header{
+      background: transparentize($color: $primary-dark, $amount: 0.3);
+      border-top-left-radius: 0.5em;
+      border-top-right-radius: 0.5em;
+      mat-panel-title{
+        font-size: 1.5em;
+        color: $light;
+      }
+    }
+  }
   .basic {
     .wrapper {
       display: flex;
@@ -39,6 +48,15 @@ mat-accordion {
     }
   }
   .schedule {
+    .days{
+      padding-top: 1em;
+      mat-radio-group{
+        margin-bottom: 1em;
+      }
+    }
+    .time{
+      margin-top: 0.5em;
+    }
     .days,
     .time {
       display: flex;
@@ -59,12 +77,14 @@ mat-accordion {
       width: 50%;
       display: flex;
       flex-direction: column;
-      margin: 1em 0;
+      margin-top: 0.5em;
       .interval-input {
         display: flex;
+        align-items: center;
+        font-size: 1.5em;
         input,
         button {
-          flex: 1 0 0;
+          width: 5em;
           text-align: center;
         }
         input {
@@ -72,12 +92,15 @@ mat-accordion {
         }
         button {
           min-width: 0;
-          padding: 0.5vh;
+          padding: 0.5em 0;
         }
       }
     }
   }
   .media{
+    .desc{
+      margin-top: 1em;
+    }
     .file-input {
       margin: 0.25em 0;
       display: flex;
@@ -89,14 +112,15 @@ mat-accordion {
     }
     .photos{
       display: flex;
+      margin-top: 1em;
       .photo{
         position: relative;
         &:not(:last-of-type){
-          margin-right: 0.25em 0;
+          margin-right: 0.5em 0;
         }
         img{
-          width: 7.5em;
-          height: 7.5em;
+          width: 10em;
+          height: 10em;
         }
         .remove-btn {
           background: $light;

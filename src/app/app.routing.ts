@@ -2,18 +2,34 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes, PreloadAllModules } from '@angular/router';
 
 import { LandingComponent } from './landing/landing.component';
+import { NotFoundComponent } from './not-found/not-found.component';
+import { HomeComponent } from './home/home.component';
+import { AuthComponent } from './auth/auth.component';
+import { SignupComponent } from './auth/signup/signup.component';
+import { ForgotComponent } from './auth/forgot/forgot.component';
+
+import { LoginAuthGuard } from './core/providers/auth-guard.service';
 
 const appRoutes: Routes = [
   {
     path: 'temproute_client',
-    loadChildren: 'app/client/client.module#ClientModule'
+    loadChildren: 'app/client/client.module#ClientModule',
+    // canActivate: [
+    //   LoginAuthGuard,
+    // ],
   },
   {
     path: 'temproute_owner',
-    loadChildren: 'app/owner/owner.module#OwnerModule'
+    loadChildren: 'app/owner/owner.module#OwnerModule',
+    // canActivate: [
+    //   LoginAuthGuard,
+    // ],
   },
-  { path: '', component: LandingComponent },
-  { path: '**', component: LandingComponent }, // TODO fix this
+  { path: 'login', component: AuthComponent },
+  { path: 'signup', component: SignupComponent },
+  { path: 'forgot', component: ForgotComponent },
+  { path: '', component: HomeComponent },
+  { path: '**', component: NotFoundComponent },
 ];
 
 @NgModule({
@@ -27,6 +43,9 @@ const appRoutes: Routes = [
   ],
   exports: [
     RouterModule
+  ],
+  providers: [
+    LoginAuthGuard,
   ]
 })
 

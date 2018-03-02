@@ -8,7 +8,7 @@ import { ModalManager } from '../core/providers/modal-manager';
 export class StaticMethods {
 
   static handleHttpResponseError(error: HttpErrorResponse) {
-    console.error(error);
+    console.log(error);
     let err;
     if (!error.status) {
       // non request related error
@@ -71,14 +71,13 @@ export class StaticMethods {
     let params = '';
     const keys = Object.keys(options);
     if (keys.length) {
-      const k = keys.shift();
-      if (options[k]) {
-        params += append ? '&' : '?';
-        params += k + '=' + options[k];
-      }
+      let first = true;
+      let appender = append ? '&' : '?';
       for (const key of keys) {
-        if (options[key]) {
-          params += '&' + key + '=' + options[key];
+        if (options[key] || options[key] === 0) {
+          appender = first ? appender : '&';
+          params += appender + key + '=' + options[key];
+          first = false;
         }
       }
     }
@@ -147,11 +146,14 @@ export class StaticMethods {
     if (formControl.hasError('mismatch')) {
       return `Las contraseñas no coinciden`;
     }
+    if (formControl.hasError('range')) {
+      return `Valor Final debe ser mayor al valor Inicial`;
+    }
   }
 
   static separateByCapital(text: string): string {
-    const regex = /([^\s])([A-Z])/g
-    return text.replace(regex, '$1 $2')
+    const regex = /([^\s])([A-Z])/g;
+    return text.replace(regex, '$1 $2');
   }
 }
 

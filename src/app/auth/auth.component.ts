@@ -6,8 +6,7 @@ import { AuthService } from '../../app/core/providers/auth.service';
 import { StaticMethods } from '../../app/utils/static-methods';
 import { ModalManager } from '../../app/core/providers/modal-manager';
 import { CustomValidators } from '../../app/shared/custom-validators';
-
-import { PersonType } from '../shared/enums/person-type.enum';
+import { UserType, User } from '../shared/models/user.model';
 
 @Component({
   selector: 'app-auth',
@@ -33,7 +32,7 @@ export class AuthComponent implements OnInit {
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
-      email: ['', [Validators.required, CustomValidators.email()]],
+      email: ['', [Validators.required]],
       password: ['', Validators.compose([Validators.required, Validators.minLength(8)])]
     });
   }
@@ -42,50 +41,31 @@ export class AuthComponent implements OnInit {
     this.mm.showLoadingDialog();
     const u = {
       email: this.email.value,
-      password: this.password.value,
-      fcm_token: this.authService.fcm_token
+      password: this.password.value
     };
     this.authService.login(u)
       .subscribe(res => {
         this.mm.closeLoadingDialog();
-        switch (res.user.type_user) {
-          case PersonType.ABOGADO:
-            this.router.navigate(['/abogado']);
-            break;
-          case PersonType.ADMIN:
-            this.router.navigate(['/admin']);
-            break;
-          default:
-            this.router.navigate(['/usuario']);
-            break;
-        }
+        this.router.navigate([this.authService.redirectUrl ? this.authService.redirectUrl : '']);
       },
-      (err) => {
-        this.mm.closeLoadingDialog();
+        (err) => {
+          this.mm.closeLoadingDialog();
 
-        if (typeof err === 'string') {
-          this.errors = {
-            message: err
-          };
-        } else {
-          this.errors = err;
-          for (const control of Object.keys(this.loginForm.controls)) {
-            this.loginForm.get(control).markAsDirty();
-            this.loginForm.get(control).markAsTouched();
+          if (typeof err === 'string') {
+            this.errors = {
+              message: err
+            };
+          } else {
+            this.errors = err;
+            for (const control of Object.keys(this.loginForm.controls)) {
+              this.loginForm.get(control).markAsDirty();
+              this.loginForm.get(control).markAsTouched();
+            }
           }
-        }
-      });
+        });
   }
 
-  forgotPass() {
-    this.router.navigate(['/forgot']);
-  }
-
-  openSignUp() {
-    this.router.navigate(['/signup']);
-  }
-
-  getErrorMessage(formControl: AbstractControl, error) {
+  getErrorMessage(formControl: AbstractControl, error?) {
     if (error && error.length) {
       return error[0];
     } else {

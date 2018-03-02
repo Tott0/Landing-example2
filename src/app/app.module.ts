@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { LandingComponent } from './landing/landing.component';
 import { FooterComponent } from './footer/footer.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 /* Feature Modules */
 import { CoreModule } from './core/core.module';
@@ -27,6 +28,7 @@ import { AppConstants } from './app-constants';
     LandingComponent,
     NavbarComponent,
     FooterComponent,
+    NotFoundComponent,
   ],
   imports: [
     BrowserModule,

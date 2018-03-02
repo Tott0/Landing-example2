@@ -1,0 +1,14 @@
+@import './src/scss/variables.scss';
+.container{
+  font-size: 1rem;
+  padding-top: 3em;
+  .icon{
+    color: $danger;
+  }
+  .error{
+    font-size: 3.5em;
+  }
+  .text{
+    font-size: 2em;
+  }
+}

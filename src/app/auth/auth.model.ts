@@ -1,4 +1,4 @@
-import { PersonType } from '../../app/shared/enums/person-type.enum';
+import { UserType } from '../shared/models/user.model';
 
 export class User {
     id?: number;
@@ -7,12 +7,12 @@ export class User {
     identification?: string;
     address?: string;
     contact_phone?: string;
-    type_user?: PersonType;
 }
 
 export class Auth {
     token: string;
     user: User;
     unread_nots?: number;
+    role: UserType;
 }
 
