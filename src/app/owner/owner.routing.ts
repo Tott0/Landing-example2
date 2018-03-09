@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { OwnerComponent } from './owner.component';
 import { CreateWarehouseComponent } from './create-warehouse/create-warehouse.component';
+import { WarehouseParametersResolver } from '../client/warehouse-parameters-resolver.service';
 
 
 const routes: Routes = [
@@ -13,7 +14,10 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        component: CreateWarehouseComponent
+        component: CreateWarehouseComponent,
+        resolve: {
+          parameters: WarehouseParametersResolver,
+        }
       }
     ]
   }
@@ -27,6 +31,7 @@ const routes: Routes = [
     RouterModule
   ],
   providers: [
+    WarehouseParametersResolver,
   ]
 })
 

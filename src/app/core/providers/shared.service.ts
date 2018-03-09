@@ -172,10 +172,10 @@ export class SharedService {
     return Observable.of<any>(parameters).pipe(
       map(res => {
         return {
-          product: res.filter(p => p.type === ParameterType.ACCEPTED_PRODUCTS),
-          security: res.filter(p => p.type === ParameterType.SECURITY),
-          certifications: res.filter(p => p.type === ParameterType.CERTIFICATIONS),
-          services: res.filter(p => p.type === ParameterType.EXTRA_SERVICES),
+          product: this.productParams,
+          security: this.securityParams,
+          certifications: this.certificationsParams,
+          services: this.servicesParams,
         };
       })
     );

@@ -50,14 +50,20 @@ export enum PositionType {
   FLOOR_OPEN,
   FLOOR_CLOSED
 }
+export enum MeasureType {
+  M2,
+  PALLET
+}
 export class Position {
   id: number;
   type: PositionType;
+  measure: MeasureType;
   amount: number; // available spaces for this type of position in warehouse
+  price_per_unit: number;
   // measurements, default for floor type is 1m2
   width: number;
   length: number;
-  height: number;
+  max_height: number;
   max_weight: number;
   //
   refrigerated?: boolean;

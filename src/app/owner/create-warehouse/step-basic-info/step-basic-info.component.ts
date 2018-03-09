@@ -19,11 +19,6 @@ export class StepBasicInfoComponent implements OnInit {
 
   photos: any[] = [];
 
-  errors: any = {};
-  @Input() form: FormGroup;
-  get city() { return this.form.get('city'); }
-  get uPallet() { return this.form.get('uPallet'); }
-
   constructor(
     private router: Router,
     private route: ActivatedRoute,
@@ -32,8 +27,6 @@ export class StepBasicInfoComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.form = this.formBuilder.group({
-    });
   }
 
   onSubmit() {

@@ -7,7 +7,7 @@ import { catchError, tap, map } from 'rxjs/operators';
 
 import { Subject } from 'rxjs/Subject';
 
-import { Warehouse, Parameter, ParameterType, PositionType, Position } from '../shared/models/warehouse.model';
+import { Warehouse, Parameter, ParameterType, PositionType, Position, MeasureType } from '../shared/models/warehouse.model';
 
 import { AppConstants } from '../app-constants';
 import { StaticMethods } from '../utils/static-methods';
@@ -39,10 +39,12 @@ export class ClientService {
         {
           id: 1,
           type: PositionType.RACK,
+          measure: MeasureType.PALLET,
           amount: 500,
+          price_per_unit: 10000,
           width: 1,
           length: 1,
-          height: 1,
+          max_height: 1,
           max_weight: 2000
         }
       ],
@@ -59,10 +61,12 @@ export class ClientService {
         {
           id: 2,
           type: PositionType.FLOOR_CLOSED,
+          measure: MeasureType.PALLET,
           amount: 700,
+          price_per_unit: 10000,
           width: 1,
           length: 1,
-          height: 1,
+          max_height: 1,
           max_weight: 2000
         }
       ],
@@ -79,10 +83,12 @@ export class ClientService {
         {
           id: 3,
           type: PositionType.FLOOR_OPEN,
+          measure: MeasureType.PALLET,
           amount: 500,
+          price_per_unit: 10000,
           width: 1,
           length: 1,
-          height: 1,
+          max_height: 1,
           max_weight: 2000
         }
       ],
@@ -99,19 +105,23 @@ export class ClientService {
         {
           id: 4,
           type: PositionType.RACK,
+          measure: MeasureType.PALLET,
           amount: 100,
+          price_per_unit: 10000,
           width: 1,
           length: 1,
-          height: 1,
+          max_height: 1,
           max_weight: 2000
         },
         {
           id: 5,
           type: PositionType.FLOOR_CLOSED,
+          measure: MeasureType.PALLET,
           amount: 100,
+          price_per_unit: 10000,
           width: 1,
           length: 1,
-          height: 1,
+          max_height: 1,
           max_weight: 2000
         }
       ],
@@ -128,28 +138,34 @@ export class ClientService {
         {
           id: 6,
           type: PositionType.RACK,
+          measure: MeasureType.PALLET,
           amount: 500,
+          price_per_unit: 10000,
           width: 1,
           length: 1,
-          height: 1,
+          max_height: 1,
           max_weight: 2000
         },
         {
           id: 7,
           type: PositionType.FLOOR_OPEN,
+          measure: MeasureType.PALLET,
           amount: 500,
+          price_per_unit: 10000,
           width: 1,
           length: 1,
-          height: 1,
+          max_height: 1,
           max_weight: 2000
         },
         {
           id: 8,
           type: PositionType.FLOOR_CLOSED,
+          measure: MeasureType.PALLET,
           amount: 500,
+          price_per_unit: 10000,
           width: 1,
           length: 1,
-          height: 1,
+          max_height: 1,
           max_weight: 2000
         },
       ],

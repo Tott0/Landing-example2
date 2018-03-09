@@ -1,7 +1,11 @@
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Validators, FormBuilder, FormGroup, AbstractControl } from '@angular/forms';
 import { StaticMethods } from '../../../utils/static-methods';
+import { ModalManager } from '../../../core/providers/modal-manager';
+
+import { MatTableDataSource } from '@angular/material';
+import { Position, MeasureType, PositionType } from '../../../shared/models/warehouse.model';
 
 @Component({
   selector: 'app-step-storage',
@@ -10,34 +14,36 @@ import { StaticMethods } from '../../../utils/static-methods';
 })
 export class StepStorageComponent implements OnInit {
 
-  errors: any = {};
-  filterForm: FormGroup;
-  get city() { return this.filterForm.get('city'); }
-  get uPallet() { return this.filterForm.get('uPallet'); }
+  @Input() parameters: any;
+
+  storageColumns = ['number', 'unit', 'space', 'price', 'height', 'weight', 'actions'];
+  storageDataSource = new MatTableDataSource();
+
+  newPosition: Position = new Position();
+
+  PositionType = PositionType;
+  MeasureType = MeasureType;
 
   constructor(
     private router: Router,
     private route: ActivatedRoute,
     private formBuilder: FormBuilder,
+    private mm: ModalManager,
   ) { }
 
   ngOnInit() {
-    this.filterForm = this.formBuilder.group({
-      city: ['', [Validators.required]],
-      uPallet: ['', Validators.compose([Validators.required])]
-    });
+    this.storageDataSource.data = [];
   }
 
   onSubmit() {
     // this.mm.showLoadingDialog();
   }
 
-  getErrorMessage(formControl: AbstractControl, error) {
-    if (error && error.length) {
-      return error[0];
-    } else {
-      return StaticMethods.getFormError(formControl);
-    }
+  addPosition() {
+
+  }
+  isNewPositionInvalid() {
+    return true;
   }
 
 }

@@ -20,6 +20,13 @@ export class CreateWarehouseComponent implements OnInit {
 
   @ViewChild(MatStepper) matStepper: MatStepper;
 
+  parameters: any = {
+    product: [],
+    security: [],
+    certifications: [],
+    services: [],
+  };
+
   constructor(
     private router: Router,
     private route: ActivatedRoute,
@@ -29,7 +36,12 @@ export class CreateWarehouseComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-
+    this.route.data
+    .subscribe((data: { parameters: any }) => {
+      console.log(data);
+      this.parameters = data.parameters;
+      this.mm.closeLoadingDialog();
+    });
   }
 
   onSubmit() {

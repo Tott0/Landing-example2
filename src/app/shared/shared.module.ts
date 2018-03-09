@@ -30,7 +30,8 @@ import {
   MatInputModule, MatCheckboxModule, MatButtonModule, MatToolbarModule, MatSidenavModule,
   MatSelectModule, MatGridListModule, MatIconModule, MatCardModule, MatListModule, MatPaginatorModule,
   MatTabsModule, MatExpansionModule, MatTooltipModule, MatDialogModule, MatProgressSpinnerModule,
-  MatSnackBarModule, MatDatepickerModule, MatNativeDateModule, MatStepperModule, MatRadioModule, MatChipsModule, MatAutocompleteModule
+  MatSnackBarModule, MatDatepickerModule, MatNativeDateModule, MatStepperModule, MatRadioModule, MatChipsModule, MatAutocompleteModule,
+  MatMenuModule, MatTableModule, MatSortModule
 } from '@angular/material';
 
 import { MatPaginatorIntl } from '@angular/material';
@@ -44,7 +45,8 @@ import { CustomMatPaginatorIntl } from '../core/providers/custom-mat-paginator-i
     MatInputModule, MatCheckboxModule, MatButtonModule, MatToolbarModule, MatSidenavModule,
     MatSelectModule, MatGridListModule, MatIconModule, MatCardModule, MatListModule, MatPaginatorModule,
     MatTabsModule, MatExpansionModule, MatTooltipModule, MatDialogModule, MatProgressSpinnerModule,
-    MatSnackBarModule, MatDatepickerModule, MatNativeDateModule, MatStepperModule, MatRadioModule, MatChipsModule, MatAutocompleteModule,
+    MatSnackBarModule, MatDatepickerModule, MatNativeDateModule, MatStepperModule, MatRadioModule, MatChipsModule,
+    MatAutocompleteModule, MatMenuModule, MatTableModule, MatSortModule,
   ],
   declarations: [
     FormErrorMessageComponent,
@@ -77,7 +79,8 @@ import { CustomMatPaginatorIntl } from '../core/providers/custom-mat-paginator-i
     MatInputModule, MatCheckboxModule, MatButtonModule, MatToolbarModule, MatSidenavModule,
     MatSelectModule, MatGridListModule, MatIconModule, MatCardModule, MatListModule, MatPaginatorModule,
     MatTabsModule, MatExpansionModule, MatTooltipModule, MatDialogModule, MatProgressSpinnerModule,
-    MatSnackBarModule, MatDatepickerModule, MatNativeDateModule, MatStepperModule, MatRadioModule, MatChipsModule, MatAutocompleteModule,
+    MatSnackBarModule, MatDatepickerModule, MatNativeDateModule, MatStepperModule, MatRadioModule, MatChipsModule,
+    MatAutocompleteModule, MatMenuModule, MatTableModule, MatSortModule,
     //
     FormErrorMessageComponent,
     //
