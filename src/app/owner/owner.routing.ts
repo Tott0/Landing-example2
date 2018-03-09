@@ -3,7 +3,10 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { OwnerComponent } from './owner.component';
 import { CreateWarehouseComponent } from './create-warehouse/create-warehouse.component';
+import { WarehouseListComponent } from './warehouse-list/warehouse-list.component';
+
 import { WarehouseParametersResolver } from '../client/warehouse-parameters-resolver.service';
+import { WarehousesOwnerResolver } from './warehouse-list/warehouses-owner-resolvers.service';
 
 
 const routes: Routes = [
@@ -13,7 +16,14 @@ const routes: Routes = [
     // canActivate: [PersonAuthGuard]
     children: [
       {
-        path: '',
+        path: 'tempproute_warehouses',
+        component: WarehouseListComponent,
+        resolve: {
+          warehouses: WarehousesOwnerResolver,
+        }
+      },
+      {
+        path: 'tempproute_warehouses/temproute_create',
         component: CreateWarehouseComponent,
         resolve: {
           parameters: WarehouseParametersResolver,
@@ -32,6 +42,7 @@ const routes: Routes = [
   ],
   providers: [
     WarehouseParametersResolver,
+    WarehousesOwnerResolver,
   ]
 })
 

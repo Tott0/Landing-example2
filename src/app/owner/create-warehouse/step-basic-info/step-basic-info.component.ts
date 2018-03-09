@@ -18,6 +18,7 @@ export class StepBasicInfoComponent implements OnInit {
   timeEnabled = true;
 
   photos: any[] = [];
+  errors: any = {};
 
   constructor(
     private router: Router,

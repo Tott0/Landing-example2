@@ -1,0 +1,47 @@
+<div class="main-container">
+
+  <div class="container">
+
+    <mat-card>
+      <mat-card-title>
+        Crear Bodega
+      </mat-card-title>
+      <mat-divider></mat-divider>
+      <mat-card-content>
+        <mat-horizontal-stepper [linear]="true">
+          <mat-step [stepControl]="formBasicInfo">
+            <ng-template matStepLabel>Información Básica</ng-template>
+            <app-step-basic-info></app-step-basic-info>
+          </mat-step>
+
+          <mat-step [stepControl]="formBasicInfo">
+            <ng-template matStepLabel>Almacenamiento y Servicios</ng-template>
+            <app-step-storage [parameters]="parameters"></app-step-storage>
+          </mat-step>
+
+          <mat-step [stepControl]="formBasicInfo">
+            <ng-template matStepLabel>Disponibilidad</ng-template>
+            <!-- <app-step-basic-info></app-step-basic-info> -->
+          </mat-step>
+
+        </mat-horizontal-stepper>
+      </mat-card-content>
+
+      <mat-card-actions>
+        <button mat-raised-button class="btn-back" (click)="back()">
+          <span class="btn-text">
+            Regresar
+          </span>
+        </button>
+        <div class="filler"></div>
+        <button mat-raised-button color="primary" class="btn-next" (click)="next()">
+          <span class="btn-text">
+            Siguiente
+          </span>
+        </button>
+      </mat-card-actions>
+
+    </mat-card>
+
+  </div>
+</div>

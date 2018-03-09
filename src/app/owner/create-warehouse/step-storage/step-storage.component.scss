@@ -85,9 +85,11 @@ mat-table {
       .row {
         justify-content: center;
         &.first {
+          flex-wrap: wrap;
           mat-form-field {
             flex: 1 0 0;
             margin: 0 1em;
+            max-width: 25%;
           }
         }
         &.second {
