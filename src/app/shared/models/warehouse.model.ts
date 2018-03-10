@@ -2,6 +2,11 @@
 import { Ciudad } from './shared.model';
 import { WhOwner } from './user.model';
 
+export interface WarehouseApi {
+  warehouses: Warehouse[];
+  total_count: number;
+}
+
 export class Warehouse {
   whOwner?: WhOwner; // FIXME this is obligatory
   name: string;
@@ -9,6 +14,7 @@ export class Warehouse {
   lng: number;
   city: Ciudad;
   address: string;
+  images: String[];
 
   //
   positions: Position[];

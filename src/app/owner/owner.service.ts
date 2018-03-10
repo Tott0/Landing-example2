@@ -7,7 +7,7 @@ import { catchError, tap, map } from 'rxjs/operators';
 
 import { Subject } from 'rxjs/Subject';
 
-import { Warehouse, Parameter, ParameterType, PositionType, Position, MeasureType } from '../shared/models/warehouse.model';
+import { Warehouse, Parameter, ParameterType, PositionType, Position, MeasureType, WarehouseApi } from '../shared/models/warehouse.model';
 
 import { AppConstants } from '../app-constants';
 import { StaticMethods } from '../utils/static-methods';
@@ -29,6 +29,9 @@ export class OwnerService {
       lat: 11.020699,
       lng: -74.842199,
       city: this.ciudades[0],
+      images: [
+        'https://www.joc.com/sites/default/files/field_feature_image/warehouse%2032.jpg'
+      ],
 
       positions: [
         {
@@ -51,6 +54,9 @@ export class OwnerService {
       lat: 11.01746,
       lng: -74.7952625,
       city: this.ciudades[0],
+      images: [
+        'http://2k7p22nx6oe213gsh48gkhoz-wpengine.netdna-ssl.com/wp-content/uploads/2014/06/bigstock-Industrial-Warehouse-6200839.jpg'
+      ],
 
       positions: [
         {
@@ -73,6 +79,9 @@ export class OwnerService {
       lat: 10.989747,
       lng: -74.774055,
       city: this.ciudades[0],
+      images: [
+        'http://resources.supplychaindigital.com/topic/image/warehouse.jpg'
+      ],
 
       positions: [
         {
@@ -95,6 +104,9 @@ export class OwnerService {
       lat: 10.905396,
       lng: -74.813534,
       city: this.ciudades[0],
+      images: [
+        'https://media.gettyimages.com/photos/shelves-in-the-warehouse-picture-id478144494?b=1&k=6&m=478144494&s=612x612&w=0&h=cr3cGrzj4vdCMedm3eMX0vSaycumGcZBrRuaCsMoK-w='
+      ],
 
       positions: [
         {
@@ -128,6 +140,9 @@ export class OwnerService {
       lat: 10.9388873,
       lng: -74.767401,
       city: this.ciudades[0],
+      images: [
+        'http://luxreview.com/upload/system/2016/03/07133245.jpg'
+      ],
 
       positions: [
         {
@@ -173,7 +188,26 @@ export class OwnerService {
     private mm: ModalManager
   ) { }
 
-  getWarehouses(params?): Observable<Warehouse[]> {
-    return Observable.of<Warehouse[]>(this.warehouses);
+  getWarehouses(params?): Observable<WarehouseApi> {
+    if (!params) {
+      params = {
+        page: 1,
+        per_page: 10
+      };
+    }
+    return Observable.of<WarehouseApi>(
+      {
+        warehouses: this.warehouses.slice(params.page, params.page + params.per_page),
+        total_count: this.warehouses.length
+      }
+    );
+    // return this.http.get<WarehouseApi>(`${AppConstants.API_ENDPOINT}traffic_violations${StaticMethods.getParams(params)}`)
+    //   .pipe(
+    //     catchError((err, caught) => {
+    //       this.mm.closeLoadingDialog();
+    //       StaticMethods.handleHttpResponseError(err);
+    //       return ErrorObservable.create('');
+    //     })
+    //   );
   }
 }

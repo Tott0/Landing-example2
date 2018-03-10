@@ -13,23 +13,23 @@ const routes: Routes = [
   {
     path: '',
     component: OwnerComponent,
-    // canActivate: [PersonAuthGuard]
-    children: [
-      {
-        path: 'tempproute_warehouses',
-        component: WarehouseListComponent,
-        resolve: {
-          warehouses: WarehousesOwnerResolver,
-        }
-      },
-      {
-        path: 'tempproute_warehouses/temproute_create',
-        component: CreateWarehouseComponent,
-        resolve: {
-          parameters: WarehouseParametersResolver,
-        }
-      }
-    ]
+    resolve: {
+      res: WarehousesOwnerResolver
+    }
+  },
+  {
+    path: 'tempproute_owner/warehouses',
+    component: WarehouseListComponent,
+    resolve: {
+      warehouses: WarehousesOwnerResolver,
+    }
+  },
+  {
+    path: 'tempproute_owner/warehouses/create',
+    component: CreateWarehouseComponent,
+    resolve: {
+      parameters: WarehouseParametersResolver,
+    }
   }
 ];
 

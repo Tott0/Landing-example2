@@ -1,5 +1,45 @@
 <div class="main-container">
+  <div class="container">
+    <span class="title">
+      <span class="text">
+        {{ Nombre Empresa }}
+      </span>
+    </span>
 
-  <router-outlet></router-outlet>
+    <mat-card class="warehouses">
+      <mat-card-header>
+        <div class="wrapper">
+          <mat-card-title>
+            Mis Bódegas (4)
+          </mat-card-title>
+          <button mat-icon-button (click)="getBodegas(-1)">
+            <i class="fas fa-arrow-left fa-lg"></i>
+          </button>
+          <button mat-icon-button (click)="getBodegas(1)">
+              <i class="fas fa-arrow-right fa-lg"></i>
+            </button>
+        </div>
 
+      </mat-card-header>
+      <mat-card-content>
+        <div class="row page">
+          <div class="warehouse" let="warehouse of warehousesPage">
+            <img [src]="warehouse.images[0]">
+            <span class="name">{{ warehouse.name }}</span>
+            <span class="row">
+              <div class="rating">
+
+              </div>
+              <span class="reviews">
+                0 Comentarios
+              </span>
+            </span>
+          </div>
+        </div>
+        <div class="row actions">
+          <mat-paginator #paginator [showFirstLastButtons]="true"></mat-paginator>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
 </div>
