@@ -105,6 +105,7 @@ export class OwnerService {
       lng: -74.813534,
       city: this.ciudades[0],
       images: [
+        // tslint:disable-next-line:max-line-length
         'https://media.gettyimages.com/photos/shelves-in-the-warehouse-picture-id478144494?b=1&k=6&m=478144494&s=612x612&w=0&h=cr3cGrzj4vdCMedm3eMX0vSaycumGcZBrRuaCsMoK-w='
       ],
 
@@ -192,12 +193,12 @@ export class OwnerService {
     if (!params) {
       params = {
         page: 1,
-        per_page: 10
+        per_page: 4
       };
     }
     return Observable.of<WarehouseApi>(
       {
-        warehouses: this.warehouses.slice(params.page, params.page + params.per_page),
+        warehouses: this.warehouses.slice((params.page - 1) * params.per_page , (params.page - 1) * params.per_page + params.per_page),
         total_count: this.warehouses.length
       }
     );

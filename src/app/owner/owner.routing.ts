@@ -18,14 +18,14 @@ const routes: Routes = [
     }
   },
   {
-    path: 'tempproute_owner/warehouses',
+    path: 'warehouses',
     component: WarehouseListComponent,
     resolve: {
       warehouses: WarehousesOwnerResolver,
     }
   },
   {
-    path: 'tempproute_owner/warehouses/create',
+    path: 'warehouses/create',
     component: CreateWarehouseComponent,
     resolve: {
       parameters: WarehouseParametersResolver,

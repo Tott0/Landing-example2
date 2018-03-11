@@ -1,9 +1,4 @@
-$primary: #80DEEA;
-$primary-light: #b4ffff;
-$primary-dark: #4bacb8;
-$light: #FAFAFA;
-$dark: #212121;
-$danger: #d50000;
+@import './src/scss/variables.scss';
 ::ng-deep {
   .results {
     .result .mat-list-item-content {
@@ -19,10 +14,24 @@ $danger: #d50000;
   }
 }
 
-.main-container {
-  flex-direction: row;
+.row {
+  display: flex;
 }
 
+.row.top{
+  .filters{
+    height: 50px;
+    display: flex;
+    width: 100%;
+    *{
+      flex: 1 0 0;
+      border: solid 1px $dark;
+    }
+  }
+}
+.row.bottom{
+  flex: 1 0 0;
+}
 .left-area {
   border-right: solid 1px transparentize($dark, 0.6);
   display: flex;

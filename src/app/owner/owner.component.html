@@ -2,44 +2,75 @@
   <div class="container">
     <span class="title">
       <span class="text">
-        {{ Nombre Empresa }}
+        {{ 'Nombre Empresa' }}
       </span>
     </span>
 
-    <mat-card class="warehouses">
-      <mat-card-header>
-        <div class="wrapper">
-          <mat-card-title>
-            Mis Bódegas (4)
-          </mat-card-title>
-          <button mat-icon-button (click)="getBodegas(-1)">
-            <i class="fas fa-arrow-left fa-lg"></i>
-          </button>
-          <button mat-icon-button (click)="getBodegas(1)">
-              <i class="fas fa-arrow-right fa-lg"></i>
-            </button>
-        </div>
+    <div class="row first">
 
-      </mat-card-header>
-      <mat-card-content>
-        <div class="row page">
-          <div class="warehouse" let="warehouse of warehousesPage">
-            <img [src]="warehouse.images[0]">
-            <span class="name">{{ warehouse.name }}</span>
-            <span class="row">
-              <div class="rating">
-
-              </div>
-              <span class="reviews">
-                0 Comentarios
-              </span>
-            </span>
+      <mat-card class="warehouses">
+        <mat-card-header>
+          <div class="wrapper">
+            <mat-card-title>
+              Mis Bódegas ({{ paginator.length ? (paginator.length) : '' }})
+            </mat-card-title>
           </div>
-        </div>
-        <div class="row actions">
-          <mat-paginator #paginator [showFirstLastButtons]="true"></mat-paginator>
-        </div>
-      </mat-card-content>
-    </mat-card>
+
+        </mat-card-header>
+        <mat-card-content>
+
+          <div class="wrapper">
+            <div class="row page">
+              <ng-container *ngFor="let warehouse of warehouses; let i = index">
+                <span class="filler no-min" *ngIf="i !== 0"></span>
+                <div class="warehouse">
+                  <span class="img-wrapper">
+                    <img [src]="warehouse.images[0]">
+                  </span>
+                  <a class="name" [routerLink]="['warehouse', warehouse.id]">{{ warehouse.name }}</a>
+                  <span class="row">
+                    <span class="reviews">
+                      0 Comentarios
+                    </span>
+                  </span>
+                </div>
+                <span class="filler no-min" *ngIf="i !== (warehouses.length - 1)"></span>
+              </ng-container>
+            </div>
+
+            <div class="row actions">
+              <mat-paginator #paginator [hidePageSize]="true"></mat-paginator>
+            </div>
+          </div>
+
+        </mat-card-content>
+      </mat-card>
+
+    </div>
+
+    <div class="row second">
+
+      <mat-card class="profile">
+        <mat-card-header>
+          <div class="wrapper">
+            <mat-card-title>
+              Perfil Arrendador
+            </mat-card-title>
+          </div>
+
+        </mat-card-header>
+        <mat-card-content>
+
+          <div class="wrapper">
+            <button mat-raised-button class="btn-add" [routerLink]="['warehouses/create']">Crear Bódega</button>
+            <button mat-raised-button class="btn-add" [disabled]="true">Reservas</button>
+          </div>
+
+        </mat-card-content>
+      </mat-card>
+
+    </div>
+
+
   </div>
 </div>

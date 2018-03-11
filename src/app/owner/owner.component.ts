@@ -18,7 +18,7 @@ export class OwnerComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  warehousesPage: Warehouse[] = [];
+  warehouses: Warehouse[] = [];
 
   constructor(
     private router: Router,
@@ -28,30 +28,30 @@ export class OwnerComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.paginator.pageSize = 5;
+    this.paginator.pageSize = 4;
     this.route.data.subscribe((data: { res: WarehouseApi }) => {
       console.log(data.res);
-      this.warehousesPage = data.res.warehouses;
+      this.warehouses = data.res.warehouses;
       this.paginator.length = data.res.total_count;
       this.mm.closeLoadingDialog();
     });
 
     this.paginator.page
-    .pipe(
-      switchMap(() => {
-        this.mm.showLoadingDialog();
-        return this.service.getWarehouses({
-          page: this.paginator.pageIndex + 1,
-          per_page: 5,
-        });
-      }),
-    map((res: WarehouseApi) => {
-      this.mm.closeLoadingDialog();
-      this.paginator.length = res.total_count;
-      return res.warehouses;
-    }),
-    catchError(() => return Observable.of([])))
-      .subscribe(warehouses => this.warehousesPage = warehouses);
+      .pipe(
+        switchMap(() => {
+          this.mm.showLoadingDialog();
+          return this.service.getWarehouses({
+            page: this.paginator.pageIndex + 1,
+            per_page: 4,
+          });
+        }),
+        map((res: WarehouseApi) => {
+          this.mm.closeLoadingDialog();
+          this.paginator.length = res.total_count;
+          return res.warehouses;
+        }),
+        catchError(() => Observable.of([])))
+      .subscribe(warehouses => this.warehouses = warehouses);
   }
 
   getBodegas(page) {
