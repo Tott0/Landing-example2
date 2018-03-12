@@ -32,6 +32,5 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 central marker in map to calculate distance (draggable)
 
 //
-usuarios naturales y juridicos
-alquilador registro
 -camara comercio, rut,
+-agregar tipo Caja a tipo de espacio
