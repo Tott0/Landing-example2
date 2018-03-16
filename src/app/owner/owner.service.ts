@@ -12,14 +12,20 @@ import { Warehouse, Parameter, ParameterType, PositionType, Position, MeasureTyp
 import { AppConstants } from '../app-constants';
 import { StaticMethods } from '../utils/static-methods';
 import { ModalManager } from '../core/providers/modal-manager';
-import { Ciudad } from '../shared/models/shared.model';
+import { Ciudad, Departamento } from '../shared/models/shared.model';
 
 @Injectable()
 export class OwnerService {
 
+  departamentos: Departamento[] = [{
+    id: 1,
+    name: 'Atlántico'
+  }];
+
   ciudades: Ciudad[] = [{
     id: 1,
-    name: 'Barranquilla'
+    name: 'Barranquilla',
+    departamento: this.departamentos[0]
   }];
 
   warehouses: Warehouse[] = [
@@ -29,6 +35,7 @@ export class OwnerService {
       lat: 11.020699,
       lng: -74.842199,
       city: this.ciudades[0],
+      description: 'Bodega al centro de la ciudad',
       images: [
         'https://www.joc.com/sites/default/files/field_feature_image/warehouse%2032.jpg'
       ],
@@ -54,6 +61,7 @@ export class OwnerService {
       lat: 11.01746,
       lng: -74.7952625,
       city: this.ciudades[0],
+      description: 'Bodega al centro de la ciudad',
       images: [
         'http://2k7p22nx6oe213gsh48gkhoz-wpengine.netdna-ssl.com/wp-content/uploads/2014/06/bigstock-Industrial-Warehouse-6200839.jpg'
       ],
@@ -79,6 +87,7 @@ export class OwnerService {
       lat: 10.989747,
       lng: -74.774055,
       city: this.ciudades[0],
+      description: 'Bodega al centro de la ciudad',
       images: [
         'http://resources.supplychaindigital.com/topic/image/warehouse.jpg'
       ],
@@ -104,6 +113,7 @@ export class OwnerService {
       lat: 10.905396,
       lng: -74.813534,
       city: this.ciudades[0],
+      description: 'Bodega al centro de la ciudad',
       images: [
         // tslint:disable-next-line:max-line-length
         'https://media.gettyimages.com/photos/shelves-in-the-warehouse-picture-id478144494?b=1&k=6&m=478144494&s=612x612&w=0&h=cr3cGrzj4vdCMedm3eMX0vSaycumGcZBrRuaCsMoK-w='
@@ -141,6 +151,7 @@ export class OwnerService {
       lat: 10.9388873,
       lng: -74.767401,
       city: this.ciudades[0],
+      description: 'Bodega al centro de la ciudad',
       images: [
         'http://luxreview.com/upload/system/2016/03/07133245.jpg'
       ],
@@ -198,7 +209,7 @@ export class OwnerService {
     }
     return Observable.of<WarehouseApi>(
       {
-        warehouses: this.warehouses.slice((params.page - 1) * params.per_page , (params.page - 1) * params.per_page + params.per_page),
+        warehouses: this.warehouses.slice((params.page - 1) * params.per_page, (params.page - 1) * params.per_page + params.per_page),
         total_count: this.warehouses.length
       }
     );

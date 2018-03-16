@@ -27,6 +27,9 @@ mat-card {
       mat-form-field {
         max-width: 50%;
       }
+      mat-radio-group{
+        margin-bottom: 1em;
+      }
     }
     mat-accordion {
       width: 100%;

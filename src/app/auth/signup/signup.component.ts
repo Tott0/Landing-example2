@@ -10,6 +10,8 @@ import { CustomValidators } from '../../../app/shared/custom-validators';
 import { MatSnackBar, MatSnackBarConfig } from '@angular/material';
 import { ResultSnackbar } from '../../shared/dialogs/result-snackbar/result.snackbar';
 
+import { PersonType } from '../../shared/models/user.model';
+
 @Component({
   selector: 'app-signup',
   templateUrl: 'signup.component.html',
@@ -17,12 +19,27 @@ import { ResultSnackbar } from '../../shared/dialogs/result-snackbar/result.snac
 })
 export class SignupComponent implements OnInit {
 
+  PersonType = PersonType;
+  willRent = false;
+
   errors: any = {};
   userForm: FormGroup;
   get email() { return this.userForm.get('email'); }
+  get personType() { return this.userForm.get('personType'); }
   get passwords() { return this.userForm.get('passwords'); }
   get password() { return this.passwords.get('password'); }
   get password_confirmation() { return this.passwords.get('password_confirmation'); }
+
+  get person() { return this.userForm.get('person'); }
+
+  get pName() { return this.person.get('pName'); }
+  get pLastName() { return this.person.get('pLastName'); }
+  get pIdentification() { return this.person.get('pIdentification'); }
+  get pPhoneNumber() { return this.person.get('pPhoneNumber'); }
+
+  get company() { return this.userForm.get('company'); }
+  get cName() { return this.company.get('cName'); }
+  get cNit() { return this.company.get('cNit'); }
 
   constructor(
     private router: Router,
@@ -34,11 +51,22 @@ export class SignupComponent implements OnInit {
 
   ngOnInit() {
     this.userForm = this.formBuilder.group({
-      email: ['', [Validators.required]],
+      email: ['prueba@prueba.com', [Validators.required, CustomValidators.email()]],
       passwords: this.formBuilder.group({
-        password: ['', [Validators.required, Validators.minLength(8)]],
-        password_confirmation: ['', [Validators.required, Validators.minLength(8)]],
-      }, { validator: [CustomValidators.matchPasswords] })
+        password: ['12345678', [Validators.required, Validators.minLength(8)]],
+        password_confirmation: ['12345678', [Validators.required, Validators.minLength(8)]],
+      }, { validator: [CustomValidators.matchPasswords] }),
+      person: this.formBuilder.group({
+        pName: ['Nombre Prueba', [Validators.required]],
+        pLastName: ['Apellido Prueba', [Validators.required]],
+        pIdentification: ['1140890987', [Validators.required, Validators.minLength(6)]],
+        pPhoneNumber: ['3109878765', [Validators.required, Validators.minLength(7)]],
+      }),
+      company: this.formBuilder.group({
+        cName: ['Empresa de Prueba', [Validators.required]],
+        cNit: ['800000000', [Validators.required]],
+      }),
+      personType: [PersonType.NATURAL, [Validators.required]],
     });
   }
 
@@ -46,28 +74,42 @@ export class SignupComponent implements OnInit {
     this.mm.showLoadingDialog();
     const u = {
       email: this.email.value,
-      password: this.password.value
-    };
-    // this.authService.user(u)
-    //   .subscribe(res => {
-    //     this.mm.closeLoadingDialog();
-    //     this.router.navigate([this.authService.redirectUrl ? this.authService.redirectUrl : '']);
-    //   },
-    //     (err) => {
-    //       this.mm.closeLoadingDialog();
+      password: this.password.value,
+      password_confirmation: this.password_confirmation.value,
+      person: this.personType.value === PersonType.NATURAL ? {
+        name: this.pName.value,
+        last_name: this.pLastName.value,
+        identification: this.pIdentification.value,
+        phone_number: this.pPhoneNumber.value,
+      } : undefined,
+      company: this.personType.value === PersonType.JURIDICA ? {
+        name: this.cName.value,
+        nit: this.cNit.value
+      } : undefined,
+      renter: this.willRent ? {
 
-    //       if (typeof err === 'string') {
-    //         this.errors = {
-    //           message: err
-    //         };
-    //       } else {
-    //         this.errors = err;
-    //         for (const control of Object.keys(this.userForm.controls)) {
-    //           this.userForm.get(control).markAsDirty();
-    //           this.userForm.get(control).markAsTouched();
-    //         }
-    //       }
-    //     });
+      } : undefined
+    };
+    this.authService.signup(u)
+      .subscribe(res => {
+        this.mm.closeLoadingDialog();
+        this.router.navigate([this.authService.redirectUrl ? this.authService.redirectUrl : '']);
+      },
+        (err) => {
+          this.mm.closeLoadingDialog();
+
+          if (typeof err === 'string') {
+            this.errors = {
+              message: err
+            };
+          } else {
+            this.errors = err;
+            for (const control of Object.keys(this.userForm.controls)) {
+              this.userForm.get(control).markAsDirty();
+              this.userForm.get(control).markAsTouched();
+            }
+          }
+        });
   }
 
   getErrorMessage(formControl: AbstractControl, error?) {
@@ -76,5 +118,9 @@ export class SignupComponent implements OnInit {
     } else {
       return StaticMethods.getFormError(formControl);
     }
+  }
+
+  renterChange(ev) {
+    console.log(ev);
   }
 }

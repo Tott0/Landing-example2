@@ -5,6 +5,11 @@ import { ModalManager } from '../../core/providers/modal-manager';
 import { StaticMethods } from '../../utils/static-methods';
 import { OwnerService } from '../owner.service';
 import { MatStepper } from '@angular/material/stepper';
+import { Warehouse } from '../../shared/models/warehouse.model';
+import { Departamento } from '../../shared/models/shared.model';
+
+import { StepBasicInfoComponent } from './step-basic-info/step-basic-info.component';
+import { StepStorageComponent } from './step-storage/step-storage.component';
 
 @Component({
   selector: 'app-create-warehouse',
@@ -14,11 +19,12 @@ import { MatStepper } from '@angular/material/stepper';
 export class CreateWarehouseComponent implements OnInit {
 
   errors: any = {};
-  basicInfoForm: FormGroup;
-  storageForm: FormGroup;
-  availabilityForm: FormGroup;
+  warehouse: Warehouse = new Warehouse();
 
   @ViewChild(MatStepper) matStepper: MatStepper;
+
+  @ViewChild(StepBasicInfoComponent) basicInfo: StepBasicInfoComponent;
+  @ViewChild(StepStorageComponent) storageInfo: StepStorageComponent;
 
   parameters: any = {
     product: [],
@@ -26,6 +32,8 @@ export class CreateWarehouseComponent implements OnInit {
     certifications: [],
     services: [],
   };
+
+  departamentos: Departamento[] = [];
 
   constructor(
     private router: Router,
@@ -37,21 +45,25 @@ export class CreateWarehouseComponent implements OnInit {
 
   ngOnInit() {
     this.route.data
-    .subscribe((data: { parameters: any }) => {
-      console.log(data);
-      this.parameters = data.parameters;
-      this.mm.closeLoadingDialog();
-    });
+      .subscribe((data: { parameters: any, departamentos: Departamento[] }) => {
+        console.log(data);
+        this.parameters = data.parameters;
+        this.departamentos = data.departamentos;
+        this.mm.closeLoadingDialog();
+      });
   }
 
   onSubmit() {
-    // this.mm.showLoadingDialog();
-
+    this.mm.showLoadingDialog();
   }
 
   next() {
     console.log(this.matStepper.selectedIndex);
-    this.matStepper.next();
+    if (this.matStepper.selectedIndex < 1) {
+      this.matStepper.next();
+    } else {
+      this.onSubmit();
+    }
   }
   back() {
     console.log(this.matStepper.selectedIndex);

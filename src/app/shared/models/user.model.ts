@@ -1,11 +1,18 @@
 export enum UserType {
-  OWNER,
   CLIENT,
   ADMIN
 }
 
+export enum PersonType {
+  NATURAL,
+  JURIDICA,
+}
+
 export class User {
-  username: string;
+  email: string;
+  person?: Person;
+  company?: Company;
+  renter?: Renter;
 }
 
 export class WhOwner {
@@ -13,5 +20,22 @@ export class WhOwner {
 }
 
 export class WhClient {
+  id: number;
+}
+
+export class Person {
+  id: number;
+  name: String;
+  lastName: String;
+  identification: String;
+  phoneNumber: String;
+}
+export class Company {
+  id: number;
+  name: String;
+  nit: String;
+  phoneNumber: String;
+}
+export class Renter {
   id: number;
 }

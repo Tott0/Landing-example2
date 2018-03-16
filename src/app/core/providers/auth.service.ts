@@ -52,7 +52,7 @@ export class AuthService {
         tap((res) => {
           this._token = res.token;
           this._auth = res;
-          sessionStorage.setItem('token', res.token);
+          localStorage.setItem('token', res.token);
           this.loginSbj.next(res.user);
           return res;
         })
@@ -70,7 +70,7 @@ export class AuthService {
   }
 
   check(): Observable<any> {
-    this._token = sessionStorage.getItem('token');
+    this._token = localStorage.getItem('token');
     console.log('user', this.user);
     console.log('token', this.token);
     if (this.isTokenChecked) {
@@ -96,7 +96,7 @@ export class AuthService {
           this.isTokenChecked = true;
           this._auth = undefined;
           this._token = undefined;
-          sessionStorage.removeItem('token');
+          localStorage.removeItem('token');
           this.mm.closeLoadingDialog();
           return ErrorObservable.create(StaticMethods.handleHttpResponseError(err));
         }));
@@ -108,7 +108,7 @@ export class AuthService {
 
     this._token = undefined;
     this._auth = undefined;
-    sessionStorage.removeItem('token');
+    localStorage.removeItem('token');
     this.logoutSbj.next();
     return Promise.resolve();
   }

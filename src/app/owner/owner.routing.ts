@@ -7,6 +7,7 @@ import { WarehouseListComponent } from './warehouse-list/warehouse-list.componen
 
 import { WarehouseParametersResolver } from '../client/warehouse-parameters-resolver.service';
 import { WarehousesOwnerResolver } from './warehouse-list/warehouses-owner-resolvers.service';
+import { DepartamentosResolver } from '../shared/shared-resolvers.service';
 
 
 const routes: Routes = [
@@ -29,6 +30,7 @@ const routes: Routes = [
     component: CreateWarehouseComponent,
     resolve: {
       parameters: WarehouseParametersResolver,
+      departamentos: DepartamentosResolver,
     }
   }
 ];
@@ -43,6 +45,7 @@ const routes: Routes = [
   providers: [
     WarehouseParametersResolver,
     WarehousesOwnerResolver,
+    DepartamentosResolver,
   ]
 })
 

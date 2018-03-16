@@ -9,20 +9,20 @@
       <mat-divider></mat-divider>
       <mat-card-content>
         <mat-horizontal-stepper [linear]="true">
-          <mat-step [stepControl]="formBasicInfo">
+          <mat-step [stepControl]="formBasicInfo" [completed]="basicInfo.isComplete()">
             <ng-template matStepLabel>Información Básica</ng-template>
-            <app-step-basic-info></app-step-basic-info>
+            <app-step-basic-info [warehouse]="warehouse"></app-step-basic-info>
           </mat-step>
 
-          <mat-step [stepControl]="formBasicInfo">
+          <mat-step [stepControl]="formBasicInfo" [completed]="storageInfo.isComplete()">
             <ng-template matStepLabel>Almacenamiento y Servicios</ng-template>
-            <app-step-storage [parameters]="parameters"></app-step-storage>
+            <app-step-storage [warehouse]="warehouse" [parameters]="parameters"></app-step-storage>
           </mat-step>
 
-          <mat-step [stepControl]="formBasicInfo">
+          <!-- <mat-step [stepControl]="formBasicInfo">
             <ng-template matStepLabel>Disponibilidad</ng-template>
-            <!-- <app-step-basic-info></app-step-basic-info> -->
-          </mat-step>
+            <app-step-basic-info></app-step-basic-info>
+          </mat-step> -->
 
         </mat-horizontal-stepper>
       </mat-card-content>

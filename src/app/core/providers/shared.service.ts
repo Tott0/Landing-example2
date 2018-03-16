@@ -14,7 +14,7 @@ import 'rxjs/add/operator/map';
 import { Subject } from 'rxjs/Subject';
 
 import { ModalManager } from './modal-manager';
-import { Ciudad } from '../../shared/models/shared.model';
+import { Ciudad, Departamento } from '../../shared/models/shared.model';
 import { ParameterType, Parameter } from '../../shared/models/warehouse.model';
 
 
@@ -145,20 +145,44 @@ export class SharedService {
 
   parametersCache: any;
 
+  departamentos: Departamento[] = [{
+    id: 1,
+    name: 'Atlántico'
+  }];
+
+  ciudades: Ciudad[] = [{
+    id: 1,
+    name: 'Barranquilla',
+    departamento: this.departamentos[0]
+  }];
+
   constructor(
     private http: HttpClient,
     private mm: ModalManager
   ) { }
 
   getCiudades(): Observable<Ciudad[]> {
-    return this.http.get<Ciudad>(`${AppConstants.API_ENDPOINT}cities`)
-      .pipe(
-      catchError((err, caught) => {
-        this.mm.closeLoadingDialog();
-        StaticMethods.handleHttpResponseError(err);
-        return ErrorObservable.create('');
-      })
-      );
+    return Observable.of(this.ciudades);
+    // return this.http.get<Ciudad>(`${AppConstants.API_ENDPOINT}cities`)
+    //   .pipe(
+    //     catchError((err, caught) => {
+    //       this.mm.closeLoadingDialog();
+    //       StaticMethods.handleHttpResponseError(err);
+    //       return ErrorObservable.create('');
+    //     })
+    //   );
+  }
+
+  getDepartamentos(): Observable<Departamento[]> {
+    return Observable.of(this.departamentos);
+    // return this.http.get<Departamento>(`${AppConstants.API_ENDPOINT}departments`)
+    //   .pipe(
+    //     catchError((err, caught) => {
+    //       this.mm.closeLoadingDialog();
+    //       StaticMethods.handleHttpResponseError(err);
+    //       return ErrorObservable.create('');
+    //     })
+    //   );
   }
 
   getParameters(params?): Observable<any> {

@@ -9,14 +9,14 @@
 
     <mat-form-field>
       <span class="wrapper">
-        <input matInput placeholder="Nombre de Bodega*">
+        <input matInput placeholder="Nombre de Bodega*" [(ngModel)]="warehouse.name">
         <span class="guide"></span>
       </span>
     </mat-form-field>
 
     <mat-form-field>
       <span class="wrapper">
-        <input matInput placeholder="Dirección*">
+        <input matInput placeholder="Dirección*" [(ngModel)]="warehouse.address">
         <span class="guide"></span>
       </span>
     </mat-form-field>
@@ -24,13 +24,13 @@
     <span class="wrapper-place">
 
       <mat-form-field>
-        <mat-select placeholder="Departamento*">
+        <mat-select placeholder="Departamento*" [(ngModel)]="selectedDepartment">
           <mat-option [value]="1">Atlántico</mat-option>
         </mat-select>
       </mat-form-field>
 
       <mat-form-field>
-        <mat-select placeholder="Ciudad*">
+        <mat-select placeholder="Ciudad*" [(ngModel)]="selectedCity">
           <mat-option [value]="1">Barranquilla</mat-option>
         </mat-select>
       </mat-form-field>
@@ -38,7 +38,8 @@
 
     <mat-form-field>
       <span class="wrapper">
-        <textarea matInput placeholder="Descripción de la bodega (Opcional)" matTextareaAutosize matAutosizeMinRows="3" matAutosizeMaxRows="3"></textarea>
+        <textarea matInput placeholder="Descripción de la bodega (Opcional)" [(ngModel)]="warehouse.description" matTextareaAutosize
+          matAutosizeMinRows="3" matAutosizeMaxRows="3"></textarea>
         <span class="guide"></span>
       </span>
     </mat-form-field>
@@ -60,13 +61,13 @@
       </mat-radio-group>
 
       <span>
-        <mat-checkbox [disabled]="!daysEnabled" [(ngModel)]="daysSelected[0]">Lunes</mat-checkbox>
-        <mat-checkbox [disabled]="!daysEnabled" [(ngModel)]="daysSelected[1]">Martes</mat-checkbox>
-        <mat-checkbox [disabled]="!daysEnabled" [(ngModel)]="daysSelected[2]">Miércoles</mat-checkbox>
-        <mat-checkbox [disabled]="!daysEnabled" [(ngModel)]="daysSelected[3]">Jueves</mat-checkbox>
-        <mat-checkbox [disabled]="!daysEnabled" [(ngModel)]="daysSelected[4]">Viernes</mat-checkbox>
-        <mat-checkbox [disabled]="!daysEnabled" [(ngModel)]="daysSelected[5]">Sábado</mat-checkbox>
-        <mat-checkbox [disabled]="!daysEnabled" [(ngModel)]="daysSelected[6]">Domingo</mat-checkbox>
+        <mat-checkbox [disabled]="!daysEnabled" [(ngModel)]="warehouse.workingDays[0]">Lunes</mat-checkbox>
+        <mat-checkbox [disabled]="!daysEnabled" [(ngModel)]="warehouse.workingDays[1]">Martes</mat-checkbox>
+        <mat-checkbox [disabled]="!daysEnabled" [(ngModel)]="warehouse.workingDays[2]">Miércoles</mat-checkbox>
+        <mat-checkbox [disabled]="!daysEnabled" [(ngModel)]="warehouse.workingDays[3]">Jueves</mat-checkbox>
+        <mat-checkbox [disabled]="!daysEnabled" [(ngModel)]="warehouse.workingDays[4]">Viernes</mat-checkbox>
+        <mat-checkbox [disabled]="!daysEnabled" [(ngModel)]="warehouse.workingDays[5]">Sábado</mat-checkbox>
+        <mat-checkbox [disabled]="!daysEnabled" [(ngModel)]="warehouse.workingDays[6]">Domingo</mat-checkbox>
       </span>
 
     </div>
@@ -79,18 +80,18 @@
 
       <div class="interval-wrapper">
         <div class="interval-input">
-          <input matInput type="number" [(ngModel)]="timeRange[0]" appForceNumeric appForceValue [max]="12" [min]="0" [disabled]="!timeEnabled">
+          <input matInput type="number" [(ngModel)]="warehouse.workingTime[0]" appForceNumeric appForceValue [max]="12" [min]="0" [disabled]="!timeEnabled">
           <span>:</span>
-          <input matInput type="number" [(ngModel)]="timeRange[4]" appForceNumeric appForceValue [max]="60" [min]="0" [disabled]="!timeEnabled">
-          <button mat-button (click)="timeRange[1] = timeRange[1] === 'am' ? 'pm' : 'am'" [disabled]="!timeEnabled">
-            {{ timeRange[1] }}
+          <input matInput type="number" [(ngModel)]="warehouse.workingTime[4]" appForceNumeric appForceValue [max]="60" [min]="0" [disabled]="!timeEnabled">
+          <button mat-button (click)="warehouse.workingTime[1] = warehouse.workingTime[1] === 'am' ? 'pm' : 'am'" [disabled]="!timeEnabled">
+            {{ warehouse.workingTime[1] }}
           </button>
           <span>&ndash;</span>
-          <input matInput type="number" [(ngModel)]="timeRange[2]" appForceNumeric appForceValue [max]="12" [min]="0" [disabled]="!timeEnabled">
+          <input matInput type="number" [(ngModel)]="warehouse.workingTime[2]" appForceNumeric appForceValue [max]="12" [min]="0" [disabled]="!timeEnabled">
           <span>:</span>
-          <input matInput type="number" [(ngModel)]="timeRange[5]" appForceNumeric appForceValue [max]="60" [min]="0" [disabled]="!timeEnabled">
-          <button mat-button (click)="timeRange[3] = timeRange[3] === 'am' ? 'pm' : 'am'" [disabled]="!timeEnabled">
-            {{ timeRange[3] }}
+          <input matInput type="number" [(ngModel)]="warehouse.workingTime[5]" appForceNumeric appForceValue [max]="60" [min]="0" [disabled]="!timeEnabled">
+          <button mat-button (click)="warehouse.workingTime[3] = warehouse.workingTime[3] === 'am' ? 'pm' : 'am'" [disabled]="!timeEnabled">
+            {{ warehouse.workingTime[3] }}
           </button>
         </div>
       </div>

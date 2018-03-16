@@ -10,7 +10,7 @@ import {
 
 import { ModalManager } from '../core/providers/modal-manager';
 
-import { Ciudad } from './models/shared.model';
+import { Ciudad, Departamento } from './models/shared.model';
 import { SharedService } from '../core/providers/shared.service';
 
 @Injectable()
@@ -24,6 +24,20 @@ export class CiudadesResolver implements Resolve<Ciudad[]> {
 
     this.mm.showLoadingDialog();
     return this.sharedService.getCiudades();
+  }
+}
+
+@Injectable()
+export class DepartamentosResolver implements Resolve<Departamento[]> {
+  constructor(
+    private sharedService: SharedService,
+    private router: Router,
+    private mm: ModalManager) { }
+
+  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Departamento[]> {
+
+    this.mm.showLoadingDialog();
+    return this.sharedService.getDepartamentos();
   }
 }
 

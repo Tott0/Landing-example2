@@ -9,12 +9,16 @@ export interface WarehouseApi {
 
 export class Warehouse {
   whOwner?: WhOwner; // FIXME this is obligatory
-  name: string;
+  name: String;
   lat: number;
   lng: number;
   city: Ciudad;
-  address: string;
+  address: String;
+  description: String;
   images: String[];
+
+  workingDays?: boolean[];
+  workingTime?: String[];
 
   //
   positions: Position[];
@@ -26,15 +30,19 @@ export class Warehouse {
   has_floor_closed?(): boolean { return this.positions.some(p => p.type === PositionType.FLOOR_CLOSED); }
   has_floor_open?(): boolean { return this.positions.some(p => p.type === PositionType.FLOOR_OPEN); }
 
-  constructor(wh: Warehouse) {
-    this.whOwner = wh.whOwner;
-    this.name = wh.name;
-    this.lat = wh.lat;
-    this.lng = wh.lng;
-    this.city = wh.city;
-    this.address = wh.address;
-    this.positions = wh.positions;
-    this.parameters = wh.parameters;
+  constructor(wh?: Warehouse) {
+    if (wh) {
+      this.whOwner = wh.whOwner;
+      this.name = wh.name;
+      this.lat = wh.lat;
+      this.lng = wh.lng;
+      this.city = wh.city;
+      this.address = wh.address;
+      this.positions = wh.positions;
+      this.parameters = wh.parameters;
+    }
+    this.workingDays = new Array(7).fill(false);
+    this.workingTime = ['6', 'am', '6', 'pm', '00', '00'];
   }
 }
 
@@ -54,7 +62,8 @@ export class Parameter {
 export enum PositionType {
   RACK,
   FLOOR_OPEN,
-  FLOOR_CLOSED
+  FLOOR_CLOSED,
+  BOX
 }
 export enum MeasureType {
   M2,

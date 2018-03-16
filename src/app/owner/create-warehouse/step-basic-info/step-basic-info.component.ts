@@ -3,6 +3,8 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Validators, FormBuilder, FormGroup, AbstractControl } from '@angular/forms';
 import { StaticMethods } from '../../../utils/static-methods';
 import { DomSanitizer } from '@angular/platform-browser';
+import { Warehouse } from '../../../shared/models/warehouse.model';
+import { Departamento, Ciudad } from '../../../shared/models/shared.model';
 
 @Component({
   selector: 'app-step-basic-info',
@@ -11,14 +13,16 @@ import { DomSanitizer } from '@angular/platform-browser';
 })
 export class StepBasicInfoComponent implements OnInit {
 
-  daysSelected: boolean[] = Array(7).fill(false);
-  daysEnabled = true;
+  @Input() warehouse: Warehouse;
+  @Input() departamentos: Departamento[];
+  @Input() ciudades: Ciudad[];
 
-  timeRange = ['6', 'am', '6', 'pm', '00', '00'];
+  daysEnabled = true;
   timeEnabled = true;
 
   photos: any[] = [];
   errors: any = {};
+
 
   constructor(
     private router: Router,
@@ -43,17 +47,17 @@ export class StepBasicInfoComponent implements OnInit {
   }
 
   dayModeChaged(ev) {
-    console.log(this.daysSelected);
+    console.log(this.warehouse.workingDays);
     switch (+ev) {
       case 1:
         this.daysEnabled = true;
         break;
       case 2:
-        this.daysSelected = Array(7).fill(true);
+        this.warehouse.workingDays = Array(7).fill(true);
         this.daysEnabled = false;
         break;
     }
-    console.log(this.daysSelected);
+    console.log(this.warehouse.workingDays);
 
   }
   timeModeChanged(ev) {
@@ -62,7 +66,7 @@ export class StepBasicInfoComponent implements OnInit {
         this.timeEnabled = true;
         break;
       case 2:
-        this.timeRange = ['00', 'am', '00', 'am', '00', '00'];
+        this.warehouse.workingTime = ['00', 'am', '00', 'am', '00', '00'];
         this.timeEnabled = false;
         break;
     }
@@ -82,6 +86,19 @@ export class StepBasicInfoComponent implements OnInit {
       }
     }
     console.log(this.photos);
+  }
+
+  isComplete() {
+    if (!this.warehouse ||
+      !this.warehouse.name ||
+      !this.warehouse.address ||
+      !this.warehouse. city ||
+      !this.warehouse.workingDays.some(wd => wd) ||
+      !this.photos.length
+    ) {
+      return false;
+    }
+    return true;
   }
 
 }
