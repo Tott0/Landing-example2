@@ -161,9 +161,9 @@ export class SharedService {
     private mm: ModalManager
   ) { }
 
-  getCiudades(): Observable<Ciudad[]> {
+  getCiudades(params?): Observable<Ciudad[]> {
     return Observable.of(this.ciudades);
-    // return this.http.get<Ciudad>(`${AppConstants.API_ENDPOINT}cities`)
+    // return this.http.get<Ciudad>(`${AppConstants.API_ENDPOINT}cities${StaticMethods.getParams(params)}`)
     //   .pipe(
     //     catchError((err, caught) => {
     //       this.mm.closeLoadingDialog();

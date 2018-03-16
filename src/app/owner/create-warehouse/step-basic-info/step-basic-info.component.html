@@ -24,14 +24,14 @@
     <span class="wrapper-place">
 
       <mat-form-field>
-        <mat-select placeholder="Departamento*" [(ngModel)]="selectedDepartment">
-          <mat-option [value]="1">Atlántico</mat-option>
+        <mat-select placeholder="Departamento*" (change)="departamentoChanged($event.value)">
+          <mat-option *ngFor="let d of departamentos" [value]="d.id">{{ d.name }}</mat-option>
         </mat-select>
       </mat-form-field>
 
       <mat-form-field>
-        <mat-select placeholder="Ciudad*" [(ngModel)]="selectedCity">
-          <mat-option [value]="1">Barranquilla</mat-option>
+        <mat-select placeholder="Ciudad*" [disabled]="ciudades && !ciudades.length" [(ngModel)]="warehouse.city">
+          <mat-option *ngFor="let c of ciudades" [value]="c">{{ c.name }}</mat-option>
         </mat-select>
       </mat-form-field>
     </span>

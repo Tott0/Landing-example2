@@ -6,7 +6,7 @@ import { StaticMethods } from '../../utils/static-methods';
 import { OwnerService } from '../owner.service';
 import { MatStepper } from '@angular/material/stepper';
 import { Warehouse } from '../../shared/models/warehouse.model';
-import { Departamento } from '../../shared/models/shared.model';
+import { Departamento, Ciudad } from '../../shared/models/shared.model';
 
 import { StepBasicInfoComponent } from './step-basic-info/step-basic-info.component';
 import { StepStorageComponent } from './step-storage/step-storage.component';
@@ -57,6 +57,10 @@ export class CreateWarehouseComponent implements OnInit {
     this.mm.showLoadingDialog();
   }
 
+  departamentoChanged(departamentoId) {
+
+  }
+
   next() {
     console.log(this.matStepper.selectedIndex);
     if (this.matStepper.selectedIndex < 1) {
@@ -64,6 +68,7 @@ export class CreateWarehouseComponent implements OnInit {
     } else {
       this.onSubmit();
     }
+    console.log(this.warehouse);
   }
   back() {
     console.log(this.matStepper.selectedIndex);
