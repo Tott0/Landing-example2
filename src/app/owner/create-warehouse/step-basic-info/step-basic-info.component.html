@@ -14,15 +14,7 @@
       </span>
     </mat-form-field>
 
-    <mat-form-field>
-      <span class="wrapper">
-        <input matInput placeholder="Dirección*" [(ngModel)]="warehouse.address">
-        <span class="guide"></span>
-      </span>
-    </mat-form-field>
-
     <span class="wrapper-place">
-
       <mat-form-field>
         <mat-select placeholder="Departamento*" (change)="departamentoChanged($event.value)">
           <mat-option *ngFor="let d of departamentos" [value]="d.id">{{ d.name }}</mat-option>
@@ -30,11 +22,51 @@
       </mat-form-field>
 
       <mat-form-field>
-        <mat-select placeholder="Ciudad*" [disabled]="ciudades && !ciudades.length" [(ngModel)]="warehouse.city">
+        <mat-select placeholder="Ciudad*" [disabled]="ciudades && !ciudades.length" [(ngModel)]="warehouse.city" (change)="ciudadChanged($event.value)">
           <mat-option *ngFor="let c of ciudades" [value]="c">{{ c.name }}</mat-option>
         </mat-select>
       </mat-form-field>
     </span>
+
+    <mat-form-field>
+      <span class="wrapper">
+        <input matInput placeholder="Dirección*" [(ngModel)]="currentAddress" [matAutocomplete]="addrAuto" (input)="addressChanged($event.target.value)"
+          [disabled]="!warehouse.city">
+        <mat-autocomplete #addrAuto="matAutocomplete" [displayWith]="mcDisplayFn" (optionSelected)="addressSelected($event.option.value.place_id)">
+          <mat-option *ngFor="let addr of filteredAddresses" [value]="addr">
+            {{ addr.address }}
+          </mat-option>
+        </mat-autocomplete>
+        <span class="guide"></span>
+      </span>
+    </mat-form-field>
+
+    <mat-accordion>
+      <mat-expansion-panel class="map" #mapPanel [expanded]="false" [disabled]="!warehouse.lat">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Ubicación en Mapa
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <div class="wrapper">
+          <div class="row">
+            <span>
+              <span class="label">Latitud: </span>
+              {{ warehouse.lat | number:'1.3-5'}}
+            </span>
+            <span>
+              <span class="label">Longitud: </span>
+              {{ warehouse.lng | number:'1.3-5'}}
+            </span>
+          </div>
+          <div class="row">
+            <agm-map [latitude]="mapLat" [longitude]="mapLng" [zoom]="mapZoom" [streetViewControl]="false" [zoomControl]="false">
+              <agm-marker *ngIf="warehouse.lat" [latitude]="warehouse.lat" [longitude]="warehouse.lng" [markerDraggable]="false"></agm-marker>
+            </agm-map>
+          </div>
+        </div>
+      </mat-expansion-panel>
+    </mat-accordion>
 
     <mat-form-field>
       <span class="wrapper">

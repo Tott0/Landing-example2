@@ -1,16 +1,17 @@
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, NgZone } from '@angular/core';
 import { Validators, FormBuilder, FormGroup, AbstractControl } from '@angular/forms';
 import { StaticMethods } from '../../../utils/static-methods';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ModalManager } from '../../../core/providers/modal-manager';
 import { Warehouse } from '../../../shared/models/warehouse.model';
-import { Departamento, Ciudad } from '../../../shared/models/shared.model';
+import { Departamento, Ciudad, GoogleAddress } from '../../../shared/models/shared.model';
 
 import { SharedService } from '../../../core/providers/shared.service';
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
-import { debounceTime, catchError, switchMap, distinctUntilChanged } from 'rxjs/operators';
+import { debounceTime, catchError, switchMap, distinctUntilChanged, startWith, tap } from 'rxjs/operators';
+import { map } from 'rxjs/operator/map';
 
 @Component({
   selector: 'app-step-basic-info',
@@ -32,7 +33,14 @@ export class StepBasicInfoComponent implements OnInit {
   errors: any = {};
 
   selectedDepartamento: Departamento;
-  selectedCiudad: Ciudad;
+
+  // filteredAddresses: Observable<GoogleAddress[]>;
+  filteredAddresses: GoogleAddress[] = [];
+  addrSubj = new Subject();
+  currentAddress = new GoogleAddress();
+  mapLat: number;
+  mapLng: number;
+  mapZoom: number;
 
 
   constructor(
@@ -42,6 +50,7 @@ export class StepBasicInfoComponent implements OnInit {
     private domSanitizer: DomSanitizer,
     private sService: SharedService,
     private mm: ModalManager,
+    private ngZone: NgZone,
   ) { }
 
   ngOnInit() {
@@ -65,6 +74,30 @@ export class StepBasicInfoComponent implements OnInit {
         this.ciudades = ciudades;
         this.mm.closeLoadingDialog();
       });
+
+    this.addrSubj
+      .pipe(
+        debounceTime(300),
+      // switchMap((addr) => {
+      //   return addr ? this.sService.autocompleteAddress(addr, new Subject<any>()) : Observable.of([]);
+      // }),
+      // map(val => this.filter(val))
+    )
+      .subscribe((addr) => {
+        if (!addr) {
+          this.filteredAddresses = [];
+          return;
+        }
+        this.sService.autocompleteAddress(addr, (addrs) => {
+          this.ngZone.run(() => {
+            this.filteredAddresses = addrs;
+          });
+        });
+      });
+  }
+
+  mcDisplayFn(mc: GoogleAddress) {
+    return mc ? mc.address : mc;
   }
 
   onSubmit() {
@@ -141,9 +174,45 @@ export class StepBasicInfoComponent implements OnInit {
     this.searchKey.next(ev);
   }
 
-  ciudadChanged(ev) {
+  ciudadChanged(ev: Ciudad) {
     console.log(ev);
-    // this.warehouse.
+    this.filteredAddresses = [];
+    this.warehouse.address = undefined;
+    this.warehouse.lat = undefined;
+    this.warehouse.lng = undefined;
+    this.currentAddress = new GoogleAddress();
+
+    this.sService.autocompleteAddress(ev.name, (addrs => {
+      this.sService.getAddress(addrs[0].place_id, (res) => {
+        this.mapLat = res.lat;
+        this.mapLng = res.lng;
+        this.mapZoom = 13;
+      });
+    }));
+  }
+
+  addressChanged(ev) {
+    console.log(ev);
+    this.filteredAddresses = [];
+    this.addrSubj.next(ev);
+  }
+
+  addressSelected(event) {
+    console.log(event);
+    this.sService.getAddress(event, (addr) => {
+      console.log(addr);
+      if (addr) {
+        this.warehouse.address = addr.address;
+        this.warehouse.lat = addr.lat;
+        this.warehouse.lng = addr.lng;
+      } else {
+        this.warehouse.address = undefined;
+        this.warehouse.lat = undefined;
+        this.warehouse.lng = undefined;
+        this.currentAddress = new GoogleAddress();
+      }
+    });
+
   }
 
 }

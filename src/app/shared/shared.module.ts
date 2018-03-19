@@ -36,12 +36,14 @@ import {
 
 import { MatPaginatorIntl } from '@angular/material';
 import { CustomMatPaginatorIntl } from '../core/providers/custom-mat-paginator-intl';
+import { AgmCoreModule } from '@agm/core';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
+    AgmCoreModule,
     MatInputModule, MatCheckboxModule, MatButtonModule, MatToolbarModule, MatSidenavModule,
     MatSelectModule, MatGridListModule, MatIconModule, MatCardModule, MatListModule, MatPaginatorModule,
     MatTabsModule, MatExpansionModule, MatTooltipModule, MatDialogModule, MatProgressSpinnerModule,
@@ -75,6 +77,7 @@ import { CustomMatPaginatorIntl } from '../core/providers/custom-mat-paginator-i
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
+    AgmCoreModule,
     //
     MatInputModule, MatCheckboxModule, MatButtonModule, MatToolbarModule, MatSidenavModule,
     MatSelectModule, MatGridListModule, MatIconModule, MatCardModule, MatListModule, MatPaginatorModule,

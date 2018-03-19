@@ -1,6 +1,6 @@
 
 import { Ciudad } from './shared.model';
-import { WhOwner } from './user.model';
+import { User } from '../../auth/auth.model';
 
 export interface WarehouseApi {
   warehouses: Warehouse[];
@@ -8,7 +8,7 @@ export interface WarehouseApi {
 }
 
 export class Warehouse {
-  whOwner?: WhOwner; // FIXME this is obligatory
+  user?: User; //
   name: String;
   lat: number;
   lng: number;
@@ -32,7 +32,7 @@ export class Warehouse {
 
   constructor(wh?: Warehouse) {
     if (wh) {
-      this.whOwner = wh.whOwner;
+      this.user = wh.user;
       this.name = wh.name;
       this.lat = wh.lat;
       this.lng = wh.lng;

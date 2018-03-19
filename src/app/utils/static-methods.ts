@@ -7,38 +7,28 @@ import { ModalManager } from '../core/providers/modal-manager';
 
 export class StaticMethods {
 
-  static handleHttpResponseError(error: HttpErrorResponse) {
-    console.log(error);
-    let err;
-    if (!error.status) {
-      // non request related error
-      return 'Error';
-    } else {
-      if (error.error instanceof Error) {
-        // A client-side or network error occurred. Handle it accordingly.
-        console.error('An error occurred:', error.error.message);
-        return 'Error de Conexión';
-      } else {
-        if (error.error) {
-          if (error.error.errors) {
-            err = {};
-            const keys = Object.keys(error.error.errors);
-            for (const key of keys) {
-              const e = error.error.errors[key];
-              if (!Array.isArray(e)) {
-                err[key] = [e];
-              } else {
-                err[key] = e;
-              }
+  static handleHttpResponseError(errorResponse: HttpErrorResponse) {
+    console.log(errorResponse);
+    if (errorResponse.status) {
+      const error = errorResponse.error;
+      let err;
+        if (error.errors) {
+          err = {};
+          const keys = Object.keys(error.errors);
+          for (const key of keys) {
+            const e = error.errors[key];
+            if (!Array.isArray(e)) {
+              err[key] = [e];
+            } else {
+              err[key] = e;
             }
-          } else if (error.error.message) {
-            err = error.error.message;
           }
-        } else {
-          err = 'Error de Conexión';
+        } else if (error.message) {
+          err = error.message;
         }
-        return err;
-      }
+        return err || 'Error de Conexión';
+      } else {
+      return 'Error';
     }
   }
 

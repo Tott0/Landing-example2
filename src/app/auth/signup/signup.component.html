@@ -24,34 +24,34 @@
           <div *ngIf="personType && personType.value === PersonType.NATURAL" [formGroup]="person">
             <mat-form-field>
               <input matInput placeholder="Nombres" type="text" [formControl]="pName" (input)="errors.message = undefined;">
-              <mat-error *ngIf="pName.invalid || errors.pName">{{getErrorMessage(pName, errors.pName)}}</mat-error>
+              <mat-error *ngIf="pName.invalid || errors.name">{{getErrorMessage(pName, errors.name)}}</mat-error>
             </mat-form-field>
 
             <mat-form-field>
               <input matInput placeholder="Apellidos" type="text" [formControl]="pLastName" (input)="errors.message = undefined;">
-              <mat-error *ngIf="pLastName.invalid || errors.pLastName">{{getErrorMessage(pLastName, errors.pLastName)}}</mat-error>
+              <mat-error *ngIf="pLastName.invalid || errors.lastName">{{getErrorMessage(pLastName, errors.lastName)}}</mat-error>
             </mat-form-field>
 
             <mat-form-field>
               <input matInput placeholder="Identificación" type="text" [formControl]="pIdentification" (input)="errors.message = undefined;">
-              <mat-error *ngIf="pIdentification.invalid || errors.pIdentification">{{getErrorMessage(pIdentification, errors.pIdentification)}}</mat-error>
+              <mat-error *ngIf="pIdentification.invalid || errors.identification">{{getErrorMessage(pIdentification, errors.identification)}}</mat-error>
             </mat-form-field>
 
             <mat-form-field>
               <input matInput placeholder="Teléfono" type="text" [formControl]="pPhoneNumber" (input)="errors.message = undefined;">
-              <mat-error *ngIf="pPhoneNumber.invalid || errors.pPhoneNumber">{{getErrorMessage(pPhoneNumber, errors.pPhoneNumber)}}</mat-error>
+              <mat-error *ngIf="pPhoneNumber.invalid || errors.contact_phone">{{getErrorMessage(pPhoneNumber, errors.contact_phone)}}</mat-error>
             </mat-form-field>
           </div>
 
           <div *ngIf="personType && personType.value === PersonType.JURIDICA" [formGroup]="company">
             <mat-form-field>
               <input matInput placeholder="Razón Social" type="text" [formControl]="cName" (input)="errors.message = undefined;">
-              <mat-error *ngIf="cName.invalid || errors.cName">{{getErrorMessage(cName, errors.cName)}}</mat-error>
+              <mat-error *ngIf="cName.invalid || errors.name">{{getErrorMessage(cName, errors.name)}}</mat-error>
             </mat-form-field>
 
             <mat-form-field>
               <input matInput placeholder="Nit" type="text" [formControl]="cNit" (input)="errors.message = undefined;">
-              <mat-error *ngIf="cNit.invalid || errors.cNit">{{getErrorMessage(cNit, errors.cNit)}}</mat-error>
+              <mat-error *ngIf="cNit.invalid || errors.nit">{{getErrorMessage(cNit, errors.nit)}}</mat-error>
             </mat-form-field>
           </div>
 

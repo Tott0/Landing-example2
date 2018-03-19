@@ -34,7 +34,7 @@ export class AppConstants {
   }
 
   static get GOOGLE_API_KEY(): string {
-    return 'AIzaSyA-gJsnb0-WqsZy7ZH2qBNuglNUYFBrp4I';
+    return 'AIzaSyB_TNfE3rG_JOV-3jrDNT04lml2sxPzNUc';
   }
 
   static get dateTranslation() {

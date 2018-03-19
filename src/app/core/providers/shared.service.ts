@@ -8,14 +8,12 @@ import { Observable } from 'rxjs/Observable';
 import { ErrorObservable } from 'rxjs/observable/errorObservable';
 import { catchError, tap, map } from 'rxjs/operators';
 
-import 'rxjs/add/operator/toPromise';
-import 'rxjs/add/operator/map';
-
 import { Subject } from 'rxjs/Subject';
 
 import { ModalManager } from './modal-manager';
-import { Ciudad, Departamento } from '../../shared/models/shared.model';
+import { Ciudad, Departamento, GoogleAddress } from '../../shared/models/shared.model';
 import { ParameterType, Parameter } from '../../shared/models/warehouse.model';
+import { MapsAPILoader } from '@agm/core';
 
 
 @Injectable()
@@ -211,6 +209,54 @@ export class SharedService {
     //     return ErrorObservable.create(StaticMethods.handleHttpResponseError(err));
     //   })
     //   );
+  }
+
+  autocompleteAddress(searchText, callback: (res: GoogleAddress[]) => void, currentLocation?) {
+    // tslint:disable-next-line:max-line-length
+    const s = new google.maps.places.AutocompleteService();
+    const r: google.maps.places.AutocompletionRequest = {
+      input: searchText,
+      componentRestrictions: {
+        country: 'co'
+      }
+    };
+    s.getPlacePredictions(r, (res, status) => {
+      console.log(res);
+      if (status === google.maps.places.PlacesServiceStatus.OK) {
+        const cleanPredictions: GoogleAddress[] = [];
+        for (const p of res) {
+          const t = new GoogleAddress();
+          t.address = p.description;
+          t.place_id = p.place_id;
+          cleanPredictions.push(t);
+        }
+        callback(cleanPredictions);
+      } else {
+        callback([]);
+      }
+    });
+  }
+
+
+  getAddress(placeId, callback: (res: GoogleAddress) => void) {
+    const s = new google.maps.Geocoder();
+    const r: google.maps.GeocoderRequest = {
+      placeId: placeId
+    };
+    s.geocode(r, (res, status) => {
+      const gr = res[0];
+      console.log(gr);
+      if (status === google.maps.GeocoderStatus.OK) {
+        callback({
+          address: gr.formatted_address,
+          lat: gr.geometry.location.lat(),
+          lng: gr.geometry.location.lng(),
+          place_id: placeId,
+        } as GoogleAddress);
+      } else {
+        callback(undefined);
+      }
+    });
   }
 }
 

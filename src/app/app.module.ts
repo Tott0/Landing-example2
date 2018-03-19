@@ -36,7 +36,10 @@ import { AppConstants } from './app-constants';
     //
     MatSidenavModule, MatListModule, MatChipsModule, MatToolbarModule,
     AgmCoreModule.forRoot({
-      apiKey: AppConstants.GOOGLE_API_KEY
+      apiKey: AppConstants.GOOGLE_API_KEY,
+      libraries: ['places'],
+      region: 'CO',
+      language: 'ES'
     }),
     //
     CoreModule,

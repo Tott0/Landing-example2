@@ -1,7 +1,5 @@
 
-$light : #f5f5f5;
-$primary-light: #FFD54F;
-$light: #212121;
+@import './src/scss/variables.scss';
 .dialog-loading {
   mat-dialog-container{
     background: $light;
@@ -14,7 +12,8 @@ $light: #212121;
     justify-content: center;
     overflow: hidden;
     p{
-      color: $light;
+      font-size: 1.25rem;
+      color: $dark;
     }
     mat-spinner {
       circle {
