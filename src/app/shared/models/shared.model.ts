@@ -15,3 +15,9 @@ export class GoogleAddress {
   lng?: number;
   place_id?: String;
 }
+
+export interface DocumentFile {
+  name: string;
+  file?: File;
+  url: string;
+}

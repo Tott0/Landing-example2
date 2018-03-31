@@ -7,6 +7,7 @@ import { ModalManager } from '../../../core/providers/modal-manager';
 import { MatTableDataSource } from '@angular/material';
 import { Position, MeasureType, PositionType, Warehouse } from '../../../shared/models/warehouse.model';
 
+// TODO services with cost
 @Component({
   selector: 'app-step-storage',
   templateUrl: './step-storage.component.html',
@@ -18,7 +19,7 @@ export class StepStorageComponent implements OnInit {
   @Input() parameters: any;
 
   storageColumns = ['number', 'unit', 'space', 'price', 'height', 'weight', 'actions'];
-  storageDataSource = new MatTableDataSource();
+  storageDataSource = new MatTableDataSource<Position>();
 
   newPosition: Position = new Position();
 
@@ -41,14 +42,26 @@ export class StepStorageComponent implements OnInit {
   }
 
   addPosition() {
-
+    this.storageDataSource.data = [...this.storageDataSource.data, this.newPosition];
+    this.warehouse.positions = this.storageDataSource.data;
+    this.newPosition = new Position();
   }
+
+  remove(position) {
+    this.storageDataSource.data = this.storageDataSource.data.splice(position, 1);
+    this.warehouse.positions = this.storageDataSource.data;
+  }
+
   isNewPositionInvalid() {
-    return true;
+    return !this.newPosition.type ||
+      !this.newPosition.amount ||
+      !this.newPosition.price_per_unit ||
+      !this.newPosition.max_height ||
+      !this.newPosition.max_weight;
   }
 
-  getMeasure() {
-    switch (this.newPosition.type) {
+  getMeasure(type?) {
+    switch (type || this.newPosition.type) {
       case PositionType.FLOOR_CLOSED:
         return 'm<sup>2</sup>';
       case PositionType.FLOOR_OPEN:

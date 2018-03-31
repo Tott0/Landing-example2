@@ -222,4 +222,14 @@ export class OwnerService {
     //     })
     //   );
   }
+
+  createWarehouse(warehouse) {
+    return this.http.post(`${AppConstants.API_ENDPOINT}warehouses`, warehouse)
+      .pipe(
+        catchError((err, caught) => {
+          this.mm.closeLoadingDialog();
+          return ErrorObservable.create(StaticMethods.handleHttpResponseError(err));
+        })
+      );
+  }
 }

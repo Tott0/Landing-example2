@@ -1,5 +1,5 @@
 import { Injectable, Component, Output } from '@angular/core';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatDialogConfig } from '@angular/material';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatDialogConfig, MatSnackBar } from '@angular/material';
 
 import { Observable } from 'rxjs/Observable';
 import { tap } from 'rxjs/operators';
@@ -7,6 +7,8 @@ import { tap } from 'rxjs/operators';
 import { LoadingDialog } from '../../shared/dialogs/loading/loading.dialog';
 import { MessageDialog } from '../../shared/dialogs/message/message.dialog';
 import { WarehouseFiltersDialog } from '../../shared/dialogs/warehouse-filters/warehouse-filters.dialog';
+//
+import { ResultSnackbar } from '../../shared/dialogs/result-snackbar/result.snackbar';
 
 enum ModalTags {
   LOADING,
@@ -21,7 +23,8 @@ export class ModalManager {
   currentModalTag: ModalTags;
 
   constructor(
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private snackbar: MatSnackBar,
   ) { }
 
   public createModal(tag: number, component: any, config?: MatDialogConfig): Observable<any> {
@@ -96,5 +99,19 @@ export class ModalManager {
     }
     config.panelClass = ['dialog', 'dialog-warehouse-filters'];
     return this.createModal(ModalTags.WAREHOUSE_FILTERS, WarehouseFiltersDialog, config);
+  }
+
+  /* snackbars */
+  showResultSnackbar(message, goodResult = true) {
+    this.snackbar.openFromComponent(ResultSnackbar, {
+      data: {
+        goodResult: goodResult,
+        message: message,
+      },
+      duration: 3000,
+      horizontalPosition: 'right',
+      verticalPosition: 'bottom',
+      panelClass: 'result-snackbar'
+    });
   }
 }

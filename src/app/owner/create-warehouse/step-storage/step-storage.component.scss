@@ -48,7 +48,7 @@ mat-table {
     font-size: 1em;
   }
   .mat-column-actions {
-    .btn-delete {
+    .btn-remove {
       color: $danger;
     }
   }
@@ -81,7 +81,7 @@ mat-table {
       border: solid 1px $primary-dark;
       margin-top: 3em;
       width: 100%;
-      padding: 0 5em;
+      padding: 1em 5em;
       .row {
         justify-content: center;
         &.first {

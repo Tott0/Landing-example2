@@ -49,40 +49,40 @@
 
         <ng-container matColumnDef="number">
           <mat-header-cell *matHeaderCellDef> No. </mat-header-cell>
-          <mat-cell *matCellDef="let element"> {{ element.position }} </mat-cell>
+          <mat-cell *matCellDef="let element; let i = index"> {{ i + 1 }} </mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="unit">
           <mat-header-cell *matHeaderCellDef> Tipo Medida </mat-header-cell>
-          <mat-cell *matCellDef="let element"> {{ element.unit }} </mat-cell>
+          <mat-cell *matCellDef="let element"> {{ element.type | t0tPositionType }} </mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="space">
           <mat-header-cell *matHeaderCellDef> Espacio Disponible </mat-header-cell>
-          <mat-cell *matCellDef="let element"> {{ element.space }} </mat-cell>
+          <mat-cell *matCellDef="let element"> <span>{{ element.amount + ' '}} <span [innerHtml]="getMeasure(element.type)"></span></span> </mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="price">
           <mat-header-cell *matHeaderCellDef> Valor ($) </mat-header-cell>
-          <mat-cell *matCellDef="let element"> {{ element.price_per_unit }} </mat-cell>
+          <mat-cell *matCellDef="let element"> {{ element.price_per_unit | copCurrency }} </mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="height">
           <mat-header-cell *matHeaderCellDef> Altura Máxima (m) </mat-header-cell>
-          <mat-cell *matCellDef="let element"> {{ element.max_height }} </mat-cell>
+          <mat-cell *matCellDef="let element"> {{ element.max_height }}m </mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="weight">
-          <mat-header-cell *matHeaderCellDef> Peso Máximo (ton) </mat-header-cell>
-          <mat-cell *matCellDef="let element"> {{ element.weight }} </mat-cell>
+          <mat-header-cell *matHeaderCellDef> Peso Máximo (Kg) </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{ element.max_weight }}kg </mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="actions">
           <mat-header-cell *matHeaderCellDef> </mat-header-cell>
           <mat-cell *matCellDef="let element">
             <span class="btn-delete-wrapper" matTooltip="Eliminar" matTooltipPosition="above" [matTooltipClass]="'tooltip'" (click)="$event.stopPropagation();">
-              <button mat-icon-button class="btn-detail" (click)="detail(element.id)">
-                <i class="fas fa-lg fa-search-plus"></i>
+              <button mat-icon-button class="btn-remove" (click)="remove(element.id)">
+                  <i class="far fa-trash-alt fa-lg"></i>
               </button>
             </span>
           </mat-cell>
@@ -101,7 +101,7 @@
               <mat-option [value]="PositionType.FLOOR_CLOSED">Piso Cubierto</mat-option>
               <mat-option [value]="PositionType.FLOOR_OPEN">Piso Exterior</mat-option>
               <mat-option [value]="PositionType.RACK">Estantería</mat-option>
-              <!-- <mat-option [value]="PositionType.BOX">Metro Cuadrado</mat-option> -->
+              <mat-option [value]="PositionType.BOX">Caja</mat-option>
 
             </mat-select>
           </mat-form-field>
@@ -113,7 +113,7 @@
 
           <mat-form-field>
             <span matPrefix>$ &nbsp;</span>
-            <input matInput placeholder="Valor por unidad" type="text" [(ngModel)]="newPosition.price_per_unit" appForceNumeric>
+            <input matInput placeholder="Costo por unidad" type="text" [(ngModel)]="newPosition.price_per_unit" appForceNumeric>
           </mat-form-field>
 
           <mat-form-field>
@@ -122,7 +122,7 @@
           </mat-form-field>
 
           <mat-form-field>
-            <input matInput placeholder="Peso Máximo" type="number" [(ngModel)]="newPosition.weight">
+            <input matInput placeholder="Peso Máximo" type="number" [(ngModel)]="newPosition.max_weight">
             <span matSuffix>Kg</span>
           </mat-form-field>
 

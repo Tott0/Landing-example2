@@ -58,11 +58,9 @@ export class StepBasicInfoComponent implements OnInit {
       .pipe(
         debounceTime(300),
         distinctUntilChanged(),
-        switchMap(cityId => {
+        switchMap(dptoId => {
           this.mm.showLoadingDialog();
-          return cityId ? this.sService.getCiudades({
-            city_id: cityId
-          }) : Observable.of<Ciudad[]>([]);
+          return dptoId ? this.sService.getCiudades(dptoId) : Observable.of<Ciudad[]>([]);
         }),
         catchError(err => {
           console.error(err);
@@ -83,7 +81,7 @@ export class StepBasicInfoComponent implements OnInit {
       // }),
       // map(val => this.filter(val))
     )
-      .subscribe((addr) => {
+      .subscribe((addr: google.maps.places.AutocompletionRequest) => {
         if (!addr) {
           this.filteredAddresses = [];
           return;
@@ -155,15 +153,15 @@ export class StepBasicInfoComponent implements OnInit {
   }
 
   isComplete() {
-    if (!this.warehouse ||
-      !this.warehouse.name ||
-      !this.warehouse.address ||
-      !this.warehouse.city ||
-      !this.warehouse.workingDays.some(wd => wd) ||
-      !this.photos.length
-    ) {
-      return false;
-    }
+    // if (!this.warehouse ||
+    //   !this.warehouse.name ||
+    //   !this.warehouse.address ||
+    //   !this.warehouse.city ||
+    //   !this.warehouse.workingDays.some(wd => wd) ||
+    //   !this.photos.length
+    // ) {
+    //   return false;
+    // }
     return true;
   }
 
@@ -181,9 +179,15 @@ export class StepBasicInfoComponent implements OnInit {
     this.warehouse.lat = undefined;
     this.warehouse.lng = undefined;
     this.currentAddress = new GoogleAddress();
-
-    this.sService.autocompleteAddress(ev.name, (addrs => {
+    this.mm.showLoadingDialog();
+    this.sService.autocompleteAddress({
+      input: ev.name,
+      componentRestrictions: {
+        country: 'co'
+      }
+    } as google.maps.places.AutocompletionRequest, (addrs => {
       this.sService.getAddress(addrs[0].place_id, (res) => {
+        this.mm.closeLoadingDialog();
         this.mapLat = res.lat;
         this.mapLng = res.lng;
         this.mapZoom = 13;
@@ -194,12 +198,23 @@ export class StepBasicInfoComponent implements OnInit {
   addressChanged(ev) {
     console.log(ev);
     this.filteredAddresses = [];
-    this.addrSubj.next(ev);
+    const r: google.maps.places.AutocompletionRequest = {
+      input: ev,
+      location: new google.maps.LatLng(this.mapLat, this.mapLng),
+      radius: 16000,
+      componentRestrictions: {
+        country: 'co'
+      }
+    };
+    this.addrSubj.next(r);
   }
 
   addressSelected(event) {
     console.log(event);
+    this.filteredAddresses = [];
+    this.mm.showLoadingDialog();
     this.sService.getAddress(event, (addr) => {
+      this.mm.closeLoadingDialog();
       console.log(addr);
       if (addr) {
         this.warehouse.address = addr.address;

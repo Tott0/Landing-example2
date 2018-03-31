@@ -9,6 +9,18 @@ export class User {
     contact_phone?: string;
 }
 
+export class Person {
+    id: number;
+}
+
+export class Company {
+    id: number;
+}
+
+export class Renter {
+    id: number;
+}
+
 export class Auth {
     token: string;
     user: User;

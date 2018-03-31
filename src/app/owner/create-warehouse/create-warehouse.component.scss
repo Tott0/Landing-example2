@@ -1,37 +1,41 @@
 @import './src/scss/variables.scss';
-mat-card {
-  margin-top: 3em;
-  margin-bottom: 1em;
-  font-size: 0.75rem;
-  width: 100%;
-  &>* {
-    font-size: 1rem;
+app-create-warehouse {
+  .mat-expansion-panel:not(.mat-expanded) .mat-expansion-panel-header:not([aria-disabled='true']):hover {
+    background: rgba(75, 172, 184, 0.3);
   }
-  mat-card-title {
-    font-size: 1.5em;
-    padding: 0.1em;
-  }
-  mat-card-content {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    flex-direction: column;
-    padding: 1em;
-    font-size: 1em;
-    
-    mat-horizontal-stepper{
-      width: 100%;
+  mat-card {
+    margin-top: 3em;
+    margin-bottom: 1em;
+    font-size: 0.75rem;
+    width: 100%;
+    &>* {
+      font-size: 1rem;
     }
-  }
-  mat-card-actions {
-    display: flex;
-    margin: 0 !important;
-    font-size: 1em;
-    button {
-      width: 10em;
+    mat-card-title.mat-card-title {
+      font-size: 1.5em;
+      padding: 0.1em;
     }
-    .btn-next {
-      color: $light;
+    mat-card-content.mat-card-content {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      flex-direction: column;
+      padding: 1em;
+      font-size: 1em;
+      mat-horizontal-stepper {
+        width: 100%;
+      }
+    }
+    mat-card-actions.mat-card-actions {
+      display: flex;
+      margin: 0 !important;
+      font-size: 1em;
+      button {
+        width: 10em;
+      }
+      .btn-next {
+        color: $light;
+      }
     }
   }
 }

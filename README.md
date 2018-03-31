@@ -32,5 +32,5 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 central marker in map to calculate distance (draggable)
 
 //
--camara comercio, rut,
--agregar tipo Caja a tipo de espacio
+
+https://documenter.getpostman.com/view/357639/caxtor/RVnbAwz9#f6272739-80ee-7e33-83ce-fc4fead8d959

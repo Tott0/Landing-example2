@@ -13,19 +13,19 @@ import { ModalManager } from '../core/providers/modal-manager';
 import { Ciudad, Departamento } from './models/shared.model';
 import { SharedService } from '../core/providers/shared.service';
 
-@Injectable()
-export class CiudadesResolver implements Resolve<Ciudad[]> {
-  constructor(
-    private sharedService: SharedService,
-    private router: Router,
-    private mm: ModalManager) { }
+// @Injectable()
+// export class CiudadesResolver implements Resolve<Ciudad[]> {
+//   constructor(
+//     private sharedService: SharedService,
+//     private router: Router,
+//     private mm: ModalManager) { }
 
-  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Ciudad[]> {
+//   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Ciudad[]> {
 
-    this.mm.showLoadingDialog();
-    return this.sharedService.getCiudades();
-  }
-}
+//     this.mm.showLoadingDialog();
+//     return this.sharedService.getCiudades(-1);
+//   }
+// }
 
 @Injectable()
 export class DepartamentosResolver implements Resolve<Departamento[]> {

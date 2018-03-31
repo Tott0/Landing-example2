@@ -24,6 +24,7 @@ import { CopCurrencyPipe } from './pipes/cop-currency';
 import { PlatePipe } from './pipes/plate';
 import { DecimalPipe } from './pipes/decimal';
 import { DurationPipe } from './pipes/duration';
+import { EnumPositionTypePipe } from './pipes/enum-position-type';
 
 /* Material Components */
 import {
@@ -72,6 +73,7 @@ import { AgmCoreModule } from '@agm/core';
     PlatePipe,
     DecimalPipe,
     DurationPipe,
+    EnumPositionTypePipe,
   ],
   exports: [
     CommonModule,
@@ -101,6 +103,7 @@ import { AgmCoreModule } from '@agm/core';
     PlatePipe,
     DecimalPipe,
     DurationPipe,
+    EnumPositionTypePipe,
   ],
   entryComponents: [
     LoadingDialog,

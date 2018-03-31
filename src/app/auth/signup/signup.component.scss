@@ -27,13 +27,29 @@ mat-card {
       mat-form-field {
         max-width: 50%;
       }
-      mat-radio-group{
+      mat-radio-group {
         margin-bottom: 1em;
       }
     }
     mat-accordion {
       width: 100%;
       margin-top: 1em;
+    }
+    .file-input {
+      margin: 0.5em 0;
+      display: flex;
+      align-items: flex-start;
+      .fileInput {
+        position: absolute;
+        left: -100vw;
+      }
+      .placeholder {
+        color: transparentize($color: $dark, $amount: 0.5);
+        font-size: 0.95em;
+      }
+      button {
+        margin-left: 2em;
+      }
     }
     .btn-submit {
       align-self: center;

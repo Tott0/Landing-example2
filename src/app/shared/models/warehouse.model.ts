@@ -1,5 +1,5 @@
 
-import { Ciudad } from './shared.model';
+import { Ciudad, DocumentFile } from './shared.model';
 import { User } from '../../auth/auth.model';
 
 export interface WarehouseApi {
@@ -15,7 +15,7 @@ export class Warehouse {
   city: Ciudad;
   address: String;
   description: String;
-  images: String[];
+  images: String[] | DocumentFile[];
 
   workingDays?: boolean[];
   workingTime?: String[];
@@ -30,17 +30,8 @@ export class Warehouse {
   has_floor_closed?(): boolean { return this.positions.some(p => p.type === PositionType.FLOOR_CLOSED); }
   has_floor_open?(): boolean { return this.positions.some(p => p.type === PositionType.FLOOR_OPEN); }
 
-  constructor(wh?: Warehouse) {
-    if (wh) {
-      this.user = wh.user;
-      this.name = wh.name;
-      this.lat = wh.lat;
-      this.lng = wh.lng;
-      this.city = wh.city;
-      this.address = wh.address;
-      this.positions = wh.positions;
-      this.parameters = wh.parameters;
-    }
+  constructor(wh?: Partial<Warehouse>) {
+    Object.assign(this, wh);
     this.workingDays = new Array(7).fill(false);
     this.workingTime = ['6', 'am', '6', 'pm', '00', '00'];
   }
@@ -57,6 +48,7 @@ export class Parameter {
   description: string;
   type: ParameterType;
   cost_per_unit?: number;
+  checked?: boolean;
 }
 
 export enum PositionType {
@@ -70,9 +62,9 @@ export enum MeasureType {
   PALLET
 }
 export class Position {
-  id: number;
+  id?: number;
   type: PositionType;
-  measure: MeasureType;
+  measure?: MeasureType;
   amount: number; // available spaces for this type of position in warehouse
   price_per_unit: number;
   // measurements, default for floor type is 1m2
