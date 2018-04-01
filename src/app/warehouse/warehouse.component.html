@@ -1,0 +1,87 @@
+<div class="main-container">
+
+  <div class="carousel">
+    <span> carousel</span>
+  </div>
+
+  <div class="container">
+    <span class="name">
+      {{ warehouse.name }}
+    </span>
+    <div class="rating">
+      rating
+    </div>
+
+    <div class="row">
+
+      <div class="col left">
+
+        <mat-card class="storage">
+          <mat-card-content>
+            <div class="content-wrapper">
+              <span>lel</span>
+              <span>lel</span>
+              <span>lel</span>
+            </div>
+          </mat-card-content>
+        </mat-card>
+
+        <mat-card class="description">
+          <mat-card-content>
+            <div class="content-wrapper">
+              <span>lel</span>
+              <span>lel</span>
+              <span>lel</span>
+            </div>
+          </mat-card-content>
+        </mat-card>
+
+        <mat-card class="storage-detail">
+          <mat-card-content>
+            <div class="content-wrapper">
+              <span>lel</span>
+              <span>lel</span>
+              <span>lel</span>
+            </div>
+          </mat-card-content>
+        </mat-card>
+
+        <mat-card class="reviews">
+          <mat-card-content>
+            <div class="content-wrapper">
+              <span>lel</span>
+              <span>lel</span>
+              <span>lel</span>
+            </div>
+          </mat-card-content>
+        </mat-card>
+
+      </div>
+
+      <div class="col right">
+        <mat-card class="profile">
+          <mat-card-header>
+            <div class="wrapper">
+              <mat-card-title>
+                Bodega
+              </mat-card-title>
+            </div>
+
+          </mat-card-header>
+          <mat-card-content>
+
+            <div class="content-wrapper">
+              <span class="name">{{ warehouse.name }}</span>
+              <span class="address">{{ warehouse.address }}</span>
+              <button mat-raised-button class="btn-add" [routerLink]="['warehouses/create']">Administrar Reservas</button>
+              <button mat-raised-button class="btn-add" [disabled]="true">Editar Bódega</button>
+            </div>
+
+          </mat-card-content>
+        </mat-card>
+      </div>
+
+    </div>
+
+  </div>
+</div>

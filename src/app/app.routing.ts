@@ -25,6 +25,13 @@ const appRoutes: Routes = [
     //   LoginAuthGuard,
     // ],
   },
+  {
+    path: 'temproute_warehouse',
+    loadChildren: 'app/warehouse/warehouse.module#WarehouseModule',
+    // canActivate: [
+    //   LoginAuthGuard,
+    // ],
+  },
   { path: 'login', component: AuthComponent },
   { path: 'signup', component: SignupComponent },
   { path: 'forgot', component: ForgotComponent },

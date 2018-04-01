@@ -1,0 +1,105 @@
+@import './src/scss/variables.scss';
+.carousel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 35vh;
+  border: solid 1px $danger;
+  width: 100%;
+  span {
+    color: $danger;
+    font-size: 2rem;
+  }
+}
+
+.container {
+  font-size: 1rem;
+  padding: 0 0.25em;
+  align-items: flex-start;
+  margin-top: 2em;
+  @include for-big-desktop-up{
+    padding: 0 150px;
+  }
+
+  .row {
+    margin: 1em 0;
+  }
+  mat-card {
+    padding: 0;
+    font-size: 1em;
+    mat-card-content {
+      font-size: 1em;
+      position: relative;
+      .content-wrapper {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+      }
+    }
+  }
+  .col {
+    margin: 0 1em;
+  }
+  .col.left {
+    flex: 7;
+    mat-card {
+      border-radius: 0.15em;
+      box-shadow: 0 1px 4px 0 transparentize($color: $dark, $amount: 0.6);
+      margin-bottom: 1em;
+      .content-wrapper {
+        padding: 1em;
+      }
+    }
+  }
+  .col.right {
+    flex: 3;
+    mat-card {
+      border-left: solid 1px $primary-dark;
+      border-right: solid 1px $primary-dark;
+      border-bottom: solid 1px $primary-dark;
+      border-radius: 0.25em;
+      mat-card-header {
+        background: $primary-dark;
+        padding: 0.5em;
+        border-top-left-radius: 0.25em;
+        border-top-right-radius: 0.25em;
+        mat-card-title {
+          font-size: 1.15em;
+          color: $light;
+          margin: 0;
+        }
+      }
+    }
+
+    mat-card.profile{
+      mat-card-content{
+
+      }
+      .content-wrapper{
+        align-items: center;
+        padding: 2em;
+
+        .name{
+          font-size: 1.25em;
+          color: $primary-dark;
+        }
+        .address{
+          font-size: 0.85em;
+          color: transparentize($color: $dark, $amount: 0.2);
+          margin-bottom: 2em;
+        }
+        button{
+          padding: 0.25em 0;
+          font-size: 1em;
+          width: 10em;
+          margin: 0.5em 0;
+          background: $primary-dark;
+          color: $light;
+          &[disabled] {
+            background: transparentize($primary-dark, 0.3);
+          }
+        }
+      }
+    }
+  }
+}
