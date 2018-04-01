@@ -58,7 +58,7 @@ export class ClientService {
           max_weight: 2000
         }
       ],
-      parameters: [4, 5, 6, 7, 8, 11]
+      parameters: []
     },
     {
       name: 'Bodega 2',
@@ -84,7 +84,7 @@ export class ClientService {
           max_weight: 2000
         }
       ],
-      parameters: [1, 2, 3, 11, 12, 15]
+      parameters: []
     },
     {
       name: 'Bodega 3',
@@ -110,7 +110,7 @@ export class ClientService {
           max_weight: 2000
         }
       ],
-      parameters: [1, 2, 3]
+      parameters: []
     },
     {
       name: 'Bodega 4',
@@ -148,7 +148,7 @@ export class ClientService {
           max_weight: 2000
         }
       ],
-      parameters: [4, 6, 9, 10, 13]
+      parameters: []
     },
     {
       name: 'Bodega 5',
@@ -196,7 +196,7 @@ export class ClientService {
           max_weight: 2000
         },
       ],
-      parameters: [4, 6, 9, 10, 13, 18, 19, 22]
+      parameters: []
     },
   ];
 
@@ -244,7 +244,7 @@ export class ClientService {
         }
 
         if (params.prm && params.prm.length) {
-          if (!params.prm.every(p => (wh.parameters as number[]).includes(+p))) {
+          if (!params.prm.every(p => (wh.parameters).some(p2 => p2.id === +p))) {
             console.log('out4');
             return false;
           }

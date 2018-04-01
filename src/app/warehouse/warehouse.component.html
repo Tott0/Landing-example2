@@ -19,29 +19,139 @@
         <mat-card class="storage">
           <mat-card-content>
             <div class="content-wrapper">
-              <span>lel</span>
-              <span>lel</span>
-              <span>lel</span>
+              <span class="title">Tipo de Espacios Disponibles</span>
+              <div class="row">
+                <span class="type" [ngClass]="{'active': hasType(0)}">
+                  <img src="assets/images/icon-pallet.png">
+                  <span>Pallets</span>
+                </span>
+                <span class="type" [ngClass]="{'active': hasType(1)}">
+                  <img src="assets/images/icon-rack.png">
+                  <span>Estanterías
+                  </span>
+                </span>
+                <span class="type" [ngClass]="{'active': hasType(2)}">
+                  <img src="assets/images/icon-box.png">
+                  <span>Cajas</span>
+                </span>
+              </div>
             </div>
           </mat-card-content>
         </mat-card>
 
-        <mat-card class="description">
+        <mat-card class="warehouse-detail">
           <mat-card-content>
             <div class="content-wrapper">
-              <span>lel</span>
-              <span>lel</span>
-              <span>lel</span>
-            </div>
-          </mat-card-content>
-        </mat-card>
+              <mat-tab-group #tabGroup>
+                <mat-tab label="Descripción">
+                  <ng-template matTabContent>
+                    <div class="description inner-wrapper">
+                      <span class="field">
+                        <span class="label">Días Laborales</span>
+                        {{ getDays() }}
+                      </span>
+                      <span class="field">
+                        <span class="label">Horario Laboral</span>
+                        {{ getSchedule() }}
+                      </span>
+                      <div class="list-field">
+                        <span class="label">Productos Aceptados</span>
+                        <ul class="fa-ul" *ngIf="products && products.length">
+                          <li *ngFor="let p of products">
+                            <span class="fa-li">
+                              <i class="fas fa-check"></i>
+                            </span>{{ p.description }}</li>
+                        </ul>
+                      </div>
+                      <div class="list-field">
+                        <span class="label">Seguridad</span>
+                        <ul class="fa-ul" *ngIf="security && security.length">
+                          <li *ngFor="let p of security">
+                            <span class="fa-li">
+                              <i class="fas fa-check"></i>
+                            </span>{{ p.description }}</li>
+                        </ul>
+                      </div>
+                      <div class="list-field">
+                        <span class="label">Certificaciones</span>
+                        <ul class="fa-ul" *ngIf="certifications && certifications.length">
+                          <li *ngFor="let p of certifications">
+                            <span class="fa-li">
+                              <i class="fas fa-check"></i>
+                            </span>{{ p.description }}</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </ng-template>
+                </mat-tab>
+                <mat-tab label="Almacenamiento">
+                  <ng-template matTabContent>
+                    <div class="inner-wrapper">
+                      <mat-table #table [dataSource]="storageDataSource">
 
-        <mat-card class="storage-detail">
-          <mat-card-content>
-            <div class="content-wrapper">
-              <span>lel</span>
-              <span>lel</span>
-              <span>lel</span>
+                        <ng-container matColumnDef="number">
+                          <mat-header-cell *matHeaderCellDef> No. </mat-header-cell>
+                          <mat-cell *matCellDef="let element; let i = index"> {{ i + 1 }} </mat-cell>
+                        </ng-container>
+
+                        <ng-container matColumnDef="unit">
+                          <mat-header-cell *matHeaderCellDef> Tipo Espacio </mat-header-cell>
+                          <mat-cell *matCellDef="let element"> {{ element.type | t0tPositionType }} </mat-cell>
+                        </ng-container>
+
+                        <ng-container matColumnDef="space">
+                          <mat-header-cell *matHeaderCellDef> Espacio Disponible </mat-header-cell>
+                          <mat-cell *matCellDef="let element">
+                            <span>{{ element.amount + ' '}}
+                              <span [innerHtml]="getMeasure(element)"></span>
+                            </span>
+                          </mat-cell>
+                        </ng-container>
+
+                        <ng-container matColumnDef="price">
+                          <mat-header-cell *matHeaderCellDef> Valor ($) </mat-header-cell>
+                          <mat-cell *matCellDef="let element"> {{ element.price_per_unit | copCurrency }} </mat-cell>
+                        </ng-container>
+
+                        <ng-container matColumnDef="height">
+                          <mat-header-cell *matHeaderCellDef> Altura Máxima (m) </mat-header-cell>
+                          <mat-cell *matCellDef="let element"> {{ element.max_height }}m </mat-cell>
+                        </ng-container>
+
+                        <ng-container matColumnDef="weight">
+                          <mat-header-cell *matHeaderCellDef> Peso Máximo (Kg) </mat-header-cell>
+                          <mat-cell *matCellDef="let element"> {{ element.max_weight }}kg </mat-cell>
+                        </ng-container>
+
+                        <ng-container matColumnDef="special">
+                          <mat-header-cell *matHeaderCellDef> </mat-header-cell>
+                          <mat-cell *matCellDef="let element">
+                            <span class="icon-refrigerated-wrapper" matTooltip="Producto Refrigerado" matTooltipPosition="above" [matTooltipClass]="'tooltip'"
+                              (click)="$event.stopPropagation();" [style.visibility]="element.refrigerated ? 'visible' : 'hidden'">
+                              <i class="far fa-lg fa-snowflake"></i>
+                            </span>
+                            <span class="icon-dangerous-wrapper" matTooltip="Material Peligroso" matTooltipPosition="above" [matTooltipClass]="'tooltip'"
+                              (click)="$event.stopPropagation();" [style.visibility]="element.dangerous ? 'visible' : 'hidden'">
+                              <i class="fas fa-lg fa-exclamation-triangle"></i>
+                            </span>
+                          </mat-cell>
+                        </ng-container>
+
+                        <mat-header-row *matHeaderRowDef="storageColumns"></mat-header-row>
+                        <mat-row *matRowDef="let rowData; columns: storageColumns"></mat-row>
+
+                      </mat-table>
+                    </div>
+                  </ng-template>
+                </mat-tab>
+                <mat-tab label="Servicios" [disabled]="true">
+                  <ng-template matTabContent>
+                    <div class="inner-wrapper">
+
+                    </div>
+                  </ng-template>
+                </mat-tab>
+              </mat-tab-group>
             </div>
           </mat-card-content>
         </mat-card>
@@ -49,9 +159,49 @@
         <mat-card class="reviews">
           <mat-card-content>
             <div class="content-wrapper">
-              <span>lel</span>
-              <span>lel</span>
-              <span>lel</span>
+              <span class="title">Calificaciones ({{ 0 }})</span>
+              <div class="row">
+                <span class="rating">
+                  <span class="label">Tipo de Calificación 1</span>
+                  <span class="stars">
+                    <i class="far fa-star"></i>
+                    <i class="far fa-star"></i>
+                    <i class="far fa-star"></i>
+                    <i class="far fa-star"></i>
+                    <i class="far fa-star"></i>
+                  </span>
+                </span>
+                <span class="rating">
+                  <span class="label">Tipo de Calificación 2</span>
+                  <span class="stars">
+                    <i class="far fa-star"></i>
+                    <i class="far fa-star"></i>
+                    <i class="far fa-star"></i>
+                    <i class="far fa-star"></i>
+                    <i class="far fa-star"></i>
+                  </span>
+                </span>
+                <span class="rating">
+                  <span class="label">Tipo de Calificación 3</span>
+                  <span class="stars">
+                    <i class="far fa-star"></i>
+                    <i class="far fa-star"></i>
+                    <i class="far fa-star"></i>
+                    <i class="far fa-star"></i>
+                    <i class="far fa-star"></i>
+                  </span>
+                </span>
+                <span class="rating">
+                  <span class="label">Tipo de Calificación 4</span>
+                  <span class="stars">
+                    <i class="far fa-star"></i>
+                    <i class="far fa-star"></i>
+                    <i class="far fa-star"></i>
+                    <i class="far fa-star"></i>
+                    <i class="far fa-star"></i>
+                  </span>
+                </span>
+              </div>
             </div>
           </mat-card-content>
         </mat-card>

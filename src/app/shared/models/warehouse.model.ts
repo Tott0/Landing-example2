@@ -24,7 +24,7 @@ export class Warehouse {
   positions: Position[];
 
   // all characteristics of warehouse are grouped here
-  parameters: Parameter[] | number[];
+  parameters: Parameter[];
 
   has_rack?(): boolean { return this.positions.some(p => p.type === PositionType.RACK); }
   has_floor_closed?(): boolean { return this.positions.some(p => p.type === PositionType.FLOOR_CLOSED); }
@@ -32,8 +32,12 @@ export class Warehouse {
 
   constructor(wh?: Partial<Warehouse>) {
     Object.assign(this, wh);
-    this.workingDays = new Array(7).fill(false);
-    this.workingTime = ['6', 'am', '6', 'pm', '00', '00'];
+    if (!this.workingDays) {
+      this.workingDays = new Array(7).fill(false);
+    }
+    if (!this.workingTime) {
+      this.workingTime = ['6', 'am', '6', 'pm', '00', '00'];
+    }
   }
 }
 

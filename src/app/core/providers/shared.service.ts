@@ -15,7 +15,7 @@ import { Ciudad, Departamento, GoogleAddress } from '../../shared/models/shared.
 import { ParameterType, Parameter } from '../../shared/models/warehouse.model';
 import { MapsAPILoader } from '@agm/core';
 
-import {} from '@types/googlemaps';
+import { } from '@types/googlemaps';
 
 
 @Injectable()
@@ -162,6 +162,9 @@ export class SharedService {
   ) { }
 
   getCiudades(dptoId: number, params?): Observable<Ciudad[]> {
+    if (true) {
+      return Observable.of<Ciudad[]>(this.ciudades);
+    }
     return this.http.get<Ciudad>(`${AppConstants.API_ENDPOINT}departments/${dptoId}/cities${StaticMethods.getParams(params)}`)
       .pipe(
         catchError((err, caught) => {
@@ -173,6 +176,9 @@ export class SharedService {
   }
 
   getDepartamentos(): Observable<Departamento[]> {
+    if (true) {
+      return Observable.of<Departamento[]>(this.departamentos);
+    }
     return this.http.get<Departamento>(`${AppConstants.API_ENDPOINT}departments`)
       .pipe(
         catchError((err, caught) => {
