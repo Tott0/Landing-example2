@@ -1,6 +1,8 @@
 import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ModalManager } from '../core/providers/modal-manager';
+import { Validators, FormBuilder, FormGroup, AbstractControl, FormControl } from '@angular/forms';
+import { CustomValidators } from '../../app/shared/custom-validators';
 
 import { WarehouseService } from './warehouse.service';
 import { Warehouse, WarehouseApi, PositionType, Parameter, ParameterType, Position } from '../shared/models/warehouse.model';
@@ -27,14 +29,39 @@ export class WarehouseComponent implements OnInit {
   storageColumns = ['number', 'unit', 'space', 'price', 'height', 'weight', 'special'];
   storageDataSource = new MatTableDataSource<Position>();
 
+  filteredPositions: Position[] = [];
+
+  minDate = new Date();
+  errors: any = {};
+  form: FormGroup;
+  get startDate() { return this.form.get('start_date'); }
+  get endDate() { return this.form.get('end_date'); }
+  get positionType() { return this.form.get('position_type'); }
+  get amount() { return this.form.get('amount'); }
+  get refrigerated() { return this.form.get('refrigerated'); }
+  get dangerous() { return this.form.get('dangerous'); }
+  get position() { return this.form.get('position_id'); }
+
   constructor(
     private router: Router,
     private route: ActivatedRoute,
     private mm: ModalManager,
     private service: WarehouseService,
+    private fb: FormBuilder,
   ) { }
 
   ngOnInit() {
+    this.minDate.setDate(this.minDate.getDate() + 7);
+    this.form = this.fb.group({
+      start_date: ['', [Validators.required]],
+      end_date: ['', [Validators.required]],
+      position_type: ['', [Validators.required]],
+      amount: [0, [Validators.required, Validators.min(1)]],
+      refrigerated: [false, []],
+      dangerous: [false, []],
+      position: ['', []],
+    });
+
     this.route.data.subscribe((data: { res: Warehouse }) => {
       console.log(data.res);
       this.warehouse = data.res;
@@ -45,9 +72,25 @@ export class WarehouseComponent implements OnInit {
         this.serviceP = this.warehouse.parameters.filter(p => p.type === ParameterType.EXTRA_SERVICES);
 
         this.storageDataSource.data = this.warehouse.positions;
+        this.filteredPositions = this.warehouse.positions;
       }
       this.mm.closeLoadingDialog();
     });
+
+  }
+
+  filterPositions(i) {
+    this.filteredPositions = this.warehouse.positions;
+
+    if (this.positionType.value) {
+      this.filteredPositions = this.filteredPositions.filter(fp => fp.type === this.positionType.value);
+    }
+    if (this.refrigerated.value) {
+      this.filteredPositions = this.filteredPositions.filter(fp => fp.refrigerated);
+    }
+    if (this.dangerous.value) {
+      this.filteredPositions = this.filteredPositions.filter(fp => fp.dangerous);
+    }
   }
 
   hasType(i) {
@@ -86,7 +129,7 @@ export class WarehouseComponent implements OnInit {
   }
 
   getMeasure(position) {
-    switch (position.type) {
+    switch (position.type || position) {
       case PositionType.FLOOR_CLOSED:
         return 'm<sup>2</sup>';
       case PositionType.FLOOR_OPEN:

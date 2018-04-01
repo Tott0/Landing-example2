@@ -165,28 +165,28 @@ export class SharedService {
     if (true) {
       return Observable.of<Ciudad[]>(this.ciudades);
     }
-    return this.http.get<Ciudad>(`${AppConstants.API_ENDPOINT}departments/${dptoId}/cities${StaticMethods.getParams(params)}`)
-      .pipe(
-        catchError((err, caught) => {
-          this.mm.closeLoadingDialog();
-          StaticMethods.handleHttpResponseError(err);
-          return ErrorObservable.create('');
-        })
-      );
+    // return this.http.get<Ciudad>(`${AppConstants.API_ENDPOINT}departments/${dptoId}/cities${StaticMethods.getParams(params)}`)
+    //   .pipe(
+    //     catchError((err, caught) => {
+    //       this.mm.closeLoadingDialog();
+    //       StaticMethods.handleHttpResponseError(err);
+    //       return ErrorObservable.create('');
+    //     })
+    //   );
   }
 
   getDepartamentos(): Observable<Departamento[]> {
     if (true) {
       return Observable.of<Departamento[]>(this.departamentos);
     }
-    return this.http.get<Departamento>(`${AppConstants.API_ENDPOINT}departments`)
-      .pipe(
-        catchError((err, caught) => {
-          this.mm.closeLoadingDialog();
-          StaticMethods.handleHttpResponseError(err);
-          return ErrorObservable.create('');
-        })
-      );
+    // return this.http.get<Departamento>(`${AppConstants.API_ENDPOINT}departments`)
+    //   .pipe(
+    //     catchError((err, caught) => {
+    //       this.mm.closeLoadingDialog();
+    //       StaticMethods.handleHttpResponseError(err);
+    //       return ErrorObservable.create('');
+    //     })
+    //   );
   }
 
   getParameters(params?): Observable<any> {

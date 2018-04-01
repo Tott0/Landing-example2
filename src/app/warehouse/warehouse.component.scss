@@ -26,7 +26,7 @@
   @include for-big-desktop-up {
     padding: 0 150px;
   }
-  .row {
+  &>.row {
     margin: 1em 0;
   }
   mat-card {
@@ -115,14 +115,13 @@
     mat-card.reviews {
       .content-wrapper {
         font-size: 0.85em;
-        .row{
+        .row {
           flex-wrap: wrap;
-          .rating{
+          .rating {
             display: flex;
             flex: 0 0 50%;
             margin: 0.25em 0;
-
-            .label{
+            .label {
               width: 225px;
             }
           }
@@ -163,7 +162,50 @@
   }
   .col.right {
     flex: 3;
-    mat-card {
+    mat-card.application {
+      form {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 1em 1.5em;
+        mat-form-field {
+          width: 100%;
+        }
+        mat-checkbox:first-of-type {
+          margin-bottom: 0.5em;
+        }
+        .fee {
+          width: 100%;
+          margin: 0.75em 0;
+          font-size: 0.75em;
+          .label {
+            font-weight: 500;
+          }
+          .cost {
+            font-weight: 500;
+            color: $primary-dark;
+          }
+          .detail {
+            margin-top: 0.25em;
+            font-size: 0.8em;
+            color: transparentize($color: $dark, $amount: 0.5);
+          }
+        }
+        .btn-submit {
+          align-self: center;
+          padding: 0.25em 0;
+          font-size: 1em;
+          width: 10em;
+          margin: 0.5em 0;
+          background: $primary-dark;
+          color: $light;
+          &[disabled] {
+            background: transparentize($primary-dark, 0.5);
+          }
+        }
+      }
+    }
+    mat-card.profile {
       border-left: solid 1px $primary-dark;
       border-right: solid 1px $primary-dark;
       border-bottom: solid 1px $primary-dark;
@@ -179,9 +221,6 @@
           margin: 0;
         }
       }
-    }
-    mat-card.profile {
-      mat-card-content {}
       .content-wrapper {
         align-items: center;
         padding: 2em;

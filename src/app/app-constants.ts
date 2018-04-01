@@ -10,8 +10,8 @@ export class AppConstants {
   static get API_ENDPOINT(): string {
     return {
       dev: 'https://caxtor-tonmil931210.c9users.io/',
-      prod: ''
-    }.dev;
+      prod: 'https://caxtor-develop.herokuapp.com'
+    }.prod;
   }
 
   static get PAYU() {

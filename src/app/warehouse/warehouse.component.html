@@ -209,26 +209,104 @@
       </div>
 
       <div class="col right">
-        <mat-card class="profile">
-          <mat-card-header>
-            <div class="wrapper">
-              <mat-card-title>
-                Bodega
-              </mat-card-title>
-            </div>
+        <ng-container *ngIf="false; else thenBlock">
+          <mat-card class="profile">
+            <mat-card-header>
+              <div class="wrapper">
+                <mat-card-title>
+                  Bodega
+                </mat-card-title>
+              </div>
 
-          </mat-card-header>
-          <mat-card-content>
+            </mat-card-header>
+            <mat-card-content>
 
-            <div class="content-wrapper">
-              <span class="name">{{ warehouse.name }}</span>
-              <span class="address">{{ warehouse.address }}</span>
-              <button mat-raised-button class="btn-add" [routerLink]="['warehouses/create']">Administrar Reservas</button>
-              <button mat-raised-button class="btn-add" [disabled]="true">Editar Bódega</button>
-            </div>
+              <div class="content-wrapper">
+                <span class="name">{{ warehouse.name }}</span>
+                <span class="address">{{ warehouse.address }}</span>
+                <button mat-raised-button class="btn-add" [routerLink]="['warehouses/create']">Administrar Reservas</button>
+                <button mat-raised-button class="btn-add" [disabled]="true">Editar Bódega</button>
+              </div>
 
-          </mat-card-content>
-        </mat-card>
+            </mat-card-content>
+          </mat-card>
+        </ng-container>
+
+        <ng-template #thenBlock>
+          <mat-card class="application">
+            <mat-card-content>
+
+              <div class="content-wrapper">
+                <form [formGroup]="form">
+
+                  <mat-form-field class="start-date">
+                    <input matInput [min]="minDate" [matDatepicker]="sPicker" placeholder="Fecha de Inicio" [formControl]="startDate">
+                    <mat-datepicker-toggle matSuffix [for]="sPicker"></mat-datepicker-toggle>
+                    <mat-datepicker #sPicker></mat-datepicker>
+                  </mat-form-field>
+
+                  <mat-form-field class="end-date">
+                    <input matInput [min]="minDate" [matDatepicker]="ePicker" placeholder="Fecha Fin" [formControl]="startDate">
+                    <mat-datepicker-toggle matSuffix [for]="ePicker"></mat-datepicker-toggle>
+                    <mat-datepicker #ePicker></mat-datepicker>
+                  </mat-form-field>
+
+                  <mat-form-field>
+                    <mat-select placeholder="Tipo de Espacio" [formControl]="positionType" (change)="filterPositions()">
+                      <mat-option [value]="PositionType.FLOOR_CLOSED">Piso Cubierto</mat-option>
+                      <mat-option [value]="PositionType.FLOOR_OPEN">Piso Exterior</mat-option>
+                      <mat-option [value]="PositionType.RACK">Estantería</mat-option>
+                      <mat-option [value]="PositionType.BOX">Caja</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+
+                  <mat-checkbox [formControl]="refrigerated" (change)="filterPositions()">Productos Refrigerados</mat-checkbox>
+                  <mat-checkbox [formControl]="dangerous" (change)="filterPositions()">Materiales Peligrosos</mat-checkbox>
+
+                  <mat-form-field>
+                    <mat-select placeholder="Seleccionar Opción..." [formControl]="position">
+                      <mat-option *ngFor="let pos of filteredPositions; let i = index" [value]="filteredPositions.id">Opción #{{ i + 1 }}</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+
+                  <mat-form-field>
+                    <input matInput placeholder="Cantidad de Unidades" type="number" [formControl]="amount" appForceNumeric [disabled]="!positionType.value">
+                    <span matSuffix [innerHtml]="getMeasure(positionType.value)"></span>
+                  </mat-form-field>
+
+                  <div class="h-divider"></div>
+
+                  <div class="fee">
+                    <div class="row">
+                      <span class="label">Costo de Almacenamiento</span>
+                      <div class="filler no-min">
+                      </div>
+                      <span class="cost">{{ storageCost | copCurrency }}</span>
+                    </div>
+                    <div class="row">
+                      <span class="detail">{{ 400 | copCurrency }} x {{ amount.value }} x {{ 'n' }} día(s)</span>
+                    </div>
+                  </div>
+
+                  <div class="fee">
+                    <div class="row">
+                      <span class="label">Costo de Servicios</span>
+                      <div class="filler no-min">
+                      </div>
+                      <span class="cost">{{ '(TBD)' }}</span>
+                    </div>
+                    <div class="row">
+                      <span class="detail">Costos varían dependiendo de los servicios seleccionados</span>
+                    </div>
+                  </div>
+
+                  <button mat-raised-button class="btn-submit" [disabled]="form.invalid">Completar Solicitud</button>
+                </form>
+              </div>
+
+            </mat-card-content>
+          </mat-card>
+        </ng-template>
       </div>
 
     </div>
