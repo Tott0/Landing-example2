@@ -23,8 +23,8 @@ export class StaticMethods {
               err[key] = e;
             }
           }
-        } else if (error.message) {
-          err = error.message;
+        } else {
+          err = error.message || error.error;
         }
         return err || 'Error de Conexión';
       } else {
