@@ -8,9 +8,9 @@ import {
   ActivatedRouteSnapshot
 } from '@angular/router';
 
-import { ModalManager } from '../../core/providers/modal-manager';
-import { OwnerService } from '../owner.service';
-import { Warehouse, WarehouseApi } from '../../shared/models/warehouse.model';
+import { ModalManager } from '../core/providers/modal-manager';
+import { OwnerService } from './owner.service';
+import { Warehouse, WarehouseApi } from '../shared/models/warehouse.model';
 
 @Injectable()
 export class WarehousesOwnerResolver implements Resolve<WarehouseApi> {

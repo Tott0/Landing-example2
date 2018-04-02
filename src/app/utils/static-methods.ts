@@ -2,7 +2,7 @@ import { HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 
 import { AuthService } from '../../app/core/providers/auth.service';
 
-import { AbstractControl } from '@angular/forms';
+import { AbstractControl, FormGroup, FormControl } from '@angular/forms';
 import { ModalManager } from '../core/providers/modal-manager';
 
 export class StaticMethods {
@@ -100,6 +100,21 @@ export class StaticMethods {
 
   static round(value, decimals) {
     return Number(Math.round(Number(value + 'e' + decimals)) + 'e-' + decimals);
+  }
+
+  static setFormErrors(formGroup: FormGroup, errors: any) {
+    for (const control of Object.keys(formGroup.controls)) {
+      const ac = formGroup.get(control);
+      if (ac instanceof FormControl) {
+        if (errors[control]) {
+          ac.markAsDirty();
+          ac.markAsTouched();
+          ac.setErrors({ 'async': true });
+        }
+      } else if (ac instanceof FormGroup) {
+        StaticMethods.setFormErrors(ac as FormGroup, errors); // could be errors[control] also if it's nested
+      }
+    }
   }
 
   static getFormError(formControl: AbstractControl): string {

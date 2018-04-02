@@ -69,6 +69,23 @@ export class AuthService {
       );
   }
 
+  createRenter(renter): Observable<any> {
+    const formData = new FormData();
+
+    formData.set('matricula_inmobiliaria', renter.matricula_inmobiliaria);
+    formData.set('bank_reference', renter.bank_reference.file, renter.bank_reference.name);
+    formData.set('certificado_libertad_tradicion', renter.certificado_libertad_tradicion.file, renter.certificado_libertad_tradicion.name);
+    formData.set('rut', renter.rut.file, renter.rut.name);
+
+    return this.http.post(`${AppConstants.API_ENDPOINT}renters`, formData)
+      .pipe(
+        catchError((err, caught) => {
+          this.mm.closeLoadingDialog();
+          return ErrorObservable.create(StaticMethods.handleHttpResponseError(err));
+        })
+      );
+  }
+
   check(): Observable<any> {
     this._token = localStorage.getItem('token');
     console.log('user', this.user);

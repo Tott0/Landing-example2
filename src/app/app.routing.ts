@@ -11,16 +11,23 @@ import { ForgotComponent } from './auth/forgot/forgot.component';
 import { LoginAuthGuard } from './core/providers/auth-guard.service';
 
 const appRoutes: Routes = [
+  // {
+  //   path: 'temproute_client',
+  //   loadChildren: 'app/client/client.module#ClientModule',
+  //   canActivate: [
+  //     LoginAuthGuard,
+  //   ],
+  // },
   {
-    path: 'temproute_client',
-    loadChildren: 'app/client/client.module#ClientModule',
+    path: 'temproute_owner',
+    loadChildren: 'app/owner/owner.module#OwnerModule',
     // canActivate: [
     //   LoginAuthGuard,
     // ],
   },
   {
-    path: 'temproute_owner',
-    loadChildren: 'app/owner/owner.module#OwnerModule',
+    path: 'temproute_warehouse',
+    loadChildren: 'app/warehouse/warehouse.module#WarehouseModule',
     // canActivate: [
     //   LoginAuthGuard,
     // ],

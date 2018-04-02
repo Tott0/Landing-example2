@@ -3,10 +3,9 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { OwnerComponent } from './owner.component';
 import { CreateWarehouseComponent } from './create-warehouse/create-warehouse.component';
-import { WarehouseListComponent } from './warehouse-list/warehouse-list.component';
 
 import { WarehouseParametersResolver } from '../client/warehouse-parameters-resolver.service';
-import { WarehousesOwnerResolver } from './warehouse-list/warehouses-owner-resolvers.service';
+import { WarehousesOwnerResolver } from './owner-resolvers.service';
 import { DepartamentosResolver } from '../shared/shared-resolvers.service';
 
 
@@ -16,13 +15,6 @@ const routes: Routes = [
     component: OwnerComponent,
     resolve: {
       res: WarehousesOwnerResolver
-    }
-  },
-  {
-    path: 'warehouses',
-    component: WarehouseListComponent,
-    resolve: {
-      warehouses: WarehousesOwnerResolver,
     }
   },
   {

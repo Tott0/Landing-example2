@@ -15,6 +15,8 @@ import { Ciudad, Departamento, GoogleAddress } from '../../shared/models/shared.
 import { ParameterType, Parameter } from '../../shared/models/warehouse.model';
 import { MapsAPILoader } from '@agm/core';
 
+import { } from '@types/googlemaps';
+
 
 @Injectable()
 export class SharedService {
@@ -159,9 +161,11 @@ export class SharedService {
     private mm: ModalManager
   ) { }
 
-  getCiudades(params?): Observable<Ciudad[]> {
-    return Observable.of(this.ciudades);
-    // return this.http.get<Ciudad>(`${AppConstants.API_ENDPOINT}cities${StaticMethods.getParams(params)}`)
+  getCiudades(dptoId: number, params?): Observable<Ciudad[]> {
+    if (true) {
+      return Observable.of<Ciudad[]>(this.ciudades);
+    }
+    // return this.http.get<Ciudad>(`${AppConstants.API_ENDPOINT}departments/${dptoId}/cities${StaticMethods.getParams(params)}`)
     //   .pipe(
     //     catchError((err, caught) => {
     //       this.mm.closeLoadingDialog();
@@ -172,7 +176,9 @@ export class SharedService {
   }
 
   getDepartamentos(): Observable<Departamento[]> {
-    return Observable.of(this.departamentos);
+    if (true) {
+      return Observable.of<Departamento[]>(this.departamentos);
+    }
     // return this.http.get<Departamento>(`${AppConstants.API_ENDPOINT}departments`)
     //   .pipe(
     //     catchError((err, caught) => {
@@ -211,15 +217,10 @@ export class SharedService {
     //   );
   }
 
-  autocompleteAddress(searchText, callback: (res: GoogleAddress[]) => void, currentLocation?) {
+  autocompleteAddress(r: google.maps.places.AutocompletionRequest, callback: (res: GoogleAddress[]) => void, currentLocation?) {
     // tslint:disable-next-line:max-line-length
     const s = new google.maps.places.AutocompleteService();
-    const r: google.maps.places.AutocompletionRequest = {
-      input: searchText,
-      componentRestrictions: {
-        country: 'co'
-      }
-    };
+    console.log(r);
     s.getPlacePredictions(r, (res, status) => {
       console.log(res);
       if (status === google.maps.places.PlacesServiceStatus.OK) {

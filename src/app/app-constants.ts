@@ -9,26 +9,26 @@ export class AppConstants {
 
   static get API_ENDPOINT(): string {
     return {
-      dev: 'https://alto-back-tonmil931210.c9users.io/',
-      prod: 'https://alto-back.herokuapp.com/'
+      dev: 'https://caxtor-tonmil931210.c9users.io/',
+      prod: 'https://caxtor-develop.herokuapp.com'
     }.prod;
   }
 
   static get PAYU() {
     return {
       test: {
-        API_ENDPOINT: 'https://sandbox.gateway.payulatam.com/ppp-web-gateway',
-        API_LOGIN: 'pRRXKOl8ikMmt9u',
-        API_KEY: '4Vj8eK4rloUd272L48hsrarnUA',
-        merchandID: '508029',
-        accountId: '512321',
+        API_ENDPOINT: '',
+        API_LOGIN: '',
+        API_KEY: '',
+        merchandID: '',
+        accountId: '',
       },
       prod: {
-        API_ENDPOINT: 'https://gateway.payulatam.com/ppp-web-gateway/',
-        API_LOGIN: '1351pbS2u4ynN1Y',
-        API_KEY: 'WPSiPCiY12lXWprXsSrsACw6jo',
-        merchandID: '681982',
-        accountId: '684779',
+        API_ENDPOINT: '',
+        API_LOGIN: '',
+        API_KEY: '',
+        merchandID: '',
+        accountId: '',
       }
     }.prod;
   }
