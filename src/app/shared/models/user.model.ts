@@ -7,8 +7,8 @@ export enum UserType {
 }
 
 export enum PersonType {
-  NATURAL,
-  JURIDICA,
+  NATURAL = 'Person',
+  JURIDICA = 'Company',
 }
 
 export class User {
@@ -17,6 +17,9 @@ export class User {
   company?: Company;
   renter?: Renter;
   typeUser: UserType;
+
+  profile: Person | Company;
+  profileType: PersonType;
 
   constructor(user?: Partial<User>) {
     user = user || {};
@@ -29,6 +32,11 @@ export class User {
     }
     if (user.renter) {
       this.renter = new Renter(user.renter);
+    }
+    if (user.profile) {
+      this.profile = user.profileType === PersonType.NATURAL ? new Person(user.profile) : new Company(user.profile);
+    } else {
+      this.profile = this.person || this.company;
     }
   }
 }

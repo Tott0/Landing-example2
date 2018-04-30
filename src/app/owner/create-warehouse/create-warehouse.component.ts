@@ -65,17 +65,18 @@ export class CreateWarehouseComponent implements OnInit {
       name: this.warehouse.name,
       lat: this.warehouse.lat,
       lng: this.warehouse.lng,
-      city: this.warehouse.city,
+      city_id: this.warehouse.city.id,
       address: this.warehouse.address,
       description: this.warehouse.description,
-      images: this.warehouse.images,
 
       workingDays: this.warehouse.workingDays,
       workingTime: this.warehouse.workingTime,
 
-      positions: this.warehouse.positions,
+      positions_attributes: this.warehouse.positions,
 
-      parameters: parameters,
+      warehouse_parameters_attributes: parameters.map(p => p.id),
+
+      attachment_attributes: this.warehouse.images,
     };
     this.service.createWarehouse(requestParams)
       .subscribe(res => {

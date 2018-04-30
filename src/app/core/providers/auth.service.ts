@@ -7,7 +7,7 @@ import { StaticMethods } from '../../utils/static-methods';
 
 import { Observable } from 'rxjs/Observable';
 import { ErrorObservable } from 'rxjs/observable/errorObservable';
-import { catchError, tap, share } from 'rxjs/operators';
+import { catchError, tap, share, timeout, concat, timeoutWith, zip } from 'rxjs/operators';
 
 import 'rxjs/add/observable/of';
 
@@ -37,10 +37,18 @@ export class AuthService {
   loginSbj = new Subject<any>();
   logoutSbj = new Subject<any>();
 
+  tabSessionSbj = new Subject<any>();
+  isTabSessionChecked = false;
+
   constructor(
     private http: HttpClient,
-    private mm: ModalManager
-  ) { }
+    private mm: ModalManager,
+  ) {
+    this.tabSessionSbj.subscribe(() => {
+      console.log('this has been checked my man');
+      this.isTabSessionChecked = true;
+    });
+  }
 
   login(user): Observable<Auth> {
     return this.http.post<Auth>(`${AppConstants.API_ENDPOINT}login`, user)
@@ -50,9 +58,10 @@ export class AuthService {
           return ErrorObservable.create(StaticMethods.handleHttpResponseError(err));
         }),
         tap((res) => {
+          res = new Auth(res);
           this._token = res.token;
           this._auth = res;
-          localStorage.setItem('token', res.token);
+          sessionStorage.setItem('token', res.token);
           this.loginSbj.next(res.user);
           return res;
         })
@@ -87,47 +96,66 @@ export class AuthService {
   }
 
   check(): Observable<any> {
-    this._token = localStorage.getItem('token');
-    console.log('user', this.user);
-    console.log('token', this.token);
+    // console.log('#check()');
+    this._token = sessionStorage.getItem('token');
+    if (!this.token) {
+      this.mm.closeLoadingDialog();
+      return ErrorObservable.create('No token');
+    }
+
     if (this.isTokenChecked) {
       if (this.user) {
         return Observable.of(this.user);
       } else {
         this.mm.closeLoadingDialog();
-        return ErrorObservable.create('');
+        return ErrorObservable.create('No token');
       }
     }
 
-    return this.http.get<Auth>(`${AppConstants.API_ENDPOINT}sessions/check`)
+    return this.http.get<Auth>(`${AppConstants.API_ENDPOINT}check`)
       .pipe(
         share(),
         tap((res) => {
+          res = new Auth(res);
           this.isTokenChecked = true;
           this._token = res.token;
           this._auth = res;
           this.loginSbj.next(res);
+          this.mm.closeLoadingDialog();
           return res;
         }),
         catchError((err, caught) => {
           this.isTokenChecked = true;
           this._auth = undefined;
           this._token = undefined;
-          localStorage.removeItem('token');
+          sessionStorage.removeItem('token');
           this.mm.closeLoadingDialog();
           return ErrorObservable.create(StaticMethods.handleHttpResponseError(err));
         }));
   }
 
-  logout(params?): Promise<any> {
+  checkSessionToken() {
+    this.mm.showLoadingDialog();
+    console.log('asking for check');
+    if (this.isTabSessionChecked) {
+      return this.check();
+    }
+    return this.tabSessionSbj.pipe(
+      timeoutWith(10000, Observable.of(undefined)),
+      share(),
+      concat(this.check())
+    );
+  }
 
-    this.http.delete(`${AppConstants.API_ENDPOINT}sessions/logout`);
+  logout(params?): Observable<any> {
 
     this._token = undefined;
     this._auth = undefined;
-    localStorage.removeItem('token');
+    this.redirectUrl = undefined;
+    sessionStorage.removeItem('token');
     this.logoutSbj.next();
-    return Promise.resolve();
+
+    return this.http.delete(`${AppConstants.API_ENDPOINT}sessions/logout`);
   }
 
   forgotPassword(user) {

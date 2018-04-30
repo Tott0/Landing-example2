@@ -207,24 +207,41 @@ export class OwnerService {
         per_page: 4
       };
     }
-    return Observable.of<WarehouseApi>(
-      {
-        warehouses: this.warehouses.slice((params.page - 1) * params.per_page, (params.page - 1) * params.per_page + params.per_page),
-        total_count: this.warehouses.length
-      }
-    );
-    // return this.http.get<WarehouseApi>(`${AppConstants.API_ENDPOINT}traffic_violations${StaticMethods.getParams(params)}`)
-    //   .pipe(
-    //     catchError((err, caught) => {
-    //       this.mm.closeLoadingDialog();
-    //       StaticMethods.handleHttpResponseError(err);
-    //       return ErrorObservable.create('');
-    //     })
-    //   );
+    return this.http.get<WarehouseApi>(`${AppConstants.API_ENDPOINT}warehouses${StaticMethods.getParams(params)}`)
+      .pipe(
+        catchError((err, caught) => {
+          this.mm.closeLoadingDialog();
+          StaticMethods.handleHttpResponseError(err);
+          return ErrorObservable.create('');
+        })
+      );
   }
 
   createWarehouse(warehouse) {
-    return this.http.post(`${AppConstants.API_ENDPOINT}warehouses`, warehouse)
+    const formData = new FormData();
+
+    formData.append('name', warehouse.name);
+    formData.append('lat', warehouse.lat);
+    formData.append('lng', warehouse.lng);
+    formData.append('city_id', warehouse.city_id);
+    formData.append('address', warehouse.address);
+    formData.append('description', warehouse.description);
+    formData.append('workingDays', warehouse.workingDays);
+    formData.append('workingTime', warehouse.workingTime);
+
+    for (const pa of warehouse.positions_attributes) {
+      formData.append('positions_attributes[]', pa);
+    }
+
+    for (const wpa of warehouse.warehouse_parameters_attributes) {
+      formData.append('warehouse_parameters_attributes[]', wpa);
+    }
+
+    for (const aa of warehouse.attachment_attributes) {
+      formData.append('attachment_attributes[]', aa);
+    }
+
+    return this.http.post(`${AppConstants.API_ENDPOINT}warehouses`, formData)
       .pipe(
         catchError((err, caught) => {
           this.mm.closeLoadingDialog();

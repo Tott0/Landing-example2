@@ -198,6 +198,9 @@ export class StepBasicInfoComponent implements OnInit {
   addressChanged(ev) {
     console.log(ev);
     this.filteredAddresses = [];
+    if (!ev) {
+      return;
+    }
     const r: google.maps.places.AutocompletionRequest = {
       input: ev,
       location: new google.maps.LatLng(this.mapLat, this.mapLng),
@@ -220,6 +223,8 @@ export class StepBasicInfoComponent implements OnInit {
         this.warehouse.address = addr.address;
         this.warehouse.lat = addr.lat;
         this.warehouse.lng = addr.lng;
+        this.mapLat = addr.lat;
+        this.mapLng = addr.lng;
       } else {
         this.warehouse.address = undefined;
         this.warehouse.lat = undefined;

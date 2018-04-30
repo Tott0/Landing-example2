@@ -17,5 +17,14 @@ export class Auth {
     user: User;
     unread_nots?: number;
     role: UserType;
+
+    constructor(auth?: Partial<Auth>) {
+        auth = auth || {};
+        Object.assign(this, auth);
+
+        if (auth.user) {
+            this.user = new User(auth.user);
+        }
+    }
 }
 

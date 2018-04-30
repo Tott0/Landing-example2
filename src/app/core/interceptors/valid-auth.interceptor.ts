@@ -23,7 +23,7 @@ export class ValidAuthInterceptor implements HttpInterceptor {
         (err: HttpErrorResponse) => {
           if (err instanceof HttpErrorResponse) {
             if (err.status === 401) {
-              aService.logout();
+              aService.logout().subscribe();
               // alert('Sesión Expirada');
             }
           }
