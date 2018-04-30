@@ -46,7 +46,7 @@ export class SignupComponent implements OnInit {
   get cRlLastName() { return this.company.get('rl_last_name'); }
   get cRlIdentification() { return this.company.get('rl_identification'); }
 
-  renterForm: FormGroup;
+  get renterForm() { return this.userForm.get('renter'); }
   get matInmobiliaria() { return this.renterForm.get('matricula_inmobiliaria'); }
   bankReference: DocumentFile;
   certLibTra: DocumentFile;
@@ -84,9 +84,10 @@ export class SignupComponent implements OnInit {
         rl_identification: ['800000000', [Validators.required, Validators.minLength(6)]],
       }),
       personType: [PersonType.NATURAL, [Validators.required]],
-    });
-    this.renterForm = this.formBuilder.group({
-      matricula_inmobiliaria: ['8asdsd4a6s5f4qaw896gf5q', [Validators.required]]
+
+      renter: this.formBuilder.group({
+        matricula_inmobiliaria: ['8asdsd4a6s5f4qaw896gf5q', [Validators.required]]
+      })
     });
   }
 
@@ -130,24 +131,19 @@ export class SignupComponent implements OnInit {
         }
       };
     }
+    if (this.willRent) {
+      const child = requestParams.company || requestParams.person;
+      child.renter_attributes = {
+        bank_reference: this.bankReference,
+        certificado_libertad_tradicion: this.certLibTra,
+        rut: this.rut,
+        matricula_inmobiliaria: this.matInmobiliaria.value,
+      };
+    }
     this.authService.signup(requestParams)
       .subscribe(res => {
-        if (this.willRent) {
-          this.authService.createRenter({
-            bank_reference: this.bankReference,
-            certificado_libertad_tradicion: this.certLibTra,
-            rut: this.rut,
-            matricula_inmobiliaria: this.matInmobiliaria.value,
-          }).subscribe(response => {
-            this.mm.closeLoadingDialog();
-            this.router.navigate(['login']);
-          }, err => {
-            console.error(err);
-          });
-        } else {
-          this.mm.closeLoadingDialog();
-          this.router.navigate(['login']);
-        }
+        this.mm.closeLoadingDialog();
+        this.router.navigate(['login']);
       },
         (err) => {
           console.log(err);

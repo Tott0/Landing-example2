@@ -32,6 +32,13 @@ const appRoutes: Routes = [
     //   LoginAuthGuard,
     // ],
   },
+  {
+    path: 'temproute_admin',
+    loadChildren: 'app/admin/admin.module#AdminModule',
+    // canActivate: [
+    //   LoginAuthGuard,
+    // ],
+  },
   { path: 'login', component: AuthComponent },
   { path: 'signup', component: SignupComponent },
   { path: 'forgot', component: ForgotComponent },
