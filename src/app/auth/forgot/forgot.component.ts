@@ -19,11 +19,11 @@ export class ForgotComponent implements OnInit {
   @ViewChild(FormGroupDirective) signupFormDir: FormGroupDirective;
 
   errors: any = {};
-  forgotForm: FormGroup;
-  get email() { return this.forgotForm.get('email'); }
+  form: FormGroup;
+  get email() { return this.form.get('email'); }
 
   constructor(
-    private router: Router,
+    public router: Router,
     private formBuilder: FormBuilder,
     private authService: AuthService,
     private mm: ModalManager,
@@ -32,7 +32,7 @@ export class ForgotComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.forgotForm = this.formBuilder.group({
+    this.form = this.formBuilder.group({
       email: ['', [Validators.required, CustomValidators.email()]],
     });
 
@@ -51,40 +51,28 @@ export class ForgotComponent implements OnInit {
         this.mm.closeLoadingDialog();
         this.router.navigate(['/login']);
 
-        this.snackbar.openFromComponent(ResultSnackbar, {
-          data: {
-            goodResult: true,
-            message: 'Solicitud exitósa',
-          },
-          duration: 3000,
-          horizontalPosition: 'right',
-          verticalPosition: 'bottom',
-          panelClass: 'result-snackbar'
-        });
+        this.mm.showResultSnackbar('Solicitud Exitósa');
       },
       (err) => {
-        this.errors = err;
-        for (const control of Object.keys(this.errors)) {
-          const formControl = this.forgotForm.get(control);
-          if (formControl) {
-            formControl.setErrors({ 'async': true });
+        if (typeof err === 'string') {
+          this.errors = {
+            message: err
+          };
+        } else {
+          this.errors = err;
+          for (const control of Object.keys(this.errors)) {
+            const formControl = this.form.get(control);
+            if (formControl) {
+              formControl.setErrors({ 'async': true });
+            }
           }
         }
 
-        this.snackbar.openFromComponent(ResultSnackbar, {
-          data: {
-            goodResult: false,
-            message: 'Error en la solicitud',
-          },
-          duration: 3000,
-          horizontalPosition: 'right',
-          verticalPosition: 'bottom',
-          panelClass: 'result-snackbar'
-        });
+        this.mm.showResultSnackbar('Error en la solicitud', false);
       });
   }
 
-  getErrorMessage(formControl: AbstractControl, error) {
+  getErrorMessage(formControl: AbstractControl, error?) {
     if (error && error.length) {
       return error[0];
     } else {

@@ -1,6 +1,6 @@
 export enum UserType {
-  CLIENT,
-  ADMIN
+  CLIENT = 2,
+  ADMIN = 1
 }
 
 export enum PersonType {

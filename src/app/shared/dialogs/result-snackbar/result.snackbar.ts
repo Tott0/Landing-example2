@@ -7,6 +7,7 @@ import { MAT_SNACK_BAR_DATA } from '@angular/material';
   encapsulation: ViewEncapsulation.None,
   styleUrls: ['result.snackbar.scss']
 })
+// tslint:disable-next-line:component-class-suffix
 export class ResultSnackbar {
 
   goodResult: boolean;

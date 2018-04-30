@@ -1,36 +1,36 @@
-<div class="bg-car-top">
+<div class="main-container">
 
-  <div class="bg-dividers top"></div>
-  <div class="bg-dividers bottom"></div>
-
-  <div class="main-content">
-
-    <div class="main-title">
-      <p size-2>Recuperar Contraseña</p>
-    </div>
-
-    <div class="floating-card" id="recover-card">
-      <div class="content">
-        <form [formGroup]="recoverForm">
-
+    <mat-card>
+      <mat-card-title>
+        Recuperar Contraseña
+      </mat-card-title>
+      <mat-divider></mat-divider>
+      <mat-card-content>
+  
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+  
           <mat-form-field>
-            <input size-5 matInput placeholder="Contraseña" type="password" [formControl]="password" (input)="errors.password = undefined;">
+            <input matInput placeholder="Nueva Contraseña" type="password" [formControl]="password" (input)="errors.password = undefined;">
             <mat-error *ngIf="password.invalid || errors.password">{{getErrorMessage(password, errors.password)}}</mat-error>
           </mat-form-field>
-
+  
           <mat-form-field>
-            <input size-5 matInput placeholder="Confirmar Contraseña" type="password" [formControl]="password_confirmation" (input)="errors.password_confirmation = undefined;">
-            <mat-error *ngIf="!recoverForm.hasError('mismatch') && password_confirmation.invalid || errors.password_confirmation">{{getErrorMessage(password_confirmation, errors.password_confirmation)}}</mat-error>
-            <mat-error *ngIf="recoverForm.hasError('mismatch')">{{getErrorMessage(recoverForm, undefined)}}</mat-error>
+            <input matInput placeholder="Confirmar Contraseña" type="password" [formControl]="password_confirmation" (input)="errors.password_confirmation = undefined;">
+            <mat-error *ngIf="password_confirmation.invalid || errors.password_confirmation">{{getErrorMessage(password_confirmation, errors.password_confirmation)}}</mat-error>
           </mat-form-field>
-
-          <button mat-button size-4 id="recover-btn" [disabled]="!recoverForm.valid" (click)="onSubmit()">
-            Cambiar Contraseña
+  
+          <mat-error *ngIf="errors.message" class="form-errors">
+            {{ errors.message }}
+          </mat-error>
+  
+          <button mat-raised-button color="primary" class="btn-forgot" [disabled]="form.invalid" (click)="onSubmit()">
+            <span>Cambiar Contraseña</span>
           </button>
         </form>
-      </div>
-    </div>
+  
+      </mat-card-content>
+  
+    </mat-card>
+  
+  
   </div>
-
-
-</div>

@@ -60,7 +60,7 @@ export class AdminAuthGuard implements CanActivate {
 
     this.authService.redirectUrl = url;
 
-    this.router.navigate(['/infracciones']);
+    this.router.navigate(['']);
 
     return false;
   }

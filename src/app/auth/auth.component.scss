@@ -1,17 +1,18 @@
 @import './src/scss/variables.scss';
 mat-card {
   margin-top: 5em;
-  font-size: 0.75rem;
+  font-size: 0.95rem;
   padding: 1em 2em 2em 2em;
   width: 30vw;
-  & > *{
-    font-size: 1rem;
-  }
   mat-card-title{
     font-size: 1.5em;
     padding: 0.1em;
   }
+  mat-card-content{
+    font-size: 1em;
+  }
   form {
+    font-size: 1em;
     display: flex;
     flex-direction: column;
     margin-top: 2em;

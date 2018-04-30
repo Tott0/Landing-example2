@@ -1,34 +1,36 @@
-<div class="bg-car-top">
+<div class="main-container">
 
-  <div class="bg-dividers top"></div>
-  <div class="bg-dividers bottom"></div>
-
-  <div class="main-content">
-
-    <div class="main-title">
-      <p size-2>Recuperar Contraseña</p>
-    </div>
-
-    <div class="floating-card" id="forgot-card">
-      <div class="content">
-        <form [formGroup]="forgotForm">
-
-          <mat-card class="mat-elevation-z3">
-            <p size-5 class="guide">Ingresa el correo electrónico con el que te registraste y recibirás instrucciones para recuperar tu contraseña.</p>
-          </mat-card>
-
+    <mat-card>
+      <mat-card-title>
+        Recuperar Contraseña
+      </mat-card-title>
+      <mat-divider></mat-divider>
+      <mat-card-content>
+  
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+  
           <mat-form-field>
-            <input size-5 matInput placeholder="Correo" type="text" [formControl]="email" (input)="errors.email = undefined;">
-            <mat-error *ngIf="email.invalid || errors.email">{{getErrorMessage(email, errors.email)}}</mat-error>
+            <input matInput placeholder="Nueva Contraseña" type="password" [formControl]="password" (input)="errors.password = undefined;">
+            <mat-error *ngIf="password.invalid || errors.password">{{getErrorMessage(password, errors.password)}}</mat-error>
           </mat-form-field>
-
-          <button mat-button size-4 id="forgot-btn" [disabled]="!forgotForm.valid" (click)="onSubmit()">
-            Enviar
+  
+          <mat-form-field>
+            <input matInput placeholder="Confirmar Contraseña" type="password" [formControl]="password_confirmation" (input)="errors.password_confirmation = undefined;">
+            <mat-error *ngIf="password_confirmation.invalid || errors.password_confirmation">{{getErrorMessage(password_confirmation, errors.password_confirmation)}}</mat-error>
+          </mat-form-field>
+  
+          <mat-error *ngIf="errors.message" class="form-errors">
+            {{ errors.message }}
+          </mat-error>
+  
+          <button mat-raised-button color="primary" class="btn-forgot" [disabled]="form.invalid" (click)="onSubmit()">
+            <span>Cambiar Contraseña</span>
           </button>
         </form>
-      </div>
-    </div>
+  
+      </mat-card-content>
+  
+    </mat-card>
+  
+  
   </div>
-
-
-</div>
