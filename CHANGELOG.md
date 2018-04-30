@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.2.0"></a>
+# [0.2.0](https://gitlab.com/Tott0/Caxtor/compare/v0.1.0...v0.2.0) (2018-04-30)
+
+
+### Bug Fixes
+
+* **auth:** fixes signup and login issues ([d2c24d8](https://gitlab.com/Tott0/Caxtor/commit/d2c24d8))
+
+
+### Features
+
+* remade navbar, warehouse creation working, warehouse dashboard ([f93a673](https://gitlab.com/Tott0/Caxtor/commit/f93a673))
+
+
+
 <a name="0.1.0"></a>
 # 0.1.0 (2018-04-30)
 
