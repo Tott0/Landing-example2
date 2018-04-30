@@ -46,7 +46,21 @@ export class AuthComponent implements OnInit {
     this.authService.login(u)
       .subscribe(res => {
         this.mm.closeLoadingDialog();
-        this.router.navigate([this.authService.redirectUrl ? this.authService.redirectUrl : '']);
+        if (this.authService.redirectUrl) {
+
+          this.router.navigate([this.authService.redirectUrl]);
+        } else {
+          console.log(res);
+          switch (res.user.typeUser) {
+            case UserType.ADMIN:
+              this.router.navigate(['/temproute_admin']);
+              break;
+            case UserType.RENTER:
+            case UserType.CLIENT:
+              this.router.navigate(['']);
+              break;
+          }
+        }
       },
         (err) => {
           this.mm.closeLoadingDialog();

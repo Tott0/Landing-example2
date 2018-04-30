@@ -11,10 +11,15 @@ import { ModalManager } from './providers/modal-manager';
 import { ValidAuthInterceptor } from './interceptors/valid-auth.interceptor';
 import { AuthHeadersInterceptor } from './interceptors/auth-headers.interceptor';
 
+/*Overlays */
+import { OverlayModule } from '@angular/cdk/overlay';
+import { PdfViewerOverlayService } from '@shared/overlays/file-preview/pdf-viewer-overlay.service';
+
 @NgModule({
   imports: [
     CommonModule,
     HttpClientModule,
+    OverlayModule
     //
   ],
   providers: [
@@ -33,6 +38,7 @@ import { AuthHeadersInterceptor } from './interceptors/auth-headers.interceptor'
     AuthService,
     ModalManager,
     //
+    PdfViewerOverlayService,
   ]
 })
 export class CoreModule { }

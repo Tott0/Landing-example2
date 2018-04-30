@@ -11,7 +11,7 @@ import { AppConstants } from '@app/app-constants';
 import { StaticMethods } from '@app/utils/static-methods';
 import { ModalManager } from '@core/providers/modal-manager';
 
-import { RenterApi } from '@app/shared/models/renter.model';
+import { RenterApi, Renter } from '@app/shared/models/renter.model';
 
 
 
@@ -38,6 +38,26 @@ export class AdminService {
           return ErrorObservable.create('');
         })
       );
+  }
+
+  acceptRenter(renterId): Observable<Renter>{
+    return this.http.put<Renter>(`${AppConstants.API_ENDPOINT}renters/${renterId}/active`, undefined)
+    .pipe(
+      catchError((err, caught) => {
+        this.mm.closeLoadingDialog();
+        return ErrorObservable.create(StaticMethods.handleHttpResponseError(err));
+      })
+    );
+  }
+
+  rejectRenter(renterId): Observable<Renter>{
+    return this.http.put<Renter>(`${AppConstants.API_ENDPOINT}renters/${renterId}/reject`, undefined)
+    .pipe(
+      catchError((err, caught) => {
+        this.mm.closeLoadingDialog();
+        return ErrorObservable.create(StaticMethods.handleHttpResponseError(err));
+      })
+    );
   }
 
 }

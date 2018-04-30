@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { FormErrorMessageComponent } from './components/form-errors/form-errors.component';
 
 import { LoadingDialog } from './dialogs/loading/loading.dialog';
 import { MessageDialog } from './dialogs/message/message.dialog';
@@ -52,7 +51,6 @@ import { AgmCoreModule } from '@agm/core';
     MatAutocompleteModule, MatMenuModule, MatTableModule, MatSortModule,
   ],
   declarations: [
-    FormErrorMessageComponent,
     //
     LoadingDialog,
     MessageDialog,
@@ -87,7 +85,6 @@ import { AgmCoreModule } from '@agm/core';
     MatSnackBarModule, MatDatepickerModule, MatNativeDateModule, MatStepperModule, MatRadioModule, MatChipsModule,
     MatAutocompleteModule, MatMenuModule, MatTableModule, MatSortModule,
     //
-    FormErrorMessageComponent,
     //
     ForceUppercaseDirective,
     ForceNumericDirective,

@@ -2,13 +2,33 @@
 .container {
   font-size: 1rem;
   padding: 1em 0.25em;
-  display: grid;
-  grid-template-rows: 1fr 1fr;
-  grid-template-columns: 6fr 4fr;
-  grid-template-areas: "detail detail" "surcharges fare" "track track";
-  grid-row-gap: 1em;
-  grid-column-gap: 0.75em;
-  
+
+  .title {
+    font-size: 1.75em;
+    align-self: flex-start;
+    margin: 0.25em 0 1em 0;
+    display: flex;
+    align-items: center;
+    span[mattooltip] {
+      line-height: 0;
+    }
+    .btn-add {
+      color: $success;
+    }
+  }
+
+
+  .grid-wrapper {
+    width: 100%;
+    // display: flex;
+    // flex: 1;
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 6fr 4fr;
+    grid-template-areas: "detail detail" "surcharges fare" "track track";
+    grid-row-gap: 1em;
+    grid-column-gap: 0.75em;
+  }
 }
 
 mat-card {
@@ -32,7 +52,7 @@ mat-card {
       margin: 0;
     }
   }
-  mat-card-content{
+  mat-card-content {
     flex: 1 0 0;
     font-size: 1em;
     padding: 0.5em;

@@ -1,6 +1,6 @@
 
 import { Ciudad, DocumentFile } from './shared.model';
-import { User } from '../../auth/auth.model';
+import { User } from '@shared/models/user.model';
 
 export interface WarehouseApi {
   warehouses: Warehouse[];

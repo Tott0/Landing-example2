@@ -19,7 +19,7 @@ export class GoogleAddress {
 }
 
 export interface DocumentFile {
-  name: string;
+  name?: string;
   file?: File;
   url: string;
 }

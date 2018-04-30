@@ -1,0 +1,13 @@
+<!-- <div class="container"> -->
+<mat-spinner class="progress" mode="indeterminate" *ngIf="loading"> </mat-spinner>
+<div class="pdf-wrapper" [style.display]="loading ? 'none' : 'block'">
+  <pdf-viewer (after-load-complete)="onLoad($event)" (error)="onError($event)" [src]="pdfSrc" [render-text]="true"></pdf-viewer>
+  <div class="row">
+    <span class="btn-close" matTooltip="Confirmar" matTooltipPosition="above" [matTooltipClass]="'tooltip'" (click)="$event.stopPropagation();">
+      <button mat-icon-button (click)="dialogRef.close()">
+        <i class="fas  fa-3x fa-check"></i>
+      </button>
+    </span>
+  </div>
+</div>
+<!-- </div> -->

@@ -1,13 +1,4 @@
-import { UserType } from '../shared/models/user.model';
-
-export class User {
-    id?: number;
-    email?: string;
-    name?: string;
-    identification?: string;
-    address?: string;
-    contact_phone?: string;
-}
+import { UserType, User } from '../shared/models/user.model';
 
 export class Person {
     id: number;

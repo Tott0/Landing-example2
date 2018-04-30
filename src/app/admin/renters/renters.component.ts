@@ -12,7 +12,11 @@ import { Subject } from 'rxjs/Subject';
 import { FilterSubject } from '@app/shared/models/shared.model';
 
 import { AdminService } from '@app/admin/admin.service';
-import { RenterApi } from '@app/shared/models/renter.model';
+import { RenterApi, Renter } from '@app/shared/models/renter.model';
+import { User, Person } from '@app/shared/models';
+
+import { PdfViewerOverlayRef } from '@shared/overlays/file-preview/pdf-viewer-overlay.ref';
+import { PdfViewerOverlayService } from '@shared/overlays/file-preview/pdf-viewer-overlay.service';
 
 @Component({
   selector: 'app-renters',
@@ -21,13 +25,15 @@ import { RenterApi } from '@app/shared/models/renter.model';
 })
 export class RentersComponent implements OnInit {
 
-  renterColumns = ['name', 'lastName', 'identification', 'phoneNumber', 'email', 'company'];
-  renterDataSource = new MatTableDataSource();
+  renterColumns = ['type', 'identification', 'name', 'matriculaInmobiliaria', 'rut',
+    'certificadoLibertadTradicion', 'bankReference', 'actions'];
+  renterDataSource = new MatTableDataSource<Renter>();
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   pageSizeChange = new Subject();
   camFilterSbj: FilterSubject = new FilterSubject();
+  stateFilterSbj: FilterSubject = new FilterSubject();
 
   constructor(
     private router: Router,
@@ -35,12 +41,33 @@ export class RentersComponent implements OnInit {
     private mm: ModalManager,
     private snackbar: MatSnackBar,
     private service: AdminService,
+    private pdfViewer: PdfViewerOverlayService,
   ) {
   }
 
   ngOnInit() {
     this.route.data.subscribe((data: { res: RenterApi }) => {
       // console.log(data.res);
+      data.res = data.res || {
+        renters: [
+          new Renter({
+            id: 1,
+            user: new User({
+              person: new Person({
+                id: 1,
+                name: 'FirstName',
+                lastName: 'lastName',
+                identification: '11408736272'
+              })
+            }),
+            matriculaInmobiliaria: '1291i123i12hu9ij1r',
+            rut: { url: 'http://www.comercial.usm.cl/wp-content/uploads/2015/10/vica.com_.mx_Promociones_assets_promocion2.pdf' },
+            certificadoLibertadTradicion: { url: 'http://www.comercial.usm.cl/wp-content/uploads/2015/10/vica.com_.mx_Promociones_assets_promocion2.pdf' },
+            bankReference: { url: 'http://www.comercial.usm.cl/wp-content/uploads/2015/10/vica.com_.mx_Promociones_assets_promocion2.pdf' },
+          })],
+        total_count: 1
+      };
+      console.log(data.res);
       this.renterDataSource.data = data.res.renters;
       this.paginator.length = data.res.total_count;
       this.mm.closeLoadingDialog();
@@ -50,7 +77,7 @@ export class RentersComponent implements OnInit {
 
     this.sort.sortChange
       .pipe(
-        merge(this.paginator.page, this.camFilterSbj.change, this.pageSizeChange),
+        merge(this.paginator.page, this.camFilterSbj.change, this.pageSizeChange, this.stateFilterSbj.change),
         switchMap(() => {
           this.mm.showLoadingDialog();
           return this.service.getRenters({
@@ -75,9 +102,24 @@ export class RentersComponent implements OnInit {
     this.sort.sortChange.subscribe(() => { this.paginator.pageIndex = 0; });
   }
 
-  detail(renterId) {
-    this.router.navigate([`${renterId}`], {
-      relativeTo: this.route
+  toggleRenter(renterId, accept) {
+    this.mm.showLoadingDialog();
+    const obs = accept ? this.service.acceptRenter(renterId) : this.service.rejectRenter(renterId);
+
+    obs.subscribe((res) => {
+      this.stateFilterSbj.change.next();
+      this.mm.closeLoadingDialog();
+    }, (err) => {
+      this.mm.showResultSnackbar('Error en Solicitud', false);
+    });
+  }
+
+  openPdf(pdf) {
+    const dialogRef: PdfViewerOverlayRef = this.pdfViewer.open({
+      data: {
+        name: '',
+        url: pdf
+      }
     });
   }
 

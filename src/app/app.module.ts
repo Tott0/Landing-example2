@@ -18,8 +18,14 @@ import { HomeModule } from './home/home.module';
 import { AppRoutingModule } from './app.routing';
 /* */
 import { AgmCoreModule } from '@agm/core';
-import { MatSidenavModule, MatListModule, MatChipsModule, MatToolbarModule } from '@angular/material';
+import {
+  MatSidenavModule, MatListModule, MatChipsModule, MatToolbarModule, MatMenuModule, MatButtonModule,
+  MatProgressBarModule, MatProgressSpinnerModule, MatTooltipModule
+} from '@angular/material';
 import { AppConstants } from './app-constants';
+/* */
+import { PdfViewerOverlayComponent } from './shared/overlays/file-preview/pdf-viewer-overlay.component';
+import { PdfViewerModule } from 'ng2-pdf-viewer';
 
 
 @NgModule({
@@ -29,18 +35,21 @@ import { AppConstants } from './app-constants';
     NavbarComponent,
     FooterComponent,
     NotFoundComponent,
+    PdfViewerOverlayComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     //
-    MatSidenavModule, MatListModule, MatChipsModule, MatToolbarModule,
+    MatSidenavModule, MatListModule, MatChipsModule, MatToolbarModule, MatMenuModule, MatButtonModule, MatProgressBarModule,
+    MatProgressSpinnerModule, MatTooltipModule,
     AgmCoreModule.forRoot({
       apiKey: AppConstants.GOOGLE_API_KEY,
       libraries: ['places'],
       region: 'CO',
       language: 'ES'
     }),
+    PdfViewerModule,
     //
     CoreModule,
     AuthModule,
@@ -50,6 +59,9 @@ import { AppConstants } from './app-constants';
   ],
   providers: [
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [
+    PdfViewerOverlayComponent
+  ]
 })
 export class AppModule { }

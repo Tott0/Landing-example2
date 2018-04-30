@@ -43,7 +43,7 @@ export class AuthService {
   ) { }
 
   login(user): Observable<Auth> {
-    return this.http.post<Auth>(`${AppConstants.API_ENDPOINT}sessions`, user)
+    return this.http.post<Auth>(`${AppConstants.API_ENDPOINT}login`, user)
       .pipe(
         catchError((err, caught) => {
           this.mm.closeLoadingDialog();

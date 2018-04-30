@@ -103,8 +103,8 @@ export class SignupComponent implements OnInit {
           last_name: this.pLastName.value,
           phone_number: this.phoneNumber.value,
           cell_phone: this.cellphoneNumber.value,
-          email: this.email.value,
           user_attributes: {
+            email: this.email.value,
             password: this.password.value,
             password_confirmation: this.password_confirmation.value
           }
@@ -114,7 +114,6 @@ export class SignupComponent implements OnInit {
       requestParams = {
         company: {
           nit: this.cNit.value,
-          email: this.email.value,
           phone_number: this.phoneNumber.value,
           cell_phone: this.cellphoneNumber.value,
           name: this.cName.value,
@@ -125,6 +124,7 @@ export class SignupComponent implements OnInit {
             last_name: this.cRlLastName.value,
           },
           user_attributes: {
+            email: this.email.value,
             password: this.password.value,
             password_confirmation: this.password_confirmation.value
           }
@@ -161,7 +161,7 @@ export class SignupComponent implements OnInit {
 
   onFile(file, i) {
     console.log(file);
-    if (!file.name.includes('pdf') && !file.name.includes('doc') && !file.name.includes('docx')) {
+    if (!file.name.includes('pdf')) {
       this.mm.showResultSnackbar('Extensión de Archivo inválida', false);
       return;
     }

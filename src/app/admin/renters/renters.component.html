@@ -29,9 +29,9 @@
       </ng-container>
 
       <ng-container matColumnDef="type">
-        <mat-header-cell *matHeaderCellDef mat-sort-header>&nbsp;</mat-header-cell>
+        <mat-header-cell *matHeaderCellDef>&nbsp;</mat-header-cell>
         <mat-cell *matCellDef="let element">
-          <ng-container *ngIf="element.person; else thenBlock">
+          <ng-container *ngIf="element.user.person; else thenBlock">
             <i class="far fa-lg fa-user"></i>
           </ng-container>
           <ng-template #thenBlock>
@@ -42,45 +42,63 @@
 
       <ng-container matColumnDef="identification">
         <mat-header-cell *matHeaderCellDef mat-sort-header> Identificación </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{ (element.person || element.company).identification }} </mat-cell>
+        <mat-cell *matCellDef="let element"> {{ (element.user.person || element.user.company).identification }} </mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="name">
         <mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{ (element.person || element.company).fullName }} </mat-cell>
+        <mat-cell *matCellDef="let element"> {{ (element.user.person || element.user.company).fullName }} </mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="matriculaInmobiliaria">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> Matrícula Inmobiliaria </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef> Matrícula Inmobiliaria </mat-header-cell>
         <mat-cell *matCellDef="let element"> {{ element.matriculaInmobiliaria }} </mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="rut">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> RUT </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{ element.rut.url }} </mat-cell>
+        <mat-header-cell *matHeaderCellDef> RUT </mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          <span [matTooltip]="'Ver Documento'" matTooltipPosition="above" [matTooltipClass]="'tooltip'" (click)="$event.stopPropagation();">
+            <button mat-icon-button class="btn-pdf" (click)="openPdf(element.rut)">
+              <i class="far fa-lg fa-file-pdf"></i>
+            </button>
+          </span>
+        </mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="certificadoLibertadTradicion">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> Cert. L.T. </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{ element.certificadoLibertadTradicion.url }} </mat-cell>
+        <mat-header-cell *matHeaderCellDef> Cert. L.T. </mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          <span [matTooltip]="'Ver Documento'" matTooltipPosition="above" [matTooltipClass]="'tooltip'" (click)="$event.stopPropagation();">
+            <button mat-icon-button class="btn-pdf" (click)="openPdf(element.certificadoLibertadTradicion)">
+              <i class="far fa-lg fa-file-pdf"></i>
+            </button>
+          </span>
+        </mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="bankReference">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> Ref. Bancaria</mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{ element.bankReference.url }} </mat-cell>
+        <mat-header-cell *matHeaderCellDef> Ref. Bancaria</mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          <span [matTooltip]="'Ver Documento'" matTooltipPosition="above" [matTooltipClass]="'tooltip'" (click)="$event.stopPropagation();">
+            <button mat-icon-button class="btn-pdf" (click)="openPdf(element.bankReference)">
+              <i class="far fa-lg fa-file-pdf"></i>
+            </button>
+          </span>
+        </mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="actions">
-        <mat-header-cell *matHeaderCellDef mat-sort-header>&nbsp;</mat-header-cell>
+        <mat-header-cell *matHeaderCellDef>&nbsp;</mat-header-cell>
         <mat-cell *matCellDef="let element">
           <span [matTooltip]="'Rechazar Solicitud'" matTooltipPosition="above" [matTooltipClass]="'tooltip'" (click)="$event.stopPropagation();">
-            <button mat-icon-button class="btn-reject" (click)="reject(element)">
+            <button mat-icon-button class="btn-reject" (click)="reject(element.id)">
               <i class="fas fa-lg fa-ban"></i>
             </button>
           </span>
 
           <span [matTooltip]="'Aceptar Solicitud'" matTooltipPosition="above" [matTooltipClass]="'tooltip'" (click)="$event.stopPropagation();">
-            <button mat-icon-button class="btn-accept" (click)="accept(element)">
+            <button mat-icon-button class="btn-accept" (click)="accept(element.id)">
               <i class="far fa-lg fa-check-circle"></i>
             </button>
           </span>
