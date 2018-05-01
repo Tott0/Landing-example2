@@ -7,6 +7,11 @@ export interface WarehouseApi {
   total_count: number;
 }
 
+interface Attachment {
+  id: number;
+  image: DocumentFile;
+}
+
 export class Warehouse {
   user?: User; //
   name: String;
@@ -15,7 +20,8 @@ export class Warehouse {
   city: Ciudad;
   address: String;
   description: String;
-  images: String[] | DocumentFile[];
+  images: DocumentFile[];
+  attachments: Attachment[];
 
   workingDays?: boolean[];
   workingTime?: String[];
@@ -32,6 +38,7 @@ export class Warehouse {
 
   constructor(wh?: Partial<Warehouse>) {
     Object.assign(this, wh);
+    this.images = this.images || [];
     if (!this.workingDays) {
       this.workingDays = new Array(7).fill(false);
     }
@@ -79,4 +86,11 @@ export class Position {
   //
   refrigerated?: boolean;
   dangerous?: boolean;
+
+  constructor(position?: Partial<Position>) {
+    position = position || {};
+    Object.assign(this, position);
+    this.refrigerated = false;
+    this.dangerous = false;
+  }
 }
