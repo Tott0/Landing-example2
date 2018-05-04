@@ -37,7 +37,7 @@ export class WarehouseService {
       city: this.ciudades[0],
       description: 'Bodega al centro de la ciudad',
       images: [
-        'https://www.joc.com/sites/default/files/field_feature_image/warehouse%2032.jpg'
+        {url: 'https://www.joc.com/sites/default/files/field_feature_image/warehouse%2032.jpg'}
       ],
       workingDays: [true, false, true, true, false, false, true],
       positions: [

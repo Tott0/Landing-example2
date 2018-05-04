@@ -24,7 +24,7 @@ export interface DocumentFile {
   url: string;
 }
 
-export class FilterSubject {
-  value: any;
-  change: Subject<any> = new Subject();
+export class FilterSubject<T> {
+  value: T;
+  change: Subject<T> = new Subject();
 }

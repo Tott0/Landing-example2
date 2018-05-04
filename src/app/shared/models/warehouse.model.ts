@@ -14,23 +14,23 @@ interface Attachment {
 
 export class Warehouse {
   user?: User; //
-  name: String;
-  lat: number;
-  lng: number;
-  city: Ciudad;
-  address: String;
-  description: String;
-  images: DocumentFile[];
-  attachments: Attachment[];
+  name?: String;
+  lat?: number;
+  lng?: number;
+  city?: Ciudad;
+  address?: String;
+  description?: String;
+  images?: DocumentFile[];
+  attachments?: Attachment[];
 
   workingDays?: boolean[];
   workingTime?: String[];
 
   //
-  positions: Position[];
+  positions?: Position[];
 
   // all characteristics of warehouse are grouped here
-  parameters: Parameter[];
+  parameters?: Parameter[];
 
   has_rack?(): boolean { return this.positions.some(p => p.type === PositionType.RACK); }
   has_floor_closed?(): boolean { return this.positions.some(p => p.type === PositionType.FLOOR_CLOSED); }

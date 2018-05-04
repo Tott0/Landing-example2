@@ -24,12 +24,12 @@ export class ClientService {
 
 
   filterWarehouses(params): Observable<Warehouse[]> {
-    return this.http.get<Warehouse[]>(`${AppConstants.API_ENDPOINT}warehouses${StaticMethods.getParams(params)}`, params)
+    return this.http.get<Warehouse[]>(`${AppConstants.API_ENDPOINT}warehouses${StaticMethods.getParams(params)}`)
       .pipe(
-      catchError((err, caught) => {
-        this.mm.closeLoadingDialog();
-        return ErrorObservable.create(StaticMethods.handleHttpResponseError(err));
-      })
+        catchError((err, caught) => {
+          this.mm.closeLoadingDialog();
+          return ErrorObservable.create(StaticMethods.handleHttpResponseError(err));
+        })
       );
   }
 }
