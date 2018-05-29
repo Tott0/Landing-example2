@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.5.1"></a>
+## [0.5.1](https://gitlab.com/Tott0/Caxtor/compare/v0.5.0...v0.5.1) (2018-05-29)
+
+
+### Bug Fixes
+
+* prod build ([33fde20](https://gitlab.com/Tott0/Caxtor/commit/33fde20))
+
+
+
 <a name="0.5.0"></a>
 # [0.5.0](https://gitlab.com/Tott0/Caxtor/compare/v0.4.0...v0.5.0) (2018-05-29)
 
