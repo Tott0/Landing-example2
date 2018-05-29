@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.5.0"></a>
+# [0.5.0](https://gitlab.com/Tott0/Caxtor/compare/v0.4.0...v0.5.0) (2018-05-29)
+
+
+### Bug Fixes
+
+* stopped using mocks ([55ed6ec](https://gitlab.com/Tott0/Caxtor/commit/55ed6ec))
+
+
+### Features
+
+* readme ([5d6a87e](https://gitlab.com/Tott0/Caxtor/commit/5d6a87e))
+
+
+
 <a name="0.4.0"></a>
 # [0.4.0](https://gitlab.com/Tott0/Caxtor/compare/v0.3.0...v0.4.0) (2018-05-04)
 
