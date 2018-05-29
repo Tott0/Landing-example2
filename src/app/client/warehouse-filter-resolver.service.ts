@@ -23,7 +23,9 @@ export class WarehouseFilterResolver implements Resolve<Warehouse[]> {
     const params = route.params;
 
     this.mm.showLoadingDialog();
-    return this.service.filterWarehouses(params).pipe(
+    return this.service.filterWarehouses({
+      by_city: params.cd
+    }).pipe(
       tap((res: any) => {
         if (res.total_count) {
           return res.warehouses;

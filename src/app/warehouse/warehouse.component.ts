@@ -66,10 +66,10 @@ export class WarehouseComponent implements OnInit {
       console.log(data.res);
       this.warehouse = data.res;
       if (this.warehouse.parameters) {
-        this.products = this.warehouse.parameters.filter(p => p.type === ParameterType.ACCEPTED_PRODUCTS);
-        this.security = this.warehouse.parameters.filter(p => p.type === ParameterType.SECURITY);
-        this.certifications = this.warehouse.parameters.filter(p => p.type === ParameterType.CERTIFICATIONS);
-        this.serviceP = this.warehouse.parameters.filter(p => p.type === ParameterType.EXTRA_SERVICES);
+        this.products = this.warehouse.parameters.filter(p => p.typeParameter === ParameterType.ACCEPTED_PRODUCTS);
+        this.security = this.warehouse.parameters.filter(p => p.typeParameter === ParameterType.SECURITY);
+        this.certifications = this.warehouse.parameters.filter(p => p.typeParameter === ParameterType.CERTIFICATIONS);
+        this.serviceP = this.warehouse.parameters.filter(p => p.typeParameter === ParameterType.EXTRA_SERVICES);
 
         this.storageDataSource.data = this.warehouse.positions;
         this.filteredPositions = this.warehouse.positions;
@@ -83,7 +83,7 @@ export class WarehouseComponent implements OnInit {
     this.filteredPositions = this.warehouse.positions;
 
     if (this.positionType.value) {
-      this.filteredPositions = this.filteredPositions.filter(fp => fp.type === this.positionType.value);
+      this.filteredPositions = this.filteredPositions.filter(fp => fp.typePosition === this.positionType.value);
     }
     if (this.refrigerated.value) {
       this.filteredPositions = this.filteredPositions.filter(fp => fp.refrigerated);
@@ -96,17 +96,18 @@ export class WarehouseComponent implements OnInit {
   hasType(i) {
     switch (i) {
       case 0:
-        if (this.warehouse.positions.some(wp => wp.type === PositionType.FLOOR_CLOSED || wp.type === PositionType.FLOOR_OPEN)) {
+        if (this.warehouse.positions.some(wp => wp.typePosition === PositionType.FLOOR_CLOSED || 
+            wp.typePosition === PositionType.FLOOR_OPEN)) {
           return true;
         }
         break;
       case 1:
-        if (this.warehouse.positions.some(wp => wp.type === PositionType.RACK)) {
+        if (this.warehouse.positions.some(wp => wp.typePosition === PositionType.RACK)) {
           return true;
         }
         break;
       case 2:
-        if (this.warehouse.positions.some(wp => wp.type === PositionType.BOX)) {
+        if (this.warehouse.positions.some(wp => wp.typePosition === PositionType.BOX)) {
           return true;
         }
         break;
@@ -129,7 +130,7 @@ export class WarehouseComponent implements OnInit {
   }
 
   getMeasure(position) {
-    switch (position.type || position) {
+    switch (position.typePosition || position) {
       case PositionType.FLOOR_CLOSED:
         return 'm<sup>2</sup>';
       case PositionType.FLOOR_OPEN:

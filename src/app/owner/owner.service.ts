@@ -52,7 +52,7 @@ export class OwnerService {
     formData.append('workingTime', warehouse.workingTime);
 
     for (const pa of warehouse.positions_attributes) {
-      formData.append('positions_attributes[][type_position]', pa.type);
+      formData.append('positions_attributes[][type_position]', pa.typePosition);
       formData.append('positions_attributes[][measure]', pa.measure);
       formData.append('positions_attributes[][amount]', pa.amount);
       formData.append('positions_attributes[][width]', pa.width);
@@ -64,7 +64,7 @@ export class OwnerService {
     }
 
     for (const wpa of warehouse.warehouse_parameters_attributes) {
-      formData.append('warehouse_parameters_attributes[]', JSON.stringify({parameter_id: wpa}));
+      formData.append('warehouse_parameters_attributes[][parameter_id]', wpa);
     }
 
     for (const aa of warehouse.attachment_attributes) {

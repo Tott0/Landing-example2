@@ -53,7 +53,7 @@ export class StepStorageComponent implements OnInit {
   }
 
   isNewPositionInvalid() {
-    return !this.newPosition.type ||
+    return !this.newPosition.typePosition ||
       !this.newPosition.amount ||
       !this.newPosition.price_per_unit ||
       !this.newPosition.max_height ||
@@ -61,7 +61,7 @@ export class StepStorageComponent implements OnInit {
   }
 
   getMeasure(type?) {
-    switch (type || this.newPosition.type) {
+    switch (type || this.newPosition.typePosition) {
       case PositionType.FLOOR_CLOSED:
         return 'm<sup>2</sup>';
       case PositionType.FLOOR_OPEN:

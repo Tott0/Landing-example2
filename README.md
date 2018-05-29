@@ -21,3 +21,6 @@ programar desactivar la bodega desde dia X
 programar activar la bodega desde dia X, o que sea el mismo dia
 
 que pasa cuando hay que hacer un reclamo si se la pasa la plata enseguida a la empresa, quien lo devuelve
+
+//
+what the fuck is wrong with the underline on signup
