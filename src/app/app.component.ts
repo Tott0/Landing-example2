@@ -15,7 +15,7 @@ import { ModalManager } from './core/providers/modal-manager';
 export class AppComponent implements OnInit {
 
   constructor(
-    private router: Router,
+    public router: Router,
     private aService: AuthService,
     private mm: ModalManager
   ) {

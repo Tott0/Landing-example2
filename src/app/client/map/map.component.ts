@@ -43,6 +43,9 @@ export class MapComponent implements OnInit {
   eDateFSbj: FilterSubject<Date> = new FilterSubject();
   productFSbj: FilterSubject<Parameter[]> = new FilterSubject();
 
+  iDate = new Date();
+  eDate = new Date();
+
   @ViewChild(MatPaginator) paginator: MatPaginator;
   currentFilters: any;
   focusedWarehouse: Warehouse;

@@ -16,7 +16,7 @@ import { Parameter } from '../../models/warehouse.model';
 export class WarehouseFiltersDialog implements OnInit {
 
   storage: boolean[];
-  parameters: Parameter[];
+  parameters: any;
 
   constructor(
     public dialogRef: MatDialogRef<WarehouseFiltersDialog>,
