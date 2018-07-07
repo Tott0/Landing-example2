@@ -25,7 +25,7 @@
                 <span class="filler no-min" *ngIf="i !== 0"></span>
                 <div class="warehouse">
                   <span class="img-wrapper">
-                    <img [src]="warehouse.images[0]">
+                    <img [src]="warehouse && warehouse.attachments[0].image.url">
                   </span>
                   <a class="name" [routerLink]="['/temproute_warehouse', warehouse.id]">{{ warehouse.name }}</a>
                   <span class="row">

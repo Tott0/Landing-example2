@@ -3,14 +3,15 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { ModalManager } from '../../core/providers/modal-manager';
 
 import { AgmMap, MouseEvent } from '@agm/core';
-import { Warehouse } from '../../shared/models/warehouse.model';
+import { Warehouse, MeasureType, PositionType, Parameter } from '../../shared/models/warehouse.model';
 
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
-import { switchMap, catchError, debounceTime, distinctUntilChanged } from 'rxjs/operators';
+import { switchMap, catchError, debounceTime, merge, tap } from 'rxjs/operators';
 
+import { MatPaginator } from '@angular/material';
 import { ClientService } from '../client.service';
-import { Ciudad } from '../../shared/models/shared.model';
+import { Ciudad, FilterSubject } from '../../shared/models/shared.model';
 
 
 @Component({
@@ -24,7 +25,7 @@ export class MapComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private mm: ModalManager,
-    private cService: ClientService,
+    private service: ClientService,
   ) {
     // this.route.
   }
@@ -32,11 +33,24 @@ export class MapComponent implements OnInit {
   iLat = 10.9838314;
   iLng = -74.8136909;
   zoom = 13;
-  warehouses: any[] = [];
+  warehouses: Warehouse[] = [];
   parameters: any;
 
+  cityFSbj: FilterSubject<Ciudad> = new FilterSubject();
+  positionFSbj: FilterSubject<PositionType> = new FilterSubject();
+  amountFSbj: FilterSubject<number> = new FilterSubject();
+  iDateFSbj: FilterSubject<Date> = new FilterSubject();
+  eDateFSbj: FilterSubject<Date> = new FilterSubject();
+  productFSbj: FilterSubject<Parameter[]> = new FilterSubject();
+
+  iDate = new Date();
+  eDate = new Date();
+
+  @ViewChild(MatPaginator) paginator: MatPaginator;
   currentFilters: any;
   focusedWarehouse: Warehouse;
+
+  PositionType = PositionType;
 
   ngOnInit() {
     const subscription = this.route.data
@@ -103,27 +117,35 @@ export class MapComponent implements OnInit {
         });
       });
 
-    // this.route.paramMap.pipe(
-    //   switchMap(params => {
-    //     // console.log(params);
-    //     this.selectedCityId = +params.get('cd');
-    //     this.currentFilters.cd = this.selectedCityId;
-    //     this.uPallets = +params.get('up');
-    //     this.currentFilters.up = this.uPallets;
-    //     this.mm.showLoadingDialog();
-    //     return this.cService.filterWarehouses(params);
-    //   }),
-    //   catchError(err => {
-    //     return Observable.of<Warehouse[]>([]);
-    //   }),
-    // )
-    //   .subscribe(warehouses => {
-    //     this.warehouses = warehouses;
-    //     setTimeout(() => {
-
-    //       this.mm.closeLoadingDialog();
-    //     }, 300);
-    //   });
+    this.cityFSbj.change.pipe(
+      merge(this.positionFSbj.change, this.amountFSbj.change, this.iDateFSbj.change,
+        this.eDateFSbj.change, this.productFSbj.change),
+      switchMap(() => {
+        this.mm.showLoadingDialog();
+        return Observable.of<Warehouse[]>([]);
+        // this.service.filterWarehouses({
+        //   city_id: this.cityFSbj.value,
+        //   position_type: this.positionFSbj.value,
+        //   amount: this.amountFSbj.value,
+        //   iDate: this.iDateFSbj.value,
+        //   eDate: this.eDateFSbj.value,
+        //   products: this.productFSbj.value
+        // });
+      }),
+      tap((res: any) => {
+        if (res.total_count) {
+          return res.warehouses;
+        }
+        return res;
+      }),
+      catchError(() => {
+        return Observable.of([]);
+      })
+    ).subscribe(data => {
+      this.mm.closeLoadingDialog();
+      this.warehouses = data;
+      this.paginator.length = data.length;
+    });
   }
 
   filters() {

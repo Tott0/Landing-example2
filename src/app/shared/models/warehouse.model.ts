@@ -7,31 +7,38 @@ export interface WarehouseApi {
   total_count: number;
 }
 
+interface Attachment {
+  id: number;
+  image: DocumentFile;
+}
+
 export class Warehouse {
   user?: User; //
-  name: String;
-  lat: number;
-  lng: number;
-  city: Ciudad;
-  address: String;
-  description: String;
-  images: String[] | DocumentFile[];
+  name?: String;
+  lat?: number;
+  lng?: number;
+  city?: Ciudad;
+  address?: String;
+  description?: String;
+  images?: DocumentFile[];
+  attachments?: Attachment[];
 
   workingDays?: boolean[];
   workingTime?: String[];
 
   //
-  positions: Position[];
+  positions?: Position[];
 
   // all characteristics of warehouse are grouped here
-  parameters: Parameter[];
+  parameters?: Parameter[];
 
-  has_rack?(): boolean { return this.positions.some(p => p.type === PositionType.RACK); }
-  has_floor_closed?(): boolean { return this.positions.some(p => p.type === PositionType.FLOOR_CLOSED); }
-  has_floor_open?(): boolean { return this.positions.some(p => p.type === PositionType.FLOOR_OPEN); }
+  has_rack?(): boolean { return this.positions.some(p => p.typePosition === PositionType.RACK); }
+  has_floor_closed?(): boolean { return this.positions.some(p => p.typePosition === PositionType.FLOOR_CLOSED); }
+  has_floor_open?(): boolean { return this.positions.some(p => p.typePosition === PositionType.FLOOR_OPEN); }
 
   constructor(wh?: Partial<Warehouse>) {
     Object.assign(this, wh);
+    this.images = this.images || [];
     if (!this.workingDays) {
       this.workingDays = new Array(7).fill(false);
     }
@@ -42,15 +49,15 @@ export class Warehouse {
 }
 
 export enum ParameterType {
-  ACCEPTED_PRODUCTS,
-  SECURITY,
-  CERTIFICATIONS,
-  EXTRA_SERVICES
+  ACCEPTED_PRODUCTS = '1',
+  SECURITY = '2',
+  CERTIFICATIONS = '3',
+  EXTRA_SERVICES = '4'
 }
 export class Parameter {
   id: number;
   description: string;
-  type: ParameterType;
+  typeParameter: ParameterType;
   cost_per_unit?: number;
   checked?: boolean;
 }
@@ -67,7 +74,7 @@ export enum MeasureType {
 }
 export class Position {
   id?: number;
-  type: PositionType;
+  typePosition: PositionType;
   measure?: MeasureType;
   amount: number; // available spaces for this type of position in warehouse
   price_per_unit: number;
@@ -79,4 +86,11 @@ export class Position {
   //
   refrigerated?: boolean;
   dangerous?: boolean;
+
+  constructor(position?: Partial<Position>) {
+    position = position || {};
+    Object.assign(this, position);
+    this.refrigerated = false;
+    this.dangerous = false;
+  }
 }

@@ -20,6 +20,8 @@ import { DocumentFile } from '../../shared/models/shared.model';
 })
 export class SignupComponent implements OnInit {
 
+  loadedUser = false;
+
   PersonType = PersonType;
   willRent = false;
 

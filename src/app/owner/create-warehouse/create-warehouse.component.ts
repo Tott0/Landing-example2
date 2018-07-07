@@ -19,6 +19,10 @@ import { StepStorageComponent } from './step-storage/step-storage.component';
 })
 export class CreateWarehouseComponent implements OnInit {
 
+
+  // FIXME
+  formBasicInfo = true;
+
   errors: any = {};
   warehouse: Warehouse = new Warehouse();
 

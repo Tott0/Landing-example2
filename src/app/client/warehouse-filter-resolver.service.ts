@@ -2,6 +2,7 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/take';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
+import { tap } from 'rxjs/operators';
 import {
   Router, Resolve, RouterStateSnapshot,
   ActivatedRouteSnapshot
@@ -22,14 +23,14 @@ export class WarehouseFilterResolver implements Resolve<Warehouse[]> {
     const params = route.params;
 
     this.mm.showLoadingDialog();
-    return this.service.filterWarehouses(params).map(c => {
-      if (c && c.length > 0) {
-        return c;
-      } else { // no warehouses
-        this.mm.closeLoadingDialog();
-        this.router.navigate(['temproute_client']);
-        return null;
-      }
-    });
+    return this.service.filterWarehouses({
+      by_city: params.cd
+    }).pipe(
+      tap((res: any) => {
+        if (res.total_count) {
+          return res.warehouses;
+        }
+        return res;
+      }));
   }
 }

@@ -149,9 +149,9 @@
       <!-- <p *ngIf="this.currentFile"> {{ this.currentFile.name }}</p> -->
     </div>
     <div class="photos">
-      <span class="photo" *ngFor="let p of photos; let i = index">
+      <span class="photo" *ngFor="let p of warehouse.images; let i = index">
         <img [src]="domSanitizer.bypassSecurityTrustUrl(p.url)" />
-        <button mat-icon-button class="remove-btn" (click)="photos.splice(i, 1); $event.stopPropagation()">
+        <button mat-icon-button class="remove-btn" (click)="warehouse.images.splice(i, 1); $event.stopPropagation()">
           <i class="far fa-lg fa-times-circle"></i>
         </button>
       </span>

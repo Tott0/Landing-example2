@@ -29,7 +29,6 @@ export class StepBasicInfoComponent implements OnInit {
   daysEnabled = true;
   timeEnabled = true;
 
-  photos: any[] = [];
   errors: any = {};
 
   selectedDepartamento: Departamento;
@@ -138,7 +137,7 @@ export class StepBasicInfoComponent implements OnInit {
 
   onFile(files) {
     console.log(files);
-    if (this.photos.length + files.length > 5) {
+    if (this.warehouse.images.length + files.length > 5) {
       this.errors.photos = 'Solo se pueden seleccionar máximo 5 archivos';
     } else {
       for (let f of files) {
@@ -146,10 +145,10 @@ export class StepBasicInfoComponent implements OnInit {
           file: f,
           url: URL.createObjectURL(f),
         };
-        this.photos = this.photos.concat(f);
+        this.warehouse.images = this.warehouse.images.concat(f);
       }
     }
-    console.log(this.photos);
+    console.log(this.warehouse.images);
   }
 
   isComplete() {

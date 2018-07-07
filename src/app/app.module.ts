@@ -22,7 +22,7 @@ import {
   MatSidenavModule, MatListModule, MatChipsModule, MatToolbarModule, MatMenuModule, MatButtonModule,
   MatProgressBarModule, MatProgressSpinnerModule, MatTooltipModule
 } from '@angular/material';
-import { AppConstants } from './app-constants';
+import { environment } from '../environments/environment';
 /* */
 import { PdfViewerOverlayComponent } from './shared/overlays/file-preview/pdf-viewer-overlay.component';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
@@ -44,7 +44,7 @@ import { PdfViewerModule } from 'ng2-pdf-viewer';
     MatSidenavModule, MatListModule, MatChipsModule, MatToolbarModule, MatMenuModule, MatButtonModule, MatProgressBarModule,
     MatProgressSpinnerModule, MatTooltipModule,
     AgmCoreModule.forRoot({
-      apiKey: AppConstants.GOOGLE_API_KEY,
+      apiKey: environment.GOOGLE_API_KEY,
       libraries: ['places'],
       region: 'CO',
       language: 'ES'

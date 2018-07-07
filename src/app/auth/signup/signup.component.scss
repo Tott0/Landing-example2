@@ -19,7 +19,7 @@ mat-card {
     padding: 1em;
     font-size: 1em;
     form,
-    div,
+    form > div,
     .content {
       font-size: 1em;
       display: flex;

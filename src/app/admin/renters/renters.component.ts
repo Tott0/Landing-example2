@@ -32,8 +32,8 @@ export class RentersComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   pageSizeChange = new Subject();
-  camFilterSbj: FilterSubject = new FilterSubject();
-  stateFilterSbj: FilterSubject = new FilterSubject();
+  camFilterSbj: FilterSubject<any> = new FilterSubject();
+  stateFilterSbj: FilterSubject<any> = new FilterSubject();
 
   constructor(
     private router: Router,
