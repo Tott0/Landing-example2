@@ -5,6 +5,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
 /** */
 import { CoreModule } from '@app/core/core.module';
+import { UsedMaterialComponentsModule } from '@shared/modules/used-material-components.module';
 
 
 @NgModule({
@@ -13,6 +14,7 @@ import { CoreModule } from '@app/core/core.module';
   ],
   imports: [
     BrowserModule,
+    UsedMaterialComponentsModule,
     BrowserAnimationsModule,
     //
     CoreModule,
