@@ -1,0 +1,113 @@
+$primary: #80DEEA;
+$light: #FAFAFA;
+$dark: #212121;
+$danger: #d50000;
+//
+.main-container {
+  .carousel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 35vh;
+    border: solid 1px $danger;
+    width: 100%;
+    span {
+      color: $danger;
+      font-size: 2rem;
+    }
+  }
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: solid 1px $danger;
+    font-size: 0.5rem;
+
+    & > * {
+      margin: 1em 0;
+    }
+
+    .actions{
+      justify-content: space-around;
+      padding: 0 10vw;
+      .action{
+        border: solid 1px $primary;
+        border-radius: 50%;
+        padding: 3em 2.5em;
+        font-size: 2em;
+        color: $dark;
+        text-decoration: none;
+
+        &:hover{
+          background: $primary;
+          color: $light;
+          cursor: pointer;
+        }
+      }
+    }
+
+    .steps{
+      padding: 0 2em;
+      .step{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 0 1em;
+        &>*:not(:last-child){
+          margin-bottom: 0.5em;
+        }
+        i{
+          font-size: 2em;
+        }
+        .title{
+          font-size: 2em;
+        }
+        .description{
+          font-size: 1.5em;
+        }
+      }
+    }
+
+    .locations{
+      flex-wrap: wrap;
+      .location{
+        align-items: center;
+        display: flex;
+        justify-content: center;
+        height: 200px;
+        position: relative;
+        width:25%;
+
+
+        .city-bg{
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+        }
+
+        .name{
+          font-size: 1.5em;
+          color: $light;
+          z-index: 1;
+          text-shadow: 1px 0 0 $dark, -1px 0 0 $dark, 0 1px 0 $dark, 0 -1px 0 $dark, 1px 1px $dark, -1px -1px 0 $dark, 1px -1px 0 $dark, -1px 1px 0 $dark;
+        }
+      }
+    }
+
+    .link{
+      font-size: 1em;
+      text-decoration: underline;
+      margin-top: 0;
+      
+      &:hover{
+        cursor: pointer;
+      }
+    }
+  }
+  .carousel.logos {
+    min-height: 10vh;
+  }
+}

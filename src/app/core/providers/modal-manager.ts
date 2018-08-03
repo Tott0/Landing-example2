@@ -1,14 +1,14 @@
 import { Injectable, Component, Output } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatDialogConfig, MatSnackBar } from '@angular/material';
 
-import { Observable } from 'rxjs/Observable';
+import { Observable, of } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
-import { LoadingDialog } from '../../shared/dialogs/loading/loading.dialog';
-import { MessageDialog } from '../../shared/dialogs/message/message.dialog';
-import { WarehouseFiltersDialog } from '../../shared/dialogs/warehouse-filters/warehouse-filters.dialog';
+import { LoadingDialog } from '@shared/dialogs/loading/loading.dialog';
+import { MessageDialog } from '@shared/dialogs/message/message.dialog';
+import { WarehouseFiltersDialog } from '@shared/dialogs/warehouse-filters/warehouse-filters.dialog';
 //
-import { ResultSnackbar } from '../../shared/dialogs/result-snackbar/result.snackbar';
+import { ResultSnackbar } from '@shared/dialogs/result-snackbar/result.snackbar';
 
 enum ModalTags {
   LOADING,
@@ -52,11 +52,9 @@ export class ModalManager {
         .subscribe(() => {
           onClose();
         });
-      return this.currentModal.afterClosed()
-        .do(() => {
-        });
+      return this.currentModal.afterClosed();
     }
-    return Observable.of<any>(undefined);
+    return of<any>(undefined);
   }
 
   closeCurrentModal(): boolean {

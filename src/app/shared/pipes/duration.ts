@@ -1,6 +1,6 @@
 // truncate.ts
 import { Pipe, PipeTransform } from '@angular/core';
-import { StaticMethods } from '../../utils/static-methods';
+import { StaticMethods } from '@core/static-methods';
 /*
  * Truncates Seconds to minutes|hours
  * Takes:

@@ -1,0 +1,35 @@
+<div class="main-container">
+
+    <mat-card>
+      <mat-card-title>
+        Recuperar Contraseña
+      </mat-card-title>
+      <mat-divider></mat-divider>
+      <mat-card-content>
+  
+        <div class="mat-elevation-z3">
+          <p class="guide">Ingresa el correo electrónico con el que te registraste y recibirás instrucciones para recuperar tu contraseña.</p>
+        </div>
+  
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+  
+          <mat-form-field>
+            <input matInput placeholder="Correo" type="text" [formControl]="email" (input)="errors.email = undefined;">
+            <mat-error *ngIf="email.invalid || errors.email">{{getErrorMessage(email, errors.email)}}</mat-error>
+          </mat-form-field>
+  
+          <mat-error *ngIf="errors.message" class="form-errors">
+            {{ errors.message }}
+          </mat-error>
+  
+          <button mat-raised-button color="primary" class="btn-forgot" [disabled]="form.invalid" (click)="onSubmit()">
+            <span>Ingresar</span>
+          </button>
+        </form>
+  
+      </mat-card-content>
+  
+    </mat-card>
+  
+  
+  </div>

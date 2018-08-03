@@ -1,22 +1,16 @@
+/// <reference path="../../../../node_modules/@types/googlemaps/index.d.ts" />
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 
-import { AppConstants } from '../../app-constants';
-import { StaticMethods } from '../../utils/static-methods';
+import { environment } from '@env/environment';
+import { StaticMethods } from '@core/static-methods';
 
-import { Observable } from 'rxjs/Observable';
-import { ErrorObservable } from 'rxjs/observable/errorObservable';
+import { Observable, Subject, of, throwError } from 'rxjs';
 import { catchError, tap, map } from 'rxjs/operators';
 
-import { Subject } from 'rxjs/Subject';
-
 import { ModalManager } from './modal-manager';
-import { Ciudad, Departamento, GoogleAddress } from '../../shared/models/shared.model';
-import { ParameterType, Parameter } from '../../shared/models/warehouse.model';
-import { MapsAPILoader } from '@agm/core';
-
-import { } from '@types/googlemaps';
-
+import { Ciudad, Departamento, GoogleAddress } from '@shared/models/shared.model';
+import { ParameterType, Parameter } from '@shared/models/warehouse.model';
 
 @Injectable({
   providedIn: 'root'
@@ -36,23 +30,23 @@ export class SharedService {
 
   getCiudades(dptoId: number, params?): Observable<Ciudad[]> {
     if (this.ciudades && this.ciudades.length) {
-      return Observable.of<Ciudad[]>(this.ciudades);
+      return of<Ciudad[]>(this.ciudades);
     }
-    return this.http.get<Ciudad>(`${AppConstants.API_ENDPOINT}departments/${dptoId}/cities${StaticMethods.getParams(params)}`)
+    return this.http.get<Ciudad[]>(`${environment.API_ENDPOINT}departments/${dptoId}/cities${StaticMethods.getParams(params)}`)
       .pipe(
         catchError((err, caught) => {
           this.mm.closeLoadingDialog();
           StaticMethods.handleHttpResponseError(err);
-          return ErrorObservable.create('');
+          return throwError('');
         })
       );
   }
 
   getDepartamentos(): Observable<Departamento[]> {
     if (this.departamentos && this.departamentos.length) {
-      return Observable.of<Departamento[]>(this.departamentos);
+      return of<Departamento[]>(this.departamentos);
     }
-    return this.http.get<Departamento[]>(`${AppConstants.API_ENDPOINT}departments`)
+    return this.http.get<Departamento[]>(`${environment.API_ENDPOINT}departments`)
       .pipe(
         tap(res => {
           this.departamentos = res;
@@ -60,17 +54,17 @@ export class SharedService {
         catchError((err, caught) => {
           this.mm.closeLoadingDialog();
           StaticMethods.handleHttpResponseError(err);
-          return ErrorObservable.create('');
+          return throwError('');
         })
       );
   }
 
   getParameters(params?): Observable<any> {
     if (this.parametersCache) {
-      return Observable.of<any>(this.parametersCache);
+      return of<any>(this.parametersCache);
     }
 
-    return this.http.get<Parameter[]>(`${AppConstants.API_ENDPOINT}parameters${StaticMethods.getParams(params)}`)
+    return this.http.get<Parameter[]>(`${environment.API_ENDPOINT}parameters${StaticMethods.getParams(params)}`)
       .pipe(
         map(res => {
           console.log(res);
@@ -88,12 +82,12 @@ export class SharedService {
         }),
         catchError((err, caught) => {
           this.mm.closeLoadingDialog();
-          return ErrorObservable.create(StaticMethods.handleHttpResponseError(err));
+          return throwError(StaticMethods.handleHttpResponseError(err));
         }));
   }
 
-  autocompleteAddress(r: google.maps.places.AutocompletionRequest, callback: (res: GoogleAddress[]) => void, currentLocation?) {
-    // tslint:disable-next-line:max-line-length
+  autocompleteAddress(r: google.maps.places.AutocompletionRequest,
+    callback: (res: GoogleAddress[]) => void, currentLocation?) {
     const s = new google.maps.places.AutocompleteService();
     console.log(r);
     s.getPlacePredictions(r, (res, status) => {

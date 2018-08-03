@@ -23,12 +23,13 @@ import { PlatePipe } from './pipes/plate';
 import { DecimalPipe } from './pipes/decimal';
 import { DurationPipe } from './pipes/duration';
 import { EnumPositionTypePipe } from './pipes/enum-position-type';
+import { UsedMaterialComponentsModule } from '@shared/modules/used-material-components.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
-    ReactiveFormsModule,
+    UsedMaterialComponentsModule
   ],
   declarations: [
     //
@@ -55,6 +56,8 @@ import { EnumPositionTypePipe } from './pipes/enum-position-type';
   ],
   exports: [
     CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
     //
     ForceUppercaseDirective,
     ForceNumericDirective,

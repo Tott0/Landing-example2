@@ -1,0 +1,69 @@
+<header>
+  <mat-toolbar>
+    <a mat-button (click)="home()" class="logo">
+      <img src="assets/images/caxtor-logo-smol.png">
+      <!-- <span class="big-title">HORUS</span> -->
+      <!-- <span class="title">Sistema Unificado de Infracciones de Tránsito</span> -->
+    </a>
+
+
+
+    <nav>
+      <ul>
+        <!-- <li *ngIf="canShow(1)">
+            <a routerLink="/infracciones">
+              Soluciones
+            </a>
+          </li>
+          <li *ngIf="canShow(1)">
+            <a routerLink="/infracciones">
+              Empresas
+            </a>
+          </li> -->
+      </ul>
+    </nav>
+
+    <div class="filler"></div>
+
+    <nav>
+      <ul>
+        <li class="link-search">
+          <a routerLink="/temproute_client">
+            Búscar Espacio
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+    <ng-container *ngIf="authService.user">
+      <button mat-button [matMenuTriggerFor]="authMenu" class="menu-auth">
+        <!-- <img src="assets/images/auth_logo.png"> -->
+        <span class="button-text">{{ authService.user.user.profile.fullName }}</span>
+        <i class="fas fa-caret-down fa-lg"></i>
+      </button>
+      <mat-menu #authMenu="matMenu">
+        <button mat-menu-item routerLink="/cuenta/perfil" *ngIf="canShow(1)">
+          <i class="fas fa-cog"></i>
+          <span class="button-text">Mi Perfil</span>
+        </button>
+        <button mat-menu-item routerLink="/temproute_client" *ngIf="canShow(2)">
+          <i class="fas fa-cog"></i>
+          <span class="button-text">Panel Cliente</span>
+        </button>
+        <button mat-menu-item routerLink="/temproute_owner" *ngIf="canShow(3)">
+          <i class="fas fa-cog"></i>
+          <span class="button-text">Panel Arrendador</span>
+        </button>
+        <button mat-menu-item (click)="authService.logout()">
+          <i class="fas fa-sign-out-alt"></i>
+          <span class="button-text">Cerrar Sesión</span>
+        </button>
+      </mat-menu>
+    </ng-container>
+
+    <button mat-button class="btn-login" *ngIf="!authService.user" routerLink="/login">
+      <span class="button-text">Iniciar Sesión</span>
+    </button>
+
+  </mat-toolbar>
+</header>

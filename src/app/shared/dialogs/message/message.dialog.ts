@@ -2,7 +2,7 @@ import { Component, Inject, ViewEncapsulation } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { startWith, map } from 'rxjs/operators';
 import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
 

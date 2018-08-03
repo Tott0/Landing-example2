@@ -1,0 +1,58 @@
+@import './src/scss/variables.scss';
+mat-card {
+  margin-top: 5em;
+  font-size: 0.95rem;
+  padding: 1em 2em 2em 2em;
+  width: 30vw;
+  mat-card-title{
+    font-size: 1.5em;
+    padding: 0.1em;
+  }
+  mat-card-content{
+    font-size: 1em;
+  }
+  form {
+    font-size: 1em;
+    display: flex;
+    flex-direction: column;
+    margin-top: 2em;
+    .btn-login {
+      align-self: center;
+      color: $light;
+      font-size: 1.5em;
+      margin-top: 0.5em;
+      padding: 0.15em 0.75em;
+      border-radius: 0.1em;
+      &[disabled] {
+        background: transparentize($primary, 0.3);
+      }
+    }
+  }
+  mat-card-footer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    .btn-forgot {
+      color: $primary;
+      text-decoration: none;
+      align-self: center;
+      padding: 0.1em;
+      font-size: 0.75em;
+  
+      &:hover{
+        text-decoration: underline;
+      }
+    }
+
+    .btn-register{
+      margin-top: 0.5em;
+      font-size: 0.7em;
+      a{
+        color: $primary;
+        text-decoration: underline;
+      }
+    }
+  }
+}

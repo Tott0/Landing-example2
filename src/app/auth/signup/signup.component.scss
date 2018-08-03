@@ -1,0 +1,67 @@
+@import './src/scss/variables.scss';
+mat-card {
+  margin-top: 3em;
+  margin-bottom: 3em;
+  font-size: 0.95rem;
+  width: 100%;
+  @include for-desktop-up {
+    max-width: 1200px;
+  }
+  mat-card-title {
+    font-size: 1.5em;
+    padding: 0.1em;
+  }
+  mat-card-content {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    padding: 1em;
+    font-size: 1em;
+    form,
+    form > div,
+    .content {
+      font-size: 1em;
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      mat-form-field {
+        max-width: 50%;
+      }
+      mat-radio-group {
+        margin-bottom: 1em;
+      }
+    }
+    mat-accordion {
+      width: 100%;
+      margin: 1em 0;
+    }
+    .file-input {
+      margin: 0.5em 0;
+      display: flex;
+      align-items: flex-start;
+      .fileInput {
+        position: absolute;
+        left: -100vw;
+      }
+      .placeholder {
+        color: transparentize($color: $dark, $amount: 0.5);
+        font-size: 0.95em;
+      }
+      button {
+        margin-left: 2em;
+      }
+    }
+    .btn-submit {
+      align-self: center;
+      color: $light;
+      font-size: 1.5em;
+      margin-top: 2.5em;
+      padding: 0.15em 0.75em;
+      border-radius: 0.1em;
+      &[disabled] {
+        background: transparentize($primary, 0.3);
+      }
+    }
+  }
+}

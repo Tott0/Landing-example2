@@ -1,0 +1,36 @@
+<div class="main-container">
+
+    <mat-card>
+      <mat-card-title>
+        Recuperar Contraseña
+      </mat-card-title>
+      <mat-divider></mat-divider>
+      <mat-card-content>
+  
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+  
+          <mat-form-field>
+            <input matInput placeholder="Nueva Contraseña" type="password" [formControl]="password" (input)="errors.password = undefined;">
+            <mat-error *ngIf="password.invalid || errors.password">{{getErrorMessage(password, errors.password)}}</mat-error>
+          </mat-form-field>
+  
+          <mat-form-field>
+            <input matInput placeholder="Confirmar Contraseña" type="password" [formControl]="password_confirmation" (input)="errors.password_confirmation = undefined;">
+            <mat-error *ngIf="password_confirmation.invalid || errors.password_confirmation">{{getErrorMessage(password_confirmation, errors.password_confirmation)}}</mat-error>
+          </mat-form-field>
+  
+          <mat-error *ngIf="errors.message" class="form-errors">
+            {{ errors.message }}
+          </mat-error>
+  
+          <button mat-raised-button color="primary" class="btn-forgot" [disabled]="form.invalid" (click)="onSubmit()">
+            <span>Cambiar Contraseña</span>
+          </button>
+        </form>
+  
+      </mat-card-content>
+  
+    </mat-card>
+  
+  
+  </div>

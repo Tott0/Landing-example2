@@ -4,7 +4,7 @@ import { PdfViewerOverlayRef } from './pdf-viewer-overlay.ref';
 import { PDF_VIEWER_DIALOG_DATA } from './pdf-viewer-overlay.ref.1';
 import { PDFSource, PDFProgressData } from 'ng2-pdf-viewer';
 import { HttpHeaders } from '@angular/common/http';
-import { AuthService } from '../../../core/providers/auth.service';
+import { AuthService } from '@core/providers/auth.service';
 
 const ESC_KEYCODE = 27;
 
