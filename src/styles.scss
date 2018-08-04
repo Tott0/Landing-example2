@@ -1,1 +1,86 @@
-/* You can add global styles to this file, and also import other style files */
+@import './src/scss/variables.scss';
+*:not(.mat-form-field-label-wrapper) {
+  box-sizing: border-box !important;
+}
+
+:root{
+  --header-height: 72px;
+}
+
+//FIXME look for proper font sizes
+html {
+  @include for-phone-only {
+    font-size: 16px;
+  }
+  @include for-tablet-portrait-up {
+    font-size: 16px;
+  }
+  @include for-tablet-landscape-up {
+    font-size: 20px;
+  }
+  @include for-desktop-up {
+    font-size: 20px;
+  }
+  @include for-big-desktop-up {
+    font-size: 22px;
+  }
+}
+
+body {
+  display: block;
+  margin: 0;
+}
+
+.component-wrapper {
+  margin-top: var(--header-height, 72px);
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  @include for-desktop-up {
+    width: 1200px !important;
+  }
+  @include for-big-desktop-up {
+    width: 1800px !important;
+  }
+}
+
+.row {
+  display: flex;
+  width: 100%;
+}
+
+.filler {
+  flex: 1 0 0;
+  &:not(.no-min) {
+    min-height: 1rem;
+    min-width: 1rem;
+  }
+}
+
+// .mat-typography {
+//   a,
+//   p,
+//   span,
+//   mat-icon.mat-icon,
+//   i,
+//   .svg-inline--fa,
+//   mat-header-cell,
+//   mat-cell {
+//     line-height: normal;
+//     margin: 0; // font-size: 1em;
+//   }
+// }
+.mat-tooltip.tooltip {
+  margin: 0;
+}
+
+.cdk-overlay-backdrop.cdk-overlay-backdrop-showing {
+  &.dark-backdrop {
+    background: $dark;
+    opacity: 0.85 !important;
+  }
+}

@@ -23,7 +23,8 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "src/scss/caxtor-theme.scss"
             ],
             "scripts": []
           },
@@ -72,8 +73,7 @@
             "tsConfig": "src/tsconfig.spec.json",
             "karmaConfig": "src/karma.conf.js",
             "styles": [
-              "src/styles.scss",
-              "src/scss/caxthor-theme.scss"
+              "src/styles.scss"
             ],
             "scripts": [],
             "assets": [

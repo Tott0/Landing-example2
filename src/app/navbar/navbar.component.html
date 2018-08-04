@@ -1,14 +1,14 @@
 <header>
   <mat-toolbar>
-    <a mat-button (click)="home()" class="logo">
-      <img src="assets/images/caxtor-logo-smol.png">
+    <a routerLink="/" class="logo">
+      <img src="assets/images/caxtor-logo-light.png">
     </a>
 
     <div class="filler"></div>
 
     <nav>
       <ul>
-        <li class="link-search">
+        <li>
           <a routerLink="/temproute_client">
             Búscar Espacio
           </a>
@@ -42,9 +42,17 @@
       </mat-menu>
     </ng-container>
 
-    <button mat-button class="btn-login" *ngIf="!authService.user" routerLink="/login">
-      <span class="button-text">Iniciar Sesión</span>
-    </button>
+    <nav>
+        <ul>
+          <li>
+            <a routerLink="/login" class="btn-login" *ngIf="!authService.user">
+              Iniciar Sesión
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+    
 
   </mat-toolbar>
 </header>
