@@ -1,4 +1,22 @@
 <div class="component-wrapper home-wrapper">
+  <section class="carousel-section">
+    <div class="section-content">
+      <ui-carousel [infinite]="true" [fade]="false" [speed]="200">
+        <!-- <ui-carousel-item>
+          <img [ui-lazy-load]="item.img">
+        </ui-carousel-item> -->
+        <ui-carousel-item>
+          <img [ui-lazy-load]="assets/images/big-caxtor.png">
+        </ui-carousel-item>
+        <ui-carousel-item>
+          <img [ui-lazy-load]="assets/images/big-caxtor.png">
+        </ui-carousel-item>
+        <ui-carousel-item>
+          <img [ui-lazy-load]="assets/images/big-caxtor.png">
+        </ui-carousel-item>
+      </ui-carousel>
+    </div>
+  </section>
   <section class="info-section">
 
     <div class="section-content">
@@ -57,7 +75,8 @@
             <span class="title">Busca</span>
             <span class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
               magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-              consequat.</span>
+              consequat.
+            </span>
           </div>
         </mat-step>
         <mat-step [stepControl]="secondFormGroup">
@@ -67,7 +86,8 @@
             <span class="title">Reserva</span>
             <span class="description">Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis
               aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
-              sint</span>
+              sint
+            </span>
           </div>
         </mat-step>
         <mat-step>
