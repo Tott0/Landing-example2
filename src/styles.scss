@@ -5,24 +5,47 @@
 
 :root{
   --header-height: 72px;
+
+  --html-font-size-xlg: 22px;
+  --html-font-size-lg: 20px;
+  --html-font-size-md: 16px;
+  --html-font-size-sm: 14px;
 }
 
-//FIXME look for proper font sizes
-html {
+body {
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  h1{
+    margin: 0 0 1em;  
+  }
+  h2{
+    margin: 0 0 1em;  
+  }
+  h3{
+    margin: 0 0 1em;  
+  }
+  h4{
+    margin: 0 0 1em;  
+  }
+  h5{
+    margin: 0 0 0.75em;  
+  }
+  h6{
+    margin: 0 0 0.75em;  
+  }
   @include for-phone-only {
-    font-size: 16px;
+    font-size: var(--html-font-size-sm);
   }
   @include for-tablet-portrait-up {
-    font-size: 16px;
+    font-size: var(--html-font-size-sm);
   }
   @include for-tablet-landscape-up {
-    font-size: 20px;
+    font-size: var(--html-font-size-md);
   }
   @include for-desktop-up {
-    font-size: 20px;
+    font-size: var(--html-font-size-lg);
   }
   @include for-big-desktop-up {
-    font-size: 22px;
+    font-size: var(--html-font-size-xlg);
   }
 }
 
@@ -40,6 +63,8 @@ body {
   flex-direction: column;
   align-items: center;
   width: 100%;
+  margin: 0 auto;
+  align-self: center;
   @include for-desktop-up {
     width: 1200px !important;
   }
@@ -61,19 +86,6 @@ body {
   }
 }
 
-// .mat-typography {
-//   a,
-//   p,
-//   span,
-//   mat-icon.mat-icon,
-//   i,
-//   .svg-inline--fa,
-//   mat-header-cell,
-//   mat-cell {
-//     line-height: normal;
-//     margin: 0; // font-size: 1em;
-//   }
-// }
 .mat-tooltip.tooltip {
   margin: 0;
 }
@@ -83,4 +95,10 @@ body {
     background: $dark;
     opacity: 0.85 !important;
   }
+}
+
+
+//fix for carousel images
+.ui-carousel-item img{
+  width: 100%;
 }

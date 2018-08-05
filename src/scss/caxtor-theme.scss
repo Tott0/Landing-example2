@@ -1,5 +1,7 @@
 @import '~@angular/material/theming';
 @import '../app/navbar/navbar.component.theme.scss';
+@import '../app/home/home.component.theme.scss';
+@import './global.theme.scss';
 // Plus imports for other components in your app.
 
 // Include the common styles for Angular Material. We include this here so that you only
@@ -13,7 +15,9 @@ $caxtor-accent:  mat-palette($mat-pink, A200, A100, A400);
 $caxtor-theme:   mat-light-theme($caxtor-primary, $caxtor-accent);
 
 @mixin component-custom-themes($theme){
+  @include global-theme($theme);
   @include navbar-component-theme($theme);
+  @include home-component-theme($theme);
 }
 
 // Include the default theme styles.

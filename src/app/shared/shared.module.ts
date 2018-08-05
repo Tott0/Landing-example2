@@ -19,11 +19,12 @@ import { DatePipe } from './pipes/date';
 import { Date2Pipe } from './pipes/date2';
 import { FullDatePipe } from './pipes/full-date';
 import { CopCurrencyPipe } from './pipes/cop-currency';
-import { PlatePipe } from './pipes/plate';
 import { DecimalPipe } from './pipes/decimal';
-import { DurationPipe } from './pipes/duration';
 import { EnumPositionTypePipe } from './pipes/enum-position-type';
 import { UsedMaterialComponentsModule } from '@shared/modules/used-material-components.module';
+
+import { UICarouselModule } from '@shared/components/UiCarousel/ui-carousel.module';
+
 
 @NgModule({
   imports: [
@@ -49,10 +50,9 @@ import { UsedMaterialComponentsModule } from '@shared/modules/used-material-comp
     Date2Pipe,
     FullDatePipe,
     CopCurrencyPipe,
-    PlatePipe,
     DecimalPipe,
-    DurationPipe,
     EnumPositionTypePipe,
+    //
   ],
   exports: [
     CommonModule,
@@ -70,10 +70,10 @@ import { UsedMaterialComponentsModule } from '@shared/modules/used-material-comp
     Date2Pipe,
     FullDatePipe,
     CopCurrencyPipe,
-    PlatePipe,
     DecimalPipe,
-    DurationPipe,
     EnumPositionTypePipe,
+    //
+    UICarouselModule
   ],
   entryComponents: [
     LoadingDialog,

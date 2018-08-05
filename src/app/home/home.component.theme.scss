@@ -1,0 +1,14 @@
+@import '~@angular/material/theming';
+@mixin home-component-theme($theme) {
+  $primary: map-get($map: $theme, $key: primary);
+  $background: map-get($theme, background);
+  $foreground: map-get($theme, foreground);
+  
+  .home-wrapper{
+    .info-section{
+      .section-content{
+        color: white;
+      }
+    }
+  }
+}

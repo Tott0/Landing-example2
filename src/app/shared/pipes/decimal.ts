@@ -15,7 +15,7 @@ import { Pipe, PipeTransform } from '@angular/core';
   name: 'decimal'
 })
 export class DecimalPipe implements PipeTransform {
-  transform(value: number, digits = 1) : string {
+  transform(value: number, digits = 1): string {
     return Number(value).toFixed(digits);
   }
 }
