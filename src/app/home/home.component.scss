@@ -1,4 +1,7 @@
 @import './src/scss/variables.scss';
+.component-wrapper{
+  margin-top: 0;
+}
 .home-wrapper{
   font-size: 1rem;
 
@@ -9,6 +12,10 @@
     &:not(:last-of-type){
       margin-bottom: 3em;
     }
+  }
+
+  .carousel-section{
+    position: relative;
   }
 
   .info-section{
@@ -47,16 +54,59 @@
   }
 
   .services-section{
-    .section-content{
-      display: flex;
+    .services-row{
+      display: grid;
+      grid-column-gap: 2em;
+      @include for-tablet-landscape-up{
+        grid-template-rows: 1fr;
+        grid-template-columns: repeat(4, 1fr);
+      }
       article.service{
+        align-items: center;
+        border-radius: 0.85em;
+        cursor: pointer;
         display: flex;
         flex-direction: column;
-        align-items: center;
-
-        h4.service-title{
-          text-align: center;
+        justify-content: center;
+        padding: 1em 2em;
+        width: 250px;
+        text-align: center;
+        font-size: 1.25em;
+        img{
+          height: 75px;
+          margin-bottom: 0.85em;
         }
+        h4{
+          margin: 0
+        }
+      }
+    }
+    .service-desc{
+      align-items: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      margin-top: 4em;
+
+      @include for-big-desktop-up{
+        padding: 0 300px;
+      }
+
+      .title{
+        margin-bottom: 0.5em;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        img{
+          height: 50px;
+          margin-right: 0.35em;
+        }
+        font-size: 2em;
+        // font-weight: 600;
+      }
+      .desc{
+        font-size: 1.25em;
+        text-align: center;
       }
     }
   }

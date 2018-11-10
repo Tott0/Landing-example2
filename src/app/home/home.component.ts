@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
+  selectedService = 0;
+
   constructor() { }
 
   ngOnInit() {

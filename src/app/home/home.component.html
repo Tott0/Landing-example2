@@ -1,4 +1,146 @@
 <div class="component-wrapper home-wrapper">
+
+
+
+  <section class="carousel-section">
+    <div class="shadow-overlay"></div>
+    <div class="section-content">
+      <ui-carousel [infinite]="true" [fade]="false" [speed]="4000" [autoPlaySpeed]="12500" [height]="'600px'">
+        <!-- <ui-carousel-item>
+              <img [ui-lazy-load]="item.img">
+            </ui-carousel-item> -->
+        <ui-carousel-item>
+          <img [ui-lazy-load]="'assets/images/warehouse2.jpg'">
+        </ui-carousel-item>
+        <ui-carousel-item>
+          <img [ui-lazy-load]="'assets/images/warehouse3.jpg'">
+        </ui-carousel-item>
+        <ui-carousel-item>
+          <img [ui-lazy-load]="'assets/images/warehouse4.jpg'">
+        </ui-carousel-item>
+      </ui-carousel>
+    </div>
+  </section>
+
+  <section class="services-section">
+
+    <div class="container">
+
+      <div class="services-row">
+
+        <article class="service" id="first-service" (click)="selectedService = 0" [ngClass]="{'selected': selectedService === 0}">
+          <img src="assets/images/package.png" class="icon">
+          <h4 class="service-title">
+            eCommerce Fulfillment
+          </h4>
+        </article>
+
+        <article class="service" id="second-service" (click)="selectedService = 1" [ngClass]="{'selected': selectedService === 1}">
+          <img src="assets/images/boxes.png" class="icon">
+          <h4 class="service-title">
+            Retail Distribution
+          </h4>
+        </article>
+
+        <article class="service" id="third-service" (click)="selectedService = 2" [ngClass]="{'selected': selectedService === 2}">
+          <img src="assets/images/warehouse.png" class="icon">
+          <h4 class="service-title">
+            Inventory Overflow
+          </h4>
+        </article>
+
+        <article class="service" id="third-service" (click)="selectedService = 3" [ngClass]="{'selected': selectedService === 3}">
+          <img src="assets/images/warehouse.png" class="icon">
+          <h4 class="service-title">
+            Delivery
+          </h4>
+        </article>
+
+      </div>
+
+      <div class="service-desc" *ngIf="selectedService === 0">
+
+        <span class="title">
+          <img src="assets/images/package.png">
+          <span>eCommerce Fulfillment</span>
+        </span>
+
+        <p class="desc">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed mi ligula, consectetur id mollis eget,
+          eleifend nec felis. Donec justo justo, faucibus et ligula laoreet, ullamcorper vehicula tortor. Nam eget
+          pretium erat. Aenean condimentum, felis sed sollicitudin hendrerit, quam enim auctor enim, at mattis ante
+          ligula at tortor. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis
+          egestas. Duis enim leo, pharetra ut velit id, fermentum molestie est. Praesent commodo nec diam a bibendum.
+          Sed dapibus porta velit, eget ultrices mauris ornare ac. Suspendisse aliquam justo id libero varius
+          gravida. Morbi eleifend lectus eget sagittis pharetra. Nullam tempus velit ullamcorper dolor viverra
+          faucibus. Proin in rutrum diam. Proin eget nisl ullamcorper, cursus metus id, imperdiet elit. Donec.
+        </p>
+
+      </div>
+
+      <div class="service-desc" *ngIf="selectedService === 1">
+
+        <span class="title">
+          <img src="assets/images/boxes.png">
+          <span>Retail Distribution</span>
+        </span>
+
+        <p class="desc">
+          Donec sed ultricies sapien, quis facilisis velit. Duis magna elit, porta ut suscipit ac, suscipit non nisl.
+          Aenean sed sapien mi. Etiam tempus purus id posuere imperdiet. Aliquam dignissim, libero eu ullamcorper
+          dictum, dolor massa suscipit lacus, ut commodo neque mi vel ante. Suspendisse commodo molestie elit sit amet
+          posuere. Pellentesque vitae ligula efficitur, vulputate justo eu, lobortis dui. Donec vel magna et metus
+          lobortis vulputate. Proin rutrum metus maximus elit fermentum, et viverra dui accumsan. Donec placerat metus
+          vitae leo vulputate tristique. Nulla neque massa, tristique id viverra sed, tempor sed justo. Maecenas
+          hendrerit nulla vel neque dapibus mollis.
+        </p>
+
+      </div>
+
+      <div class="service-desc" *ngIf="selectedService === 2">
+
+        <span class="title">
+          <img src="assets/images/warehouse.png">
+          <span>Inventory Overflow</span>
+        </span>
+
+        <p class="desc">
+          Phasellus tortor purus, egestas et mollis vitae, placerat vitae orci. Sed venenatis felis sed posuere
+          laoreet. Sed tempor lacus euismod porttitor suscipit. Quisque placerat euismod ligula quis viverra. Vivamus
+          hendrerit vitae risus sed lobortis. Nunc ut bibendum lacus. Morbi blandit vel lectus ut tempus. In blandit
+          massa sit amet lectus bibendum, quis convallis odio pellentesque. Integer lacinia justo ac eros suscipit, vel
+          luctus quam posuere. Donec tempor vitae ante id iaculis. Mauris tristique finibus sem, ac vulputate nulla
+          porttitor non. Nullam fermentum, velit a mollis rhoncus, orci tellus malesuada velit, sed hendrerit tortor
+          ipsum et erat. Donec bibendum tempor bibendum. Ut iaculis feugiat aliquet. Nam placerat accumsan mi, a
+          euismod diam sollicitudin hendrerit. Vivamus elit.
+        </p>
+
+      </div>
+
+      <div class="service-desc" *ngIf="selectedService === 3">
+
+        <span class="title">
+          <img src="assets/images/warehouse.png">
+          <span>Delivery</span>
+        </span>
+
+        <p class="desc">
+          Etiam id ante ex. Pellentesque aliquet sed mauris id accumsan. Suspendisse purus dui, iaculis in tempor in,
+          posuere sit amet velit. Aenean ante odio, auctor et mollis pharetra, fringilla vitae urna. Maecenas efficitur
+          est at neque aliquet porttitor. Suspendisse eget augue ut orci ullamcorper imperdiet vitae a diam. In hac
+          habitasse platea dictumst. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus
+          mus. Vivamus elementum sagittis tortor, dictum pretium eros rhoncus at. Integer lacinia leo a vestibulum
+          feugiat. Donec porta consequat libero a rhoncus. Praesent ut molestie nisl, in fermentum ex. Maecenas
+          eleifend, tellus vitae volutpat tincidunt, tellus.
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
   <section class="info-section">
 
     <div class="img-shadow-effect"></div>
@@ -10,63 +152,6 @@
       <button mat-raised-button color="primary">Ver Más...</button>
     </div>
   </section>
-
-  <section class="services-section">
-
-    <div class="container">
-      <div class="section-content">
-        <article class="service" id="first-service">
-          <a routerLink="/service1" class="service-link">
-            <img src="assets/images/package.png" class="icon">
-            <h4 class="service-title">
-              Servicio
-            </h4>
-          </a>
-          <p>Explicación del Servicio, Explicación del Servico</p>
-        </article>
-
-        <article class="service" id="second-service">
-          <a routerLink="/service1" class="service-link">
-            <img src="assets/images/boxes.png" class="icon">
-            <h4 class="service-title">
-              Servicio
-            </h4>
-          </a>
-          <p>Explicación del Servicio, Explicación del Servico</p>
-        </article>
-
-        <article class="service" id="third-service">
-          <a routerLink="/service1" class="service-link">
-            <img src="assets/images/warehouse.png" class="icon">
-            <h4 class="service-title">
-              Servicio
-            </h4>
-          </a>
-          <p>Explicación del Servicio, Explicación del Servico</p>
-        </article>
-      </div>
-    </div>
-
-  </section>
-
-  <section class="carousel-section">
-      <div class="section-content">
-        <ui-carousel [infinite]="true" [fade]="false" [speed]="4000" [autoPlaySpeed]="12500">
-          <!-- <ui-carousel-item>
-            <img [ui-lazy-load]="item.img">
-          </ui-carousel-item> -->
-          <ui-carousel-item>
-            <img [ui-lazy-load]="'assets/images/warehouse2.jpg'">
-          </ui-carousel-item>
-          <ui-carousel-item>
-            <img [ui-lazy-load]="'assets/images/warehouse3.jpg'">
-          </ui-carousel-item>
-          <ui-carousel-item>
-            <img [ui-lazy-load]="'assets/images/warehouse4.jpg'">
-          </ui-carousel-item>
-        </ui-carousel>
-      </div>
-    </section>
 
   <section class="section-process">
     <div class="container">
@@ -80,8 +165,10 @@
             <div class="step-content">
               <i class="fa fa-search" aria-hidden="true"></i>
               <span class="title">Busca</span>
-              <span class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-                magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+              <span class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                incididunt ut labore et dolore
+                magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+                commodo
                 consequat.
               </span>
             </div>
@@ -91,8 +178,10 @@
             <div class="step-content">
               <i class="fa fa-calendar-plus-o" aria-hidden="true"></i>
               <span class="title">Reserva</span>
-              <span class="description">Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+              <span class="description">Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+                aliquip ex ea commodo consequat.
+                Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                Excepteur
                 sint
               </span>
             </div>
@@ -102,8 +191,10 @@
             <div class="step-content">
               <i class="fa fa-truck" aria-hidden="true"></i>
               <span class="title">Utiliza</span>
-              <span class="description">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
-                sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Ut enim
+              <span class="description">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+                fugiat nulla pariatur. Excepteur
+                sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Ut
+                enim
                 ad
               </span>
             </div>

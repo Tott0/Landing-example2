@@ -1,57 +1,72 @@
-$primary: #80DEEA;
-$primary-dark: #00838F;
-$light: #FAFAFA;
-mat-toolbar {
+@import './src/scss/variables.scss';
+.copyright {
   padding: 0.75rem 2rem;
   height: auto;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
   nav,
   ul {
     margin: 0;
     padding: 0;
     display: flex;
-    flex-direction: row; // justify-content: flex-end;
+    flex-direction: row;
     li {
       list-style: none;
-      margin: 0.5em;
-      &:hover {
-        cursor: pointer;
-        a {
-          padding-bottom: 0.2em;
-          border-bottom: solid 1px $light;
-        }
-      }
+      margin: 0.5em 0;
+      padding: 0 0.5em;
       a {
         font-size: 0.75em;
+        &:hover {
+          text-decoration: underline;
+        }
       }
-    }
-  }
-  span {
-    font-size: 0.75em;
-  }
-  .contact {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    span {
-      // display: inline-flex;
-      i{
-        margin: 0 0.2rem;
-      }
-    }
-    .title {
-      font-size: 1em;
-      font-weight: 600;
-      border-bottom: solid 1px $light;
-    }
-    &>* {
-      margin-bottom: 0.25rem;
     }
   }
 }
+.top-footer{
+  padding-top: 10em;
+  padding-bottom: 5em;
+  font-size: 1rem;
+  .container{
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 1.5fr 1fr 1fr;
+    grid-column-gap: 2em;
 
-a,
-.title,
-.menu-toggle {
-  color: $light;
-  text-decoration: none;
+    @include for-big-desktop-up{
+      padding: 0 200px;
+    }
+
+    article{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+
+      .title{
+        margin-bottom: 2em;
+        font-weight: 500;
+      }
+
+      img{
+        margin-right: 1em;
+      }
+    }
+
+    .caxtor-info{
+      img{
+        height: 90px;
+      }
+      
+    }
+
+    .social{
+      a{
+        text-decoration: none;
+      }
+    }
+  }
 }

@@ -3,11 +3,37 @@
   $primary: map-get($map: $theme, $key: primary);
   $background: map-get($theme, background);
   $foreground: map-get($theme, foreground);
-  
-  .home-wrapper{
-    .info-section{
-      .section-content{
+  .home-wrapper {
+    .info-section {
+      .section-content {
         color: white;
+      }
+    }
+    .img-shadow-effect,
+    .shadow-overlay {
+      background: transparentize($color: #000000, $amount: 0.45);
+    }
+    .services-section {
+      article.service {
+        border: solid 2px mat-color($foreground, divider);
+        color: mat-color($foreground, text);
+
+        &.selected{
+          background: mat-color($primary, 900);
+          color: rgba(white, 0.87);
+          transition: background-color 0.15s ease-in;
+        }
+      }
+
+      .service-desc{
+        .title{
+          color: mat-color($primary, 900);
+        }
+        .desc{
+          p{
+            color: mat-color($foreground, text);
+          }
+        }
       }
     }
   }

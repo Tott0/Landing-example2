@@ -1,5 +1,6 @@
 @import '~@angular/material/theming';
 @import '../app/navbar/navbar.component.theme.scss';
+@import '../app/footer/footer.component.theme.scss';
 @import '../app/home/home.component.theme.scss';
 @import './global.theme.scss';
 // Plus imports for other components in your app.
@@ -10,13 +11,14 @@
 @include mat-core();
 
 // Define the default theme
-$caxtor-primary: mat-palette($mat-indigo);
+$caxtor-primary: mat-palette($mat-light-blue);
 $caxtor-accent:  mat-palette($mat-pink, A200, A100, A400);
 $caxtor-theme:   mat-light-theme($caxtor-primary, $caxtor-accent);
 
 @mixin component-custom-themes($theme){
   @include global-theme($theme);
   @include navbar-component-theme($theme);
+  @include footer-component-theme($theme);
   @include home-component-theme($theme);
 }
 

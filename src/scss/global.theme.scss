@@ -1,6 +1,6 @@
 @import '~@angular/material/theming';
 @mixin global-theme($theme) {
-  .img-shadow-effect{
+  .img-shadow-effect, .shadow-overlay{
     background: transparentize($color: #000000, $amount: 0.75);
   }
 }

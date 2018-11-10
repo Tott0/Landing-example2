@@ -3,20 +3,26 @@
   $primary: map-get($map: $theme, $key: primary);
   $background: map-get($theme, background);
   $foreground: map-get($theme, foreground);
-  
-  mat-toolbar.mat-toolbar {
-    background-color: mat-color($background, status-bar);
-    background-color: mat-color($background, card);
-    a:not(.logo) {
-      color: mat-color($foreground, text);
-      &:hover {
-        &:not(.highlight){
-          // box-shadow: 0 1px 0 0 mat-color($background, hover);
-          border-bottom: solid 1px mat-color($foreground, divider);
-          color: mat-color($primary, darker);
-          transition: color 0.15s ease-in;
+
+  header.caxtor-dark-theme{
+    mat-toolbar.mat-toolbar {
+      // background: transparentize($color: mat-color($background, status-bar), $amount: 0.85);
+      background: transparentize($color: mat-color($background, status-bar), $amount: 1);
+      
+      a:not(.logo) {
+        color: mat-color($foreground, text);
+        &:hover {
+          &:not(.highlight){
+            // box-shadow: 0 1px 0 0 mat-color($background, hover);
+            // border-bottom: solid 1px mat-color($foreground, divider);
+            border-bottom: none;
+            color: mat-color($primary, darker);
+            transition: color 0.15s ease-in;
+          }
         }
       }
     }
+
   }
+  
 }
