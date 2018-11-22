@@ -1,31 +1,28 @@
 @import './src/scss/variables.scss';
-.component-wrapper{
+.component-wrapper {
   margin-top: 0;
 }
-.home-wrapper{
-  font-size: 1rem;
 
-  & > section{
-    &:not(:first-of-type){
+.home-wrapper {
+  font-size: 1rem;
+  &>section {
+    &:not(:first-of-type) {
       margin-top: 1.5em;
     }
-    &:not(:last-of-type){
+    &:not(:last-of-type) {
       margin-bottom: 3em;
     }
   }
-
-  .carousel-section{
+  .carousel-section {
     position: relative;
   }
-
-  .info-section{
+  .info-section {
     background: url("/assets/images/warehousing-bg1.jpg") no-repeat fixed center;
     background-size: cover;
     height: 500px;
     position: relative;
     z-index: 0;
-
-    .img-shadow-effect{
+    .img-shadow-effect {
       position: absolute;
       top: 0;
       left: 0;
@@ -33,8 +30,7 @@
       bottom: 0;
       z-index: 0;
     }
-
-    .section-content{
+    .section-content {
       align-items: center;
       display: flex;
       flex-direction: column;
@@ -43,8 +39,7 @@
       justify-content: center;
       position: relative;
       z-index: 210;
-
-      button.mat-raised-button{
+      button.mat-raised-button {
         font-size: 1.25em;
         margin-top: 1em;
         padding: 0.25em 0;
@@ -52,16 +47,18 @@
       }
     }
   }
-
-  .services-section{
-    .services-row{
+  .section-process {
+    height: 500px;
+  }
+  .services-section {
+    .services-row {
       display: grid;
       grid-column-gap: 2em;
-      @include for-tablet-landscape-up{
+      @include for-tablet-landscape-up {
         grid-template-rows: 1fr;
         grid-template-columns: repeat(4, 1fr);
       }
-      article.service{
+      article.service {
         align-items: center;
         border-radius: 0.85em;
         cursor: pointer;
@@ -72,41 +69,75 @@
         width: 250px;
         text-align: center;
         font-size: 1.25em;
-        img{
+        img {
           height: 75px;
           margin-bottom: 0.85em;
         }
-        h4{
+        h4 {
           margin: 0
         }
       }
     }
-    .service-desc{
+    .service-desc {
       align-items: center;
       display: flex;
       flex-direction: column;
       justify-content: center;
       margin-top: 4em;
-
-      @include for-big-desktop-up{
+      @include for-big-desktop-up {
         padding: 0 300px;
       }
-
-      .title{
+      .title {
         margin-bottom: 0.5em;
         display: flex;
         justify-content: center;
         align-items: center;
-        img{
+        img {
           height: 50px;
           margin-right: 0.35em;
         }
-        font-size: 2em;
-        // font-weight: 600;
+        font-size: 2em; // font-weight: 600;
       }
-      .desc{
+      .desc {
         font-size: 1.25em;
         text-align: center;
+      }
+    }
+  }
+  .top-footer {
+    padding-top: 10em;
+    padding-bottom: 5em;
+    font-size: 1rem;
+    .container {
+      display: grid;
+      grid-template-rows: 1fr;
+      grid-template-columns: 1.5fr 1fr 1fr;
+      grid-column-gap: 2em;
+      @include for-big-desktop-up {
+        padding: 0 200px;
+      }
+      article {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        .title {
+          margin-bottom: 2em;
+          font-weight: 500;
+        }
+        img {
+          margin-right: 1em;
+        }
+      }
+      .caxtor-info {
+        img {
+          height: 90px;
+        }
+      }
+      .social {
+        a {
+          text-decoration: none;
+        }
       }
     }
   }

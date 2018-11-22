@@ -1,7 +1,13 @@
 @import './src/scss/variables.scss';
+:host{
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  min-height: calc(100vh - var(--footer-height));
+}
 mat-card {
   margin-top: 5em;
-  font-size: 0.95rem;
+  font-size: 1.5rem;
   padding: 1em 2em 2em 2em;
   width: 30vw;
   mat-card-title{

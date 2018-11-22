@@ -1,7 +1,14 @@
 @import './src/scss/variables.scss';
+// :host {
+//   display: flex;
+//   flex-direction: column;
+//   flex-grow: 1;
+//   height: var(--footer-height);
+//   background: none;
+// }
 .copyright {
   padding: 0.75rem 2rem;
-  height: auto;
+  height: var(--footer-height);
 
   display: flex;
   justify-content: center;
@@ -22,50 +29,6 @@
         &:hover {
           text-decoration: underline;
         }
-      }
-    }
-  }
-}
-.top-footer{
-  padding-top: 10em;
-  padding-bottom: 5em;
-  font-size: 1rem;
-  .container{
-    display: grid;
-    grid-template-rows: 1fr;
-    grid-template-columns: 1.5fr 1fr 1fr;
-    grid-column-gap: 2em;
-
-    @include for-big-desktop-up{
-      padding: 0 200px;
-    }
-
-    article{
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: flex-start;
-
-      .title{
-        margin-bottom: 2em;
-        font-weight: 500;
-      }
-
-      img{
-        margin-right: 1em;
-      }
-    }
-
-    .caxtor-info{
-      img{
-        height: 90px;
-      }
-      
-    }
-
-    .social{
-      a{
-        text-decoration: none;
       }
     }
   }
