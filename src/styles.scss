@@ -11,6 +11,11 @@
   --html-font-size-lg: 20px;
   --html-font-size-md: 16px;
   --html-font-size-sm: 14px;
+
+  
+  --color-light: #FAFAFA;
+  --color-dark: #212121;
+  --color-danger: #f44336;
 }
 
 body {
@@ -102,7 +107,7 @@ body {
 
 .cdk-overlay-backdrop.cdk-overlay-backdrop-showing {
   &.dark-backdrop {
-    background: $dark;
+    background: var(--color-dark);
     opacity: 0.85 !important;
   }
 }

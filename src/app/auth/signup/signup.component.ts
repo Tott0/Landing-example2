@@ -51,7 +51,7 @@ export class SignupComponent implements OnInit {
   get renterForm() { return this.userForm.get('renter'); }
   get matInmobiliaria() { return this.renterForm.get('matricula_inmobiliaria'); }
   bankReference: DocumentFile;
-  certLibTra: DocumentFile;
+  // certLibTra: DocumentFile;
   rut: DocumentFile;
 
   constructor(
@@ -137,7 +137,7 @@ export class SignupComponent implements OnInit {
       const child = requestParams.company || requestParams.person;
       child.renter_attributes = {
         bank_reference: this.bankReference,
-        certificado_libertad_tradicion: this.certLibTra,
+        // certificado_libertad_tradicion: this.certLibTra,
         rut: this.rut,
         matricula_inmobiliaria: this.matInmobiliaria.value,
       };
@@ -176,9 +176,9 @@ export class SignupComponent implements OnInit {
       case 0:
         this.bankReference = f;
         break;
-      case 1:
-        this.certLibTra = f;
-        break;
+      // case 1:
+      //   this.certLibTra = f;
+      //   break;
       case 2:
         this.rut = f;
         break;
@@ -200,14 +200,14 @@ export class SignupComponent implements OnInit {
     }
     return this.renterForm.valid &&
       this.bankReference &&
-      this.certLibTra &&
+      // this.certLibTra &&
       this.rut;
   }
 
   onWillRentchange(accordion) {
     this.renterForm.reset();
     this.bankReference = undefined;
-    this.certLibTra = undefined;
+    // this.certLibTra = undefined;
     this.rut = undefined;
     this.willRent ? accordion.open() : accordion.close();
     console.log(this.willRent);

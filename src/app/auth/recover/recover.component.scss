@@ -14,7 +14,7 @@ mat-card {
   .guide{
     margin: 0;
     margin-top: 0.5em;
-    color: transparentize($color: $dark, $amount: 0.2);
+    // color: transparentize($color: var(--color-dark), $amount: 0.2);
   }
   form {
     display: flex;

@@ -1,6 +1,4 @@
-$primary: #80DEEA;
-$light: #FAFAFA;
-$dark: #212121;
+@import './src/scss/variables.scss';
 .dialog-warehouse-filters {
   max-width: 1200px;
   width: 1200px;
@@ -17,7 +15,7 @@ $dark: #212121;
       top: 0.25em;
       right: 0.25em;
       font-size: 1em;
-      color: lighten($color: $dark, $amount: 35);
+      // color: lighten($color: var(--color-dark), $amount: 35);
     }
     .mat-dialog-content {
       &>div {
@@ -44,8 +42,8 @@ $dark: #212121;
     .mat-dialog-actions {
       justify-content: center;
       button.btn-filter {
-        background: $primary;
-        color: $light;
+        // background: $primary;
+        // color: $light;
       }
     }
   }

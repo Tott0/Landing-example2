@@ -1,0 +1,21 @@
+@import '~@angular/material/theming';
+@mixin loading-component-theme($theme) {
+  $primary: map-get($map: $theme, $key: primary);
+  $background: map-get($theme, background);
+  $foreground: map-get($theme, foreground);
+  .dialog-loading {
+    mat-dialog-container {
+      background: var(--color-light);
+    }
+    .mat-dialog-content {
+      p {
+        color: var(--color-dark);
+      }
+      mat-spinner {
+        circle {
+          stroke: mat-color(primary, lighter);
+        }
+      }
+    }
+  }
+}
