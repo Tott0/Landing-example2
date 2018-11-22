@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.6.0"></a>
+# [0.6.0](https://gitlab.com/tott0/caxtor/compare/v0.5.0...v0.6.0) (2018-11-22)
+
+
+### Features
+
+* adjusted signup css, deleted fields ([9a81541](https://gitlab.com/tott0/caxtor/commit/9a81541))
+* navbar theme fix, auth page ([0182181](https://gitlab.com/tott0/caxtor/commit/0182181))
+
+
+
 <a name="0.5.0"></a>
 # [0.5.0](https://gitlab.com/tott0/caxtor/compare/v0.4.0...v0.5.0) (2018-11-10)
 
