@@ -13,12 +13,6 @@
 
           <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
 
-            <mat-form-field>
-              <input matInput placeholder="Correo Electrónico" type="text" [formControl]="email" (input)="errors.message = undefined;">
-              <mat-error *ngIf="email.invalid || errors.email">{{getErrorMessage(email, errors.email)}}</mat-error>
-            </mat-form-field>
-
-
             <mat-radio-group [formControl]="personType">
               <mat-radio-button [value]="PersonType.NATURAL">Persona Natural</mat-radio-button>
               <mat-radio-button [value]="PersonType.JURIDICA">Persona Jurídica</mat-radio-button>
@@ -87,6 +81,11 @@
               <mat-error *ngIf="phoneNumber.invalid || errors.contact_phone">{{getErrorMessage(phoneNumber,
                 errors.contact_phone)}}</mat-error>
             </mat-form-field>
+
+            <mat-form-field>
+                <input matInput placeholder="Correo Electrónico" type="text" [formControl]="email" (input)="errors.message = undefined;">
+                <mat-error *ngIf="email.invalid || errors.email">{{getErrorMessage(email, errors.email)}}</mat-error>
+              </mat-form-field>  
 
             <div [formGroup]="passwords" *ngIf="!loadedUser">
               <mat-form-field>

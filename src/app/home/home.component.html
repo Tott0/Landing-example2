@@ -29,28 +29,32 @@
       <div class="services-row">
 
         <article class="service" id="first-service" (click)="selectedService = 0" [ngClass]="{'selected': selectedService === 0}">
-          <img src="assets/images/package.png" class="icon">
+          <img *ngIf="selectedService === 0" src="assets/images/package-w.png" class="icon">
+          <img *ngIf="selectedService !== 0" src="assets/images/package-b.png" class="icon">
           <h4 class="service-title">
             eCommerce Fulfillment
           </h4>
         </article>
 
         <article class="service" id="second-service" (click)="selectedService = 1" [ngClass]="{'selected': selectedService === 1}">
-          <img src="assets/images/boxes.png" class="icon">
+          <img *ngIf="selectedService === 1" src="assets/images/retail-w.png" class="icon">
+          <img *ngIf="selectedService !== 1" src="assets/images/retail-b.png" class="icon">
           <h4 class="service-title">
             Retail Distribution
           </h4>
         </article>
 
         <article class="service" id="third-service" (click)="selectedService = 2" [ngClass]="{'selected': selectedService === 2}">
-          <img src="assets/images/warehouse.png" class="icon">
+          <img *ngIf="selectedService === 2" src="assets/images/warehouse-w.png" class="icon">
+          <img *ngIf="selectedService !== 2" src="assets/images/warehouse-b.png" class="icon">
           <h4 class="service-title">
             Inventory Overflow
           </h4>
         </article>
 
         <article class="service" id="third-service" (click)="selectedService = 3" [ngClass]="{'selected': selectedService === 3}">
-          <img src="assets/images/warehouse.png" class="icon">
+          <img *ngIf="selectedService === 3" src="assets/images/truck-w.png" class="icon">
+          <img *ngIf="selectedService !== 3" src="assets/images/truck-b.png" class="icon">
           <h4 class="service-title">
             Delivery
           </h4>
@@ -81,7 +85,7 @@
       <div class="service-desc" *ngIf="selectedService === 1">
 
         <span class="title">
-          <img src="assets/images/boxes.png">
+          <img src="assets/images/retail.png">
           <span>Retail Distribution</span>
         </span>
 
@@ -120,7 +124,7 @@
       <div class="service-desc" *ngIf="selectedService === 3">
 
         <span class="title">
-          <img src="assets/images/warehouse.png">
+          <img src="assets/images/truck.png">
           <span>Delivery</span>
         </span>
 
@@ -159,7 +163,7 @@
   </section>
 
   
-  <div class="top-footer">
+  <div class="top-footer caxtor-dark-theme">
     <div class="container">
 
       <article class="caxtor-info">
@@ -177,22 +181,22 @@
         <h2 class="title">CONTACT US</h2>
 
         <span>
-          <img src="logo" alt="logo">
+          <i class="fas fa-map-marker-alt"></i>
           <span>Caxtor 1211, 3605 KZ, Maarssen</span>
         </span>
 
         <span>
-          <img src="logo" alt="logo">
+          <i class="fas fa-phone"></i>
           <span>Phone: 1300 623 863</span>
         </span>
 
         <span>
-          <img src="logo" alt="logo">
+          <i class="fas fa-envelope"></i>
           <span>enquiries@caxtor.com</span>
         </span>
 
         <span>
-          <img src="logo" alt="logo">
+          <i class="far fa-clock"></i>
           <span>9:00am - 5:00pm</span>
         </span>
 
@@ -207,22 +211,30 @@
         <h2 class="title">FOLLOW US</h2>
 
         <a href="https://facebook.com" target="_blank" class="sn">
-          <img src="logo" alt="logo">
+          <span class="icon">
+            <i class="fab fa-facebook-f"></i>
+          </span>
           <span>Facebook</span>
         </a>
 
         <a href="https://twitter.com" target="_blank" class="sn">
-          <img src="logo" alt="logo">
+          <span class="icon">
+            <i class="fab fa-twitter"></i>
+          </span>
           <span>Twitter</span>
         </a>
 
         <a href="https://plus.google.com" target="_blank" class="sn">
-          <img src="logo" alt="logo">
+          <span class="icon">
+            <i class="fab fa-google-plus-g"></i>
+          </span>
           <span>Google+</span>
         </a>
 
         <a href="https://youtube.com" target="_blank" class="sn">
-          <img src="logo" alt="logo">
+          <span class="icon">
+            <i class="fab fa-youtube"></i>
+          </span>
           <span>Youtube</span>
         </a>
 

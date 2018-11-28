@@ -68,13 +68,14 @@
         padding: 1em 2em;
         width: 250px;
         text-align: center;
-        font-size: 1.25em;
+        font-size: 1.5em;
         img {
           height: 75px;
           margin-bottom: 0.85em;
         }
         h4 {
-          margin: 0
+          margin: 0;
+          font-weight: 500;
         }
       }
     }
@@ -107,7 +108,7 @@
   .top-footer {
     padding-top: 10em;
     padding-bottom: 5em;
-    font-size: 1rem;
+    font-size: 1.5rem;
     .container {
       display: grid;
       grid-template-rows: 1fr;
@@ -119,10 +120,11 @@
       article {
         display: flex;
         flex-direction: column;
-        justify-content: center;
+        justify-content: flex-start;
         align-items: flex-start;
+        height: 100%;
         .title {
-          margin-bottom: 2em;
+          margin-bottom: 1.5em;
           font-weight: 500;
         }
         img {
@@ -134,9 +136,32 @@
           height: 90px;
         }
       }
+      .contact-info{
+        & > span{
+          display: flex;
+          align-items: center;
+          margin: 0.25em 0;
+        }
+        i{
+          margin-right: 1em;
+        }
+      }
       .social {
-        a {
+        &>a{
+          align-items: center;
+          display: flex;
           text-decoration: none;
+          margin: 0.25em 0;
+
+          .icon{
+            border-radius: 50%;
+            height: 50px;
+            width: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 0.5em;
+          }
         }
       }
     }

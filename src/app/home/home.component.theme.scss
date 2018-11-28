@@ -17,33 +17,38 @@
       article.service {
         border: solid 2px mat-color($foreground, divider);
         color: mat-color($foreground, text);
-
-        &.selected{
-          background: mat-color($primary, 900);
-          color: rgba(white, 0.87);
+        &.selected {
+          background: mat-color($primary, 800);
+          color: white;
           transition: background-color 0.15s ease-in;
         }
       }
-
-      .service-desc{
-        .title{
-          color: mat-color($primary, 900);
+      .service-desc {
+        .title {
+          color: mat-color($primary, 800);
         }
-        .desc{
-          p{
+        .desc {
+          p {
             color: mat-color($foreground, text);
           }
         }
       }
     }
-    .top-footer {
-      background: transparentize($color: mat-color($background, app-bar), $amount: 0);
-      color: mat-color($foreground, text);
-      a,
-      h2 {
-        color: mat-color($foreground, text);
+  }
+  .caxtor-dark-theme.top-footer {
+    background: var(--color-dark);
+    color: var(--color-light);
+    a,
+    h2,
+    p,
+    i {
+      color: var(--color-light);
+    }
+    .social{
+      .icon{
+        border: solid 1px var(--color-light);
+        color: var(--color-light);
       }
     }
-    
   }
 }

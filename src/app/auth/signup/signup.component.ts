@@ -198,10 +198,7 @@ export class SignupComponent implements OnInit {
     if (!this.willRent) {
       return false;
     }
-    return this.renterForm.valid &&
-      this.bankReference &&
-      // this.certLibTra &&
-      this.rut;
+    return !(this.renterForm.valid && this.bankReference && this.rut);
   }
 
   onWillRentchange(accordion) {
