@@ -25,6 +25,8 @@ export class SignupComponent implements OnInit {
   PersonType = PersonType;
   willRent = false;
 
+  terms = false;
+
   errors: any = {};
   userForm: FormGroup;
   get email() { return this.userForm.get('email'); }

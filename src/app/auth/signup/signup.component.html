@@ -83,9 +83,9 @@
             </mat-form-field>
 
             <mat-form-field>
-                <input matInput placeholder="Correo Electrónico" type="text" [formControl]="email" (input)="errors.message = undefined;">
-                <mat-error *ngIf="email.invalid || errors.email">{{getErrorMessage(email, errors.email)}}</mat-error>
-              </mat-form-field>  
+              <input matInput placeholder="Correo Electrónico" type="text" [formControl]="email" (input)="errors.message = undefined;">
+              <mat-error *ngIf="email.invalid || errors.email">{{getErrorMessage(email, errors.email)}}</mat-error>
+            </mat-form-field>
 
             <div [formGroup]="passwords" *ngIf="!loadedUser">
               <mat-form-field>
@@ -162,7 +162,11 @@
             {{ errors.message }}
           </mat-error>
 
-          <button mat-raised-button color="primary" class="btn-submit" [disabled]="userForm.invalid && invalidRenter()"
+          <mat-checkbox [(ngModel)]="terms" class="cb-terms"">
+            He leído y acepto los <a href="/terminos-y-condiciones" target="_blank" class="color">Términos y Condiciones</span>
+          </mat-checkbox>
+
+          <button mat-raised-button color="primary" class="btn-submit" [disabled]="userForm.invalid && invalidRenter() && terms"
             (click)="onSubmit()">
             <span>Completar Registro</span>
           </button>
