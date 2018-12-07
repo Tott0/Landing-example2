@@ -3,6 +3,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 import { AuthService } from '../core/providers/auth.service';
 import { UserType } from '../shared/models/user.model';
+import { AppConstants } from '@app/app-constants';
 
 @Component({
   selector: 'app-navbar',
@@ -59,5 +60,9 @@ export class NavbarComponent implements OnInit {
       }
     }
 
+  }
+
+  isAtHome() {
+    return AppConstants.isAtHome;
   }
 }

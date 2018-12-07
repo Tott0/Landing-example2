@@ -28,10 +28,27 @@
           color: mat-color($primary, 800);
         }
         .desc {
-          p {
-            color: mat-color($foreground, text);
-          }
+          color: lighten(mat-color($foreground, text), 20);
         }
+      }
+    }
+    .trends-section {
+      .bg {
+        background: transparentize(mat-color(mat-palette($mat-grey), 100), $amount: 0.15);
+      }
+      .title {
+        .highlight {
+          color: mat-color($primary, darker);
+        }
+      }
+      button.mat-stroked-button {
+        color: mat-color($primary, darker);
+        border: solid 2px mat-color($primary, darker);
+      }
+    }
+    .solutions-section {
+      .highlight {
+        color: mat-color($primary, darker);
       }
     }
   }
@@ -44,8 +61,8 @@
     i {
       color: var(--color-light);
     }
-    .social{
-      .icon{
+    .social {
+      .icon {
         border: solid 1px var(--color-light);
         color: var(--color-light);
       }

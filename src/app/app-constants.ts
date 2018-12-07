@@ -1,5 +1,7 @@
 export class AppConstants {
 
+  static isAtHome = false;
+
   static get PAYU() {
     return {
       test: {

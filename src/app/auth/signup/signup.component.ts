@@ -66,31 +66,31 @@ export class SignupComponent implements OnInit {
 
   ngOnInit() {
     this.userForm = this.formBuilder.group({
-      email: ['prueba@prueba.com', [Validators.required, CustomValidators.email()]],
-      phone_number: ['3109878765', [Validators.minLength(7)]],
-      cell_phone: ['31052458547', [Validators.required, Validators.minLength(7)]],
+      email: ['', [Validators.required, CustomValidators.email()]],
+      phone_number: ['', [Validators.minLength(7)]],
+      cell_phone: ['', [Validators.required, Validators.minLength(7)]],
       passwords: this.formBuilder.group({
-        password: ['12345678', [Validators.required, Validators.minLength(8)]],
-        password_confirmation: ['12345678', [Validators.required, Validators.minLength(8)]],
+        password: ['', [Validators.required, Validators.minLength(8)]],
+        password_confirmation: ['', [Validators.required, Validators.minLength(8)]],
       }, { validator: [CustomValidators.matchPasswords] }),
 
       person: this.formBuilder.group({
-        name: ['Nombre Prueba', [Validators.required]],
-        last_name: ['Apellido Prueba', [Validators.required]],
-        identification: ['1140890987', [Validators.required, Validators.minLength(6)]],
+        name: ['', [Validators.required]],
+        last_name: ['', [Validators.required]],
+        identification: ['', [Validators.required, Validators.minLength(6)]],
       }),
 
       company: this.formBuilder.group({
-        name: ['Empresa de Prueba', [Validators.required]],
-        nit: ['800000000', [Validators.required]],
-        rl_name: ['800000000', [Validators.required]],
-        rl_last_name: ['800000000', [Validators.required]],
-        rl_identification: ['800000000', [Validators.required, Validators.minLength(6)]],
+        name: ['', [Validators.required]],
+        nit: ['', [Validators.required]],
+        rl_name: ['', [Validators.required]],
+        rl_last_name: ['', [Validators.required]],
+        rl_identification: ['', [Validators.required, Validators.minLength(6)]],
       }),
       personType: [PersonType.NATURAL, [Validators.required]],
 
       renter: this.formBuilder.group({
-        matricula_inmobiliaria: ['8asdsd4a6s5f4qaw896gf5q', [Validators.required]]
+        matricula_inmobiliaria: ['', [Validators.required]]
       })
     });
   }

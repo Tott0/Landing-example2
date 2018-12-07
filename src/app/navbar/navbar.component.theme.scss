@@ -4,7 +4,10 @@
   $background: map-get($theme, background);
   $foreground: map-get($theme, foreground);
   .header-toolbar {
-    background: transparentize($color: mat-color($background, status-bar), $amount: 1);
+    background: transparentize($color: mat-color($background, app-bar), $amount: 0);
+    &.transparent{
+      background: transparentize($color: mat-color($background, status-bar), $amount: 1);
+    }
     a:not(.logo) {
       color: mat-color($foreground, text);
       &:hover {

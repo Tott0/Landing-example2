@@ -76,5 +76,11 @@ mat-card {
         // background: transparentize($primary, 0.3);
       }
     }
+    .cb-terms{
+      a{
+        color: #039BE5;
+        text-decoration: underline;
+      }
+    }
   }
 }

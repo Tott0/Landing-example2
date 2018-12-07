@@ -20,17 +20,17 @@
 
             <div *ngIf="personType && personType.value === PersonType.NATURAL" [formGroup]="person">
               <mat-form-field>
-                <input matInput placeholder="Nombres" type="text" [formControl]="pName" (input)="errors.message = undefined;">
+                <input matInput placeholder="Nombres*" type="text" [formControl]="pName" (input)="errors.message = undefined;">
                 <mat-error *ngIf="pName.invalid || errors.name">{{getErrorMessage(pName, errors.name)}}</mat-error>
               </mat-form-field>
 
               <mat-form-field>
-                <input matInput placeholder="Apellidos" type="text" [formControl]="pLastName" (input)="errors.message = undefined;">
+                <input matInput placeholder="Apellidos*" type="text" [formControl]="pLastName" (input)="errors.message = undefined;">
                 <mat-error *ngIf="pLastName.invalid || errors.lastName">{{getErrorMessage(pLastName, errors.lastName)}}</mat-error>
               </mat-form-field>
 
               <mat-form-field>
-                <input matInput placeholder="Identificación" type="text" [formControl]="pIdentification" (input)="errors.message = undefined;"
+                <input matInput placeholder="Identificación*" type="text" [formControl]="pIdentification" (input)="errors.message = undefined;"
                   appForceNumeric>
                 <mat-error *ngIf="pIdentification.invalid || errors.identification">{{getErrorMessage(pIdentification,
                   errors.identification)}}</mat-error>
@@ -39,29 +39,29 @@
 
             <div *ngIf="personType && personType.value === PersonType.JURIDICA" [formGroup]="company">
               <mat-form-field>
-                <input matInput placeholder="Razón Social" type="text" [formControl]="cName" (input)="errors.message = undefined;">
+                <input matInput placeholder="Razón Social*" type="text" [formControl]="cName" (input)="errors.message = undefined;">
                 <mat-error *ngIf="cName.invalid || errors.name">{{getErrorMessage(cName, errors.name)}}</mat-error>
               </mat-form-field>
 
               <mat-form-field>
-                <input matInput placeholder="Nit" type="text" [formControl]="cNit" (input)="errors.message = undefined;">
+                <input matInput placeholder="Nit*" type="text" [formControl]="cNit" (input)="errors.message = undefined;">
                 <mat-error *ngIf="cNit.invalid || errors.nit">{{getErrorMessage(cNit, errors.nit)}}</mat-error>
               </mat-form-field>
 
               <mat-form-field>
-                <input matInput placeholder="Nombres Representante Legal" type="text" [formControl]="cRlName" (input)="errors.message = undefined;">
+                <input matInput placeholder="Nombres Representante Legal*" type="text" [formControl]="cRlName" (input)="errors.message = undefined;">
                 <mat-error *ngIf="cRlName.invalid || errors.name">{{getErrorMessage(cRlName, errors.name)}}</mat-error>
               </mat-form-field>
 
               <mat-form-field>
-                <input matInput placeholder="Apellidos Representante Legal" type="text" [formControl]="cRlLastName"
+                <input matInput placeholder="Apellidos Representante Legal*" type="text" [formControl]="cRlLastName"
                   (input)="errors.message = undefined;">
                 <mat-error *ngIf="cRlLastName.invalid || errors.lastName">{{getErrorMessage(cRlLastName,
                   errors.lastName)}}</mat-error>
               </mat-form-field>
 
               <mat-form-field>
-                <input matInput placeholder="Identificación Representante Legal" type="text" [formControl]="cRlIdentification"
+                <input matInput placeholder="Identificación Representante Legal*" type="text" [formControl]="cRlIdentification"
                   (input)="errors.message = undefined;" appForceNumeric>
                 <mat-error *ngIf="cRlIdentification.invalid || errors.identification">{{getErrorMessage(cRlIdentification,
                   errors.identification)}}</mat-error>
@@ -83,7 +83,7 @@
             </mat-form-field>
 
             <mat-form-field>
-              <input matInput placeholder="Correo Electrónico" type="text" [formControl]="email" (input)="errors.message = undefined;">
+              <input matInput placeholder="Correo Electrónico*" type="text" [formControl]="email" (input)="errors.message = undefined;">
               <mat-error *ngIf="email.invalid || errors.email">{{getErrorMessage(email, errors.email)}}</mat-error>
             </mat-form-field>
 
@@ -162,8 +162,8 @@
             {{ errors.message }}
           </mat-error>
 
-          <mat-checkbox [(ngModel)]="terms" class="cb-terms"">
-            He leído y acepto los <a href="/terminos-y-condiciones" target="_blank" class="color">Términos y Condiciones</span>
+          <mat-checkbox [(ngModel)]="terms" class="cb-terms" color="primary">
+            He leído y acepto los <a href="/terminos-y-condiciones" target="_blank" class="color">Términos y Condiciones</a>
           </mat-checkbox>
 
           <button mat-raised-button color="primary" class="btn-submit" [disabled]="userForm.invalid && invalidRenter() && terms"

@@ -1,5 +1,5 @@
 <header class="header caxtor-dark-theme">
-  <mat-toolbar class="header-toolbar">
+  <mat-toolbar class="header-toolbar" [ngClass]="{'transparent': isAtHome()}">
     <a routerLink="/" class="logo">
       <img src="assets/images/caxtor-dark-big.png">
     </a>
