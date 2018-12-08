@@ -11,11 +11,12 @@ import { AuthHeadersInterceptor } from './interceptors/auth-headers.interceptor'
 import { OverlayModule } from '@angular/cdk/overlay';
 import { PdfViewerOverlayService } from '@shared/overlays/file-preview/pdf-viewer-overlay.service';
 
+
 @NgModule({
   imports: [
     CommonModule,
     HttpClientModule,
-    OverlayModule
+    OverlayModule,
     //
   ],
   providers: [

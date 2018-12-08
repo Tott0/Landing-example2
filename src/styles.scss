@@ -1,4 +1,6 @@
 @import './src/scss/variables.scss';
+@import '~ngx-bar-rating/themes/br-stars-theme';
+
 *:not(.mat-form-field-label-wrapper) {
   box-sizing: border-box !important;
 }

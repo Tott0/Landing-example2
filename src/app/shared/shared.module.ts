@@ -25,6 +25,9 @@ import { UsedMaterialComponentsModule } from '@shared/modules/used-material-comp
 
 import { UICarouselModule } from '@shared/components/UiCarousel/ui-carousel.module';
 
+/*Libraries */
+import { BarRatingModule } from 'ngx-bar-rating';
+
 
 @NgModule({
   imports: [
@@ -73,7 +76,8 @@ import { UICarouselModule } from '@shared/components/UiCarousel/ui-carousel.modu
     DecimalPipe,
     EnumPositionTypePipe,
     //
-    UICarouselModule
+    UICarouselModule,
+    BarRatingModule,
   ],
   entryComponents: [
     LoadingDialog,

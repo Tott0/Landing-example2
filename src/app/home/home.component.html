@@ -177,67 +177,109 @@
 
       <div class="graph">
 
-          <article class="operations">
-              <span class="title">
-                Operations
-              </span>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut vitae nisl leo. Integer quis pharetra.
-              </p>
-            </article>
-        
-            <article class="matching">
-              <span class="title">
-                Matching
-              </span>
-              <p>
-                Phasellus fermentum gravida mattis. Aenean non quam congue, lobortis nibh eget, porta sem. Duis molestie
-                pulvinar.
-              </p>
-            </article>
-        
-            <article class="billing">
-              <span class="title">
-                Billing
-              </span>
-              <p>
-                Nunc molestie dapibus purus vel faucibus. Proin sed efficitur libero, ac suscipit nisl. Donec.
-              </p>
-            </article>
-        
-            <article class="analytics">
-              <span class="title">
-                Analytics
-              </span>
-              <p>
-                In hac habitasse platea dictumst. Fusce pellentesque, turpis ac elementum dictum, turpis libero egestas est.
-              </p>
-            </article>
-        
-            <article class="logistics">
-              <span class="title">
-                Logistics Report
-              </span>
-              <p>
-                Curabitur vitae pulvinar elit. Curabitur euismod nunc et elit dictum dictum. Cras et finibus orci. In commodo.
-              </p>
-            </article>
-        
-            <article class="marketplace">
-              <span class="title">
-                Marketplace
-              </span>
-              <p>
-                Curabitur vitae pulvinar elit. Curabitur euismod nunc et elit dictum dictum. Cras et finibus orci. In commodo.
-              </p>
-            </article>
-        
-            <img class="center" src="assets/images/caxtor-solutions.png">
+        <article class="operations">
+          <span class="title">
+            Operations
+          </span>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut vitae nisl leo. Integer quis pharetra.
+          </p>
+        </article>
+
+        <article class="matching">
+          <span class="title">
+            Matching
+          </span>
+          <p>
+            Phasellus fermentum gravida mattis. Aenean non quam congue, lobortis nibh eget, porta sem. Duis molestie
+            pulvinar.
+          </p>
+        </article>
+
+        <article class="billing">
+          <span class="title">
+            Billing
+          </span>
+          <p>
+            Nunc molestie dapibus purus vel faucibus. Proin sed efficitur libero, ac suscipit nisl. Donec.
+          </p>
+        </article>
+
+        <article class="analytics">
+          <span class="title">
+            Analytics
+          </span>
+          <p>
+            In hac habitasse platea dictumst. Fusce pellentesque, turpis ac elementum dictum, turpis libero egestas
+            est.
+          </p>
+        </article>
+
+        <article class="logistics">
+          <span class="title">
+            Logistics Report
+          </span>
+          <p>
+            Curabitur vitae pulvinar elit. Curabitur euismod nunc et elit dictum dictum. Cras et finibus orci. In
+            commodo.
+          </p>
+        </article>
+
+        <article class="marketplace">
+          <span class="title">
+            Marketplace
+          </span>
+          <p>
+            Curabitur vitae pulvinar elit. Curabitur euismod nunc et elit dictum dictum. Cras et finibus orci. In
+            commodo.
+          </p>
+        </article>
+
+        <img class="center" src="assets/images/caxtor-solutions.png">
 
       </div>
     </div>
   </section>
 
+  <section class="reviews-section">
+    <div class="container">
+
+      <span class="title">CLIENT REVIEWS</span>
+
+      <div class="reviews-row" #reviewsRow id="reviewsRow">
+
+
+        <button mat-button class="btn-left" *ngIf="!hideRevLeft" (click)="prevReviews()">
+          <i class="fas fa-chevron-left"></i>
+        </button>
+        <button mat-button class="btn-right" *ngIf="!hideRevRight" (click)="nextReviews()">
+          <i class="fas fa-chevron-right"></i>
+        </button>
+
+        <article class="review" *ngFor="let rev of shownReviews" [@fadeInOut]="'in'">
+          <div class="thumb">
+            <img [src]="rev.thumbnail">
+          </div>
+          <div class="desc">
+            <span class="rev">
+              <i class="quote fas fa-quote-left"></i>
+              {{rev.review}}
+            </span>
+
+            <span class="author">
+              {{rev.author}}
+            </span>
+            <span class="position">
+              {{rev.authorPosition}}
+            </span>
+
+            <bar-rating class="rating" [(rate)]="rev.rating" [max]="5" [readOnly]="true" [theme]="'stars'"></bar-rating>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
 
   <section class="info-section">
 
@@ -251,8 +293,35 @@
     </div>
   </section>
 
-  <section class="section-process">
-    <div class="container">
+  <section class="warehouses-section">
+    <div class="row">
+      <div class="search">
+        <span class="title">
+          STORAGE IN BODEGA
+        </span>
+
+        <form [formGroup]="warehouseForm" (ngSubmit)="searchWarehouses()">
+
+          <mat-form-field>
+            <input matInput placeholder="City*" type="text" [formControl]="city" (input)="errors.message = undefined;">
+            <mat-error *ngIf="city.invalid || errors.city">{{getErrorMessage(city, errors.city)}}</mat-error>
+          </mat-form-field>
+
+          <mat-form-field>
+            <input matInput placeholder="Number of Pallets*" type="number" [formControl]="pallets" (input)="errors.message = undefined;">
+            <mat-error *ngIf="pallets.invalid || errors.pallets">{{getErrorMessage(pallets, errors.pallets)}}</mat-error>
+          </mat-form-field>
+
+          <mat-error *ngIf="errors.message" class="form-errors">
+            {{ errors.message }}
+          </mat-error>
+
+          <button mat-raised-button color="primary" class="btn-search" [disabled]="warehouseForm.invalid" (click)="searchWarehouses()">
+            <span>Search</span>
+          </button>
+        </form>
+      </div>
+      <div class="map"></div>
     </div>
   </section>
 

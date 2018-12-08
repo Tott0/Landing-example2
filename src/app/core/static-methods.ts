@@ -5,6 +5,14 @@ import { AuthService } from '@core/providers/auth.service';
 import { AbstractControl, FormGroup, FormControl } from '@angular/forms';
 import { ModalManager } from '@core/providers/modal-manager';
 
+export function getErrorMessage(formControl: AbstractControl, error?) {
+  if (error && error.length) {
+    return error[0];
+  } else {
+    return StaticMethods.getFormError(formControl);
+  }
+}
+
 export class StaticMethods {
 
   static handleHttpResponseError(errorResponse: HttpErrorResponse) {

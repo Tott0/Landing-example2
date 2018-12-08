@@ -51,6 +51,27 @@
         color: mat-color($primary, darker);
       }
     }
+    .reviews-section{
+      background: mat-color($primary, darker);
+      span{
+        color: var(--color-light);
+      }
+      .reviews-row{
+        .thumb{
+          img{
+            border: solid 2px var(--color-light);
+          }
+        }
+      }
+    }
+    .warehouses-section{
+      .search{
+        background: mat-color($primary, 50);
+        .title{
+          color: var(--color-dark);
+        }
+      }
+    }
   }
   .caxtor-dark-theme.top-footer {
     background: var(--color-dark);
