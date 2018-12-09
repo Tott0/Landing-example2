@@ -27,6 +27,7 @@ import { UICarouselModule } from '@shared/components/UiCarousel/ui-carousel.modu
 
 /*Libraries */
 import { BarRatingModule } from 'ngx-bar-rating';
+import { AgmCoreModule } from '@agm/core';
 
 
 @NgModule({
@@ -78,6 +79,7 @@ import { BarRatingModule } from 'ngx-bar-rating';
     //
     UICarouselModule,
     BarRatingModule,
+    AgmCoreModule
   ],
   entryComponents: [
     LoadingDialog,

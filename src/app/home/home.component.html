@@ -321,7 +321,11 @@
           </button>
         </form>
       </div>
-      <div class="map"></div>
+      <div class="map">
+        <agm-map [latitude]="iLat" [longitude]="iLng" [zoom]="zoom" [streetViewControl]="false" [zoomControl]="false" [mapDraggable]="false" [scrollwheel]="false">
+          <!-- <agm-marker *ngFor="let r of warehouses" [latitude]="r.lat" [longitude]="r.lng" [markerDraggable]="false" (markerClick)="markerClick(r)"></agm-marker> -->
+        </agm-map>
+      </div>
     </div>
   </section>
 

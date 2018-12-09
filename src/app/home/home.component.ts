@@ -80,6 +80,10 @@ export class HomeComponent implements OnInit, OnDestroy {
   get pallets() { return this.warehouseForm.get('pallets'); }
   getErrorMessage = getErrorMessage;
 
+  iLat = 10.9838119;
+  iLng = -74.8180175;
+  zoom = 13;
+
   constructor(
     private formBuilder: FormBuilder,
   ) { }
@@ -90,6 +94,12 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.warehouseForm = this.formBuilder.group({
       city: ['', [Validators.required]],
       pallets: ['', [Validators.required, Validators.min(0)]],
+    });
+
+    navigator.geolocation.getCurrentPosition((position) => {
+      console.log(position);
+      this.iLat = position.coords.latitude;
+      this.iLng = position.coords.longitude;
     });
   }
 

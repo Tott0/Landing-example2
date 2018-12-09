@@ -1,4 +1,10 @@
 @import './src/scss/variables.scss';
+:host{
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  min-height: calc(100vh - var(--footer-height));
+}
 .container{
   font-size: 1rem;
   padding-top: 3em;
