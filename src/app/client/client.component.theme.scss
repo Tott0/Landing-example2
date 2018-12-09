@@ -1,0 +1,44 @@
+@import '~@angular/material/theming';
+@mixin client-component-theme($theme) {
+  $primary: map-get($map: $theme, $key: primary);
+  $background: map-get($theme, background);
+  $foreground: map-get($theme, foreground);
+  .client-wrapper {
+    background: transparentize(mat-color($background, background), $amount: 0);
+    .left {
+      mat-card {
+        mat-card-header {
+          background: mat-color($primary, darker);
+        }
+        mat-card-content {
+          .wrapper {
+            .amount {
+              color: mat-color($primary, darker);
+            }
+            .separator{
+              border: solid 1px mat-color(mat-palette($mat-grey), 500);
+            }
+            a{
+              color: mat-color($primary);
+              &:hover{
+                color: mat-color($primary, darker);
+              }
+            }
+          }
+        }
+      }
+      .current-reservas {
+        mat-card-header {
+          background: mat-color(mat-palette($mat-green), darker);
+        }
+        mat-card-content {
+          .wrapper {
+            .amount {
+              color: mat-color(mat-palette($mat-green), darker);
+            }
+          }
+        }
+      }
+    }
+  }
+}

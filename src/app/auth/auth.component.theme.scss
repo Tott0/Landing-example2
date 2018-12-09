@@ -1,26 +1,6 @@
 @import '~@angular/material/theming';
-@mixin footer-component-theme($theme) {
+@mixin auth-component-theme($theme) {
   $primary: map-get($map: $theme, $key: primary);
   $background: map-get($theme, background);
   $foreground: map-get($theme, foreground);
-  .home-wrapper {
-    form {
-      .btn-login {
-        // color: $light;
-        &[disabled] {
-          background: transparentize(mat-color(primary), 0.3);
-        }
-      }
-    }
-    mat-card-footer {
-      .btn-forgot {
-        color: mat-color(primary);
-      }
-      .btn-register {
-        a {
-          color: mat-color(primary);
-        }
-      }
-    }
-  }
 }

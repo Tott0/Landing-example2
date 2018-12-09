@@ -76,11 +76,11 @@ export class StaticMethods {
     const copy = object instanceof Array ? [] : {};
     Object.keys(object).map((key, index) => {
       if (object[key] instanceof Object) {
-        copy[key] = StaticMethods.deepCopy(object[key])
+        copy[key] = StaticMethods.deepCopy(object[key]);
       } else {
-        copy[key] = object[key]
+        copy[key] = object[key];
       }
-    })
+    });
     return copy;
   }
 

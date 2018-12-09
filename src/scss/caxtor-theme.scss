@@ -2,6 +2,9 @@
 @import '../app/navbar/navbar.component.theme.scss';
 @import '../app/footer/footer.component.theme.scss';
 @import '../app/home/home.component.theme.scss';
+@import '../app/auth/auth.component.theme.scss';
+@import '../app/client/client.component.theme.scss';
+@import '../app/owner/owner.component.theme.scss';
 @import './global.theme.scss';
 // Plus imports for other components in your app.
 
@@ -20,6 +23,9 @@ $caxtor-theme:   mat-light-theme($caxtor-primary, $caxtor-accent);
   @include navbar-component-theme($theme);
   @include footer-component-theme($theme);
   @include home-component-theme($theme);
+  @include auth-component-theme($theme);
+  @include client-component-theme($theme);
+  @include owner-component-theme($theme);
 }
 
 // Include the default theme styles.

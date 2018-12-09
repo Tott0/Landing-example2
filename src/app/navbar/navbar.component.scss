@@ -1,11 +1,12 @@
 @import './src/scss/variables.scss';
-// :host {
-//   display: flex;
-//   flex-direction: column;
-//   flex-grow: 1;
-//   height: var(--header-height, 72px);
-//   background: none;
-// }
+::ng-deep {
+  .mat-menu-content button {
+    font-size: 0.75em;
+    .button-text {
+      margin-left: 0.5em;
+    }
+  }
+}
 
 header {
   position: absolute;
@@ -60,6 +61,8 @@ mat-toolbar {
     text-decoration: none;
   }
   .menu-auth {
+    padding: 0;
+    font-size: 1em;
     img {
       height: 2em;
       width: 2em;
