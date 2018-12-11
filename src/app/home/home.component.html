@@ -153,9 +153,7 @@
               aliquet,
               dignissim et augue. Curabitur libero ante, tempor nec urna in, tempus dignissim ligula. Etiam lectus
               libero,
-              rutrum a vulputate in, efficitur pretium mi. Nulla sollicitudin, urna pellentesque consequat iaculis, sem
-              odio
-              ornare nisl, in condimentum, vulputate in.</p>
+              rutrum a vulputate in, efficitur pretium mi. </p>
 
             <button mat-stroked-button color="primary">Read More</button>
 
@@ -191,8 +189,7 @@
             Matching
           </span>
           <p>
-            Phasellus fermentum gravida mattis. Aenean non quam congue, lobortis nibh eget, porta sem. Duis molestie
-            pulvinar.
+            Phasellus fermentum gravida mattis. Aenean non quam congue, lobortis nibh eget, porta sem.
           </p>
         </article>
 
@@ -210,7 +207,7 @@
             Analytics
           </span>
           <p>
-            In hac habitasse platea dictumst. Fusce pellentesque, turpis ac elementum dictum, turpis libero egestas
+            In hac habitasse platea dictumst. Fusce pellentesque, turpis ac elementum dictum.
             est.
           </p>
         </article>
@@ -220,7 +217,7 @@
             Logistics Report
           </span>
           <p>
-            Curabitur vitae pulvinar elit. Curabitur euismod nunc et elit dictum dictum. Cras et finibus orci. In
+            Curabitur vitae pulvinar elit. Curabitur euismod nunc et elit dictum dictum.
             commodo.
           </p>
         </article>
@@ -230,8 +227,7 @@
             Marketplace
           </span>
           <p>
-            Curabitur vitae pulvinar elit. Curabitur euismod nunc et elit dictum dictum. Cras et finibus orci. In
-            commodo.
+            Curabitur vitae pulvinar elit. Curabitur euismod nunc et elit dictum dictum. In commodo.
           </p>
         </article>
 
@@ -322,7 +318,8 @@
         </form>
       </div>
       <div class="map">
-        <agm-map [latitude]="iLat" [longitude]="iLng" [zoom]="zoom" [streetViewControl]="false" [zoomControl]="false" [mapDraggable]="false" [scrollwheel]="false">
+        <agm-map [latitude]="iLat" [longitude]="iLng" [zoom]="zoom" [streetViewControl]="false" [zoomControl]="false"
+          [mapDraggable]="false" [scrollwheel]="false">
           <!-- <agm-marker *ngFor="let r of warehouses" [latitude]="r.lat" [longitude]="r.lng" [markerDraggable]="false" (markerClick)="markerClick(r)"></agm-marker> -->
         </agm-map>
       </div>
@@ -339,7 +336,7 @@
 
         <p>Maecenas efficitur est at neque aliquet porttitor. Suspendisse eget augue ut orci ullamcorper imperdiet
           vitae a diam. In hac habitasse platea dictumst. Orci varius natoque penatibus et magnis dis parturient
-          montes, nascetur ridiculus mus. Vivamus elementum sagittis tortor, dictum pretium eros rhoncus at.</p>
+          montes, nascetur ridiculus mus.</p>
 
       </article>
 
@@ -349,7 +346,7 @@
 
         <span>
           <i class="fas fa-map-marker-alt"></i>
-          <span>Caxtor 1211, 3605 KZ, Maarssen</span>
+          <span>Caxtor <br> 1211, 3605 KZ, Maarssen</span>
         </span>
 
         <span>
@@ -369,9 +366,53 @@
 
       </article>
 
-      <!-- <article class="quick-links">
-        
-          </article> -->
+      <article class="quick-links">
+          <h2 class="title">QUICK LINKS </h2>
+        <nav>
+          <ul>
+            <li>
+              <a routerLink="['/home']">
+                <i class="fas fa-caret-right"></i>
+                <span>
+                  HOME
+                </span>
+              </a>
+            </li>
+            <li>
+              <a routerLink="['/solutions']">
+                <i class="fas fa-caret-right"></i>
+                <span>
+                  SOLUTIONS
+                </span>
+              </a>
+            </li>
+            <li>
+              <a routerLink="['/company']">
+                <i class="fas fa-caret-right"></i>
+                <span>
+                  COMPANY
+                </span>
+              </a>
+            </li>
+            <li>
+              <a routerLink="['/login']">
+                <i class="fas fa-caret-right"></i>
+                <span>
+                  SIGN IN
+                </span>
+              </a>
+            </li>
+            <li>
+              <a routerLink="['/contact-us']">
+                <i class="fas fa-caret-right"></i>
+                <span>
+                  CONTACT US
+                </span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </article>
 
       <article class="social">
 

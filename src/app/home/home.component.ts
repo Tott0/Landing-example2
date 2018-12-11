@@ -27,42 +27,42 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   reviews = [
     {
-      review: 'Vestibulum sed mauris quis arcu bibendum semper sed vitae erat. Praesent sit amet nisi tristique, lacinia mauris ut.',
+      review: 'Vestibulum sed mauris quis arcu bibendum semper sed vitae erat.',
       author: 'Keelan Wade',
       authorPosition: 'Financial Services Professional',
       thumbnail: 'assets/images/review-thumb1.jpg',
       rating: 5.0
     },
     {
-      review: 'Praesent dictum dolor a augue tempor, et congue nisi accumsan. Mauris tempus orci dolor. Donec elementum magna.',
+      review: 'Praesent dictum dolor a augue tempor, et congue nisi accumsan.',
       author: 'Elizabeth Mcgregor',
       authorPosition: 'Future Group Specialist',
       thumbnail: 'assets/images/review-thumb2.jpg',
       rating: 4.0
     },
     {
-      review: 'Fusce nec pharetra quam, sit amet sagittis erat. Praesent convallis maximus quam at feugiat. Ut condimentum.',
+      review: 'Fusce nec pharetra quam, sit amet sagittis erat. Praesent Ut condimentum.',
       author: 'Dylan Castaneda',
       authorPosition: 'Product Response Facilitator',
       thumbnail: 'assets/images/review-thumb3.jpg',
       rating: 4.8
     },
     {
-      review: 'Vestibulum tellus magna, malesuada non lacus facilisis, consectetur odio. Cras non odio sit amet mauris efficitur vel.',
+      review: 'Vestibulum tellus magna, malesuada non lacus facilisis, consectetur odio.',
       author: 'Esha Barnes',
       authorPosition: 'Internal Directives Specialist',
       thumbnail: 'assets/images/review-thumb4.jpg',
       rating: 4.6
     },
     {
-      review: 'Sed congue magna vel libero blandit, nec mollis risus consectetur. Praesent lectus dolor, iaculis vitae sem non, posuere.',
+      review: 'Sed congue magna vel libero blandit, nec mollis risus consectetur.',
       author: 'Zayn Wynn',
       authorPosition: 'Legacy Factors Manager',
       thumbnail: 'assets/images/review-thumb5.jpg',
       rating: 4.2
     },
     {
-      review: 'Proin pellentesque dolor a facilisis vestibulum. Suspendisse vestibulum orci sapien, at semper nisl pharetra vel. Integer.',
+      review: 'Proin pellentesque dolor a facilisis vestibulum. Suspendisse vestibulum.',
       author: 'Lacie Forrest',
       authorPosition: 'Product Usability Agent',
       thumbnail: 'assets/images/review-thumb6.jpg',

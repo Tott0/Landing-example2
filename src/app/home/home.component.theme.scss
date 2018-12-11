@@ -3,6 +3,8 @@
   $primary: map-get($map: $theme, $key: primary);
   $background: map-get($theme, background);
   $foreground: map-get($theme, foreground);
+  $foreground-text: mat-color($foreground, text);
+  $foreground-sec-text: mat-color($foreground, secondary-text);
   .home-wrapper {
     .info-section {
       .section-content {
@@ -11,7 +13,7 @@
     }
     .img-shadow-effect,
     .shadow-overlay {
-      background: transparentize($color: #000000, $amount: 0.45);
+      background: transparentize($color: #000000, $amount: 0.25);
     }
     .services-section {
       article.service {
@@ -28,7 +30,7 @@
           color: mat-color($primary, 800);
         }
         .desc {
-          color: lighten(mat-color($foreground, text), 20);
+          color: mat-color($foreground, secondary-text);
         }
       }
     }
@@ -50,9 +52,14 @@
       .highlight {
         color: mat-color($primary, darker);
       }
+      article{
+        p{
+          color: $foreground-text;
+        }
+      }
     }
     .reviews-section{
-      background: mat-color($primary, darker);
+      background: mat-color($primary, 900);
       span{
         color: var(--color-light);
       }
@@ -81,6 +88,17 @@
     p,
     i {
       color: var(--color-light);
+    }
+    .quick-links{
+      li:hover{
+        span{
+          color: mat-color($primary);
+          border-bottom: solid 1px mat-color($primary);
+        }
+        i{
+          color: mat-color($primary);
+        }
+      }
     }
     .social {
       .icon {

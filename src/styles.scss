@@ -6,22 +6,24 @@
 }
 
 :root{
-  --header-height: calc(90px + 1em);
+  --top-header-padding: 2em;
+  --top-header-height: calc(90px + var(--top-header-padding));
   --footer-height: 80px;
 
-  --html-font-size-xlg: 22px;
-  --html-font-size-lg: 20px;
-  --html-font-size-md: 16px;
-  --html-font-size-sm: 14px;
+  --html-font-size-xlg: 14px;
+  --html-font-size-lg: 14px;
+  --html-font-size-md: 10px;
+  --html-font-size-sm: 10px;
 
   
   --color-light: #FAFAFA;
   --color-dark: #212121;
+  --color-darkest: #111111;
   --color-danger: #f44336;
   --color-success: #4CAF50;
 }
 
-body {
+html, body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
   h1{
     margin: 0 0 1em;  
@@ -64,7 +66,7 @@ body {
 }
 
 .component-wrapper {
-  margin-top: var(--header-height, 72px);
+  margin-top: var(--top-header-height);
 }
 
 .shadow-overlay{
@@ -74,6 +76,17 @@ body {
   left: 0;
   right: 0;
   z-index: 1;
+}
+
+.row{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.col{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .container {
@@ -87,7 +100,7 @@ body {
     width: 1200px !important;
   }
   @include for-big-desktop-up {
-    width: 1800px !important;
+    width: 1300px !important;
   }
 }
 
@@ -147,6 +160,10 @@ mat-card.mat-card.bg-title-card {
   }
 }
 
+
+.text-center{
+  text-align: center;
+}
 
 //fix for carousel images
 .ui-carousel-item img{

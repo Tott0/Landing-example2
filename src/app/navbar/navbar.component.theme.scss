@@ -18,5 +18,17 @@
         }
       }
     }
+    nav.auth{
+      a{
+        border: solid 2px mat-color($foreground, text);
+        &:hover {
+          &:not(.highlight) {
+            border: solid 2px mat-color($primary, 500);
+            color: mat-color($primary, 500);
+            transition: all 0.1s ease-in;
+          }
+        }
+      }
+    }
   }
 }

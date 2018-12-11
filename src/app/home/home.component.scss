@@ -87,13 +87,14 @@
       justify-content: center;
       margin-top: 4em;
       @include for-big-desktop-up {
-        padding: 0 300px;
+        padding: 0 150px;
       }
       .title {
         margin-bottom: 0.5em;
         display: flex;
         justify-content: center;
         align-items: center;
+        font-weight: 500;
         img {
           height: 50px;
           min-width: 50px;
@@ -102,7 +103,7 @@
         font-size: 2em; // font-weight: 600;
       }
       .desc {
-        font-size: 1.25em;
+        font-size: 1.15em;
         line-height: 175%;
         font-weight: 400;
         text-align: center;
@@ -116,15 +117,15 @@
     background-position-y: 3em;
     background-position-x: -6em;
     position: relative;
-    .bg {}
     .row {
       display: flex;
-      padding: 7em 3em;
+      padding: 8em 0;
     }
     .video {
       flex: 1 0 0;
       img {
-        height: 500px;
+        height: auto;
+        max-width: 620px;
       }
     }
     .desc {
@@ -158,12 +159,12 @@
   }
   .solutions-section {
     padding: 4em 0;
-    font-size: 1.5em;
+    font-size: 1.25em;
     .main-title {
       display: flex;
       flex-direction: column;
       align-items: flex-start;
-      font-size: 1.5em;
+      font-size: 2em;
       margin-bottom: 3em;
       .bold {
         font-weight: 500;
@@ -223,12 +224,12 @@
         }
       }
       article {
-        padding-top: 2em;
+        padding-top: 4em;
         .title {
           font-weight: 500;
-          font-size: 1.25em;
+          font-size: 1.5em;
         }
-        p{
+        p {
           line-height: 150%;
           font-weight: 400;
           margin: 0.15em 0;
@@ -237,19 +238,20 @@
       }
     }
   }
-  .reviews-section{
+  .reviews-section {
     position: relative;
     padding: 3em 0;
-    .container{
+    .container {
       position: relative;
     }
     font-size: 1.25em;
-    .title{
+    .title {
       font-size: 2.25em;
       font-weight: 500;
       margin: 1em 0;
     }
-    .btn-left, .btn-right{
+    .btn-left,
+    .btn-right {
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
@@ -261,13 +263,13 @@
       padding: 0;
       min-width: 0;
     }
-    .btn-left{
+    .btn-left {
       left: 0;
     }
-    .btn-right{
+    .btn-right {
       right: 0;
     }
-    .reviews-row{
+    .reviews-row {
       display: flex;
       flex-wrap: nowrap;
       overflow: hidden;
@@ -276,80 +278,84 @@
       min-height: 320px;
       padding: 0 75px;
       align-items: center;
-      .review{
+      .review {
         display: flex;
         flex: 1 0 0;
-        .thumb{
+        .thumb {
           padding: 0 1em;
-          img{
+          img {
             border-radius: 50%;
-            height: 125px;
-            width: 125px;
+            height: 96px;
+            width: 96px;
           }
         }
-        .desc{
+        .desc {
           display: flex;
           flex-direction: column;
           align-items: stretch;
-          .quote{
+          .quote {
             margin-right: 0.5em;
           }
-          span{
+          span {
             font-weight: 400;
           }
-          .rev{
+          .rev {
             margin-bottom: 1em;
             font-size: 1em;
-            line-height: 150%;
+            line-height: 175%;
+            font-style: italic;
           }
-          .author{
+          .author {
             font-size: 1em;
+            line-height: 175%;
           }
-          .position{
+          .position {
             font-size: 0.75em;
             margin-bottom: 1em;
+            line-height: 175%;
           }
         }
       }
     }
   }
-  .warehouses-section{
+  .warehouses-section {
     margin-top: 5em !important;
     margin-bottom: 5em !important;
     font-size: 1.5em;
-    .row{
+    .row {
       display: flex;
+      align-items: stretch;
       width: 100%;
-      .search, .map{
-        flex: 0 0 50%;
-        // height: 100%;
+      .search,
+      .map {
+        flex: 0 0 50%; // height: 100%;
       }
-      .search{
+      .search {
         padding: 7em;
         padding-top: 5em;
-        .title{
+        .title {
           font-size: 2em;
           font-weight: 500;
           margin-top: 3em;
         }
-        form{
+        form {
           display: flex;
           flex-direction: column;
           align-items: flex-start;
           padding-top: 2em;
-          mat-form-field{
+          mat-form-field {
             font-size: 1em;
             width: 100%;
           }
-          button{
+          button {
             margin-top: 1em;
             padding: 0.35em 3em;
             font-size: 1em;
           }
         }
       }
-      .map{
-        agm-map{
+      .map {
+        agm-map {
           height: 100%;
           width: 100%;
         }
@@ -359,15 +365,12 @@
   .top-footer {
     padding-top: 10em;
     padding-bottom: 5em;
-    font-size: 1.5rem;
+    font-size: 1.15rem;
     .container {
       display: grid;
       grid-template-rows: 1fr;
-      grid-template-columns: 1.5fr 1fr 1fr;
-      grid-column-gap: 2em;
-      @include for-big-desktop-up {
-        padding: 0 200px;
-      }
+      grid-template-columns: 1.5fr 1fr 1fr 1fr;
+      grid-column-gap: 3em;
       article {
         display: flex;
         flex-direction: column;
@@ -375,7 +378,7 @@
         align-items: flex-start;
         height: 100%;
         .title {
-          margin-bottom: 1.5em;
+          margin-bottom: 2em;
           font-weight: 500;
         }
         img {
@@ -386,15 +389,36 @@
         img {
           height: 90px;
         }
+        p {
+          line-height: 200%;
+        }
       }
       .contact-info {
         &>span {
           display: flex;
-          align-items: center;
-          margin: 0.25em 0;
+          align-items: flex-start;
+          margin: 0.5em 0;
         }
         i {
           margin-right: 1em;
+        }
+      }
+      .quick-links {
+        ul {
+          margin: 0;
+          padding: 0;
+          li {
+            margin: 0.75em 0;
+            list-style-type: none;
+            display: flex;
+            flex-direction: column;
+            a {
+              text-decoration: none;
+              i {
+                margin-right: 0.5em;
+              }
+            }
+          }
         }
       }
       .social {
@@ -402,15 +426,16 @@
           align-items: center;
           display: flex;
           text-decoration: none;
-          margin: 0.25em 0;
+          margin: 0.5em 0;
           .icon {
             border-radius: 50%;
-            height: 50px;
-            width: 50px;
+            height: 32px;
+            width: 32px;
+            font-size: 0.8em;
             display: flex;
             justify-content: center;
             align-items: center;
-            margin-right: 0.5em;
+            margin-right: 0.75em;
           }
         }
       }

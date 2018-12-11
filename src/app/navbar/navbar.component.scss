@@ -14,13 +14,15 @@ header {
   left: 0;
   right: 0;
   z-index: 999;
-  height: var(--header-height, 72px);
+  min-height: var(--top-header-height);
+  padding: var(--top-header-padding) 0;
 }
 
 mat-toolbar {
-  font-size: 1.5rem;
-  height: calc(90px + 1em);
-  padding: 0.5em 3em;
+  font-size: 1rem;
+  @include for-tablet-landscape-up {
+    height: var(--top-header-height);
+  }
   .logo {
     display: flex;
     margin-right: 2em;
@@ -42,16 +44,25 @@ mat-toolbar {
     font-size: 1em;
     li {
       list-style: none;
-      margin: 0 0.5em;
+      margin: 0 1em;
       padding: 0.25em;
       position: relative;
       &:hover {
         cursor: pointer;
-        &:not(.highlight) {
-          a {
-            padding-bottom: 0.2em;
-          }
-        }
+      }
+    }
+  }
+  nav.sites{
+    font-size: 1.5em;
+  }
+  nav.auth{
+    a.btn-login{
+      font-size: 1.5em;
+      border-radius: 3em;
+      padding: 0.5em 0.75em;
+
+      i{
+        font-size: 0.75em;
       }
     }
   }
