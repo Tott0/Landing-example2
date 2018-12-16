@@ -18,6 +18,14 @@ header {
   padding: var(--top-header-padding) 0;
 }
 
+.transparent {
+  .mat-toolbar {
+    .row {
+      padding-top: 2em;
+    }
+  }
+}
+
 mat-toolbar {
   font-size: 1rem;
   @include for-tablet-landscape-up {
@@ -52,16 +60,15 @@ mat-toolbar {
       }
     }
   }
-  nav.sites{
+  nav.sites {
     font-size: 1.5em;
   }
-  nav.auth{
-    a.btn-login{
+  nav.auth {
+    a.btn-login {
       font-size: 1.5em;
       border-radius: 3em;
       padding: 0.5em 0.75em;
-
-      i{
+      i {
         font-size: 0.75em;
       }
     }

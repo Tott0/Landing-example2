@@ -7,33 +7,32 @@ $danger: #f44336;
 $warning: #ffc107;
 $light: #FAFAFA;
 $dark: #212121;
-// media variables
-@mixin for-phone-only {
-  @media (max-width: 599px) {
-    @content;
-  }
-}
 
-@mixin for-tablet-portrait-up {
-  @media (min-width: 600px) {
-    @content;
-  }
-}
+//* Media Queries *\\
 
-@mixin for-tablet-landscape-up {
-  @media (min-width: 900px) {
-    @content;
-  }
-}
+//dw < 480px
+@mixin for-phone-only { @media (max-width: 479px) { @content; } }
 
-@mixin for-desktop-up {
-  @media (min-width: 1200px) {
-    @content;
-  }
-}
+//480px <= dw < 768px
+@mixin for-big-phone{ @media (min-width: 480px) and (max-width: 767px){  @content; } }
 
-@mixin for-big-desktop-up {
-  @media (min-width: 1800px) {
-    @content;
-  }
-}
+//dw < 768px
+@mixin for-all-phones{ @media (max-width: 767px){ @content; } }
+
+//dw >= 768px
+@mixin for-tablet-portrait-up { @media (min-width: 768px) { @content; } }
+
+//dw < 979px
+@mixin for-all-portrait-devices { @media (max-width: 979px){ @content; } }
+
+//dw >= 980px
+@mixin for-tablet-landscape-up { @media (min-width: 980px) { @content; } }
+
+//dw >= 1200px
+@mixin for-desktop-up { @media (min-width: 1200px) { @content; } }
+
+//dw >= 1600px
+@mixin for-big-desktop-up { @media (min-width: 1600px) { @content; } }
+
+//dw <= 2400px
+@mixin for-very-big{ @media(min-width: 2400px){ @content; } }

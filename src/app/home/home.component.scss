@@ -125,7 +125,15 @@
       flex: 1 0 0;
       img {
         height: auto;
-        max-width: 620px;
+        @include for-tablet-landscape-up {
+          max-width: 485px;
+        }
+        @include for-desktop-up {
+          max-width: 485px;
+        }
+        @include for-big-desktop-up {
+          max-width: 620px;
+        }
       }
     }
     .desc {
@@ -175,6 +183,7 @@
       }
     }
     .graph {
+      align-items: center;
       display: grid;
       grid-template-columns: 1fr auto 1fr;
       grid-template-rows: 1fr 1fr 1fr;
@@ -203,9 +212,15 @@
       }
       img {
         grid-area: img;
-        height: 600px;
-        min-width: 750px;
+        // max-width: 750px;
         padding: 0 1em;
+        height: 240px;
+        @include for-tablet-landscape-up{
+          height: 480px;
+        }
+        @include for-big-desktop-up{
+          height: 600px;
+        }
       }
       .operations,
       .matching,
