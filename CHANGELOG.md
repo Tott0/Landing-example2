@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.12.0"></a>
+# [0.12.0](https://gitlab.com/tott0/caxtor/compare/v0.11.0...v0.12.0) (2018-12-16)
+
+
+### Bug Fixes
+
+* 1200px landing container layout ([38626e2](https://gitlab.com/tott0/caxtor/commit/38626e2))
+
+
+### Features
+
+* warehouse creation first step ([76d1c5c](https://gitlab.com/tott0/caxtor/commit/76d1c5c))
+
+
+
 <a name="0.11.0"></a>
 # [0.11.0](https://gitlab.com/tott0/caxtor/compare/v0.10.0...v0.11.0) (2018-12-11)
 
