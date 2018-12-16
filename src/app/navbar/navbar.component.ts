@@ -2,7 +2,7 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 import { AuthService } from '../core/providers/auth.service';
-import { UserType } from '../shared/models/user.model';
+import { UserType } from '@shared/models/user.model';
 import { AppConstants } from '@app/app-constants';
 
 @Component({

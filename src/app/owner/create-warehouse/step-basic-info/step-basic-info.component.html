@@ -1,0 +1,195 @@
+<section class="create-warehouse-step basic-info-section">
+
+  <article class="step-section basic">
+    <header>
+      <span class="title">
+        INFORMACIÓN BÁSICA
+      </span>
+    </header>
+
+    <div class="content">
+      <mat-form-field class="name">
+        <span class="wrapper">
+          <input matInput placeholder="Nombre de Bodega*" [(ngModel)]="warehouse.name">
+          <span class="guide"></span>
+        </span>
+      </mat-form-field>
+
+      <mat-form-field class="dpto">
+        <mat-select placeholder="Departamento*" (change)="departamentoChanged($event.value)">
+          <mat-option *ngFor="let d of departamentos" [value]="d.id">{{ d.name }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field class="city">
+        <mat-select placeholder="Ciudad*" [disabled]="ciudades && !ciudades.length" [(ngModel)]="warehouse.city"
+          (change)="ciudadChanged($event.value)">
+          <mat-option *ngFor="let c of ciudades" [value]="c">{{ c.name }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field class="addr">
+        <span class="wrapper">
+          <input matInput placeholder="Dirección*" [(ngModel)]="currentAddress" [matAutocomplete]="addrAuto" (input)="addressChanged($event.target.value)"
+            [disabled]="!warehouse.city">
+          <mat-autocomplete #addrAuto="matAutocomplete" [displayWith]="mcDisplayFn" (optionSelected)="addressSelected($event.option.value.place_id)">
+            <mat-option *ngFor="let addr of filteredAddresses" [value]="addr">
+              {{ addr.address }}
+            </mat-option>
+          </mat-autocomplete>
+          <span class="guide"></span>
+        </span>
+      </mat-form-field>
+
+      <mat-accordion class="map">
+        <mat-expansion-panel [disabled]="false && !warehouse.lat">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              UBICACIÓN EN MAPA
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <ng-template matExpansionPanelContent>
+            <div class="wrapper">
+              <div class="row">
+                <span>
+                  <span class="label">Latitud: </span>
+                  {{ warehouse.lat | number:'1.3-5'}}
+                </span>
+                <span>
+                  <span class="label">Longitud: </span>
+                  {{ warehouse.lng | number:'1.3-5'}}
+                </span>
+              </div>
+              <div class="row">
+                <agm-map [latitude]="mapLat" [longitude]="mapLng" [zoom]="mapZoom" [streetViewControl]="false"
+                  [zoomControl]="false">
+                  <agm-marker *ngIf="warehouse.lat" [latitude]="warehouse.lat" [longitude]="warehouse.lng"
+                    [markerDraggable]="false"></agm-marker>
+                </agm-map>
+              </div>
+            </div>
+          </ng-template>
+        </mat-expansion-panel>
+      </mat-accordion>
+
+      <mat-form-field class="desc">
+        <span class="wrapper">
+          <textarea matInput placeholder="Descripción de la bodega (Opcional)" [(ngModel)]="warehouse.description"
+            matTextareaAutosize matAutosizeMinRows="3" matAutosizeMaxRows="3"></textarea>
+          <span class="guide"></span>
+        </span>
+      </mat-form-field>
+
+      <div class="cert file-input" [ngClass]="{'has-file': warehouse.certLibTra}">
+        <input #cltFile class="fileInput" type="file" accept=".pdf" (change)="onFile($event.target.files[0], 1); cltFile.value = ''">
+        <button mat-raised-button (click)="cltFile.click()">
+          <span class="button-text">
+            SELECCIONAR ARCHIVO
+          </span>
+        </button>
+        <span class="placeholder">
+          {{ warehouse.certLibTra ? warehouse.certLibTra.name : 'Certificado Libertad y Tradición*' }}
+        </span>
+      </div>
+
+    </div>
+  </article>
+
+  <article class="step-section schedule">
+    <header>
+      <span class="title">
+        HORARIO DE LA BODEGA
+      </span>
+    </header>
+
+    <div class="content">
+      <div class="days">
+        <mat-radio-group (change)="dayModeChaged($event.value)">
+          <mat-radio-button value="1" [checked]="true">Seleccionar días de la semana</mat-radio-button>
+          <mat-radio-button value="2">Disponible los 7 días de la semana</mat-radio-button>
+        </mat-radio-group>
+
+        <span>
+          <mat-checkbox [disabled]="!daysEnabled" [(ngModel)]="warehouse.workingDays[0]">Domingo</mat-checkbox>
+          <mat-checkbox [disabled]="!daysEnabled" [(ngModel)]="warehouse.workingDays[1]">Lunes</mat-checkbox>
+          <mat-checkbox [disabled]="!daysEnabled" [(ngModel)]="warehouse.workingDays[2]">Martes</mat-checkbox>
+          <mat-checkbox [disabled]="!daysEnabled" [(ngModel)]="warehouse.workingDays[3]">Miércoles</mat-checkbox>
+          <mat-checkbox [disabled]="!daysEnabled" [(ngModel)]="warehouse.workingDays[4]">Jueves</mat-checkbox>
+          <mat-checkbox [disabled]="!daysEnabled" [(ngModel)]="warehouse.workingDays[5]">Viernes</mat-checkbox>
+          <mat-checkbox [disabled]="!daysEnabled" [(ngModel)]="warehouse.workingDays[6]">Sábado</mat-checkbox>
+        </span>
+
+      </div>
+
+      <div class="time">
+        <mat-radio-group (change)="timeModeChanged($event.value)">
+          <mat-radio-button value="1" [checked]="true">Seleccionar rango horario</mat-radio-button>
+          <mat-radio-button value="2">Disponible 24 horas</mat-radio-button>
+        </mat-radio-group>
+
+        <div class="interval-wrapper">
+          <input matInput type="number" [(ngModel)]="warehouse.workingTime[0]" appForceNumeric appForceValue
+            appForceTimeValue [max]="12" [min]="0" [disabled]="!timeEnabled">
+          <span>:</span>
+          <input matInput type="number" [(ngModel)]="warehouse.workingTime[4]" appForceNumeric appForceValue
+            appForceTimeValue [max]="60" [min]="0" [disabled]="!timeEnabled">
+
+          <button mat-button (click)="warehouse.workingTime[1] = warehouse.workingTime[1] === 'am' ? 'pm' : 'am'"
+            [disabled]="!timeEnabled">
+            {{ warehouse.workingTime[1] }}
+          </button>
+
+          <span>&ndash;</span>
+
+          <input matInput type="number" [(ngModel)]="warehouse.workingTime[2]" appForceNumeric appForceValue
+            appForceTimeValue [max]="12" [min]="0" [disabled]="!timeEnabled">
+          <span>:</span>
+          <input matInput type="number" [(ngModel)]="warehouse.workingTime[5]" appForceNumeric appForceValue
+            appForceTimeValue [max]="60" [min]="0" [disabled]="!timeEnabled">
+
+          <button mat-button (click)="warehouse.workingTime[3] = warehouse.workingTime[3] === 'am' ? 'pm' : 'am'"
+            [disabled]="!timeEnabled">
+            {{ warehouse.workingTime[3] }}
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </article>
+
+  <article class="step-section media">
+    <header>
+      <span class="title">
+        FOTOS Y VIDEOS
+      </span>
+    </header>
+
+    <div class="content">
+      <span class="desc">Fotos de la bodega* (Máximo 5)</span>
+      <div class="file-input">
+        <input #fileInput id="fileInput" type="file" (change)="onFile($event.target.files, 0)" multiple>
+        <button mat-raised-button (click)="fileInput.click()">
+          Seleccionar Archivo...
+        </button>
+        <!-- <p *ngIf="this.currentFile"> {{ this.currentFile.name }}</p> -->
+      </div>
+      <div class="photos">
+        <span *ngFor="let p of warehouse.images; let i = index" class="photo bg-image-shadow-hover">
+          <img [src]="domSanitizer.bypassSecurityTrustUrl(p.url)"/>
+          <button mat-icon-button class="remove-btn" (click)="warehouse.images.splice(i, 1); $event.stopPropagation()">
+            <i class="far fa-lg fa-times-circle"></i>
+          </button>
+        </span>
+      </div>
+    </div>
+  </article>
+
+  <!-- <mat-expansion-panel [expanded]="true" class="extra">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Información Adicional
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+  </mat-expansion-panel> -->
+
+</section>

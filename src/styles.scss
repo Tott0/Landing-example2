@@ -1,16 +1,18 @@
 @import './src/scss/variables.scss';
+@import '~ngx-bar-rating/themes/br-stars-theme';
 *:not(.mat-form-field-label-wrapper) {
   box-sizing: border-box !important;
 }
-:after, :before{
+
+:after,
+:before {
   box-sizing: border-box !important;
 }
 
 :root {
-  --top-header-height: 92px;
-  --fixed-header-height: 52px;
-  --header-height: calc(var(--top-header-height) + var(--fixed-header-height));
-  --footer-height: 55px;
+  --top-header-padding: 2em;
+  --top-header-height: calc(90px + var(--top-header-padding));
+  --footer-height: 80px;
   --html-font-size-xlg: 14px;
   --html-font-size-lg: 12px;
   --html-font-size-md: 12px;
@@ -19,7 +21,7 @@
   --color-dark: #212121;
   --color-dark-rgb: 23, 23, 23;
   --color-darkest: #111111;
-  --color-shadow-t: rgba(7,7,7, 0.65);
+  --color-shadow-t: rgba(7, 7, 7, 0.65);
   --color-danger: #f44336;
   --color-success: #4CAF50;
 }
@@ -68,7 +70,10 @@ body {
 }
 
 .component-wrapper {
-  margin-top: var(--header-height);
+  margin-top: var(--top-header-height);
+  display: flex;
+  flex: 1 0 0;
+  flex-direction: column;
 }
 
 .shadow-overlay {
@@ -99,10 +104,10 @@ body {
   width: 100%;
   margin: 0 auto;
   align-self: center;
-  @include for-all-phones{
+  @include for-all-phones {
     max-width: 540px !important;
   }
-  @include for-tablet-portrait-up{
+  @include for-tablet-portrait-up {
     width: 750px !important;
   }
   @include for-tablet-landscape-up {
@@ -176,6 +181,16 @@ mat-card.mat-card.bg-title-card {
 }
 
 .bg-image-shadow {
+  &:after {
+    content: "";
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+}
+.bg-image-shadow-hover:hover {
   &:after {
     content: "";
     width: 100%;

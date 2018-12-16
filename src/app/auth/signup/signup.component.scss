@@ -52,7 +52,7 @@ mat-card {
     .file-input {
       margin: 0.5em 0;
       display: flex;
-      align-items: flex-start;
+      align-items: center;
       .fileInput {
         position: absolute;
         left: -100vw;
@@ -62,7 +62,7 @@ mat-card {
         font-size: 0.95em;
       }
       button {
-        margin-left: 2em;
+        margin-right: 2em;
       }
     }
     .btn-submit {

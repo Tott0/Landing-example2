@@ -1,0 +1,190 @@
+@import './src/scss/variables.scss';
+::ng-deep app-step-basic-info {
+  .mat-expansion-panel-body {
+    display: flex;
+    flex-direction: column;
+  }
+  .mat-expansion-panel-body {
+    padding: 0;
+  }
+}
+
+.basic {
+  .content {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: repeat(6, auto);
+    grid-row-gap: 1em;
+    grid-column-gap: 1em;
+    @include for-desktop-up {}
+    grid-template-areas: "name name . ." "dpto dpto city city" "addr addr addr addr" "map map map map" "desc desc desc desc" "cert cert cert cert";
+    .name {
+      grid-area: name;
+    }
+    .dpto {
+      grid-area: dpto;
+    }
+    .city {
+      grid-area: city;
+    }
+    .addr {
+      grid-area: addr;
+    }
+    .map {
+      grid-area: map;
+    }
+    .desc {
+      grid-area: desc;
+    }
+    .cert {
+      grid-area: cert;
+    }
+    .file-input {
+      display: flex;
+      align-items: center;
+      .fileInput {
+        position: absolute;
+        visibility: hidden;
+        left: -100vw;
+      }
+      .placeholder {
+        font-size: 0.95em;
+        font-weight: 500;
+      }
+      button {
+        margin-right: 1em;
+        opacity: 0.7;
+        transition: all 0.15s ease;
+      }
+      &.has-file {
+        button {
+          opacity: 1;
+        }
+      }
+    }
+  }
+  .map {
+    .mat-expansion-panel:not(.mat-expanded) {
+      .wrapper {
+        opacity: 0;
+      }
+    }
+    .mat-panel-title {
+      font-weight: 400;
+    }
+    .wrapper {
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      .row:first-of-type {
+        padding: 1em;
+        &>span {
+          margin-right: 1em;
+          font-size: 1em;
+        }
+      }
+      agm-map {
+        width: 100%;
+        height: 400px;
+      }
+    }
+  }
+}
+
+.schedule {
+  .days,
+  .time {
+    display: flex;
+    flex-direction: column;
+    mat-radio-group {
+      margin-bottom: 1em;
+    }
+    mat-radio-button {
+      &:not(:last-of-type) {
+        margin-right: 0.5em;
+      }
+    }
+  }
+  .days {
+    .mat-checkbox {
+      margin: 0 1em;
+    }
+  }
+  .time {
+    margin-top: 2em;
+    .interval-wrapper {
+      display: grid;
+      grid-template-columns: 60px auto 60px 50px 30px 60px auto 60px 50px;
+      grid-template-rows: 1fr;
+      align-items: center;
+      padding-left: 1em;
+      input,
+      button {
+        text-align: center;
+      }
+      input {
+        border-bottom: solid 1px transparentize($dark, 0.5);
+      }
+      button {
+        min-width: 0;
+      }
+    }
+  }
+}
+
+.media {
+  .desc {
+    margin-top: 1em;
+  }
+  .file-input {
+    margin: 1em 0;
+    display: flex;
+    align-items: center;
+    #fileInput {
+      position: absolute;
+      left: -100vw;
+    }
+  }
+  .photos {
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-column-gap: 0.5em;
+    margin-top: 1em;
+    align-items: flex-start;
+    justify-content: center;
+    grid-template-columns: repeat(5, 1fr);
+    @include for-desktop-up {
+      grid-template-columns: repeat(5, 1fr);
+    }
+    .photo {
+      position: relative;
+      display: flex;
+      align-items: flex-start;
+      img {
+        width: 100%; // max-height: 72px;
+        @include for-desktop-up {
+          // max-height: 144px;
+        }
+      }
+      .remove-btn {
+        z-index: 991;
+        position: absolute;
+        top: 0.25em;
+        right: 0.25em;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        visibility: hidden;
+        opacity: 0;
+        transition: 0.15s all ease;
+        line-height: 0;
+      }
+      &:hover {
+        .remove-btn {
+          visibility: visible;
+          opacity: 1;
+        }
+      }
+    }
+  }
+}

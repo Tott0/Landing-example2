@@ -8,7 +8,7 @@ import { WarehouseParametersResolver } from './warehouse-parameters-resolver.ser
 // import { LoginAuthGuard, PersonAuthGuard } from '../core/providers/auth-guard.service';
 
 // import { CaseDetailResolver } from './case-detail/case-detail-resolver.service';
-// import { MultaCodesResolver } from '../shared/shared-resolvers.service';
+// import { MultaCodesResolver } from '@shared/shared-resolvers.service';
 
 
 const routes: Routes = [

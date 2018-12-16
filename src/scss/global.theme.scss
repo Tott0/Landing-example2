@@ -10,4 +10,14 @@
       background: mat-color($primary, darker);
     }
   }
+
+  .highlight.primary{
+    color: mat-color($primary) !important;
+  }
+
+  .bg-image-shadow, .bg-image-shadow-hover{
+    &:after{
+      background: var(--color-shadow-t);
+    }
+  }
 }

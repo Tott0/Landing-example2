@@ -40,7 +40,7 @@
             <span class="button-text">{{ authService.user.user.profile.fullName }}</span>
             <i class="fas fa-caret-down fa-lg"></i>
           </button>
-          <mat-menu #authMenu="matMenu" class="temp-menu" xPosition="after">
+          <mat-menu #authMenu="matMenu" class="temp-menu" xPosition="after" [class]="'authMenu'">
             <button mat-menu-item routerLink="/cuenta/perfil" *ngIf="canShow(1)">
               <i class="fas fa-cog"></i>
               <span class="button-text">Mi Perfil</span>

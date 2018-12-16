@@ -12,6 +12,7 @@ import { ForceUppercaseDirective } from './directives/force-uppercase.directive'
 import { ForceNumericDirective } from './directives/force-numeric.directive';
 import { ForceAlphabeticDirective } from './directives/force-alphabetic.directive';
 import { ForceValueDirective } from './directives/force-value.directive';
+import { ForceTimeValueDirective } from './directives/force-time-value.directive';
 
 import { TruncatePipe } from './pipes/truncate';
 import { TimePipe } from './pipes/time';
@@ -47,6 +48,7 @@ import { AgmCoreModule } from '@agm/core';
     ForceNumericDirective,
     ForceAlphabeticDirective,
     ForceValueDirective,
+    ForceTimeValueDirective,
     //
     TruncatePipe,
     TimePipe,
@@ -67,6 +69,7 @@ import { AgmCoreModule } from '@agm/core';
     ForceNumericDirective,
     ForceAlphabeticDirective,
     ForceValueDirective,
+    ForceTimeValueDirective,
     //
     TruncatePipe,
     TimePipe,

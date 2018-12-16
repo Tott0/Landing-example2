@@ -5,7 +5,7 @@ import {
   Router, Resolve, RouterStateSnapshot,
   ActivatedRouteSnapshot
 } from '@angular/router';
-import { Warehouse } from '../shared/models/warehouse.model';
+import { Warehouse } from '@shared/models/warehouse.model';
 import { ClientService } from './client.service';
 import { ModalManager } from '../core/providers/modal-manager';
 

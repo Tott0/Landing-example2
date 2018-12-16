@@ -3,8 +3,10 @@
   $primary: map-get($map: $theme, $key: primary);
   $background: map-get($theme, background);
   $foreground: map-get($theme, foreground);
+  $foreground-text: mat-color($foreground, text);
+  $foreground-sec-text: mat-color($foreground, secondary-text);
   .owner-wrapper {
-    background: transparentize(mat-color($background, background), $amount: 0);
+    background: mat-color($background, background);
     .left {
       mat-card {
         mat-card-header {
@@ -15,12 +17,12 @@
             .amount {
               color: mat-color($primary, darker);
             }
-            .separator{
+            .separator {
               border: solid 1px mat-color(mat-palette($mat-grey), 500);
             }
-            a{
+            a {
               color: mat-color($primary);
-              &:hover{
+              &:hover {
                 color: mat-color($primary, darker);
               }
             }
@@ -37,6 +39,65 @@
               color: mat-color(mat-palette($mat-green), darker);
             }
           }
+        }
+      }
+    }
+  }
+  .create-warehouse-wrapper {
+    background: mat-color($background, background);
+    .mat-expansion-panel {
+      .mat-expansion-panel-header {
+        &[disabled],
+        &[aria-disabled='true'] {
+          opacity: 0.3;
+        }
+        background: transparentize(mat-color($primary, darker), 0.15);
+        &:focus {
+          background: transparentize(mat-color($primary, darker), 0.15);
+        }
+        &:not([aria-disabled='true']):hover {
+          background: transparentize(mat-color($primary, darker), 0);
+        }
+      }
+    }
+    section.create-warehouse-step {
+      .step-section {
+        border: solid 1px mat-color($primary, darker);
+        header {
+          background: mat-color($primary, darker);
+          .title {
+            color: var(--color-light);
+          }
+        }
+      }
+      article.basic {
+        mat-accordion.map {
+          .mat-expansion-panel-header-title {
+            color: var(--color-light);
+          }
+          .mat-expansion-panel-header-description,
+          .mat-expansion-indicator::after {
+            color: var(--color-light);
+          }
+        }
+        .file-input {
+          .placeholder {
+            color: $foreground-sec-text;
+          }
+          &.has-file {
+            button {
+              background: mat-color($primary);
+              color: var(--color-light);
+            }
+            .placeholder {
+              color: $foreground-text;
+            }
+          }
+        }
+      }
+      article.media{
+        .remove-btn{
+          color: var(--color-light);
         }
       }
     }

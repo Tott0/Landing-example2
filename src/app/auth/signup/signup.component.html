@@ -125,32 +125,22 @@
 
                 <div class="file-input">
                   <input #brFile class="fileInput" type="file" accept=".pdf" (change)="onFile($event.target.files[0], 0); brFile.value = ''">
-                  <span class="placeholder">Referencia Bancaria*</span>
                   <button mat-raised-button (click)="brFile.click()">
                     <span class="button-text">
                       {{ bankReference ? bankReference.name : 'Seleccionar Archivo...' }}
                     </span>
                   </button>
+                  <span class="placeholder">Referencia Bancaria*</span>
                 </div>
-
-                <!-- <div class="file-input">
-                  <input #cltFile class="fileInput" type="file" accept=".pdf" (change)="onFile($event.target.files[0], 1); cltFile.value = ''">
-                  <span class="placeholder">Certificado Libertad y Tradición*</span>
-                  <button mat-raised-button (click)="cltFile.click()">
-                    <span class="button-text">
-                      {{ certLibTra ? certLibTra.name : 'Seleccionar Archivo...' }}
-                    </span>
-                  </button>
-                </div> -->
 
                 <div class="file-input">
                   <input #rutFile class="fileInput" type="file" accept=".pdf" (change)="onFile($event.target.files[0], 2); rutFile.value = ''">
-                  <span class="placeholder">RUT*</span>
                   <button mat-raised-button (click)="rutFile.click()">
                     <span class="button-text">
                       {{ rut ? rut.name : 'Seleccionar Archivo...' }}
                     </span>
                   </button>
+                  <span class="placeholder">RUT*</span>
                 </div>
 
               </div>

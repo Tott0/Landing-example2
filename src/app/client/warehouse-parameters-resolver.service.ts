@@ -4,7 +4,7 @@ import {
   Router, Resolve, RouterStateSnapshot,
   ActivatedRouteSnapshot
 } from '@angular/router';
-import { Parameter } from '../shared/models/warehouse.model';
+import { Parameter } from '@shared/models/warehouse.model';
 import { ModalManager } from '../core/providers/modal-manager';
 import { SharedService } from '../core/providers/shared.service';
 
