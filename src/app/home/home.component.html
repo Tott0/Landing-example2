@@ -277,17 +277,35 @@
     </div>
   </section>
 
-  <section class="info-section">
-
-    <div class="img-shadow-effect"></div>
-    <div class="section-content">
-
-      <h1>Texto de Información</h1>
-      <h4>Detalle de Información, Texto de Explicación, Texto del Proceso</h4>
-
-      <button mat-raised-button color="primary">Ver Más...</button>
-    </div>
-  </section>
+  <section class="section-blog">
+      <div class="container">
+  
+        <div class="col text-center">
+          <h2 class="title-head">LATEST <span class="highlight primary-dark">BLOGS</span></h2>
+        </div>
+  
+        <div class="latest-blog-posts">
+  
+          <article class="post" *ngFor="let post of latestPosts">
+  
+            <a routerLink="[post.url]"><img class="img-responsive" [src]="post.img" alt="img"></a>
+  
+            <div class="post-body">
+              <h4 class="post-title">
+                <a routerLink="[post.url]">{{ post.title }}</a>
+              </h4>
+              <div class="post-text">
+                <span>
+                  <i class="far fa-clock"></i>
+                  3 minutes ago, 0 comments
+                </span>
+                <p>{{ post.text }}</p>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
 
   <section class="warehouses-section">
     <div class="row">
@@ -326,6 +344,31 @@
     </div>
   </section>
 
+  <section class="newsletter-section">
+    <div class="container">
+      <div class="row">
+        <div class="newsletter">
+          <div class="wrapper">
+            <span class="title">
+              JOIN OUR NEWSLETTER
+            </span>
+  
+            <p>Subscribe to our mailing list to receive updates <br> and promotional offers.</p>
+            
+            <div class="email-input">
+              <input matInput placeholder="Correo Electrónico" type="email" [(ngModel)]="newsLetterEmail">
+              <button mat-raised-button color="accent">Subscribirse</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="banner">
+          <span>Ad <br> Banners</span>
+        </div>
+      </div>
+    </div>
+    </section>
+
 
   <div class="top-footer caxtor-dark-theme">
     <div class="container">
@@ -346,22 +389,22 @@
 
         <span>
           <i class="fas fa-map-marker-alt"></i>
-          <span>Caxtor <br> 1211, 3605 KZ, Maarssen</span>
+          <span>Caxtor <br> Calle 77 # 59b-61 <br> Oficina 1009</span>
         </span>
 
         <span>
           <i class="fas fa-phone"></i>
-          <span>Phone: 1300 623 863</span>
+          <span>Phone: 3161002</span>
         </span>
 
         <span>
           <i class="fas fa-envelope"></i>
-          <span>enquiries@caxtor.com</span>
+          <span>caxtor.team@gmail.com</span>
         </span>
 
         <span>
           <i class="far fa-clock"></i>
-          <span>9:00am - 5:00pm</span>
+          <span>8:00am - 6:00pm</span>
         </span>
 
       </article>

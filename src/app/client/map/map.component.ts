@@ -36,12 +36,14 @@ export class MapComponent implements OnInit, OnDestroy {
   warehouses: Warehouse[] = [];
   parameters: any;
 
-  cityFSbj: FilterSubject<Ciudad> = new FilterSubject();
-  positionFSbj: FilterSubject<PositionType> = new FilterSubject();
-  amountFSbj: FilterSubject<number> = new FilterSubject();
-  iDateFSbj: FilterSubject<Date> = new FilterSubject();
-  eDateFSbj: FilterSubject<Date> = new FilterSubject();
-  productFSbj: FilterSubject<Parameter[]> = new FilterSubject();
+  cityFSbj = new FilterSubject<Ciudad>();
+  positionFSbj = new FilterSubject<PositionType>();
+  amountFSbj = new FilterSubject<number>();
+  iDateFSbj = new FilterSubject<Date>();
+  eDateFSbj = new FilterSubject<Date>();
+  productFSbj = new FilterSubject<Parameter[]>();
+
+  sortOrderFSbj = new FilterSubject<number>();
 
   iDate = new Date();
   eDate = new Date();

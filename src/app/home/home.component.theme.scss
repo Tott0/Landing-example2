@@ -1,6 +1,7 @@
 @import '~@angular/material/theming';
 @mixin home-component-theme($theme) {
   $primary: map-get($map: $theme, $key: primary);
+  $accent: map-get($map: $theme, $key: accent);
   $background: map-get($theme, background);
   $foreground: map-get($theme, foreground);
   $foreground-text: mat-color($foreground, text);
@@ -68,6 +69,51 @@
           img{
             border: solid 2px var(--color-light);
           }
+        }
+      }
+    }
+    .section-blog{
+      .post{
+        // background: var(--color-dark);
+        .post-body{
+          background: mat-color($background, background);
+        }
+        .post-title{
+          a{
+            color: $foreground-text;
+            &:hover{
+              color: mat-color($primary);
+            }
+          }
+        }
+        .post-text{
+          p, span {
+            color: $foreground-sec-text;
+          }
+          i{
+            color: $foreground-text;
+          }
+        }
+        .mat-flat-button{
+          color: $foreground-text;
+        }
+      }
+    }
+    .newsletter-section{
+      .banner{
+        background: mat-color($background, background);
+        border: solid 1px mat-color($primary, darker);
+        span{
+          color: mat-color($primary, darker);
+        }
+      }
+      .email-input{
+        input{
+          background: var(--color-light);
+        }
+        button{
+          background: mat-color($accent);
+          color: var(--color-light);
         }
       }
     }

@@ -14,10 +14,16 @@
   .highlight.primary{
     color: mat-color($primary) !important;
   }
+  .highlight.primary-dark{
+    color: mat-color($primary, darker) !important;
+  }
 
   .bg-image-shadow, .bg-image-shadow-hover{
     &:after{
       background: var(--color-shadow-t);
     }
+  }
+  .menu-backdrop{
+    background: var(--color-shadow-t);
   }
 }

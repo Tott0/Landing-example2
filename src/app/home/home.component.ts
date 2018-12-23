@@ -85,6 +85,28 @@ export class HomeComponent implements OnInit, OnDestroy {
   iLng = -74.8180175;
   zoom = 13;
 
+  latestPosts = [
+    {
+      url: 'blog-post-1',
+      img: 'assets/images/blog-post-small-1.jpg',
+      title: 'Mauris tincidunt ex eget dictum.',
+      text: 'incididunt ut labore et dolore magna aliqua. Ut enim aminim veniam, quis nostrud...',
+    },
+    {
+      url: 'blog-post-2',
+      img: 'assets/images/blog-post-small-2.jpg',
+      title: 'Morbi pharetra, felis a facilisis.',
+      text: 'incididunt ut labore et dolore magna aliqua. Ut enim aminim veniam, quis nostrud...',
+    },
+    {
+      url: 'blog-post-3',
+      img: 'assets/images/blog-post-small-3.jpg',
+      title: 'Curabitur fringilla ac lorem nec.',
+      text: 'incididunt ut labore et dolore magna aliqua. Ut enim aminim veniam, quis nostrud...',
+    }
+  ];
+
+
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,

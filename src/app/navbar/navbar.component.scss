@@ -20,7 +20,7 @@ header {
 // .transparent {
   .mat-toolbar {
     .row {
-      padding: var(--top-header-padding);
+      padding: var(--top-header-padding) 0;
       // padding-top: 2em;
     }
   }

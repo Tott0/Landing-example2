@@ -3,6 +3,8 @@
   $primary: map-get($map: $theme, $key: primary);
   $background: map-get($theme, background);
   $foreground: map-get($theme, foreground);
+  $foreground-text: mat-color($foreground, text);
+  $foreground-sec-text: mat-color($foreground, secondary-text);
   .client-wrapper {
     background: transparentize(mat-color($background, background), $amount: 0);
     .left {
@@ -39,6 +41,32 @@
           }
         }
       }
+    }
+  }
+  .map-wrapper{
+    .row.top{
+      .filters{
+        .filter{
+          &:not(.nb){
+            &:not(:last-of-type) {
+              border-right: solid 1px var(--color-shadow-t);
+            }
+          }
+          .cb-menu-field{
+            span{
+              color: $foreground-text;
+            }
+            i{
+              color: $foreground-sec-text;
+            }
+          }
+        }
+      }
+    }
+  }
+  .filter-menu{
+    .title{
+      color: mat-color($primary, darker);
     }
   }
 }

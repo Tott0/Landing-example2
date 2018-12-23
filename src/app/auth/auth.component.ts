@@ -47,7 +47,7 @@ export class AuthComponent implements OnInit {
       .subscribe(res => {
         this.mm.closeLoadingDialog();
         if (this.authService.redirectUrl) {
-
+          console.log('redirect', this.authService.redirectUrl);
           this.router.navigate([this.authService.redirectUrl]);
         } else {
           console.log(res);

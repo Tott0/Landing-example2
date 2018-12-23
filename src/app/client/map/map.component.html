@@ -2,30 +2,39 @@
   <div class="row top">
     <div class="filters">
 
-      <mat-form-field>
-        <input matInput [matDatepicker]="iPicker" placeholder="Fecha final" [(ngModel)]="iDateFSbj.value" [min]="iDate"
-          (dateChange)="iDateFSbj.change.next()" (focus)="iPicker.open()">
-        <mat-datepicker-toggle matSuffix [for]="iPicker"></mat-datepicker-toggle>
-        <mat-datepicker #iPicker></mat-datepicker>
-      </mat-form-field>
+      <div class="filter select-field city">
+        <mat-select placeholder="Ciudad" [(ngModel)]="currentFilters.cd">
+          <mat-option [value]="1">Barranquilla</mat-option>
+          <mat-option [value]="2">Bogotá</mat-option>
+          <mat-option [value]="3">Cartagena</mat-option>
+          <mat-option [value]="4">Cali</mat-option>
+        </mat-select>
+      </div>
 
-      <mat-form-field>
-        <input matInput [matDatepicker]="ePicker" placeholder="Fecha final" [(ngModel)]="eDateFSbj.value" [min]="iDate"
+      <div class="filter date-field iDate" (click)="iPicker.open()">
+        <input matInput #iInput [matDatepicker]="iPicker" placeholder="Fecha Inicial" [(ngModel)]="iDateFSbj.value"
+          [min]="iDate" (dateChange)="iDateFSbj.change.next()" (focus)="iPicker.open()">
+        <mat-datepicker-toggle matSuffix [for]="iPicker"></mat-datepicker-toggle>
+        <mat-datepicker #iPicker (closed)="iInput.blur()"></mat-datepicker>
+      </div>
+
+      <div class="filter date-field eDate" (click)="ePicker.open()">
+        <input matInput #eInput [matDatepicker]="ePicker" placeholder="Fecha final" [(ngModel)]="eDateFSbj.value" [min]="iDate"
           (dateChange)="eDateFSbj.change.next()" (focus)="ePicker.open()">
         <mat-datepicker-toggle matSuffix [for]="ePicker"></mat-datepicker-toggle>
-        <mat-datepicker #ePicker></mat-datepicker>
-      </mat-form-field>
+        <mat-datepicker #ePicker (closed)="eInput.blur()"></mat-datepicker>
+      </div>
 
-      <mat-form-field>
+      <div class="filter select-field type">
         <mat-select placeholder="Tipo de Espacio" [(ngModel)]="positionFSbj.value" (change)="positionFSbj.change.next()">
           <mat-option [value]="PositionType.FLOOR_CLOSED">Piso Cubierto</mat-option>
           <mat-option [value]="PositionType.FLOOR_OPEN">Piso Exterior</mat-option>
           <mat-option [value]="PositionType.RACK">Estantería</mat-option>
           <mat-option [value]="PositionType.BOX">Caja</mat-option>
         </mat-select>
-      </mat-form-field>
+      </div>
 
-      <mat-form-field>
+      <div class="filter select-field cant">
         <mat-select placeholder="Cantidad de Espacios" [(ngModel)]="amountFSbj.value" (change)="amountFSbj.change.next()">
           <mat-option [value]="0">1&ndash;50</mat-option>
           <mat-option [value]="1">51&ndash;250</mat-option>
@@ -33,39 +42,74 @@
           <mat-option [value]="3">500&ndash;1000</mat-option>
           <mat-option [value]="4">1000+</mat-option>
         </mat-select>
-      </mat-form-field>
+      </div>
+
+      <div class="filter cb-menu-field products" [matMenuTriggerFor]="productMenu">
+        <span>Productos Aceptados</span>
+        <i class="fas fa-caret-down"></i>
+        <mat-menu #productMenu="matMenu" class="temp-menu" xPosition="after" [class]="'filter-menu productMenu'" [hasBackdrop]="true" [backdropClass]="'menu-backdrop'" [overlapTrigger]="false">
+          <div class="wrapper">
+            <span class="title">PRODUCTOS ACEPTADOS</span>
+            <div class="cb-area product">
+              <mat-checkbox *ngFor="let p of parameters.product" [(ngModel)]="p.checked" (click)="$event.stopPropagation()" >{{ p.description }}</mat-checkbox>
+            </div>
+          </div>
+        </mat-menu>
+      </div>
+      <div class="filter cb-menu-field services" [matMenuTriggerFor]="servicesMenu">
+        <span>Servicios</span>
+        <i class="fas fa-caret-down"></i>
+        <mat-menu #servicesMenu="matMenu" class="temp-menu" xPosition="after" [class]="'filter-menu servicesMenu'" [hasBackdrop]="true" [backdropClass]="'menu-backdrop'" [overlapTrigger]="false">
+          <div class="wrapper">
+              <span class="title">SERVICIOS</span>
+            <div class="cb-area services">
+              <mat-checkbox *ngFor="let p of parameters.services" [(ngModel)]="p.checked" (click)="$event.stopPropagation()" >{{ p.description }}</mat-checkbox>
+            </div>
+          </div>
+        </mat-menu>
+      </div>
+      <div class="filter cb-menu-field others" [matMenuTriggerFor]="otherMenu">
+        <span>Almacenamiento</span>
+        <i class="fas fa-caret-down"></i>
+        <mat-menu #otherMenu="matMenu" class="temp-menu" xPosition="after" [class]="'filter-menu otherMenu'" [hasBackdrop]="true" [backdropClass]="'menu-backdrop'" [overlapTrigger]="false"> 
+          <div class="wrapper" (click)="$event.stopPropagation()">
+              <span class="title">SEGURIDAD</span>
+              <div class="cb-area security">
+                <mat-checkbox *ngFor="let p of parameters.security" [(ngModel)]="p.checked" (click)="$event.stopPropagation()" >{{ p.description }}</mat-checkbox>
+              </div>
+              <span class="title">CERTIFICACIONES</span>
+            <div class="cb-area certifications">
+              <mat-checkbox *ngFor="let p of parameters.certifications" [(ngModel)]="p.checked" (click)="$event.stopPropagation()" >{{ p.description }}</mat-checkbox>
+            </div>
+          </div>
+        </mat-menu>
+      </div>
 
     </div>
   </div>
 
   <div class="row bottom">
     <div class="left-area results" *ngIf="!focusedWarehouse">
-      <!-- <span class="title">Ciudad Seleccionada</span> -->
-      <mat-form-field>
-        <mat-select placeholder="Ciudad" [(ngModel)]="currentFilters.cd" disabled>
-          <mat-option [value]="1">Barranquilla</mat-option>
-          <mat-option [value]="2">Bogotá</mat-option>
-          <mat-option [value]="3">Cartagena</mat-option>
-          <mat-option [value]="4">Cali</mat-option>
-        </mat-select>
-        <!-- <mat-error *ngIf="city.invalid">{{getErrorMessage(city)}}</mat-error> -->
-      </mat-form-field>
-
-      <div class="filler"></div>
-
-      <span class="title filter-wrapper">
-        Resultados de Búsqueda
-        <div class="filler"></div>
-        <span matTooltip="Filtrar Búsqueda" matTooltipPosition="above" [matTooltipClass]="'tooltip'" (click)="$event.stopPropagation();">
-          <button class="btn-filter" mat-icon-button (click)="filters()">
-            <i class="fa fa-cog" aria-hidden="true"></i>
-          </button>
+      
+      <header class="results-header" class="mat-elevation-z2">
+        <span>
+          {{ 0 }} Bódegas Encontradas
         </span>
-      </span>
 
-      <mat-nav-list>
+        <div class="filler"></div>
 
-        <mat-divider></mat-divider>
+        <div class="sort-order">
+            <mat-select placeholder="Ordenar Resultados" [(ngModel)]="sortOrderFSbj.value" (change)="sortOrderFSbj.change.next()">
+              <mat-option [value]="0">Precio (Descendente)</mat-option>
+              <mat-option [value]="1">Precio (Ascendente)</mat-option>
+              <mat-option [value]="2">Distancia (Descendente)</mat-option>
+              <mat-option [value]="3">Distancia (Ascendente)</mat-option>
+            </mat-select>
+          </div>
+      </header>
+
+      <mat-nav-list class="warehouses">
+        
         <ng-container *ngFor="let r of warehouses">
           <mat-list-item class="result" (click)="focusOn(r)">
             <img src="https://www.joc.com/sites/default/files/field_feature_image/warehouse%2043.jpg" alt="foto" class="">
