@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.13.0"></a>
+# [0.13.0](https://gitlab.com/tott0/caxtor/compare/v0.12.1...v0.13.0) (2018-12-23)
+
+
+### Features
+
+* landing finished, map, creation ([c1cc0bb](https://gitlab.com/tott0/caxtor/commit/c1cc0bb))
+
+
+
 <a name="0.12.1"></a>
 ## [0.12.1](https://gitlab.com/tott0/caxtor/compare/v0.12.0...v0.12.1) (2018-12-23)
 
