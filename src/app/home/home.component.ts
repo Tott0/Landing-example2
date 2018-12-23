@@ -3,6 +3,7 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
 import { Validators, FormBuilder, FormGroup, AbstractControl } from '@angular/forms';
 import { AppConstants } from '@app/app-constants';
 import { getErrorMessage } from '@core/static-methods';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -86,6 +87,8 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   constructor(
     private formBuilder: FormBuilder,
+    private router: Router,
+    private route: ActivatedRoute
   ) { }
 
   ngOnInit() {
@@ -143,6 +146,22 @@ export class HomeComponent implements OnInit, OnDestroy {
     if ((this.reviewIndex - 1) * 3 < 0) {
       this.hideRevLeft = true;
     }
+  }
+
+  searchWarehouses() {
+    const u = {
+      cd: this.city.value,
+      up: this.pallets.value,
+    };
+
+    console.log(u);
+
+    // setTimeout(() => {
+    this.router.navigate(['/temproute_client/temproute_map', u]).then(
+      success => this.errors.message = success ? '' : 'No se encontraton bodegas con los parametros seleccionados',
+      err => console.error(err)
+    );
+    // }, 500);
   }
 
 }

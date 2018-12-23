@@ -95,9 +95,31 @@
           }
         }
       }
-      article.media{
-        .remove-btn{
+      article.media {
+        .remove-btn {
           color: var(--color-light);
+        }
+      }
+    }
+    section.storage-info-section {
+      mat-table {
+        border: solid 1px transparentize(mat-color($primary, darker), 0.1);
+      }
+      .mat-column-actions {
+        .btn-remove {
+          color: var(--color-danger);
+        }
+      }
+      .storage {
+        .block-add {
+          border: solid 1px mat-color($primary, darker);
+        }
+        .btn-add {
+          background: mat-color($primary);
+          color: var(--color-light);
+          &[disabled] {
+            background: transparentize(mat-color($primary), 0.3);
+          }
         }
       }
     }

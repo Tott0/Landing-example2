@@ -1,6 +1,7 @@
 export class AppConstants {
 
   static isAtHome = false;
+  static isAtMap = false;
 
   static get PAYU() {
     return {

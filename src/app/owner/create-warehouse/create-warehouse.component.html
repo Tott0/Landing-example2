@@ -14,8 +14,11 @@
 
       <mat-card-content>
         <div class="wrapper">
-          <mat-horizontal-stepper [linear]="true">
-            <mat-step #basicTab>
+          <mat-horizontal-stepper [linear]="true" #stepper>
+            <ng-template matStepperIcon="edit">
+              {{stepper.selectedIndex}}
+            </ng-template>
+            <mat-step [stepControl]="formBasicInfo" [completed]="basicInfo.isComplete()">
               <ng-template matStepLabel>Información Básica</ng-template>
               <app-step-basic-info [warehouse]="warehouse" [departamentos]="departamentos"></app-step-basic-info>
             </mat-step>

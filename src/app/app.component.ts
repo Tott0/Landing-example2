@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 
 import { Observable, fromEvent } from 'rxjs';
 import { ModalManager } from './core/providers/modal-manager';
+import { AppConstants } from './app-constants';
 
 @Component({
   selector: 'app-root',
@@ -12,6 +13,8 @@ import { ModalManager } from './core/providers/modal-manager';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
+
+  isAtMap = () => AppConstants.isAtMap;
 
   constructor(
     public router: Router,

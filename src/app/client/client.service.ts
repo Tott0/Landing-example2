@@ -8,7 +8,7 @@ import { StaticMethods } from '@core/static-methods';
 import { ModalManager } from '@core/providers/modal-manager';
 import { environment } from '@env/environment';
 
-import { Warehouse } from '@shared/models/warehouse.model';
+import { Warehouse, WarehouseApi } from '@shared/models/warehouse.model';
 
 @Injectable()
 export class ClientService {
@@ -19,8 +19,8 @@ export class ClientService {
   ) { }
 
 
-  filterWarehouses(params): Observable<Warehouse[]> {
-    return this.http.get<Warehouse[]>(`${environment.API_ENDPOINT}warehouses${StaticMethods.getParams(params)}`)
+  filterWarehouses(params): Observable<WarehouseApi> {
+    return this.http.get<WarehouseApi>(`${environment.API_ENDPOINT}warehouses${StaticMethods.getParams(params)}`)
       .pipe(
         catchError((err, caught) => {
           this.mm.closeLoadingDialog();

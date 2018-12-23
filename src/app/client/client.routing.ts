@@ -11,6 +11,9 @@ import { WarehouseParametersResolver } from './warehouse-parameters-resolver.ser
 // import { MultaCodesResolver } from '@shared/shared-resolvers.service';
 
 
+import { MapComponent } from './map/map.component';
+
+
 const routes: Routes = [
   {
     path: '',
@@ -18,6 +21,14 @@ const routes: Routes = [
     // canActivate: [PersonAuthGuard]
     children: [
     ]
+  },
+  {
+    path: 'temproute_map',
+    component: MapComponent,
+    resolve: {
+      warehouses: WarehouseFilterResolver,
+      parameters: WarehouseParametersResolver,
+    }
   }
 ];
 

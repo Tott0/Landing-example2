@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { tap, map } from 'rxjs/operators';
 import {
   Router, Resolve, RouterStateSnapshot,
   ActivatedRouteSnapshot
 } from '@angular/router';
-import { Warehouse } from '@shared/models/warehouse.model';
+import { Warehouse, WarehouseApi } from '@shared/models/warehouse.model';
 import { ClientService } from './client.service';
 import { ModalManager } from '../core/providers/modal-manager';
 
@@ -24,11 +24,11 @@ export class WarehouseFilterResolver implements Resolve<Warehouse[]> {
     return this.service.filterWarehouses({
       by_city: params.cd
     }).pipe(
-      tap((res: any) => {
-        if (res.total_count) {
+      map((res: WarehouseApi) => {
+        if (res.total_count >= 0) {
           return res.warehouses;
         }
-        return res;
+        return [];
       }));
   }
 }

@@ -1,0 +1,141 @@
+<div class="component-wrapper map-wrapper">
+  <div class="row top">
+    <div class="filters">
+
+      <mat-form-field>
+        <input matInput [matDatepicker]="iPicker" placeholder="Fecha final" [(ngModel)]="iDateFSbj.value" [min]="iDate"
+          (dateChange)="iDateFSbj.change.next()" (focus)="iPicker.open()">
+        <mat-datepicker-toggle matSuffix [for]="iPicker"></mat-datepicker-toggle>
+        <mat-datepicker #iPicker></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput [matDatepicker]="ePicker" placeholder="Fecha final" [(ngModel)]="eDateFSbj.value" [min]="iDate"
+          (dateChange)="eDateFSbj.change.next()" (focus)="ePicker.open()">
+        <mat-datepicker-toggle matSuffix [for]="ePicker"></mat-datepicker-toggle>
+        <mat-datepicker #ePicker></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-select placeholder="Tipo de Espacio" [(ngModel)]="positionFSbj.value" (change)="positionFSbj.change.next()">
+          <mat-option [value]="PositionType.FLOOR_CLOSED">Piso Cubierto</mat-option>
+          <mat-option [value]="PositionType.FLOOR_OPEN">Piso Exterior</mat-option>
+          <mat-option [value]="PositionType.RACK">Estantería</mat-option>
+          <mat-option [value]="PositionType.BOX">Caja</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-select placeholder="Cantidad de Espacios" [(ngModel)]="amountFSbj.value" (change)="amountFSbj.change.next()">
+          <mat-option [value]="0">1&ndash;50</mat-option>
+          <mat-option [value]="1">51&ndash;250</mat-option>
+          <mat-option [value]="2">250&ndash;500</mat-option>
+          <mat-option [value]="3">500&ndash;1000</mat-option>
+          <mat-option [value]="4">1000+</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+    </div>
+  </div>
+
+  <div class="row bottom">
+    <div class="left-area results" *ngIf="!focusedWarehouse">
+      <!-- <span class="title">Ciudad Seleccionada</span> -->
+      <mat-form-field>
+        <mat-select placeholder="Ciudad" [(ngModel)]="currentFilters.cd" disabled>
+          <mat-option [value]="1">Barranquilla</mat-option>
+          <mat-option [value]="2">Bogotá</mat-option>
+          <mat-option [value]="3">Cartagena</mat-option>
+          <mat-option [value]="4">Cali</mat-option>
+        </mat-select>
+        <!-- <mat-error *ngIf="city.invalid">{{getErrorMessage(city)}}</mat-error> -->
+      </mat-form-field>
+
+      <div class="filler"></div>
+
+      <span class="title filter-wrapper">
+        Resultados de Búsqueda
+        <div class="filler"></div>
+        <span matTooltip="Filtrar Búsqueda" matTooltipPosition="above" [matTooltipClass]="'tooltip'" (click)="$event.stopPropagation();">
+          <button class="btn-filter" mat-icon-button (click)="filters()">
+            <i class="fa fa-cog" aria-hidden="true"></i>
+          </button>
+        </span>
+      </span>
+
+      <mat-nav-list>
+
+        <mat-divider></mat-divider>
+        <ng-container *ngFor="let r of warehouses">
+          <mat-list-item class="result" (click)="focusOn(r)">
+            <img src="https://www.joc.com/sites/default/files/field_feature_image/warehouse%2043.jpg" alt="foto" class="">
+            <span class="text-vertical-group">
+              <span class="name">{{r.name}}</span>
+              <span class="addr">{{r.address}}</span>
+            </span>
+            <div class="filler"></div>
+            <span class="details">Detalles
+              <i class="fa fa-caret-right" aria-hidden="true"></i>
+            </span>
+          </mat-list-item>
+          <mat-divider></mat-divider>
+        </ng-container>
+
+      </mat-nav-list>
+      <mat-paginator [length]="5" [pageSize]="5" (page)="onPage($event.pageIndex)">
+      </mat-paginator>
+    </div>
+
+    <div class="left-area result-focus" *ngIf="focusedWarehouse as wh">
+      <span class="top-title title">
+        <button mat-icon-button class="btn-back" (click)="clearFocus()">
+          <i class="fa fa-arrow-left" aria-hidden="true"></i>
+        </button>
+        Detalles de Bodega
+      </span>
+      <span class="line name">
+        <i class="fa fa-truck" aria-hidden="true"></i>
+        {{ focusedWarehouse.name }}
+      </span>
+      <span class="wh-img">
+        <img src="https://s3.amazonaws.com/flexe/photos/091df545cced868f4bafa58c7f75402d4c3a478b/large.JPG?1435655612">
+      </span>
+
+      <span class="sub-title">Dirección</span>
+      <span class="addr">{{ wh.address }}</span>
+
+      <span class="sub-title">Tipos de Almacenamiento</span>
+      <div class="storage">
+        <span class="str" *ngIf="wh.has_rack()">
+          <img src="assets/images/rack-icon.png"> Estantería
+        </span>
+        <span class="str" *ngIf="wh.has_floor_closed()">
+          <img src="assets/images/single-stack-icon.png"> Área Piso Cubierta
+        </span>
+        <span class="str" *ngIf="wh.has_floor_open()">
+          <img src="assets/images/single-stack-icon.png"> Área Piso Descubierta
+        </span>
+      </div>
+
+      <span class="sub-title">Precios Desde</span>
+      <div class="line prices">
+        <span>
+          <i class="fa fa-archive" aria-hidden="true"></i>
+          {{25000 | copCurrency}} Por Pallet
+        </span>
+      </div>
+
+      <div class="filler no-min"></div>
+      <button mat-raised-button color="primary" class="btn-go">
+        <span class="btn-text">Ver más Detalles</span>
+      </button>
+    </div>
+
+    <div class="map">
+      <agm-map [latitude]="iLat" [longitude]="iLng" [zoom]="zoom" [streetViewControl]="false" [zoomControl]="false">
+        <agm-marker *ngFor="let r of warehouses" [latitude]="r.lat" [longitude]="r.lng" [markerDraggable]="false"
+          (markerClick)="markerClick(r)"></agm-marker>
+      </agm-map>
+    </div>
+  </div>
+</div>
