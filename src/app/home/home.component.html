@@ -1,24 +1,42 @@
 <div class="component-wrapper home-wrapper">
 
-
-
   <section class="carousel-section">
-    <div class="shadow-overlay"></div>
-    <div class="section-content">
-      <ui-carousel [infinite]="true" [fade]="false" [speed]="4000" [autoPlaySpeed]="12500" [height]="'600px'">
-        <!-- <ui-carousel-item>
-              <img [ui-lazy-load]="item.img">
-            </ui-carousel-item> -->
-        <ui-carousel-item>
-          <img [ui-lazy-load]="'assets/images/warehouse2.jpg'">
-        </ui-carousel-item>
-        <ui-carousel-item>
-          <img [ui-lazy-load]="'assets/images/warehouse3.jpg'">
-        </ui-carousel-item>
-        <ui-carousel-item>
-          <img [ui-lazy-load]="'assets/images/warehouse4.jpg'">
-        </ui-carousel-item>
-      </ui-carousel>
+    <!-- <div class="shadow-overlay"></div> -->
+    <div class="carousel">
+      <div class="carousel-inner">
+
+        <ng-container *ngFor="let car of carouselItems">
+          <div class="carousel-item" [ngClass]="{'active': car.id === carouselItems[carouselIndex].id}"
+            [@slideLeftRight]="car.animState" [style.background-image]="'url('+car.img+')'">
+            <div class="carousel-content">
+              <div class="container">
+              </div>
+            </div>
+          </div>
+        </ng-container>
+
+        <div class="floating-block">
+          <span class="title">FROM STARTUP TO SCALE</span>
+          <p>eCommerce Order Fulfillment for Every Stage of Your business</p>
+          <div class="row">
+            <button mat-raised-button class="btn-find">FIND SPACE</button>
+            <button mat-raised-button class="btn-list">LIST SPACE</button>
+          </div>
+        </div>
+
+        <div class="index-indicator">
+          <span *ngFor="let car of carouselItems; let i = index" [class]="'indicator'" [class.active]="carouselIndex === i">
+          </span>
+        </div>
+
+      </div>
+
+      <a class="left carousel-control" href="#" (click)="triggerCarouselLeft()">
+        <span><i class="fas fa-angle-left"></i></span>
+      </a>
+      <a class="right carousel-control" href="#" (click)="triggerCarouselRight()">
+        <span><i class="fas fa-angle-right"></i></span>
+      </a>
     </div>
   </section>
 

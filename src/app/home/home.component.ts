@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
-import { trigger, state, style, transition, animate } from '@angular/animations';
+import { trigger, state, style, transition, animate, keyframes } from '@angular/animations';
 import { Validators, FormBuilder, FormGroup, AbstractControl } from '@angular/forms';
 import { AppConstants } from '@app/app-constants';
 import { getErrorMessage } from '@core/static-methods';
@@ -19,10 +19,95 @@ import { Router, ActivatedRoute } from '@angular/router';
       transition(':leave', [
         animate(100, style({ opacity: 0 }))
       ])
+    ]),
+    trigger('flipFrontBack', [
+      state('true', style({
+        transform: 'rotateY(0)'
+      })),
+      state('false', style({
+        transform: 'rotateY(0)'
+      })),
+      transition('false <=> true', [
+        style({
+          transform: 'rotateY(180deg)'
+        }),
+        animate('350ms ease-out', keyframes([
+          style({ transform: 'rotateY(180deg)', offset: 0 }),
+          style({ transform: 'rotateY(90deg)', offset: 0.3 }),
+          style({ transform: 'rotateY(0)', offset: 1 })
+        ]))
+      ]),
+      transition('back => front', [
+        animate('0ms')
+      ])
+    ]),
+    trigger('slideLeftRight', [
+      state('left', style({
+        transform: 'translateX(-100%)'
+      })),
+      state('right', style({
+        transform: 'translateX(100%)'
+      })),
+      state('normalFromLeft', style({
+        transform: 'translateX(0)'
+      })),
+      state('normalFromRight', style({
+        transform: 'translateX(0)'
+      })),
+      transition('* => left', [
+        style({
+          transform: 'translateX(0)'
+        }),
+        animate('600ms ease-in-out', style({
+          transform: 'translateX(-100%)'
+        }))
+      ]),
+      transition('* => right', [
+        style({
+          transform: 'translateX(0)'
+        }),
+        animate('600ms ease-in-out', style({
+          transform: 'translateX(100%)'
+        }))
+      ]),
+      transition('* => normalFromLeft', [
+        style({
+          transform: 'translateX(-100%)'
+        }),
+        animate('600ms ease-in-out', style({
+          transform: 'translateX(0)'
+        }))
+      ]),
+      transition('* => normalFromRight', [
+        style({
+          transform: 'translateX(100%)'
+        }),
+        animate('600ms ease-in-out', style({
+          transform: 'translateX(0)'
+        }))
+      ]),
+      transition('* => *', [animate('600ms ease-in-out')]),
     ])
   ]
 })
 export class HomeComponent implements OnInit, OnDestroy {
+
+  carouselItems = [
+    {
+      id: 1,
+      img: 'assets/images/warehouse2.jpg',
+      animState: 'normal'
+    },
+    {
+      id: 2,
+      img: 'assets/images/warehouse3.jpg',
+    },
+    {
+      id: 3,
+      img: 'assets/images/warehouse4.jpg',
+    }
+  ];
+  carouselIndex = 0;
 
   selectedService = 0;
 
@@ -184,6 +269,41 @@ export class HomeComponent implements OnInit, OnDestroy {
       err => console.error(err)
     );
     // }, 500);
+  }
+
+  triggerCarouselLeft() {
+    const prevIndex = this.carouselIndex;
+    if (--this.carouselIndex < 0) {
+      this.carouselIndex = this.carouselItems.length - 1;
+    }
+    console.group('group');
+
+    console.log('prev ' + prevIndex, this.carouselItems[prevIndex].animState);
+    console.log('sel ' + this.carouselIndex, this.carouselItems[this.carouselIndex].animState);
+
+    this.carouselItems[prevIndex].animState = 'right';
+    this.carouselItems[this.carouselIndex].animState = 'normalFromLeft';
+
+    console.log('prev ' + prevIndex, this.carouselItems[prevIndex].animState);
+    console.log('sel ' + this.carouselIndex, this.carouselItems[this.carouselIndex].animState);
+    console.groupEnd();
+  }
+  triggerCarouselRight() {
+    const prevIndex = this.carouselIndex;
+    if (++this.carouselIndex >= this.carouselItems.length) {
+      this.carouselIndex = 0;
+    }
+    console.group('group');
+
+    console.log('prev ' + prevIndex, this.carouselItems[prevIndex].animState);
+    console.log('sel ' + this.carouselIndex, this.carouselItems[this.carouselIndex].animState);
+
+    this.carouselItems[prevIndex].animState = 'left';
+    this.carouselItems[this.carouselIndex].animState = 'normalFromRight';
+
+    console.log('prev ' + prevIndex, this.carouselItems[prevIndex].animState);
+    console.log('sel ' + this.carouselIndex, this.carouselItems[this.carouselIndex].animState);
+    console.groupEnd();
   }
 
 }

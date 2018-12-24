@@ -24,8 +24,6 @@ import { DecimalPipe } from './pipes/decimal';
 import { EnumPositionTypePipe } from './pipes/enum-position-type';
 import { UsedMaterialComponentsModule } from '@shared/modules/used-material-components.module';
 
-import { UICarouselModule } from '@shared/components/UiCarousel/ui-carousel.module';
-
 /*Libraries */
 import { BarRatingModule } from 'ngx-bar-rating';
 import { AgmCoreModule } from '@agm/core';
@@ -80,7 +78,6 @@ import { AgmCoreModule } from '@agm/core';
     DecimalPipe,
     EnumPositionTypePipe,
     //
-    UICarouselModule,
     BarRatingModule,
     AgmCoreModule
   ],

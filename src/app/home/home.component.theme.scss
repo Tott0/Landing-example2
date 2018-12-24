@@ -7,6 +7,42 @@
   $foreground-text: mat-color($foreground, text);
   $foreground-sec-text: mat-color($foreground, secondary-text);
   .home-wrapper {
+    .carousel-section {
+      .floating-block{
+        span, p{
+          color: var(--color-light);
+        }
+        button{
+          color: var(--color-light);
+        }
+        .btn-find{
+          background: mat-color($primary, darker);
+        }
+        .btn-list{
+          background: mat-color($primary);
+        }
+      }
+      .carousel-content {
+        .content-title {
+          color: $foreground-text;
+          span {
+            color: mat-color($primary);
+          }
+        }
+        .content-actions {
+          button {
+            border: solid 1px mat-color($primary);
+          }
+        }
+      }
+      .carousel-control {
+        a,
+        span,
+        i {
+          color: mat-color($primary);
+        }
+      }
+    }
     .info-section {
       .section-content {
         color: white;
