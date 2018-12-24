@@ -216,7 +216,7 @@
     padding-bottom: 2em;
     .services-row {
       display: grid;
-      grid-column-gap: 3em;
+      grid-column-gap: 4em;
       @include for-tablet-landscape-up {
         grid-template-rows: 1fr;
         grid-template-columns: repeat(4, 1fr);
@@ -229,7 +229,6 @@
         flex-direction: column;
         justify-content: center;
         padding: 1em 2em;
-        width: 250px;
         text-align: center;
         font-size: 1.5em;
         img {
