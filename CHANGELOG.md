@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.14.0"></a>
+# [0.14.0](https://gitlab.com/tott0/caxtor/compare/v0.13.0...v0.14.0) (2018-12-24)
+
+
+### Features
+
+* landing, carousel, desktop-up ([dfe3961](https://gitlab.com/tott0/caxtor/commit/dfe3961))
+* landing, carousel, desktop-up ([9435ae4](https://gitlab.com/tott0/caxtor/commit/9435ae4))
+
+
+
 <a name="0.13.0"></a>
 # [0.13.0](https://gitlab.com/tott0/caxtor/compare/v0.12.1...v0.13.0) (2018-12-23)
 
