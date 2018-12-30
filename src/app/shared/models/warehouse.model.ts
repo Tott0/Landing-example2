@@ -35,6 +35,8 @@ export class Warehouse {
   // certificado libertad y Tradición
   certLibTra: DocumentFile;
 
+  areaSize: number;
+
   has_rack?(): boolean { return this.positions.some(p => p.typePosition === PositionType.RACK); }
   has_floor_closed?(): boolean { return this.positions.some(p => p.typePosition === PositionType.FLOOR_CLOSED); }
   has_floor_open?(): boolean { return this.positions.some(p => p.typePosition === PositionType.FLOOR_OPEN); }

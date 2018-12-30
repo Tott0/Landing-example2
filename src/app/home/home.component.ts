@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild, ElementRef } from '@angular/core';
 import { trigger, state, style, transition, animate, keyframes } from '@angular/animations';
 import { Validators, FormBuilder, FormGroup, AbstractControl } from '@angular/forms';
 import { AppConstants } from '@app/app-constants';
@@ -91,20 +91,27 @@ import { Router, ActivatedRoute } from '@angular/router';
   ]
 })
 export class HomeComponent implements OnInit, OnDestroy {
+  @ViewChild('mapSearch', { read: ElementRef }) mapSearch: ElementRef;
 
   carouselItems = [
     {
       id: 1,
       img: 'assets/images/warehouse2.jpg',
+      title: 'El espacio que necesites donde lo necesites.',
+      subtitle: 'Olvídate de las cláusulas de permanencia y extensos procesos de contratación.',
       animState: 'normal'
     },
     {
       id: 2,
       img: 'assets/images/warehouse3.jpg',
+      title: 'La primera red de bodegas más grande del país',
+      subtitle: 'Encuentra espacios de manera rápida, sencilla y flexible en una sola plataforma.',
     },
     {
       id: 3,
       img: 'assets/images/warehouse4.jpg',
+      title: 'Convierte tus espacios improductivos en ganancias extras.',
+      subtitle: 'Publica tu espacio y te conectamos con tus próximos clientes.',
     }
   ];
   carouselIndex = 0;
@@ -304,6 +311,14 @@ export class HomeComponent implements OnInit, OnDestroy {
     console.log('prev ' + prevIndex, this.carouselItems[prevIndex].animState);
     console.log('sel ' + this.carouselIndex, this.carouselItems[this.carouselIndex].animState);
     console.groupEnd();
+  }
+
+  scrollToMap() {
+    console.log(this.mapSearch);
+    window.scrollTo({
+      top: this.mapSearch.nativeElement.offsetTop - 50,
+      behavior: 'smooth'
+    });
   }
 
 }

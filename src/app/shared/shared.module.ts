@@ -27,6 +27,7 @@ import { UsedMaterialComponentsModule } from '@shared/modules/used-material-comp
 /*Libraries */
 import { BarRatingModule } from 'ngx-bar-rating';
 import { AgmCoreModule } from '@agm/core';
+import { Ng5SliderModule } from 'ng5-slider';
 
 
 @NgModule({
@@ -79,7 +80,8 @@ import { AgmCoreModule } from '@agm/core';
     EnumPositionTypePipe,
     //
     BarRatingModule,
-    AgmCoreModule
+    AgmCoreModule,
+    Ng5SliderModule,
   ],
   entryComponents: [
     LoadingDialog,

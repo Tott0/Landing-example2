@@ -10,19 +10,18 @@
             [@slideLeftRight]="car.animState" [style.background-image]="'url('+car.img+')'">
             <div class="carousel-content">
               <div class="container">
+                <div class="floating-block">
+                  <span class="title">{{car.title}}</span>
+                  <p>{{car.subtitle}}</p>
+                  <div class="row">
+                    <button mat-raised-button class="btn-find" (click)="scrollToMap()">BUSCAR ESPACIO</button>
+                    <button mat-raised-button class="btn-list" [routerLink]="['/temproute_owner']">PUBLICAR ESPACIO</button>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </ng-container>
-
-        <div class="floating-block">
-          <span class="title">FROM STARTUP TO SCALE</span>
-          <p>eCommerce Order Fulfillment for Every Stage of Your business</p>
-          <div class="row">
-            <button mat-raised-button class="btn-find">FIND SPACE</button>
-            <button mat-raised-button class="btn-list">LIST SPACE</button>
-          </div>
-        </div>
 
         <div class="index-indicator">
           <span *ngFor="let car of carouselItems; let i = index" [class]="'indicator'" [class.active]="carouselIndex === i">
@@ -50,7 +49,7 @@
           <img *ngIf="selectedService === 0" src="assets/images/package-w.png" class="icon">
           <img *ngIf="selectedService !== 0" src="assets/images/package-b.png" class="icon">
           <h4 class="service-title">
-            eCommerce Fulfillment
+            Busca
           </h4>
         </article>
 
@@ -58,7 +57,7 @@
           <img *ngIf="selectedService === 1" src="assets/images/retail-w.png" class="icon">
           <img *ngIf="selectedService !== 1" src="assets/images/retail-b.png" class="icon">
           <h4 class="service-title">
-            Retail Distribution
+            Compara
           </h4>
         </article>
 
@@ -66,17 +65,17 @@
           <img *ngIf="selectedService === 2" src="assets/images/warehouse-w.png" class="icon">
           <img *ngIf="selectedService !== 2" src="assets/images/warehouse-b.png" class="icon">
           <h4 class="service-title">
-            Inventory Overflow
+            Conecta y Contrata
           </h4>
         </article>
 
-        <article class="service" id="third-service" (click)="selectedService = 3" [ngClass]="{'selected': selectedService === 3}">
+        <!-- <article class="service" id="third-service" (click)="selectedService = 3" [ngClass]="{'selected': selectedService === 3}">
           <img *ngIf="selectedService === 3" src="assets/images/truck-w.png" class="icon">
           <img *ngIf="selectedService !== 3" src="assets/images/truck-b.png" class="icon">
           <h4 class="service-title">
             Delivery
           </h4>
-        </article>
+        </article> -->
 
       </div>
 
@@ -84,15 +83,11 @@
 
         <span class="title">
           <img src="assets/images/package.png">
-          <span>eCommerce Fulfillment</span>
+          <span>Busca</span>
         </span>
 
         <p class="desc">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed mi ligula, consectetur id mollis eget,
-          eleifend nec felis. Donec justo justo, faucibus et ligula laoreet, ullamcorper vehicula tortor. Nam eget
-          pretium erat. Aenean condimentum, felis sed sollicitudin hendrerit, quam enim auctor enim, at mattis ante
-          ligula at tortor. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis
-          egestas. Duis enim leo, pharetra ut velit id, fermentum molestie est. Praesent commodo nec diam a bibendum.
+          Accede a la red de bodegas de manera instantánea. Filtra la ciudad y cantidad de espacio que requieres
         </p>
 
       </div>
@@ -101,15 +96,11 @@
 
         <span class="title">
           <img src="assets/images/retail.png">
-          <span>Retail Distribution</span>
+          <span>Compara</span>
         </span>
 
         <p class="desc">
-          Donec sed ultricies sapien, quis facilisis velit. Duis magna elit, porta ut suscipit ac, suscipit non nisl.
-          Aenean sed sapien mi. Etiam tempus purus id posuere imperdiet. Aliquam dignissim, libero eu ullamcorper
-          dictum, dolor massa suscipit lacus, ut commodo neque mi vel ante. Suspendisse commodo molestie elit sit amet
-          posuere. Pellentesque vitae ligula efficitur, vulputate justo eu, lobortis dui. Donec vel magna et metus
-          lobortis vulputate.
+          Compara precios y escoge la que mejor cumpla con tus necesidades
         </p>
 
       </div>
@@ -118,20 +109,16 @@
 
         <span class="title">
           <img src="assets/images/warehouse.png">
-          <span>Inventory Overflow</span>
+          <span>Conecta y Contrata</span>
         </span>
 
         <p class="desc">
-          Phasellus tortor purus, egestas et mollis vitae, placerat vitae orci. Sed venenatis felis sed posuere
-          laoreet. Sed tempor lacus euismod porttitor suscipit. Quisque placerat euismod ligula quis viverra. Vivamus
-          hendrerit vitae risus sed lobortis. Nunc ut bibendum lacus. Morbi blandit vel lectus ut tempus. In blandit
-          massa sit amet lectus bibendum, quis convallis odio pellentesque. Integer lacinia justo ac eros suscipit, vel
-          luctus quam posuere.
+          Conecta directamente con los proveedores de bodega sin intermediarios, de manera rápida y sencilla
         </p>
 
       </div>
 
-      <div class="service-desc" *ngIf="selectedService === 3">
+      <!-- <div class="service-desc" *ngIf="selectedService === 3">
 
         <span class="title">
           <img src="assets/images/truck.png">
@@ -145,7 +132,7 @@
           habitasse platea dictumst. Orci varius natoque penatibus et magnis dis parturient montes.
         </p>
 
-      </div>
+      </div> -->
 
     </div>
 
@@ -163,17 +150,14 @@
 
           <div class="desc">
             <span class="title">
-              <span>WAREHOUSE CAPACITY</span>
-              <span class="bold">ECONOMICS &amp; <span class="highlight">TRENDS REPORT</span></span>
+              <span class="bold">¿POR QUÉ USAR <span class="highlight">CAXTOR</span>?</span>
             </span>
 
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi tortor metus, laoreet vitae porta
-              aliquet,
-              dignissim et augue. Curabitur libero ante, tempor nec urna in, tempus dignissim ligula. Etiam lectus
-              libero,
-              rutrum a vulputate in, efficitur pretium mi. </p>
+            <p>Caxtor on demand warehousing, es una plataforma tecnológica que conecta el universo de la oferta y la
+              demanda de quienes buscan y tienen un espacio para almacenar. Con herramientas que facilitan la búsqueda
+              y el manejo de los espacios. </p>
 
-            <button mat-stroked-button color="primary">Read More</button>
+            <!-- <button mat-stroked-button color="primary">Read More</button> -->
 
           </div>
         </div>
@@ -187,65 +171,65 @@
 
     <div class="container">
       <span class="main-title">
-        <span class="bold"><span class="highlight">CAXTOR SOLUTIONS</span> ARE MADE POSSIBLE BY</span>
-        <span> A POWERFUL SOFTWARE PLATFORM</span>
+        <span class="bold"><span class="highlight">LAS SOLUCIONES CAXTOR</span> SON POSIBLES GRACIAS A</span>
+        <span> UNA PODEROSA PLATAFORMA SOFTWARE</span>
       </span>
 
       <div class="graph">
 
         <article class="operations">
           <span class="title">
-            Operations
+            Módulo WMS
+            <!-- integrado -->
           </span>
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut vitae nisl leo. Integer quis pharetra.
+            La vida es más fácil con la tecnología de escaneo y WMS basada en la nube.
           </p>
         </article>
 
         <article class="matching">
           <span class="title">
-            Matching
+            Conecta
           </span>
           <p>
-            Phasellus fermentum gravida mattis. Aenean non quam congue, lobortis nibh eget, porta sem.
+            Te conectamos con el socio apropiado dentro de la red más grande de bodegas del país.
           </p>
         </article>
 
         <article class="billing">
           <span class="title">
-            Billing
+            Facturación
           </span>
           <p>
-            Nunc molestie dapibus purus vel faucibus. Proin sed efficitur libero, ac suscipit nisl. Donec.
+            Unificamos las facturas y los pagos de los servicios para todos los socios.
           </p>
         </article>
 
         <article class="analytics">
           <span class="title">
-            Analytics
+            Analítica
           </span>
           <p>
-            In hac habitasse platea dictumst. Fusce pellentesque, turpis ac elementum dictum.
-            est.
+            Has seguimiento, administra y analiza tu operación desde la plataforma.
           </p>
         </article>
 
         <article class="logistics">
           <span class="title">
-            Logistics Report
+            Reportes Logísticos
           </span>
           <p>
-            Curabitur vitae pulvinar elit. Curabitur euismod nunc et elit dictum dictum.
-            commodo.
+            Generamos los reportes que necesitas para gestionar tu operación.
           </p>
         </article>
 
         <article class="marketplace">
           <span class="title">
-            Marketplace
+            Mercado de Aplícaciones
           </span>
           <p>
-            Curabitur vitae pulvinar elit. Curabitur euismod nunc et elit dictum dictum. In commodo.
+            Contamos con una red de aplícaciones integradas de servicios complementarios.
+            <!-- del sector logístico y transporte que puedes contratar a un click sin salir de la plataforma -->
           </p>
         </article>
 
@@ -258,7 +242,7 @@
   <section class="reviews-section">
     <div class="container">
 
-      <span class="title">CLIENT REVIEWS</span>
+      <span class="title">¿POR QUÉ NOS PREFIEREN?</span>
 
       <div class="reviews-row" #reviewsRow id="reviewsRow">
 
@@ -296,36 +280,36 @@
   </section>
 
   <section class="section-blog">
-      <div class="container">
-  
-        <div class="col text-center">
-          <h2 class="title-head">LATEST <span class="highlight primary-dark">BLOGS</span></h2>
-        </div>
-  
-        <div class="latest-blog-posts">
-  
-          <article class="post" *ngFor="let post of latestPosts">
-  
-            <a routerLink="[post.url]"><img class="img-responsive" [src]="post.img" alt="img"></a>
-  
-            <div class="post-body">
-              <h4 class="post-title">
-                <a routerLink="[post.url]">{{ post.title }}</a>
-              </h4>
-              <div class="post-text">
-                <span>
-                  <i class="far fa-clock"></i>
-                  3 minutes ago, 0 comments
-                </span>
-                <p>{{ post.text }}</p>
-              </div>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
+    <div class="container">
 
-  <section class="warehouses-section">
+      <div class="col text-center">
+        <h2 class="title-head">LATEST <span class="highlight primary-dark">BLOGS</span></h2>
+      </div>
+
+      <div class="latest-blog-posts">
+
+        <article class="post" *ngFor="let post of latestPosts">
+
+          <a routerLink="[post.url]"><img class="img-responsive" [src]="post.img" alt="img"></a>
+
+          <div class="post-body">
+            <h4 class="post-title">
+              <a routerLink="[post.url]">{{ post.title }}</a>
+            </h4>
+            <div class="post-text">
+              <span>
+                <i class="far fa-clock"></i>
+                3 minutes ago, 0 comments
+              </span>
+              <p>{{ post.text }}</p>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section #mapSearch class="warehouses-section">
     <div class="row">
       <div class="search">
         <span class="title">
@@ -364,28 +348,18 @@
 
   <section class="newsletter-section">
     <div class="container">
-      <div class="row">
-        <div class="newsletter">
-          <div class="wrapper">
-            <span class="title">
-              JOIN OUR NEWSLETTER
-            </span>
-  
-            <p>Subscribe to our mailing list to receive updates <br> and promotional offers.</p>
-            
-            <div class="email-input">
-              <input matInput placeholder="Correo Electrónico" type="email" [(ngModel)]="newsLetterEmail">
-              <button mat-raised-button color="accent">Subscribirse</button>
-            </div>
-          </div>
-        </div>
-
-        <div class="banner">
-          <span>Ad <br> Banners</span>
-        </div>
+      <span class="title">
+        NUESTROS CLIENTES
+      </span>
+      <div class="banners-row">
+        <div class="banner"><span>Ad <br> Banners</span></div>
+        <div class="banner"><span>Ad <br> Banners</span></div>
+        <div class="banner"><span>Ad <br> Banners</span></div>
+        <div class="banner"><span>Ad <br> Banners</span></div>
+        <div class="banner"><span>Ad <br> Banners</span></div>
       </div>
     </div>
-    </section>
+  </section>
 
 
   <div class="top-footer caxtor-dark-theme">
@@ -395,24 +369,22 @@
 
         <img src="assets/images/caxtor-dark-big.png">
 
-        <p>Maecenas efficitur est at neque aliquet porttitor. Suspendisse eget augue ut orci ullamcorper imperdiet
-          vitae a diam. In hac habitasse platea dictumst. Orci varius natoque penatibus et magnis dis parturient
-          montes, nascetur ridiculus mus.</p>
+        <p>Nuestra visión es ser la red de almacenamiento más grande de latinoamérica</p>
 
       </article>
 
       <article class="contact-info">
 
-        <h2 class="title">CONTACT US</h2>
+        <h2 class="title">CONTÁCTANOS</h2>
 
         <span>
           <i class="fas fa-map-marker-alt"></i>
-          <span>Caxtor <br> Calle 77 # 59b-61 <br> Oficina 1009</span>
+          <span>Barranquilla <br> Calle 77 # 59b-61 <br> Oficina 1009</span>
         </span>
 
         <span>
           <i class="fas fa-phone"></i>
-          <span>Phone: 3161002</span>
+          <span>Tel: 3161002</span>
         </span>
 
         <span>
@@ -428,14 +400,14 @@
       </article>
 
       <article class="quick-links">
-          <h2 class="title">QUICK LINKS </h2>
+        <h2 class="title">ENLACES RÁPIDOS</h2>
         <nav>
           <ul>
             <li>
               <a routerLink="['/home']">
                 <i class="fas fa-caret-right"></i>
                 <span>
-                  HOME
+                  INICIO
                 </span>
               </a>
             </li>
@@ -443,7 +415,7 @@
               <a routerLink="['/solutions']">
                 <i class="fas fa-caret-right"></i>
                 <span>
-                  SOLUTIONS
+                  SOLUCIONES
                 </span>
               </a>
             </li>
@@ -451,15 +423,7 @@
               <a routerLink="['/company']">
                 <i class="fas fa-caret-right"></i>
                 <span>
-                  COMPANY
-                </span>
-              </a>
-            </li>
-            <li>
-              <a routerLink="['/login']">
-                <i class="fas fa-caret-right"></i>
-                <span>
-                  SIGN IN
+                  COMPAÑÍA
                 </span>
               </a>
             </li>
@@ -467,7 +431,7 @@
               <a routerLink="['/contact-us']">
                 <i class="fas fa-caret-right"></i>
                 <span>
-                  CONTACT US
+                  CÓMO FUNCIONA
                 </span>
               </a>
             </li>
@@ -477,7 +441,7 @@
 
       <article class="social">
 
-        <h2 class="title">FOLLOW US</h2>
+        <h2 class="title">SÍGUENOS</h2>
 
         <a href="https://facebook.com" target="_blank" class="sn">
           <span class="icon">
@@ -495,9 +459,9 @@
 
         <a href="https://plus.google.com" target="_blank" class="sn">
           <span class="icon">
-            <i class="fab fa-google-plus-g"></i>
+            <i class="fab fa-linkedin-in"></i>
           </span>
-          <span>Google+</span>
+          <span>Linked in</span>
         </a>
 
         <a href="https://youtube.com" target="_blank" class="sn">

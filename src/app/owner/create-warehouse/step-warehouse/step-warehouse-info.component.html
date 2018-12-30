@@ -1,0 +1,158 @@
+<section class="create-warehouse-step warehouse-info-section">
+
+  <article class="step-section schedule">
+    <header>
+      <span class="title">
+        HORARIO DE LA BODEGA
+      </span>
+    </header>
+
+    <div class="content">
+      <div class="days">
+        <h4 class="title">Días Laborales</h4>
+        <mat-radio-group (change)="dayModeChaged($event.value)">
+          <mat-radio-button value="1" [checked]="true">Seleccionar días de la semana</mat-radio-button>
+          <mat-radio-button value="2">Disponible los 7 días de la semana</mat-radio-button>
+        </mat-radio-group>
+
+        <span>
+          <mat-checkbox [disabled]="!daysEnabled" [(ngModel)]="warehouse.workingDays[0]">Domingo</mat-checkbox>
+          <mat-checkbox [disabled]="!daysEnabled" [(ngModel)]="warehouse.workingDays[1]">Lunes</mat-checkbox>
+          <mat-checkbox [disabled]="!daysEnabled" [(ngModel)]="warehouse.workingDays[2]">Martes</mat-checkbox>
+          <mat-checkbox [disabled]="!daysEnabled" [(ngModel)]="warehouse.workingDays[3]">Miércoles</mat-checkbox>
+          <mat-checkbox [disabled]="!daysEnabled" [(ngModel)]="warehouse.workingDays[4]">Jueves</mat-checkbox>
+          <mat-checkbox [disabled]="!daysEnabled" [(ngModel)]="warehouse.workingDays[5]">Viernes</mat-checkbox>
+          <mat-checkbox [disabled]="!daysEnabled" [(ngModel)]="warehouse.workingDays[6]">Sábado</mat-checkbox>
+        </span>
+
+      </div>
+
+      <div class="time">
+        <div class="slider service-time">
+          <h4 class="title">Horario Laboral</h4>
+            <ng5-slider [(value)]="serviceTime" [(highValue)]="serviceHTime" [options]="sliderOptions" (userChange)="sliderChanged()"></ng5-slider>
+            <div class="row">
+              <span class="lTime">{{getTimeBySlot(serviceTime)}}</span>
+              <div class="filler"></div>
+              <span class="rTime">{{getTimeBySlot(serviceHTime)}}</span>
+            </div>
+        </div>
+
+        <div class="slider dock-time">
+            <h4 class="title">Horario de Bódegas</h4>
+            <ng5-slider [(value)]="dockTime" [(highValue)]="dockHTime" [options]="sliderOptions" (userChange)="sliderChanged()"></ng5-slider>
+            <div class="row">
+              <span class="lTime">{{getTimeBySlot(dockTime)}}</span>
+              <div class="filler"></div>
+              <span class="rTime">{{getTimeBySlot(dockHTime)}}</span>
+            </div>
+        </div>
+
+        <div class="slider same-day-time">
+            <h4 class="title">Hora de Corte para Ordenes del mismo día</h4>
+            <ng5-slider [(value)]="sameDayTime" [options]="sliderOptions" (userChange)="sliderChanged()"></ng5-slider>
+            <div class="row">
+              <span class="lTime">{{getTimeBySlot(sameDayTime)}}</span>
+            </div>
+        </div>
+
+        <!-- <div class="interval-wrapper">
+          <input matInput type="number" [(ngModel)]="warehouse.workingTime[0]" appForceNumeric appForceValue
+            appForceTimeValue [max]="12" [min]="0" [disabled]="!timeEnabled">
+          <span>:</span>
+          <input matInput type="number" [(ngModel)]="warehouse.workingTime[4]" appForceNumeric appForceValue
+            appForceTimeValue [max]="60" [min]="0" [disabled]="!timeEnabled">
+
+          <button mat-button (click)="warehouse.workingTime[1] = warehouse.workingTime[1] === 'am' ? 'pm' : 'am'"
+            [disabled]="!timeEnabled">
+            {{ warehouse.workingTime[1] }}
+          </button>
+
+          <span>&ndash;</span>
+
+          <input matInput type="number" [(ngModel)]="warehouse.workingTime[2]" appForceNumeric appForceValue
+            appForceTimeValue [max]="12" [min]="0" [disabled]="!timeEnabled">
+          <span>:</span>
+          <input matInput type="number" [(ngModel)]="warehouse.workingTime[5]" appForceNumeric appForceValue
+            appForceTimeValue [max]="60" [min]="0" [disabled]="!timeEnabled">
+
+          <button mat-button (click)="warehouse.workingTime[3] = warehouse.workingTime[3] === 'am' ? 'pm' : 'am'"
+            [disabled]="!timeEnabled">
+            {{ warehouse.workingTime[3] }}
+          </button>
+        </div> -->
+
+      </div>
+    </div>
+  </article>
+
+  
+
+  <article class="step-section specs">
+      <header>
+        <span class="title">
+          DETALLES DE LA BÓDEGA
+        </span>
+      </header>
+  
+      <div class="content">
+  
+        <section class="accepted-products">
+          <span class="title">PRODUCTOS ACEPTADOS*</span>
+          <div class="specs-area">
+            <mat-checkbox *ngFor="let p of parameters.product" [(ngModel)]="p.checked">{{ p.description }}</mat-checkbox>
+          </div>
+        </section>
+  
+        <section class="security">
+          <span class="title">SEGURIDAD</span>
+          <div class="specs-area">
+            <mat-checkbox *ngFor="let p of parameters.security" [(ngModel)]="p.checked">{{ p.description }}</mat-checkbox>
+          </div>
+        </section>
+  
+        <section class="certifications">
+          <span class="title">CERTIFICACIONES</span>
+          <div class="specs-area">
+            <mat-checkbox *ngFor="let p of parameters.certifications" [(ngModel)]="p.checked">{{ p.description }}</mat-checkbox>
+          </div>
+        </section>
+  
+        <section class="extra-services">
+          <span class="title">SERVICIOS AGREGADOS</span>
+          <div class="specs-area">
+            <mat-checkbox *ngFor="let p of parameters.services" [(ngModel)]="p.checked">{{ p.description }}</mat-checkbox>
+          </div>
+        </section>
+  
+      </div>
+    </article>
+
+  <article class="step-section media">
+    <header>
+      <span class="title">
+        FOTOS Y VIDEOS
+      </span>
+    </header>
+
+    <div class="content">
+      <span class="desc">Fotos de la bodega* (Máximo 5)</span>
+      <div class="file-input">
+        <input #fileInput id="fileInput" type="file" (change)="onFile($event.target.files, 0)" multiple>
+        <button mat-raised-button (click)="fileInput.click()">
+          Seleccionar Archivo...
+        </button>
+        <!-- <p *ngIf="this.currentFile"> {{ this.currentFile.name }}</p> -->
+      </div>
+      <div class="photos">
+        <span *ngFor="let p of warehouse.images; let i = index" class="photo bg-image-shadow-hover">
+          <img [src]="domSanitizer.bypassSecurityTrustUrl(p.url)"/>
+          <button mat-icon-button class="remove-btn" (click)="warehouse.images.splice(i, 1); $event.stopPropagation()">
+            <i class="far fa-lg fa-times-circle"></i>
+          </button>
+        </span>
+      </div>
+    </div>
+  </article>
+
+</section>

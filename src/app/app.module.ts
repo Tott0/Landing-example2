@@ -16,6 +16,7 @@ import { environment } from '@env/environment';
 import { CoreModule } from '@app/core/core.module';
 import { AppRoutingModule } from '@app/app.routing';
 import { UsedMaterialComponentsModule } from '@shared/modules/used-material-components.module';
+import { PdfViewerOverlayComponent } from '@shared/overlays/file-preview/pdf-viewer-overlay.component';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { UsedMaterialComponentsModule } from '@shared/modules/used-material-comp
     AppComponent,
     NotFoundComponent,
     NavbarComponent,
-    FooterComponent
+    FooterComponent,
+    PdfViewerOverlayComponent
   ],
   imports: [
     BrowserModule,
@@ -43,6 +45,9 @@ import { UsedMaterialComponentsModule } from '@shared/modules/used-material-comp
     AppRoutingModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [
+    PdfViewerOverlayComponent
+  ]
 })
 export class AppModule { }

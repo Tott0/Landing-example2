@@ -1,3 +1,5 @@
 - Se necesita una cuenta de google maps, parece que hace poco cambiaron las reglas y es necesario tener una cuenta con Billing activado para poder usar el mapa (Andrés confirmó esto)
 - Por Aquiles revisar todos los parametros, pensar si estan completos (Productos Aceptados, Servicios, Seguridad, Certificaciones), el proceso de crear espacios en bodega fijarlo (cuales son los tipos y si así se tiene toda la información necesaria)
 - Por Aquiles, para los servicios hay que fijar un precio, explicar el proceso, estos servicios segun tendo entendido hay unos que son un solo precio precio  y otros que son precio por pallet, en el caso de que sea estanteria/piso/etc es precio pro paellet? por m2? por unidad (sin importar si es m2 o pallet)?
+- Esos serían todos los filtros necesarios para la búsqueda de bodega en la pagina del mapa?
+- En que ciudades va a funcionar esto, para poner el autocompletar de las ciudades?

@@ -58,6 +58,7 @@
           flex-direction: column;
           justify-content: center;
           align-items: center;
+          width: 65%;
           .title {
             font-weight: 600;
             font-size: 3em;
@@ -157,6 +158,10 @@
           min-height: 570px;
           width: 100%;
           z-index: 999;
+          position: relative;
+          .container {
+            position: relative;
+          }
           .content-title {
             font-size: 3.45em;
             z-index: 999;
@@ -217,9 +222,11 @@
     .services-row {
       display: grid;
       grid-column-gap: 4em;
+      align-items: center;
+      justify-content: center;
       @include for-tablet-landscape-up {
         grid-template-rows: 1fr;
-        grid-template-columns: repeat(4, 1fr);
+        grid-template-columns: repeat(3, 1fr);
       }
       article.service {
         align-items: center;
@@ -231,6 +238,7 @@
         padding: 1em 2em;
         text-align: center;
         font-size: 1.5em;
+        max-width: 250px;
         img {
           height: 75px;
           min-width: 75px;
@@ -555,7 +563,7 @@
   }
   .warehouses-section {
     margin-top: 5em !important;
-    margin-bottom: 5em !important;
+    margin-bottom: 2em !important;
     font-size: 1.5em;
     .row {
       display: flex;
@@ -600,9 +608,30 @@
   .newsletter-section {
     margin-bottom: -5em;
     z-index: 1;
-    .row {
-      justify-content: space-between;
-      height: 256px;
+    .title {
+      font-size: 3em;
+      font-weight: 700;
+      margin: 1em 0;
+    }
+    .banners-row {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      grid-template-rows: 1fr;
+      grid-column-gap: 1em;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      .banner {
+        height: 192px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        span {
+          font-weight: 500;
+          text-align: center;
+          font-size: 3em;
+        }
+      }
     }
     .newsletter {
       background: url(assets/images/newsletter-bg.jpg);
@@ -666,19 +695,6 @@
           border-top-right-radius: 3em;
           border-bottom-right-radius: 3em;
         }
-      }
-    }
-    .banner {
-      height: 100%;
-      ;
-      width: 33%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      span {
-        font-weight: 500;
-        text-align: center;
-        font-size: 3em;
       }
     }
   }

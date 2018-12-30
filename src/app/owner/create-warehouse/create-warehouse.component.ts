@@ -10,6 +10,7 @@ import { Departamento, Ciudad } from '@shared/models/shared.model';
 
 import { StepBasicInfoComponent } from './step-basic-info/step-basic-info.component';
 import { StepStorageComponent } from './step-storage/step-storage.component';
+import { StepWarehouseInfoComponent } from './step-warehouse/step-warehouse-info.component';
 
 @Component({
   selector: 'app-create-warehouse',
@@ -30,6 +31,7 @@ export class CreateWarehouseComponent implements OnInit {
   @ViewChild(MatStepper) matStepper: MatStepper;
 
   @ViewChild(StepBasicInfoComponent) basicInfo: StepBasicInfoComponent;
+  @ViewChild(StepWarehouseInfoComponent) warehouseInfo: StepWarehouseInfoComponent;
   @ViewChild(StepStorageComponent) storageInfo: StepStorageComponent;
 
   parameters: any = {

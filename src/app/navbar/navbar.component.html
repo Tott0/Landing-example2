@@ -1,6 +1,6 @@
 <header class="header caxtor-dark-theme">
   <mat-toolbar class="header-toolbar" [ngClass]="{'transparent': isAtHome()}">
-    <div class="container">
+    <!-- <div class="container"> -->
       <div class="row">
 
         <a routerLink="/" class="logo">
@@ -11,24 +11,34 @@
 
         <nav class="sites">
           <ul>
+            <!-- <li>
+              <a [routerLink]="['']">
+                INICIO
+              </a>
+            </li> -->
             <li>
-              <a routerLink="/home">
-                HOME
+              <a [routerLink]="['/process']">
+                CÓMO FUNCIONA
               </a>
             </li>
             <li>
               <a routerLink="/solutions">
-                SOLUTIONS
+                SOLUCIONES
               </a>
             </li>
             <li>
               <a routerLink="/company">
-                COMPANY
+                COMPAÑÍA
               </a>
             </li>
             <li>
               <a routerLink="/blog">
-                BLOG
+                NOTICIAS
+              </a>
+            </li>
+            <li>
+              <a [routerLink]="['/contacto']">
+                CONTACTO
               </a>
             </li>
           </ul>
@@ -65,13 +75,13 @@
             <li>
               <a routerLink="/login" class="btn-login" *ngIf="!authService.user">
                 <i class="fas fa-lock"></i>
-                SIGN IN
+                Ingreso
               </a>
             </li>
           </ul>
         </nav>
       </div>
-    </div>
+    <!-- </div> -->
 
   </mat-toolbar>
 </header>

@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   GOOGLE_API_KEY: 'AIzaSyA-gJsnb0-WqsZy7ZH2qBNuglNUYFBrp4I',
-  API_ENDPOINT: 'https://caxtor-tonmil931210.c9users.io/',
+  API_ENDPOINT: 'https://caxtor-develop.herokuapp.com/',
 
 };
 

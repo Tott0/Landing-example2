@@ -14,53 +14,6 @@
   }
 }
 
-.specs {
-  .content {
-    section {
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-      align-items: flex-start;
-      margin: 1em 0;
-      .title {
-        font-weight: 600;
-        margin-bottom: 0.5em;
-        font-size: 1.5em;
-      }
-      .specs-area {
-        width: 100%;
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        grid-column-gap: 0.5em;
-        grid-row-gap: 0.75em;
-        font-size: 1.25em;
-        padding: 0.5em;
-      }
-      &.accepted-products {
-        .specs-area {
-          grid-template-rows: repeat(3, 1fr);
-        }
-      }
-      &.security {
-        .specs-area {
-          grid-template-rows: repeat(1, 1fr);
-        }
-      }
-      &.certifications {
-        .specs-area {
-          grid-template-rows: repeat(3, 1fr);
-        }
-      }
-      &.extra-services {
-        .specs-area {
-          grid-template-rows: repeat(2, 1fr);
-        }
-      }
-    }
-  }
-}
-
 mat-table {
   width: 100%;
   font-size: 1em;
@@ -90,7 +43,7 @@ mat-table {
     grid-template-rows: repeat(5, 1fr);
     grid-template-columns: repeat(3, 1fr);
     align-items: center;
-    @include for-desktop-up {
+    @include for-tablet-landscape-up {
       grid-template-rows: repeat(4, 1fr);
       grid-template-columns: repeat(8, 1fr);
       grid-template-areas: 

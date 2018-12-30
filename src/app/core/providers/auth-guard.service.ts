@@ -42,7 +42,11 @@ export class LoginAuthGuard implements CanActivate {
           }
         }
         console.log('redirect', redUrl);
-        this.router.navigate([redUrl.url, redUrl.params]);
+        if (redUrl.params) {
+          this.router.navigate([redUrl.url, redUrl.params]);
+        } else {
+          this.router.navigate([redUrl.url]);
+        }
       }, err => {
         console.log('#LoginAuthGuard#err');
         this.router.navigate(['/login']);
