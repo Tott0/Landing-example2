@@ -98,7 +98,7 @@ export class CreateWarehouseComponent implements OnInit {
 
   next() {
     console.log(this.matStepper.selectedIndex);
-    if (this.matStepper.selectedIndex < 1) {
+    if (this.matStepper.selectedIndex < 3) {
       this.matStepper.next();
     } else {
       this.onSubmit();

@@ -5,7 +5,7 @@ import {
   MatSelectModule, MatGridListModule, MatIconModule, MatCardModule, MatListModule, MatPaginatorModule,
   MatTabsModule, MatExpansionModule, MatTooltipModule, MatDialogModule, MatProgressSpinnerModule,
   MatSnackBarModule, MatDatepickerModule, MatNativeDateModule, MatStepperModule, MatRadioModule, MatChipsModule, MatAutocompleteModule,
-  MatMenuModule, MatTableModule, MatSortModule
+  MatMenuModule, MatTableModule, MatSortModule, MatButtonToggleModule
 } from '@angular/material';
 
 import { MatPaginatorIntl } from '@angular/material';
@@ -17,14 +17,14 @@ import { CustomMatPaginatorIntl } from '@core/providers/custom-mat-paginator-int
     MatSelectModule, MatGridListModule, MatIconModule, MatCardModule, MatListModule, MatPaginatorModule,
     MatTabsModule, MatExpansionModule, MatTooltipModule, MatDialogModule, MatProgressSpinnerModule,
     MatSnackBarModule, MatDatepickerModule, MatNativeDateModule, MatStepperModule, MatRadioModule, MatChipsModule,
-    MatAutocompleteModule, MatMenuModule, MatTableModule, MatSortModule,
+    MatAutocompleteModule, MatMenuModule, MatTableModule, MatSortModule, MatButtonToggleModule,
   ],
   exports: [
     MatInputModule, MatCheckboxModule, MatButtonModule, MatToolbarModule, MatSidenavModule,
     MatSelectModule, MatGridListModule, MatIconModule, MatCardModule, MatListModule, MatPaginatorModule,
     MatTabsModule, MatExpansionModule, MatTooltipModule, MatDialogModule, MatProgressSpinnerModule,
     MatSnackBarModule, MatDatepickerModule, MatNativeDateModule, MatStepperModule, MatRadioModule, MatChipsModule,
-    MatAutocompleteModule, MatMenuModule, MatTableModule, MatSortModule,
+    MatAutocompleteModule, MatMenuModule, MatTableModule, MatSortModule, MatButtonToggleModule,
   ],
   providers: [
     { provide: MatPaginatorIntl, useClass: CustomMatPaginatorIntl },

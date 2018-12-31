@@ -36,6 +36,17 @@ export class Warehouse {
   certLibTra: DocumentFile;
 
   areaSize: number;
+  inboutResponsetime: string;
+  outboutResponsetime: string;
+  customerAccess: string;
+  schedulingWindowTime: string;
+  contactName: string;
+  contactLastName: string;
+  contactPhone: string;
+  contactEmail: string;
+  spaceHandlingPrice: number;
+  caseHandlingPrice: number;
+  itemHandlingPrice: number;
 
   has_rack?(): boolean { return this.positions.some(p => p.typePosition === PositionType.RACK); }
   has_floor_closed?(): boolean { return this.positions.some(p => p.typePosition === PositionType.FLOOR_CLOSED); }
@@ -45,10 +56,13 @@ export class Warehouse {
     Object.assign(this, wh);
     this.images = this.images || [];
     if (!this.workingDays) {
-      this.workingDays = new Array(7).fill(false);
+      this.workingDays = new Array(7).fill(true);
     }
     if (!this.workingTime) {
       this.workingTime = ['6', 'am', '6', 'pm', '00', '00'];
+    }
+    if (!this.customerAccess) {
+      this.customerAccess = '0';
     }
   }
 }

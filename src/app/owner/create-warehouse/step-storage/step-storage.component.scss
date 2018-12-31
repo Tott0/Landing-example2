@@ -90,3 +90,46 @@ mat-table {
     }
   }
 }
+
+.basic-services {
+  .content {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: repeat(7, auto);
+    grid-row-gap: 1em;
+    grid-column-gap: 1em;
+    @include for-desktop-up {}
+    grid-template-areas:
+    "space-title space-title space-title space-title" 
+    "price-space price-space . ."
+    "case-title case-title case-title case-title" 
+    "price-case price-case . ."
+    "item-title item-title item-title item-title" 
+    "price-item price-item . .";
+
+    .space-title{
+      grid-area: space-title;
+    }
+    .price-space{
+      grid-area: price-space;
+    }
+    .case-title{
+      grid-area: case-title;
+    }
+    .price-case{
+      grid-area: price-case;
+    }
+    .item-title{
+      grid-area: item-title;
+    }
+    .price-item{
+      grid-area: price-item;
+    }
+    .subtitle{
+      font-size: 1.15em;
+      font-weight: 400;
+      font-style: normal;
+    }
+
+  }
+}

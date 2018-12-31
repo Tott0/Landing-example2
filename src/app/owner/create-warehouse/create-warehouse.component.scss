@@ -13,11 +13,11 @@
   }
   mat-card {
     font-size: 1rem;
-    margin-top: 3em;
+    margin-top: 2em;
     margin-bottom: 2em;
     width: 100%;
-    @include for-desktop-up{
-      width: 90%;
+    @include for-tablet-landscape-up{
+      width: 95%;
     }
     .mat-card-header {
       font-size: 1.5em;

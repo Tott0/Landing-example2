@@ -9,6 +9,7 @@ import { StepStorageComponent } from './create-warehouse/step-storage/step-stora
 import { OwnerRoutingModule } from './owner.routing';
 import { OwnerService } from './owner.service';
 import { UsedMaterialComponentsModule } from '@shared/modules/used-material-components.module';
+import { StepServicesComponent } from './create-warehouse/step-services/step-services.component';
 import { StepWarehouseInfoComponent } from './create-warehouse/step-warehouse/step-warehouse-info.component';
 
 @NgModule({
@@ -22,6 +23,7 @@ import { StepWarehouseInfoComponent } from './create-warehouse/step-warehouse/st
     CreateWarehouseComponent,
     StepBasicInfoComponent,
     StepWarehouseInfoComponent,
+    StepServicesComponent,
     StepStorageComponent,
   ],
   providers: [

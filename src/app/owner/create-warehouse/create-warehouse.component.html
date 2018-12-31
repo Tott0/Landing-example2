@@ -24,18 +24,18 @@
             </mat-step>
 
             <mat-step [stepControl]="formBasicInfo" [completed]="basicInfo.isComplete()">
-              <ng-template matStepLabel>Información de Bódega</ng-template>
+              <ng-template matStepLabel>Características de Bódega</ng-template>
               <app-step-warehouse-info [warehouse]="warehouse" [parameters]="parameters"></app-step-warehouse-info>
             </mat-step>
 
             <mat-step [stepControl]="formBasicInfo" [completed]="storageInfo.isComplete()">
-              <ng-template matStepLabel>Información de Servicios</ng-template>
-              <app-step-storage [warehouse]="warehouse" [parameters]="parameters"></app-step-storage>
+              <ng-template matStepLabel>Servicios</ng-template>
+              <app-step-services [warehouse]="warehouse" [parameters]="parameters"></app-step-services>
             </mat-step>
-
+            
             <mat-step [stepControl]="formBasicInfo" [completed]="storageInfo.isComplete()">
-              <ng-template matStepLabel>Información de Precios</ng-template>
-              <!-- <app-step-storage [warehouse]="warehouse" [parameters]="parameters"></app-step-storage> -->
+              <ng-template matStepLabel>Almacenamiento y Precios</ng-template>
+              <app-step-storage [warehouse]="warehouse" [parameters]="parameters"></app-step-storage>
             </mat-step>
 
           </mat-horizontal-stepper>

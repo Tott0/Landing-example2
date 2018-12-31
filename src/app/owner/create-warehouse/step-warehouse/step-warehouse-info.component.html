@@ -10,10 +10,10 @@
     <div class="content">
       <div class="days">
         <h4 class="title">Días Laborales</h4>
-        <mat-radio-group (change)="dayModeChaged($event.value)">
+        <!-- <mat-radio-group (change)="dayModeChaged($event.value)">
           <mat-radio-button value="1" [checked]="true">Seleccionar días de la semana</mat-radio-button>
           <mat-radio-button value="2">Disponible los 7 días de la semana</mat-radio-button>
-        </mat-radio-group>
+        </mat-radio-group> -->
 
         <span>
           <mat-checkbox [disabled]="!daysEnabled" [(ngModel)]="warehouse.workingDays[0]">Domingo</mat-checkbox>
@@ -56,32 +56,6 @@
             </div>
         </div>
 
-        <!-- <div class="interval-wrapper">
-          <input matInput type="number" [(ngModel)]="warehouse.workingTime[0]" appForceNumeric appForceValue
-            appForceTimeValue [max]="12" [min]="0" [disabled]="!timeEnabled">
-          <span>:</span>
-          <input matInput type="number" [(ngModel)]="warehouse.workingTime[4]" appForceNumeric appForceValue
-            appForceTimeValue [max]="60" [min]="0" [disabled]="!timeEnabled">
-
-          <button mat-button (click)="warehouse.workingTime[1] = warehouse.workingTime[1] === 'am' ? 'pm' : 'am'"
-            [disabled]="!timeEnabled">
-            {{ warehouse.workingTime[1] }}
-          </button>
-
-          <span>&ndash;</span>
-
-          <input matInput type="number" [(ngModel)]="warehouse.workingTime[2]" appForceNumeric appForceValue
-            appForceTimeValue [max]="12" [min]="0" [disabled]="!timeEnabled">
-          <span>:</span>
-          <input matInput type="number" [(ngModel)]="warehouse.workingTime[5]" appForceNumeric appForceValue
-            appForceTimeValue [max]="60" [min]="0" [disabled]="!timeEnabled">
-
-          <button mat-button (click)="warehouse.workingTime[3] = warehouse.workingTime[3] === 'am' ? 'pm' : 'am'"
-            [disabled]="!timeEnabled">
-            {{ warehouse.workingTime[3] }}
-          </button>
-        </div> -->
-
       </div>
     </div>
   </article>
@@ -117,13 +91,13 @@
             <mat-checkbox *ngFor="let p of parameters.certifications" [(ngModel)]="p.checked">{{ p.description }}</mat-checkbox>
           </div>
         </section>
-  
+<!--   
         <section class="extra-services">
           <span class="title">SERVICIOS AGREGADOS</span>
           <div class="specs-area">
             <mat-checkbox *ngFor="let p of parameters.services" [(ngModel)]="p.checked">{{ p.description }}</mat-checkbox>
           </div>
-        </section>
+        </section> -->
   
       </div>
     </article>
