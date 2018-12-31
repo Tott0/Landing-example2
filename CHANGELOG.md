@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.16.0"></a>
+# [0.16.0](https://gitlab.com/tott0/caxtor/compare/v0.15.0...v0.16.0) (2018-12-31)
+
+
+### Features
+
+* create warehouse ([651efe5](https://gitlab.com/tott0/caxtor/commit/651efe5))
+
+
+
 <a name="0.15.0"></a>
 # [0.15.0](https://gitlab.com/tott0/caxtor/compare/v0.14.0...v0.15.0) (2018-12-30)
 
