@@ -12,6 +12,20 @@
     &:not(:last-of-type) {
       margin-bottom: 3em;
     }
+  }  
+  .main-title {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    font-size: 2em;
+    margin-bottom: 3em;
+    .bold {
+      font-weight: 500;
+    }
+    span {
+      width: 100%;
+      text-align: center;
+    }
   }
   .carousel-section {
     position: relative;
@@ -58,7 +72,7 @@
           flex-direction: column;
           justify-content: center;
           align-items: center;
-          width: 65%;
+          width: 100%;
           .title {
             font-weight: 600;
             font-size: 3em;
@@ -338,20 +352,6 @@
   .solutions-section {
     padding: 4em 0;
     font-size: 1.25em;
-    .main-title {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      font-size: 2em;
-      margin-bottom: 3em;
-      .bold {
-        font-weight: 500;
-      }
-      span {
-        width: 100%;
-        text-align: center;
-      }
-    }
     .graph {
       align-items: center;
       display: grid;

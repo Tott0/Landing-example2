@@ -11,8 +11,8 @@
             <div class="carousel-content">
               <div class="container">
                 <div class="floating-block">
-                  <span class="title">{{car.title}}</span>
-                  <p>{{car.subtitle}}</p>
+                  <span class="title" [innerHtml]="car.title"></span>
+                  <p [innerHtml]="car.subtitle"></p>
                   <div class="row">
                     <button mat-raised-button class="btn-find" (click)="scrollToMap()">BUSCAR ESPACIO</button>
                     <button mat-raised-button class="btn-list" [routerLink]="['/temproute_owner']">PUBLICAR ESPACIO</button>
@@ -39,9 +39,13 @@
     </div>
   </section>
 
-  <section class="services-section">
+  <section class="services-section" #processSection>
 
     <div class="container">
+
+        <span class="main-title">
+            <span class="bold">¿CÓMO FUNCIONA?</span>
+          </span>
 
       <div class="services-row">
 
@@ -138,7 +142,7 @@
 
   </section>
 
-  <section class="trends-section">
+  <section class="trends-section" #solutionsSection>
     <div class="bg">
       <div class="container">
         <div class="row">
@@ -279,11 +283,11 @@
     </div>
   </section>
 
-  <section class="section-blog">
+  <section class="section-blog" #newsSection>
     <div class="container">
 
       <div class="col text-center">
-        <h2 class="title-head">LATEST <span class="highlight primary-dark">BLOGS</span></h2>
+        <h2 class="title-head"><span class="highlight primary-dark">NOTICIAS</span></h2>
       </div>
 
       <div class="latest-blog-posts">

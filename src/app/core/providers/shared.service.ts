@@ -23,6 +23,10 @@ export class SharedService {
 
   ciudades: Ciudad[] = [];
 
+  public scrollToSolutions = new Subject();
+  public scrollToNews = new Subject();
+  public scrollToProcess = new Subject();
+
   constructor(
     private http: HttpClient,
     private mm: ModalManager

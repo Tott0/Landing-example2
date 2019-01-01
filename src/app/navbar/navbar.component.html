@@ -17,12 +17,12 @@
               </a>
             </li> -->
             <li>
-              <a [routerLink]="['/process']">
+              <a (click)="sharedService.scrollToProcess.next()">
                 CÓMO FUNCIONA
               </a>
             </li>
             <li>
-              <a routerLink="/solutions">
+              <a (click)="sharedService.scrollToSolutions.next()">
                 SOLUCIONES
               </a>
             </li>
@@ -32,7 +32,7 @@
               </a>
             </li>
             <li>
-              <a routerLink="/blog">
+              <a (click)="sharedService.scrollToNews.next()">
                 NOTICIAS
               </a>
             </li>
