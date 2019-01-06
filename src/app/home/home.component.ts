@@ -202,6 +202,8 @@ export class HomeComponent implements OnInit, OnDestroy {
     }
   ];
 
+  carouselInterval;
+
 
   constructor(
     private formBuilder: FormBuilder,
@@ -244,11 +246,13 @@ export class HomeComponent implements OnInit, OnDestroy {
         behavior: 'smooth'
       });
     });
-    
+
+    this.resetCarouselInterval();
   }
 
   ngOnDestroy() {
     AppConstants.isAtHome = false;
+    clearInterval(this.carouselInterval);
   }
 
   nextReviews() {
@@ -310,42 +314,53 @@ export class HomeComponent implements OnInit, OnDestroy {
     if (--this.carouselIndex < 0) {
       this.carouselIndex = this.carouselItems.length - 1;
     }
-    console.group('group');
+    // console.group('group');
 
-    console.log('prev ' + prevIndex, this.carouselItems[prevIndex].animState);
-    console.log('sel ' + this.carouselIndex, this.carouselItems[this.carouselIndex].animState);
+    // console.log('prev ' + prevIndex, this.carouselItems[prevIndex].animState);
+    // console.log('sel ' + this.carouselIndex, this.carouselItems[this.carouselIndex].animState);
 
     this.carouselItems[prevIndex].animState = 'right';
     this.carouselItems[this.carouselIndex].animState = 'normalFromLeft';
 
-    console.log('prev ' + prevIndex, this.carouselItems[prevIndex].animState);
-    console.log('sel ' + this.carouselIndex, this.carouselItems[this.carouselIndex].animState);
-    console.groupEnd();
+    // console.log('prev ' + prevIndex, this.carouselItems[prevIndex].animState);
+    // console.log('sel ' + this.carouselIndex, this.carouselItems[this.carouselIndex].animState);
+    // console.groupEnd();
+
+    this.resetCarouselInterval();
   }
   triggerCarouselRight() {
     const prevIndex = this.carouselIndex;
     if (++this.carouselIndex >= this.carouselItems.length) {
       this.carouselIndex = 0;
     }
-    console.group('group');
+    // console.group('group');
 
-    console.log('prev ' + prevIndex, this.carouselItems[prevIndex].animState);
-    console.log('sel ' + this.carouselIndex, this.carouselItems[this.carouselIndex].animState);
+    // console.log('prev ' + prevIndex, this.carouselItems[prevIndex].animState);
+    // console.log('sel ' + this.carouselIndex, this.carouselItems[this.carouselIndex].animState);
 
     this.carouselItems[prevIndex].animState = 'left';
     this.carouselItems[this.carouselIndex].animState = 'normalFromRight';
 
-    console.log('prev ' + prevIndex, this.carouselItems[prevIndex].animState);
-    console.log('sel ' + this.carouselIndex, this.carouselItems[this.carouselIndex].animState);
-    console.groupEnd();
+    // console.log('prev ' + prevIndex, this.carouselItems[prevIndex].animState);
+    // console.log('sel ' + this.carouselIndex, this.carouselItems[this.carouselIndex].animState);
+    // console.groupEnd();
+
+    this.resetCarouselInterval();
   }
 
   scrollToMap() {
-    console.log(this.mapSearch);
+    // console.log(this.mapSearch);
     window.scrollTo({
       top: this.mapSearch.nativeElement.offsetTop - 50,
       behavior: 'smooth'
     });
+  }
+
+  resetCarouselInterval() {
+    clearInterval(this.carouselInterval);
+    this.carouselInterval = setInterval(() => {
+      this.triggerCarouselRight();
+    }, 15 * 1000);
   }
 
 }
