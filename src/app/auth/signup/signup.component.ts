@@ -51,7 +51,7 @@ export class SignupComponent implements OnInit {
   get cRlIdentification() { return this.company.get('rl_identification'); }
 
   get renterForm() { return this.userForm.get('renter'); }
-  get matInmobiliaria() { return this.renterForm.get('matricula_inmobiliaria'); }
+  // get matInmobiliaria() { return this.renterForm.get('matricula_inmobiliaria'); }
   bankReference: DocumentFile;
   rut: DocumentFile;
 
@@ -89,7 +89,7 @@ export class SignupComponent implements OnInit {
       personType: [PersonType.NATURAL, [Validators.required]],
 
       renter: this.formBuilder.group({
-        matricula_inmobiliaria: ['', [Validators.required]]
+        // matricula_inmobiliaria: ['', [Validators.required]]
       })
     });
   }
@@ -139,7 +139,7 @@ export class SignupComponent implements OnInit {
       child.renter_attributes = {
         bank_reference: this.bankReference,
         rut: this.rut,
-        matricula_inmobiliaria: this.matInmobiliaria.value,
+        // matricula_inmobiliaria: this.matInmobiliaria.value,
       };
     }
     this.authService.signup(requestParams)

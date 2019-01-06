@@ -7,18 +7,22 @@
   $foreground-text: mat-color($foreground, text);
   $foreground-sec-text: mat-color($foreground, secondary-text);
   .home-wrapper {
+    .main-subtitle{
+      color: $foreground-sec-text;
+    }
     .carousel-section {
-      .floating-block{
-        span, p{
+      .floating-block {
+        span,
+        p {
           color: var(--color-light);
         }
-        button{
+        button {
           color: var(--color-light);
         }
-        .btn-find{
+        .btn-find {
           background: mat-color($primary, darker);
         }
-        .btn-list{
+        .btn-list {
           background: mat-color($primary);
         }
       }
@@ -89,74 +93,102 @@
       .highlight {
         color: mat-color($primary, darker);
       }
-      article{
-        p{
+      article {
+        p {
           color: $foreground-text;
         }
       }
     }
-    .reviews-section{
-      background: mat-color($primary, 900);
-      span{
+    .compare-section {
+      .table-title {
         color: var(--color-light);
       }
-      .reviews-row{
-        .thumb{
-          img{
+      .table-cell {
+        background: mat-color($background, card);
+        .cell-title {
+          color: $foreground-text;
+          i{
+            color: mat-color($primary, darker);
+          }
+        }
+        .cell-content {
+          color: $foreground-sec-text;
+        }
+      }
+      // .left {
+        .left.table-title {
+          background: var(--color-dark);
+        }
+      // }
+      // .right {
+        .right.table-title {
+          background: mat-color($primary, darker);
+        }
+      // }
+    }
+    .reviews-section {
+      background: mat-color($primary, 900);
+      span {
+        color: var(--color-light);
+      }
+      .reviews-row {
+        .thumb {
+          img {
             border: solid 2px var(--color-light);
           }
         }
       }
     }
-    .section-blog{
-      .post{
+    .section-blog {
+      .post {
         // background: var(--color-dark);
-        .post-body{
+        .post-body {
           background: mat-color($background, background);
         }
-        .post-title{
-          a{
+        .post-title {
+          a {
             color: $foreground-text;
-            &:hover{
+            &:hover {
               color: mat-color($primary);
             }
           }
         }
-        .post-text{
-          p, span {
+        .post-text {
+          p,
+          span {
             color: $foreground-sec-text;
           }
-          i{
+          i {
             color: $foreground-text;
           }
         }
-        .mat-flat-button{
+        .mat-flat-button {
           color: $foreground-text;
         }
       }
     }
-    .newsletter-section{
-      .banner{
+    .newsletter-section {
+      .banner {
         background: mat-color($background, background);
         border: solid 1px mat-color($primary, darker);
-        span{
+        span {
           color: mat-color($primary, darker);
         }
       }
-      .email-input{
-        input{
+      .email-input {
+        input {
           background: var(--color-light);
         }
-        button{
+        button {
           background: mat-color($accent);
           color: var(--color-light);
         }
       }
     }
-    .warehouses-section{
-      .search{
+    .warehouses-section {
+      .search {
         background: mat-color($primary, 50);
-        .title{
+        .title {
           color: var(--color-dark);
         }
       }
@@ -171,13 +203,13 @@
     i {
       color: var(--color-light);
     }
-    .quick-links{
-      li:hover{
-        span{
+    .quick-links {
+      li:hover {
+        span {
           color: mat-color($primary);
           border-bottom: solid 1px mat-color($primary);
         }
-        i{
+        i {
           color: mat-color($primary);
         }
       }

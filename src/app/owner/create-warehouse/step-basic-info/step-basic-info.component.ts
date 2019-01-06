@@ -108,32 +108,6 @@ export class StepBasicInfoComponent implements OnInit {
     }
   }
 
-  dayModeChaged(ev) {
-    console.log(this.warehouse.workingDays);
-    switch (+ev) {
-      case 1:
-        this.daysEnabled = true;
-        break;
-      case 2:
-        this.warehouse.workingDays = Array(7).fill(true);
-        this.daysEnabled = false;
-        break;
-    }
-    console.log(this.warehouse.workingDays);
-
-  }
-  timeModeChanged(ev) {
-    switch (+ev) {
-      case 1:
-        this.timeEnabled = true;
-        break;
-      case 2:
-        this.warehouse.workingTime = ['00', 'am', '00', 'am', '00', '00'];
-        this.timeEnabled = false;
-        break;
-    }
-  }
-
   onFile(files, i) {
     console.log(files);
     switch (i) {

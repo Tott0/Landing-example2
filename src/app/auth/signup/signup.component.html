@@ -115,14 +115,7 @@
                 </mat-panel-title>
               </mat-expansion-panel-header>
               <div class="content">
-
-                <mat-form-field>
-                  <input matInput placeholder="Matrícula Inmobiliaria" type="text" [formControl]="matInmobiliaria"
-                    (input)="errors.message = undefined;">
-                  <mat-error *ngIf="matInmobiliaria.invalid || errors.identification">{{getErrorMessage(matInmobiliaria,
-                    errors.identification)}}</mat-error>
-                </mat-form-field>
-
+                
                 <div class="file-input">
                   <input #brFile class="fileInput" type="file" accept=".pdf" (change)="onFile($event.target.files[0], 0); brFile.value = ''">
                   <button mat-raised-button (click)="brFile.click()">

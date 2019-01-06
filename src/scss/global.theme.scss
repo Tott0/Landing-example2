@@ -1,6 +1,8 @@
 @import '~@angular/material/theming';
 @mixin global-theme($theme) {
   $primary: map-get($map: $theme, $key: primary);
+  $background: map-get($theme, background);
+  $foreground: map-get($theme, foreground);
   .img-shadow-effect, .shadow-overlay{
     background: transparentize($color: #000000, $amount: 0.75);
   }
@@ -25,5 +27,9 @@
   }
   .menu-backdrop{
     background: var(--color-shadow-t);
+  }
+
+  html, body, .component-wrapper{
+    background: mat-color($background, background)
   }
 }

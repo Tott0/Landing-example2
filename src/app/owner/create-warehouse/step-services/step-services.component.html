@@ -9,7 +9,7 @@
 
     <div class="content">
       <mat-form-field class="inbound">
-        <mat-select placeholder="Tiempo de Respuesta Solicitudes de Entrada" [(ngModel)]="warehouse.inboutResponsetime">
+        <mat-select placeholder="Tiempo de Respuesta Solicitudes de Entrada" [(ngModel)]="warehouse.inboundResponsetime">
           <mat-option [value]="0">Mismo Día</mat-option>
           <mat-option [value]="1">48 Horas</mat-option>
           <mat-option [value]="2">72 Horas</mat-option>
@@ -17,7 +17,7 @@
       </mat-form-field>
 
       <mat-form-field class="outbound">
-        <mat-select placeholder="Tiempo de Respuesta Solicitudes de Salida" [(ngModel)]="warehouse.outboutResponsetime">
+        <mat-select placeholder="Tiempo de Respuesta Solicitudes de Salida" [(ngModel)]="warehouse.outboundResponsetime">
           <mat-option [value]="0">Mismo Día</mat-option>
           <mat-option [value]="1">48 Horas</mat-option>
           <mat-option [value]="2">72 Horas</mat-option>

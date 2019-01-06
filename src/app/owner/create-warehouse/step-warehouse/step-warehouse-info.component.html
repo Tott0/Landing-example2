@@ -30,29 +30,29 @@
       <div class="time">
         <div class="slider service-time">
           <h4 class="title">Horario Laboral</h4>
-            <ng5-slider [(value)]="serviceTime" [(highValue)]="serviceHTime" [options]="sliderOptions" (userChange)="sliderChanged()"></ng5-slider>
+            <ng5-slider [(value)]="warehouse.serviceTime" [(highValue)]="warehouse.serviceEndTime" [options]="sliderOptions" (userChange)="sliderChanged()"></ng5-slider>
             <div class="row">
-              <span class="lTime">{{getTimeBySlot(serviceTime)}}</span>
+              <span class="lTime">{{getTimeBySlot(warehouse.serviceTime)}}</span>
               <div class="filler"></div>
-              <span class="rTime">{{getTimeBySlot(serviceHTime)}}</span>
+              <span class="rTime">{{getTimeBySlot(warehouse.serviceEndTime)}}</span>
             </div>
         </div>
 
         <div class="slider dock-time">
             <h4 class="title">Horario de Bódegas</h4>
-            <ng5-slider [(value)]="dockTime" [(highValue)]="dockHTime" [options]="sliderOptions" (userChange)="sliderChanged()"></ng5-slider>
+            <ng5-slider [(value)]="warehouse.dockTime" [(highValue)]="warehouse.dockEndTime" [options]="sliderOptions" (userChange)="sliderChanged()"></ng5-slider>
             <div class="row">
-              <span class="lTime">{{getTimeBySlot(dockTime)}}</span>
+              <span class="lTime">{{getTimeBySlot(warehouse.dockTime)}}</span>
               <div class="filler"></div>
-              <span class="rTime">{{getTimeBySlot(dockHTime)}}</span>
+              <span class="rTime">{{getTimeBySlot(warehouse.dockEndTime)}}</span>
             </div>
         </div>
 
         <div class="slider same-day-time">
             <h4 class="title">Hora de Corte para Ordenes del mismo día</h4>
-            <ng5-slider [(value)]="sameDayTime" [options]="sliderOptions" (userChange)="sliderChanged()"></ng5-slider>
+            <ng5-slider [(value)]="warehouse.sameDayTime" [options]="sliderOptions" (userChange)="sliderChanged()"></ng5-slider>
             <div class="row">
-              <span class="lTime">{{getTimeBySlot(sameDayTime)}}</span>
+              <span class="lTime">{{getTimeBySlot(warehouse.sameDayTime)}}</span>
             </div>
         </div>
 

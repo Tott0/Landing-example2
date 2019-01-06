@@ -77,7 +77,7 @@ export class CreateWarehouseComponent implements OnInit {
       description: this.warehouse.description,
 
       workingDays: this.warehouse.workingDays,
-      workingTime: this.warehouse.workingTime,
+      // workingTime: this.warehouse.workingTime,
 
       positions_attributes: this.warehouse.positions,
 

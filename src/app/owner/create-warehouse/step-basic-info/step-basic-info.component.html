@@ -27,7 +27,7 @@
 
       <mat-form-field class="addr">
         <input matInput placeholder="Dirección*" [(ngModel)]="currentAddress" [matAutocomplete]="addrAuto" (input)="addressChanged($event.target.value)"
-        [disabled]="!warehouse.city">
+          [disabled]="!warehouse.city">
         <mat-autocomplete #addrAuto="matAutocomplete" [displayWith]="mcDisplayFn" (optionSelected)="addressSelected($event.option.value.place_id)">
           <mat-option *ngFor="let addr of filteredAddresses" [value]="addr">
             {{ addr.address }}
@@ -72,8 +72,12 @@
       </mat-form-field>
 
       <mat-form-field class="desc">
-          <textarea matInput placeholder="Descripción de la bodega (Opcional)" [(ngModel)]="warehouse.description"
-            matTextareaAutosize matAutosizeMinRows="3" matAutosizeMaxRows="3"></textarea>
+        <textarea matInput placeholder="Descripción de la bodega (Opcional)" [(ngModel)]="warehouse.description"
+          matTextareaAutosize matAutosizeMinRows="3" matAutosizeMaxRows="3"></textarea>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="Matrícula Inmobiliaria" type="text" [ngModel]="warehouse.matInmobiliaria">
       </mat-form-field>
 
       <div class="cert file-input" [ngClass]="{'has-file': warehouse.certLibTra}">

@@ -23,22 +23,32 @@ export class Warehouse {
   images?: DocumentFile[];
   attachments?: Attachment[];
 
-  workingDays?: boolean[];
-  workingTime?: String[];
+  workingDays?: boolean[]; // aca esta wea es un vector de 7 lunes-domingo (o domingo-sabado) true si trabaja
+  // workingTime?: number[]; // podemos hacer un foirmato en numero con este tengo una idea, 
+  // en la pagina esta dividida la hora en unidades de 15 minutos por lo que podria ser
+  // [6*4, 18*4] = 6:00am. - 6:00pm
+  serviceTime: number;
+  serviceEndTime: number;
+  dockTime: number;
+  dockEndTime: number;
+  sameDayTime: number;
 
   //
-  positions?: Position[];
+  positions?: Position[];  // los espacios, se quito una vez mas el tipo CAJA, solo queda Piso cubierto, 
+  // descubierto, rack (creo que todavia falta para saber si es doble stack o triple stack)
 
   // all characteristics of warehouse are grouped here
-  parameters?: Parameter[];
+  parameters?: Parameter[]; // aca van los servicios o no se si quieras hacerlo en otro lado Service 
+  // porque deberian tener parametros diferente, mejor separalos y deja aca no mas los 3 basicos
 
   // certificado libertad y Tradición
-  certLibTra: DocumentFile;
+  certLibTra: DocumentFile; // el documento que se paso del usuario, este cambio ya lo hice
+  matInmobiliaria: string; // No. documento que era de usuario
 
   areaSize: number;
-  inboutResponsetime: string;
-  outboutResponsetime: string;
-  customerAccess: string;
+  inboundResponsetime: string;
+  outboundResponsetime: string;
+  customerAccess: string; // 0: no acceso / 1: Si acceso
   schedulingWindowTime: string;
   contactName: string;
   contactLastName: string;
@@ -58,8 +68,20 @@ export class Warehouse {
     if (!this.workingDays) {
       this.workingDays = new Array(7).fill(true);
     }
-    if (!this.workingTime) {
-      this.workingTime = ['6', 'am', '6', 'pm', '00', '00'];
+    if (!this.serviceTime) {
+      this.serviceTime = 6 * 4;
+    }
+    if (!this.serviceEndTime) {
+      this.serviceEndTime = 18 * 4;
+    }
+    if (!this.dockTime) {
+      this.dockTime = 6 * 4;
+    }
+    if (!this.dockEndTime) {
+      this.dockEndTime = 18 * 4;
+    }
+    if (!this.sameDayTime) {
+      this.sameDayTime = 6 * 4;
     }
     if (!this.customerAccess) {
       this.customerAccess = '0';

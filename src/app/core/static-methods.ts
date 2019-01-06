@@ -13,6 +13,21 @@ export function getErrorMessage(formControl: AbstractControl, error?) {
   }
 }
 
+export function getTimeBySlot(t) {
+  let r = '';
+  r += ('0' + Math.floor(t / 4)).slice(-2);
+  r += ':';
+  r += ('0' + (t % 4 * 15)).slice(-2);
+  if (t < 12 * 4) {
+    r += 'am.';
+  } else if (t === 12 * 4) {
+    r += 'm.';
+  } else {
+    r += 'pm.';
+  }
+  return r;
+}
+
 export class StaticMethods {
 
   static handleHttpResponseError(errorResponse: HttpErrorResponse) {

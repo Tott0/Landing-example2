@@ -43,9 +43,9 @@
 
     <div class="container">
 
-        <span class="main-title">
-            <span class="bold">¿CÓMO FUNCIONA?</span>
-          </span>
+      <span class="main-title">
+        <span class="bold">¿CÓMO FUNCIONA?</span>
+      </span>
 
       <div class="services-row">
 
@@ -243,6 +243,77 @@
     </div>
   </section>
 
+  <section class="compare-section">
+    <div class="container">
+      <span class="main-title">
+        ALMACENAMIENTO TRADICIONAL VS. CAXTOR
+      </span>
+      <span class="main-subtitle">
+        El Almacenamiento bajo demanda con CAXTOR te permite trabajar rápidamente sin complicaciones ni costos elevados
+      </span>
+      <div class="compare-row">
+        <!-- <div class="left"> -->
+          <span class="left table-title">
+            ALMACENAMIENTO TRADICIONAL
+          </span>
+          <span class="table-cell">
+            <span class="cell-title">Compromisos a Largo Plazo</span>
+            <span class="cell-content">Contratos de arrendamiento plurianuales</span>
+          </span>
+          <span class="table-cell">
+              <span class="cell-title">Costos Confusos</span>
+            <span class="cell-content">Tasas complejas que dificultan la planeación</span>
+          </span>
+          <span class="table-cell">
+            <span class="cell-title">Mínimos</span>
+            <span class="cell-content">Costos mínimos de orden mensual</span>
+          </span>
+          <span class="table-cell">
+            <span class="cell-title">Softwares Complejos</span>
+            <span class="cell-content">Softwares complejos que requieren meses de configuración</span>
+          </span>
+          <span class="table-cell">
+            <span class="cell-title">Pobre Organización</span>
+            <span class="cell-content">Múltiples Correos o Contactos para solicitar estado</span>
+          </span>
+          <span class="table-cell">
+            <span class="cell-title">Díficil de Escalar</span>
+            <span class="cell-content">Cada Instalación requiere integraciones <br> y accesos diferentes</span>
+          </span>
+        <!-- </div>
+        <div class="right"> -->
+          <span class="right table-title">
+            ALMACENAMIENTO CAXTOR
+          </span>
+          <span class="table-cell">
+            <span class="cell-title"><i class="fas fa-check"></i>Mes a Mes</span>
+            <span class="cell-content">No requiere contratos de largo tiemp <br> Puedes terminar en cualquier momento</span>
+          </span>
+          <span class="table-cell">
+            <span class="cell-title"><i class="fas fa-check"></i>Costos claros</span>
+            <span class="cell-content">Factura digital para claridad en los costos</span>
+          </span>
+          <span class="table-cell">
+            <span class="cell-title"><i class="fas fa-check"></i>Sin mínimos</span>
+            <span class="cell-content">Paga solamente por el espacio que uses, sin espacios vacíos</span>
+          </span>
+          <span class="table-cell">
+            <span class="cell-title"><i class="fas fa-check"></i>Software de fácil uso</span>
+            <span class="cell-content">Aprende en minutos. Mueve inventario en 24 horas</span>
+          </span>
+          <span class="table-cell">
+            <span class="cell-title"><i class="fas fa-check"></i>Manejo de inventario moderno</span>
+            <span class="cell-content">Maneja tu inventario a través de nuestra página web</span>
+          </span>
+          <span class="table-cell">
+            <span class="cell-title"><i class="fas fa-check"></i>Único acceso CAXTOR</span>
+            <span class="cell-content">Trabaja con múltiples bódegas con un unico acceso</span>
+          </span>
+        <!-- </div> -->
+      </div>
+    </div>
+  </section>
+
   <section class="reviews-section">
     <div class="container">
 
@@ -313,7 +384,7 @@
     </div>
   </section>
 
-  <section #mapSearch class="warehouses-section">
+  <!-- <section #mapSearch class="warehouses-section">
     <div class="row">
       <div class="search">
         <span class="title">
@@ -344,8 +415,23 @@
       <div class="map">
         <agm-map [latitude]="iLat" [longitude]="iLng" [zoom]="zoom" [streetViewControl]="false" [zoomControl]="false"
           [mapDraggable]="false" [scrollwheel]="false">
-          <!-- <agm-marker *ngFor="let r of warehouses" [latitude]="r.lat" [longitude]="r.lng" [markerDraggable]="false" (markerClick)="markerClick(r)"></agm-marker> -->
+          <agm-marker *ngFor="let r of warehouses" [latitude]="r.lat" [longitude]="r.lng" [markerDraggable]="false" (markerClick)="markerClick(r)"></agm-marker>
         </agm-map>
+      </div>
+    </div>
+  </section> -->
+
+  <section class="sponsors-section">
+    <div class="container">
+      <span class="title">
+        NOS APOYAN
+      </span>
+      <div class="sponsors-row">
+        <div class="sponsor"><img src="/assets/images/appsco-logo.png"></div>
+        <div class="sponsor"><img src="/assets/images/colciencias-logo.png"></div>
+        <div class="sponsor"><img src="/assets/images/caribetic-logo.png"></div>
+        <div class="sponsor"><img src="/assets/images/todoscolombia-logo.png"></div>
+        <div class="sponsor"><img src="/assets/images/mintic-logo.png"></div>
       </div>
     </div>
   </section>

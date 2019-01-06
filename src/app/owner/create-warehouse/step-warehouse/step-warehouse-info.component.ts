@@ -1,7 +1,7 @@
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { Component, OnInit, Input, NgZone, ChangeDetectorRef } from '@angular/core';
 import { Validators, FormBuilder, FormGroup, AbstractControl } from '@angular/forms';
-import { StaticMethods } from '@core/static-methods';
+import { StaticMethods, getTimeBySlot } from '@core/static-methods';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ModalManager } from '@core/providers/modal-manager';
 import { Warehouse } from '@shared/models/warehouse.model';
@@ -27,11 +27,6 @@ export class StepWarehouseInfoComponent implements OnInit {
   daysEnabled = true;
   timeEnabled = true;
 
-  serviceTime = 6 * 4;
-  serviceHTime = 18 * 4;
-  dockTime = 6 * 4;
-  dockHTime = 18 * 4;
-  sameDayTime = 6 * 4;
   sliderOptions = {
     floor: 0,
     ceil: 24 * 4,
@@ -40,6 +35,7 @@ export class StepWarehouseInfoComponent implements OnInit {
     hidePointerLabels: true,
     noSwitching: true,
   };
+  getTimeBySlot = getTimeBySlot;
 
   errors: any = {};
 
@@ -98,17 +94,6 @@ export class StepWarehouseInfoComponent implements OnInit {
     console.log(this.warehouse.workingDays);
 
   }
-  timeModeChanged(ev) {
-    switch (+ev) {
-      case 1:
-        this.timeEnabled = true;
-        break;
-      case 2:
-        this.warehouse.workingTime = ['00', 'am', '00', 'am', '00', '00'];
-        this.timeEnabled = false;
-        break;
-    }
-  }
 
   onFile(files, i) {
     console.log(files);
@@ -149,21 +134,6 @@ export class StepWarehouseInfoComponent implements OnInit {
     //   return false;
     // }
     return true;
-  }
-
-  getTimeBySlot(t) {
-    let r = '';
-    r += ('0' + Math.floor(t / 4)).slice(-2);
-    r += ':';
-    r += ('0' + (t % 4 * 15)).slice(-2);
-    if (t < 12 * 4) {
-      r += 'am.';
-    } else if (t === 12 * 4) {
-      r += 'm.';
-    } else {
-      r += 'pm.';
-    }
-    return r;
   }
 
   sliderChanged() {
