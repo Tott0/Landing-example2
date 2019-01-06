@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.18.0"></a>
+# [0.18.0](https://gitlab.com/tott0/caxtor/compare/v0.17.0...v0.18.0) (2019-01-06)
+
+
+### Bug Fixes
+
+* stuff ([5f1c258](https://gitlab.com/tott0/caxtor/commit/5f1c258))
+
+
+### Features
+
+* landing changes complete ([bb138d5](https://gitlab.com/tott0/caxtor/commit/bb138d5))
+
+
+
 <a name="0.17.0"></a>
 # [0.17.0](https://gitlab.com/tott0/caxtor/compare/v0.16.0...v0.17.0) (2019-01-01)
 
