@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { ClientComponent } from './client.component';
 import { WarehouseFilterResolver } from './warehouse-filter-resolver.service';
-import { WarehouseParametersResolver } from './warehouse-parameters-resolver.service';
+import { WarehouseParametersResolver, WarehouseServiceParametersResolver } from './warehouse-parameters-resolver.service';
 
 // import { LoginAuthGuard, PersonAuthGuard } from '../core/providers/auth-guard.service';
 
@@ -27,6 +27,7 @@ const routes: Routes = [
     component: MapComponent,
     resolve: {
       warehouses: WarehouseFilterResolver,
+      services: WarehouseServiceParametersResolver,
       parameters: WarehouseParametersResolver,
     }
   }
@@ -42,6 +43,7 @@ const routes: Routes = [
   providers: [
     WarehouseFilterResolver,
     WarehouseParametersResolver,
+    WarehouseServiceParametersResolver,
   ]
 })
 

@@ -4,7 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { OwnerComponent } from './owner.component';
 import { CreateWarehouseComponent } from './create-warehouse/create-warehouse.component';
 
-import { WarehouseParametersResolver } from '../client/warehouse-parameters-resolver.service';
+import { WarehouseParametersResolver, WarehouseServiceParametersResolver } from '../client/warehouse-parameters-resolver.service';
 import { WarehousesOwnerResolver } from './owner-resolvers.service';
 import { DepartamentosResolver } from '@shared/shared-resolvers.service';
 
@@ -22,6 +22,7 @@ const routes: Routes = [
     component: CreateWarehouseComponent,
     resolve: {
       parameters: WarehouseParametersResolver,
+      services: WarehouseServiceParametersResolver,
       departamentos: DepartamentosResolver,
     }
   }
@@ -36,6 +37,7 @@ const routes: Routes = [
   ],
   providers: [
     WarehouseParametersResolver,
+    WarehouseServiceParametersResolver,
     WarehousesOwnerResolver,
     DepartamentosResolver,
   ]

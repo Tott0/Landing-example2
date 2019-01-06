@@ -63,7 +63,7 @@
           <div class="wrapper">
               <span class="title">SERVICIOS</span>
             <div class="cb-area services">
-              <mat-checkbox *ngFor="let p of parameters.services" [(ngModel)]="p.checked" (click)="$event.stopPropagation()" >{{ p.description }}</mat-checkbox>
+              <mat-checkbox *ngFor="let p of services" [(ngModel)]="p.checked" (click)="$event.stopPropagation()" >{{ p.description }}</mat-checkbox>
             </div>
           </div>
         </mat-menu>

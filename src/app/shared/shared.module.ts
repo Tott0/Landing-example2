@@ -4,7 +4,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { LoadingDialog } from './dialogs/loading/loading.dialog';
 import { MessageDialog } from './dialogs/message/message.dialog';
-import { WarehouseFiltersDialog } from './dialogs/warehouse-filters/warehouse-filters.dialog';
 
 import { ResultSnackbar } from './dialogs/result-snackbar/result.snackbar';
 
@@ -40,7 +39,6 @@ import { Ng5SliderModule } from 'ng5-slider';
     //
     LoadingDialog,
     MessageDialog,
-    WarehouseFiltersDialog,
     ResultSnackbar,
     //
     ForceUppercaseDirective,
@@ -86,7 +84,6 @@ import { Ng5SliderModule } from 'ng5-slider';
   entryComponents: [
     LoadingDialog,
     MessageDialog,
-    WarehouseFiltersDialog,
     ResultSnackbar,
   ]
 })

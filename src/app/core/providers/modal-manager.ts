@@ -6,7 +6,6 @@ import { tap } from 'rxjs/operators';
 
 import { LoadingDialog } from '@shared/dialogs/loading/loading.dialog';
 import { MessageDialog } from '@shared/dialogs/message/message.dialog';
-import { WarehouseFiltersDialog } from '@shared/dialogs/warehouse-filters/warehouse-filters.dialog';
 //
 import { ResultSnackbar } from '@shared/dialogs/result-snackbar/result.snackbar';
 
@@ -91,14 +90,6 @@ export class ModalManager {
     }
     config.panelClass = ['dialog', 'dialog-rating'];
     return this.createModal(ModalTags.MESSAGE, MessageDialog, config);
-  }
-
-  showWarehouseFiltersDialog(config?: MatDialogConfig): Observable<any> {
-    if (!config) {
-      config = {};
-    }
-    config.panelClass = ['dialog', 'dialog-warehouse-filters'];
-    return this.createModal(ModalTags.WAREHOUSE_FILTERS, WarehouseFiltersDialog, config);
   }
 
   /* snackbars */

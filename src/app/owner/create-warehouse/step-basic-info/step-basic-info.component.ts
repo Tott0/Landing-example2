@@ -126,7 +126,7 @@ export class StepBasicInfoComponent implements OnInit {
         console.log(this.warehouse.images);
         break;
       case 1:
-        this.warehouse.certLibTra = {
+        this.warehouse.certificadoLibertadTradicion = {
           file: files,
           name: files.name,
           url: URL.createObjectURL(files)

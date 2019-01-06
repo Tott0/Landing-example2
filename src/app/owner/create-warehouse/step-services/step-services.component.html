@@ -9,7 +9,7 @@
 
     <div class="content">
       <mat-form-field class="inbound">
-        <mat-select placeholder="Tiempo de Respuesta Solicitudes de Entrada" [(ngModel)]="warehouse.inboundResponsetime">
+        <mat-select placeholder="Tiempo de Respuesta Solicitudes de Entrada" [(ngModel)]="warehouse.inboundResponseTime">
           <mat-option [value]="0">Mismo Día</mat-option>
           <mat-option [value]="1">48 Horas</mat-option>
           <mat-option [value]="2">72 Horas</mat-option>
@@ -17,7 +17,7 @@
       </mat-form-field>
 
       <mat-form-field class="outbound">
-        <mat-select placeholder="Tiempo de Respuesta Solicitudes de Salida" [(ngModel)]="warehouse.outboundResponsetime">
+        <mat-select placeholder="Tiempo de Respuesta Solicitudes de Salida" [(ngModel)]="warehouse.outboundResponseTime">
           <mat-option [value]="0">Mismo Día</mat-option>
           <mat-option [value]="1">48 Horas</mat-option>
           <mat-option [value]="2">72 Horas</mat-option>
@@ -79,7 +79,7 @@
       <section class="extra-services">
         <span class="title">SERVICIOS</span>
         <div class="specs-area">
-          <mat-checkbox *ngFor="let p of parameters.services" [(ngModel)]="p.checked">{{ p.description }}</mat-checkbox>
+          <mat-checkbox *ngFor="let p of additionalServices" [(ngModel)]="p.checked">{{ p.description }}</mat-checkbox>
         </div>
       </section>
 

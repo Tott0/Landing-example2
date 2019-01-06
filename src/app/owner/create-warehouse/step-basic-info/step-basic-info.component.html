@@ -80,7 +80,7 @@
         <input matInput placeholder="Matrícula Inmobiliaria" type="text" [ngModel]="warehouse.matInmobiliaria">
       </mat-form-field>
 
-      <div class="cert file-input" [ngClass]="{'has-file': warehouse.certLibTra}">
+      <div class="cert file-input" [ngClass]="{'has-file': warehouse.certificadoLibertadTradicion}">
         <input #cltFile class="fileInput" type="file" accept=".pdf" (change)="onFile($event.target.files[0], 1); cltFile.value = ''">
         <button mat-raised-button (click)="cltFile.click()">
           <span class="button-text">
@@ -88,7 +88,7 @@
           </span>
         </button>
         <span class="placeholder">
-          {{ warehouse.certLibTra ? warehouse.certLibTra.name : 'Certificado Libertad y Tradición*' }}
+          {{ warehouse.certificadoLibertadTradicion ? warehouse.certificadoLibertadTradicion.name : 'Certificado Libertad y Tradición*' }}
         </span>
       </div>
 

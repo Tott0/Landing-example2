@@ -18,6 +18,7 @@ import { ParameterType, Parameter } from '@shared/models/warehouse.model';
 export class SharedService {
 
   parametersCache: any;
+  servicesCache: any;
 
   departamentos: Departamento[] = [];
 
@@ -76,13 +77,33 @@ export class SharedService {
             product: res.filter(p => p.typeParameter === ParameterType.ACCEPTED_PRODUCTS),
             security: res.filter(p => p.typeParameter === ParameterType.SECURITY),
             certifications: res.filter(p => p.typeParameter === ParameterType.CERTIFICATIONS),
-            services: res.filter(p => p.typeParameter === ParameterType.EXTRA_SERVICES),
+            // services: res.filter(p => p.typeParameter === ParameterType.EXTRA_SERVICES),
           };
           console.log(filtered);
           return filtered;
         }),
         tap(res => {
           this.parametersCache = res;
+        }),
+        catchError((err, caught) => {
+          this.mm.closeLoadingDialog();
+          return throwError(StaticMethods.handleHttpResponseError(err));
+        }));
+  }
+
+  getServiceParameters(params?): Observable<any> {
+    if (this.servicesCache) {
+      return of<any>(this.servicesCache);
+    }
+
+    return this.http.get<Parameter[]>(`${environment.API_ENDPOINT}services${StaticMethods.getParams(params)}`)
+      .pipe(
+        map(res => {
+          console.log(res);
+          return res;
+        }),
+        tap(res => {
+          this.servicesCache = res;
         }),
         catchError((err, caught) => {
           this.mm.closeLoadingDialog();

@@ -38,16 +38,16 @@ export class Warehouse {
   // descubierto, rack (creo que todavia falta para saber si es doble stack o triple stack)
 
   // all characteristics of warehouse are grouped here
-  parameters?: Parameter[]; // aca van los servicios o no se si quieras hacerlo en otro lado Service 
-  // porque deberian tener parametros diferente, mejor separalos y deja aca no mas los 3 basicos
+  parameters?: Parameter[];
+  extraServices: ServiceParameter[];
 
   // certificado libertad y Tradición
-  certLibTra: DocumentFile; // el documento que se paso del usuario, este cambio ya lo hice
+  certificadoLibertadTradicion: DocumentFile; // el documento que se paso del usuario, este cambio ya lo hice
   matInmobiliaria: string; // No. documento que era de usuario
 
   areaSize: number;
-  inboundResponsetime: string;
-  outboundResponsetime: string;
+  inboundResponseTime: string;
+  outboundResponseTime: string;
   customerAccess: string; // 0: no acceso / 1: Si acceso
   schedulingWindowTime: string;
   contactName: string;
@@ -95,11 +95,23 @@ export enum ParameterType {
   CERTIFICATIONS = '3',
   EXTRA_SERVICES = '4'
 }
+export enum ServiceType {
+  BASIC = 1,
+  ADDITIONAL = 2,
+}
+
 export class Parameter {
   id: number;
   description: string;
   typeParameter: ParameterType;
-  cost_per_unit?: number;
+  checked?: boolean;
+}
+
+export class ServiceParameter {
+  id: number;
+  description: string;
+  typeService: ServiceType;
+  price?: number;
   checked?: boolean;
 }
 

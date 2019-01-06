@@ -38,8 +38,8 @@ export class CreateWarehouseComponent implements OnInit {
     product: [],
     security: [],
     certifications: [],
-    services: [],
   };
+  services: any;
 
   departamentos: Departamento[] = [];
 
@@ -53,9 +53,10 @@ export class CreateWarehouseComponent implements OnInit {
 
   ngOnInit() {
     this.route.data
-      .subscribe((data: { parameters: any, departamentos: Departamento[] }) => {
+      .subscribe((data: { parameters: any, services: any, departamentos: Departamento[] }) => {
         console.log(data);
         this.parameters = data.parameters;
+        this.services = data.services;
         this.departamentos = data.departamentos;
         this.mm.closeLoadingDialog();
       });
@@ -67,7 +68,7 @@ export class CreateWarehouseComponent implements OnInit {
     parameters = parameters.concat(this.parameters.product.filter((p: Parameter) => p.checked));
     parameters = parameters.concat(this.parameters.security.filter((p: Parameter) => p.checked));
     parameters = parameters.concat(this.parameters.certifications.filter((p: Parameter) => p.checked));
-    parameters = parameters.concat(this.parameters.services.filter((p: Parameter) => p.checked));
+    const services = this.services.filter((p: Parameter) => p.checked);
     const requestParams = {
       name: this.warehouse.name,
       lat: this.warehouse.lat,
@@ -82,6 +83,7 @@ export class CreateWarehouseComponent implements OnInit {
       positions_attributes: this.warehouse.positions,
 
       warehouse_parameters_attributes: parameters.map(p => p.id),
+      warehouse_services_attributes: services,
 
       attachment_attributes: this.warehouse.images,
     };

@@ -5,7 +5,7 @@ import { StaticMethods } from '@core/static-methods';
 import { ModalManager } from '@core/providers/modal-manager';
 
 import { MatTableDataSource } from '@angular/material';
-import { Position, MeasureType, PositionType, Warehouse } from '@shared/models/warehouse.model';
+import { Position, MeasureType, PositionType, Warehouse, ServiceType, ServiceParameter } from '@shared/models/warehouse.model';
 
 // TODO services with cost
 @Component({
@@ -16,7 +16,8 @@ import { Position, MeasureType, PositionType, Warehouse } from '@shared/models/w
 export class StepStorageComponent implements OnInit {
 
   @Input() warehouse: Warehouse;
-  @Input() parameters: any;
+  @Input() services: any;
+  additionalServices: any;
 
   storageColumns = ['number', 'unit', 'space', 'price', 'height', 'weight', 'actions'];
   storageDataSource = new MatTableDataSource<Position>();
@@ -35,6 +36,9 @@ export class StepStorageComponent implements OnInit {
 
   ngOnInit() {
     this.storageDataSource.data = [];
+
+    
+    this.additionalServices = this.services.filter((s: ServiceParameter) => s.typeService === ServiceType.ADDITIONAL);
   }
 
   onSubmit() {

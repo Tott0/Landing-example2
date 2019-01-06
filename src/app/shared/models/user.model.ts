@@ -55,6 +55,7 @@ export class Person {
   lastName?: String;
   identification?: String;
   phoneNumber?: String;
+  cellPhone?: String;
 
   get fullName() { return this.name + ' ' + this.lastName; }
 

@@ -155,45 +155,45 @@ export class MapComponent implements OnInit, OnDestroy {
     });
   }
 
-  filters() {
-    this.mm.showWarehouseFiltersDialog({
-      data: {
-        storage: this.currentFilters.str,
-        parameters: this.parameters,
-      }
-    }).subscribe(data => {
-      if (data) {
-        const filter: any = {
-          cd: this.currentFilters.cd,
-          up: this.currentFilters.up,
-        };
-        if (data.storage) {
-          filter.str = data.storage.map(str => str ? 1 : 0);
-        }
-        if (data.parameters) {
-          filter.prm = [];
-          for (const params of Object.keys(data.parameters)) {
-            filter.prm = filter.prm.concat(data.parameters[params].filter(p => p.checked).map(p => p.id));
-          }
-        }
+  // filters() {
+  //   this.mm.showWarehouseFiltersDialog({
+  //     data: {
+  //       storage: this.currentFilters.str,
+  //       parameters: this.parameters,
+  //     }
+  //   }).subscribe(data => {
+  //     if (data) {
+  //       const filter: any = {
+  //         cd: this.currentFilters.cd,
+  //         up: this.currentFilters.up,
+  //       };
+  //       if (data.storage) {
+  //         filter.str = data.storage.map(str => str ? 1 : 0);
+  //       }
+  //       if (data.parameters) {
+  //         filter.prm = [];
+  //         for (const params of Object.keys(data.parameters)) {
+  //           filter.prm = filter.prm.concat(data.parameters[params].filter(p => p.checked).map(p => p.id));
+  //         }
+  //       }
 
-        for (const f of Object.keys(filter)) {
-          if (!filter[f] || (Array.isArray(filter[f]) && !filter[f].length)) {
-            delete filter[f];
-          }
-        }
-        console.log(filter);
-        this.router.navigate(['.', filter], {
-          relativeTo: this.route
-        }).then(success => {
-          if (success) {
-            this.currentFilters = filter;
-          }
-        });
+  //       for (const f of Object.keys(filter)) {
+  //         if (!filter[f] || (Array.isArray(filter[f]) && !filter[f].length)) {
+  //           delete filter[f];
+  //         }
+  //       }
+  //       console.log(filter);
+  //       this.router.navigate(['.', filter], {
+  //         relativeTo: this.route
+  //       }).then(success => {
+  //         if (success) {
+  //           this.currentFilters = filter;
+  //         }
+  //       });
 
-      }
-    });
-  }
+  //     }
+  //   });
+  // }
 
   ngOnDestroy() {
     AppConstants.isAtMap = false;

@@ -20,3 +20,16 @@ export class WarehouseParametersResolver implements Resolve<Parameter[]> {
     return this.service.getParameters();
   }
 }
+
+@Injectable()
+export class WarehouseServiceParametersResolver implements Resolve<Parameter[]> {
+  constructor(
+    private service: SharedService,
+    private router: Router,
+    private mm: ModalManager) { }
+
+  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Parameter[]> {
+    this.mm.showLoadingDialog();
+    return this.service.getServiceParameters();
+  }
+}

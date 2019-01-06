@@ -15,7 +15,6 @@ export class Renter {
 export class Auth {
     token: string;
     user: User;
-    unread_nots?: number;
     role: UserType;
 
     constructor(auth?: Partial<Auth>) {

@@ -10,6 +10,7 @@ import { Observable, Subject, of, throwError } from 'rxjs';
 import { catchError, tap, share, concat, timeoutWith } from 'rxjs/operators';
 
 import { ModalManager } from './modal-manager';
+import { User } from '@app/shared/models/user.model';
 
 
 @Injectable({

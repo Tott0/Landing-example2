@@ -39,16 +39,43 @@ export class OwnerService {
 
   createWarehouse(warehouse) {
     const formData = new FormData();
-
+    //  step basic
     formData.append('name', warehouse.name);
-    formData.append('lat', warehouse.lat);
-    formData.append('lng', warehouse.lng);
     formData.append('city_id', warehouse.city_id);
     formData.append('address', warehouse.address);
+    formData.append('lat', warehouse.lat);
+    formData.append('lng', warehouse.lng);
+    formData.append('area_size', warehouse.areaSize);
     formData.append('description', warehouse.description);
-    formData.append('workingDays', warehouse.workingDays);
-    formData.append('workingTime', warehouse.workingTime);
-
+    formData.append('matricula_inmobiliaria', warehouse.matInmobiliaria);
+    formData.append('certificado_libertad_tradicion', warehouse.certificadoLibertadTradicion as File);
+    //  step warehouse
+    formData.append('working_days', warehouse.workingDays);
+    formData.append('service_time', warehouse.serviceTime);
+    formData.append('service_end_time', warehouse.serviceEndTime);
+    formData.append('dock_time', warehouse.dockTime);
+    formData.append('dock_end_time', warehouse.dockEndTime);
+    formData.append('same_day_time', warehouse.sameDayTime);
+    for (const wp of warehouse.warehouseParameters) {
+      formData.append('warehouse_parameters_attributes[][parameter_id]', wp.id);
+    }
+    for (const aa of warehouse.images) {
+      formData.append('attachments_attributes[][image]', aa.file as File);
+    }
+    // step service
+    formData.append('inbound_response_time', warehouse.inboundResponseTime);
+    formData.append('outbound_response_time', warehouse.outboundResponseTime);
+    formData.append('customer_access', warehouse.customerAccess);
+    formData.append('scheduling_window_time', warehouse.schedulingWindowTime);
+    formData.append('contact_name', warehouse.contactName);
+    formData.append('contact_lastName', warehouse.contactLastName);
+    formData.append('contact_phone', warehouse.contactPhone);
+    formData.append('contact_email', warehouse.contactEmail);
+    for (const ws of warehouse.warehouseServices) {
+      formData.append('warehouse_parameters_attributes[][service_id]', ws.id);
+      formData.append('warehouse_parameters_attributes[][service_id]', ws.price);
+    }
+    // step storage
     for (const pa of warehouse.positions_attributes) {
       formData.append('positions_attributes[][type_position]', pa.typePosition);
       formData.append('positions_attributes[][measure]', pa.measure);
@@ -59,14 +86,6 @@ export class OwnerService {
       formData.append('positions_attributes[][max_weidth]', pa.max_width);
       formData.append('positions_attributes[][refrigerated]', pa.refrigerated);
       formData.append('positions_attributes[][dangerous]', pa.dangerous);
-    }
-
-    for (const wpa of warehouse.warehouse_parameters_attributes) {
-      formData.append('warehouse_parameters_attributes[][parameter_id]', wpa);
-    }
-
-    for (const aa of warehouse.attachment_attributes) {
-      formData.append('attachments_attributes[][image]', aa.file as File);
     }
 
     console.log(formData);
