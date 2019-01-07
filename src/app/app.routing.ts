@@ -13,9 +13,9 @@ const appRoutes: Routes = [
   {
     path: 'temproute_client',
     loadChildren: 'app/client/client.module#ClientModule',
-    canActivate: [
-      LoginAuthGuard,
-    ],
+    // canActivate: [
+    //   LoginAuthGuard,
+    // ],
   },
   {
     path: 'temproute_owner',

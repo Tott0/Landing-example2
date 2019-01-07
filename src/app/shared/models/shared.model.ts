@@ -3,7 +3,7 @@ import { Subject } from 'rxjs';
 export class Ciudad {
   id: number;
   name: string;
-  departamento: Departamento;
+  department: Departamento;
 }
 
 export class Departamento {

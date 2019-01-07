@@ -47,6 +47,17 @@ export class SharedService {
       );
   }
 
+  searchCities(params): Observable<Ciudad[]>{
+    return this.http.get<Ciudad[]>(`${environment.API_ENDPOINT}/cities${StaticMethods.getParams(params)}`)
+      .pipe(
+        catchError((err, caught) => {
+          this.mm.closeLoadingDialog();
+          StaticMethods.handleHttpResponseError(err);
+          return throwError('');
+        })
+      );
+  }
+
   getDepartamentos(): Observable<Departamento[]> {
     if (this.departamentos && this.departamentos.length) {
       return of<Departamento[]>(this.departamentos);

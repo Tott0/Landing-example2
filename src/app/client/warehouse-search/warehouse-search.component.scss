@@ -1,0 +1,52 @@
+@import './src/scss/variables.scss';
+:host{
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  min-height: calc(100vh - var(--footer-height));
+}
+
+.warehouses {
+  // margin-top: 5em !important;
+  margin-bottom: 2em !important;
+  font-size: 1.5em;
+  .row {
+    display: flex;
+    align-items: stretch;
+    width: 100%;
+    .search,
+    .map {
+      flex: 0 0 50%; // height: 100%;
+    }
+    .search {
+      padding: 7em;
+      padding-top: 5em;
+      .title {
+        font-size: 2em;
+        font-weight: 500;
+        margin-top: 3em;
+      }
+      form {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        padding-top: 2em;
+        mat-form-field {
+          font-size: 1em;
+          width: 100%;
+        }
+        button {
+          margin-top: 1em;
+          padding: 0.35em 3em;
+          font-size: 1em;
+        }
+      }
+    }
+    .map {
+      agm-map {
+        height: 100%;
+        width: 100%;
+      }
+    }
+  }
+}

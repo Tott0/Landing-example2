@@ -64,6 +64,16 @@
       }
     }
   }
+  .warehouse-search-wrapper{
+    .warehouses {
+      .search {
+        background: mat-color($primary, 50);
+        .title {
+          color: var(--color-dark);
+        }
+      }
+    }
+  }
   .filter-menu{
     .title{
       color: mat-color($primary, darker);

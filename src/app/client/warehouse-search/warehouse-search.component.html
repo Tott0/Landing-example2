@@ -1,0 +1,56 @@
+<div class="component-wrapper warehouse-search-wrapper">
+
+  <!-- <div class="container"> -->
+
+  <div class="warehouses">
+      <div class="row">
+        <div class="search">
+          <span class="title">
+            BUSCAR ALMACENAMIENTO
+          </span>
+
+          <form [formGroup]="warehouseForm" (ngSubmit)="searchWarehouses()">
+
+            <mat-form-field>
+              <input matInput placeholder="Ciudad*" type="text" [formControl]="city" (input)="errors.message = undefined;" [matAutocomplete]="cityAuto">
+              <mat-error *ngIf="city.invalid || errors.city">{{getErrorMessage(city, errors.city)}}</mat-error>
+              <mat-autocomplete #cityAuto="matAutocomplete" [displayWith]="cityDisplayFn">
+                  <mat-option *ngFor="let city of filteredCities | async" [value]="city">
+                    <span>{{ city.name }}, {{ city.department.name }}</span>
+                  </mat-option>
+                </mat-autocomplete>
+            </mat-form-field>
+
+            <mat-form-field>
+              <mat-select placeholder="Cantidad de Espacios" [formControl]="pallets">
+                  <mat-option [value]="0">1&ndash;50</mat-option>
+                  <mat-option [value]="1">51&ndash;250</mat-option>
+                  <mat-option [value]="2">250&ndash;500</mat-option>
+                  <mat-option [value]="3">500&ndash;1000</mat-option>
+                  <mat-option [value]="4">1000+</mat-option>
+                </mat-select>
+              <mat-error *ngIf="pallets.invalid || errors.pallets">{{getErrorMessage(pallets, errors.pallets)}}</mat-error>
+            </mat-form-field>
+
+            <mat-error *ngIf="errors.message" class="form-errors">
+              {{ errors.message }}
+            </mat-error>
+
+            <button mat-raised-button color="primary" class="btn-search" [disabled]="warehouseForm.invalid" (click)="searchWarehouses()">
+              <span>Search</span>
+            </button>
+          </form>
+        </div>
+        <div class="map">
+          <agm-map [latitude]="iLat" [longitude]="iLng" [zoom]="zoom" [streetViewControl]="false" [zoomControl]="false"
+            [mapDraggable]="false" [scrollwheel]="false">
+            <agm-marker *ngFor="let r of warehouses" [latitude]="r.lat" [longitude]="r.lng" [markerDraggable]="false"
+              (markerClick)="markerClick(r)"></agm-marker>
+          </agm-map>
+        </div>
+      </div>
+  </div>
+
+
+  <!-- </div> -->
+</div>

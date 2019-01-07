@@ -12,6 +12,8 @@ import { WarehouseParametersResolver, WarehouseServiceParametersResolver } from 
 
 
 import { MapComponent } from './map/map.component';
+import { WarehouseSearchComponent } from './warehouse-search/warehouse-search.component';
+import { LoginAuthGuard } from '@app/core/providers/auth-guard.service';
 
 
 const routes: Routes = [
@@ -19,6 +21,9 @@ const routes: Routes = [
     path: '',
     component: ClientComponent,
     // canActivate: [PersonAuthGuard]
+    canActivate: [
+      LoginAuthGuard,
+    ],
     children: [
     ]
   },
@@ -29,6 +34,12 @@ const routes: Routes = [
       warehouses: WarehouseFilterResolver,
       services: WarehouseServiceParametersResolver,
       parameters: WarehouseParametersResolver,
+    }
+  },
+  {
+    path: 'temproute_search',
+    component: WarehouseSearchComponent,
+    resolve: {
     }
   }
 ];
@@ -41,6 +52,7 @@ const routes: Routes = [
     RouterModule
   ],
   providers: [
+    LoginAuthGuard,
     WarehouseFilterResolver,
     WarehouseParametersResolver,
     WarehouseServiceParametersResolver,

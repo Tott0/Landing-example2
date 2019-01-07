@@ -9,6 +9,7 @@ import { MapComponent } from './map/map.component';
 import { ClientRoutingModule } from './client.routing';
 import { ClientService } from './client.service';
 import { UsedMaterialComponentsModule } from '@shared/modules/used-material-components.module';
+import { WarehouseSearchComponent } from './warehouse-search/warehouse-search.component';
 
 @NgModule({
   imports: [
@@ -19,6 +20,7 @@ import { UsedMaterialComponentsModule } from '@shared/modules/used-material-comp
   declarations: [
     ClientComponent,
     MapComponent,
+    WarehouseSearchComponent
   ],
   providers: [
     ClientService

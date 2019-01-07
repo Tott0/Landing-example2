@@ -92,7 +92,6 @@ import { SharedService } from '@app/core/providers/shared.service';
   ]
 })
 export class HomeComponent implements OnInit, OnDestroy {
-  @ViewChild('mapSearch', { read: ElementRef }) mapSearch: ElementRef;
   @ViewChild('solutionsSection', { read: ElementRef }) solutionsSection: ElementRef;
   @ViewChild('processSection', { read: ElementRef }) processSection: ElementRef;
   @ViewChild('newsSection', { read: ElementRef }) newsSection: ElementRef;
@@ -171,16 +170,6 @@ export class HomeComponent implements OnInit, OnDestroy {
   hideRevRight = false;
   hideRevLeft = false;
 
-  errors: any = {};
-  warehouseForm: FormGroup;
-  get city() { return this.warehouseForm.get('city'); }
-  get pallets() { return this.warehouseForm.get('pallets'); }
-  getErrorMessage = getErrorMessage;
-
-  iLat = 10.9838119;
-  iLng = -74.8180175;
-  zoom = 13;
-
   latestPosts = [
     {
       url: 'blog-post-1',
@@ -214,17 +203,6 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     AppConstants.isAtHome = true;
-
-    this.warehouseForm = this.formBuilder.group({
-      city: ['', [Validators.required]],
-      pallets: ['', [Validators.required, Validators.min(0)]],
-    });
-
-    navigator.geolocation.getCurrentPosition((position) => {
-      console.log(position);
-      this.iLat = position.coords.latitude;
-      this.iLng = position.coords.longitude;
-    });
 
     this.sharedService.scrollToNews.subscribe(() => {
       window.scrollTo({
@@ -293,22 +271,6 @@ export class HomeComponent implements OnInit, OnDestroy {
     }
   }
 
-  searchWarehouses() {
-    const u = {
-      cd: this.city.value,
-      up: this.pallets.value,
-    };
-
-    console.log(u);
-
-    // setTimeout(() => {
-    this.router.navigate(['/temproute_client/temproute_map', u]).then(
-      success => this.errors.message = success ? '' : 'No se encontraton bodegas con los parametros seleccionados',
-      err => console.error(err)
-    );
-    // }, 500);
-  }
-
   triggerCarouselLeft() {
     const prevIndex = this.carouselIndex;
     if (--this.carouselIndex < 0) {
@@ -346,14 +308,6 @@ export class HomeComponent implements OnInit, OnDestroy {
     // console.groupEnd();
 
     this.resetCarouselInterval();
-  }
-
-  scrollToMap() {
-    // console.log(this.mapSearch);
-    window.scrollTo({
-      top: this.mapSearch.nativeElement.offsetTop - 50,
-      behavior: 'smooth'
-    });
   }
 
   resetCarouselInterval() {

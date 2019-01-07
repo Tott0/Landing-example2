@@ -14,7 +14,7 @@
                   <span class="title" [innerHtml]="car.title"></span>
                   <p [innerHtml]="car.subtitle"></p>
                   <div class="row">
-                    <button mat-raised-button class="btn-find" (click)="scrollToMap()">BUSCAR ESPACIO</button>
+                    <button mat-raised-button class="btn-find" [routerLink]="['/temproute_client/temproute_search']">BUSCAR ESPACIO</button>
                     <button mat-raised-button class="btn-list" [routerLink]="['/temproute_owner']">PUBLICAR ESPACIO</button>
                   </div>
                 </div>
@@ -383,43 +383,6 @@
       </div>
     </div>
   </section>
-
-  <!-- <section #mapSearch class="warehouses-section">
-    <div class="row">
-      <div class="search">
-        <span class="title">
-          STORAGE IN BODEGA
-        </span>
-
-        <form [formGroup]="warehouseForm" (ngSubmit)="searchWarehouses()">
-
-          <mat-form-field>
-            <input matInput placeholder="City*" type="text" [formControl]="city" (input)="errors.message = undefined;">
-            <mat-error *ngIf="city.invalid || errors.city">{{getErrorMessage(city, errors.city)}}</mat-error>
-          </mat-form-field>
-
-          <mat-form-field>
-            <input matInput placeholder="Number of Pallets*" type="number" [formControl]="pallets" (input)="errors.message = undefined;">
-            <mat-error *ngIf="pallets.invalid || errors.pallets">{{getErrorMessage(pallets, errors.pallets)}}</mat-error>
-          </mat-form-field>
-
-          <mat-error *ngIf="errors.message" class="form-errors">
-            {{ errors.message }}
-          </mat-error>
-
-          <button mat-raised-button color="primary" class="btn-search" [disabled]="warehouseForm.invalid" (click)="searchWarehouses()">
-            <span>Search</span>
-          </button>
-        </form>
-      </div>
-      <div class="map">
-        <agm-map [latitude]="iLat" [longitude]="iLng" [zoom]="zoom" [streetViewControl]="false" [zoomControl]="false"
-          [mapDraggable]="false" [scrollwheel]="false">
-          <agm-marker *ngFor="let r of warehouses" [latitude]="r.lat" [longitude]="r.lng" [markerDraggable]="false" (markerClick)="markerClick(r)"></agm-marker>
-        </agm-map>
-      </div>
-    </div>
-  </section> -->
 
   <section class="sponsors-section">
     <div class="container">
