@@ -19,7 +19,7 @@
     @include for-desktop-up {}
     grid-template-areas: 
     "name name . ." 
-    "dpto dpto city city" 
+    "city city . ." 
     "addr addr addr addr" 
     "map map map map" 
     "area area area area" 

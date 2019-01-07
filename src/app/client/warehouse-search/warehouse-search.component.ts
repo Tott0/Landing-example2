@@ -51,7 +51,7 @@ export class WarehouseSearchComponent implements OnInit {
 
     this.filteredCities = this.city.valueChanges
       .pipe(
-        debounceTime(500),
+        debounceTime(300),
         distinctUntilChanged(),
         switchMap(value => {
           return this.sharedService.searchCities({
@@ -59,14 +59,7 @@ export class WarehouseSearchComponent implements OnInit {
           });
         }),
         catchError(err => {
-          return of([{
-            id: 1,
-            name: 'Barranquilla',
-            department: {
-              id: 1,
-              name: 'Atlantico'
-            }
-          }]);
+          return of([]);
         })
       );
   }

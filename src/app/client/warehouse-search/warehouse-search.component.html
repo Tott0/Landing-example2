@@ -14,7 +14,7 @@
             <mat-form-field>
               <input matInput placeholder="Ciudad*" type="text" [formControl]="city" (input)="errors.message = undefined;" [matAutocomplete]="cityAuto">
               <mat-error *ngIf="city.invalid || errors.city">{{getErrorMessage(city, errors.city)}}</mat-error>
-              <mat-autocomplete #cityAuto="matAutocomplete" [displayWith]="cityDisplayFn">
+              <mat-autocomplete #cityAuto="matAutocomplete" [displayWith]="cityDisplayFn" autoActiveFirstOption>
                   <mat-option *ngFor="let city of filteredCities | async" [value]="city">
                     <span>{{ city.name }}, {{ city.department.name }}</span>
                   </mat-option>

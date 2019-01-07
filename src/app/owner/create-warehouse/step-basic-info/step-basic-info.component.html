@@ -12,22 +12,29 @@
         <input matInput placeholder="Nombre de Bodega*" [(ngModel)]="warehouse.name">
       </mat-form-field>
 
-      <mat-form-field class="dpto">
+      <!-- <mat-form-field class="dpto">
         <mat-select placeholder="Departamento*" (change)="departamentoChanged($event.value)">
           <mat-option *ngFor="let d of departamentos" [value]="d.id">{{ d.name }}</mat-option>
         </mat-select>
-      </mat-form-field>
+      </mat-form-field> -->
 
       <mat-form-field class="city">
-        <mat-select placeholder="Ciudad*" [disabled]="ciudades && !ciudades.length" [(ngModel)]="warehouse.city"
+        <!-- <mat-select placeholder="Ciudad*" [disabled]="ciudades && !ciudades.length" [(ngModel)]="warehouse.city"
           (change)="ciudadChanged($event.value)">
           <mat-option *ngFor="let c of ciudades" [value]="c">{{ c.name }}</mat-option>
-        </mat-select>
+        </mat-select> -->
+        <input #autoInput matInput placeholder="Ciudad*" type="text" [(ngModel)]="warehouse.city" (input)="cityValueChanged.next($event.target.value); errors.message = undefined;" [matAutocomplete]="cityAuto">
+              <!-- <mat-error *ngIf="errors.city">{{getErrorMessage(city, errors.city)}}</mat-error> -->
+              <mat-autocomplete #cityAuto="matAutocomplete" [displayWith]="cityDisplayFn" autoActiveFirstOption (optionSelected)="ciudadChanged($event.option.value); autoInput.blur()">
+                  <mat-option *ngFor="let city of filteredCities | async" [value]="city">
+                    <span>{{ city.name }}, {{ city.department.name }}</span>
+                  </mat-option>
+                </mat-autocomplete>
       </mat-form-field>
 
       <mat-form-field class="addr">
         <input matInput placeholder="Dirección*" [(ngModel)]="currentAddress" [matAutocomplete]="addrAuto" (input)="addressChanged($event.target.value)"
-          [disabled]="!warehouse.city">
+          [disabled]="!addressEnabled">
         <mat-autocomplete #addrAuto="matAutocomplete" [displayWith]="mcDisplayFn" (optionSelected)="addressSelected($event.option.value.place_id)">
           <mat-option *ngFor="let addr of filteredAddresses" [value]="addr">
             {{ addr.address }}

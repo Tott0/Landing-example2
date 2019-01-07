@@ -1,6 +1,6 @@
 import { Injectable, Injector } from '@angular/core';
 import { HttpEvent, HttpInterceptor, HttpHandler, HttpRequest, HttpResponse, HttpErrorResponse } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 
 import { AuthService } from '../providers/auth.service';
 import { environment } from '@env/environment';
@@ -26,7 +26,7 @@ export class ValidAuthInterceptor implements HttpInterceptor {
               // alert('Sesión Expirada');
             }
           }
-          return Observable.throw(event);
+          return throwError(event);
         })
       );
 

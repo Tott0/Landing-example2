@@ -1,8 +1,5 @@
-import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { Component, OnInit, Input, NgZone } from '@angular/core';
-import { Validators, FormBuilder, FormGroup, AbstractControl } from '@angular/forms';
-import { StaticMethods } from '@core/static-methods';
-import { DomSanitizer } from '@angular/platform-browser';
+import { StaticMethods, getErrorMessage } from '@core/static-methods';
 import { ModalManager } from '@core/providers/modal-manager';
 import { Warehouse } from '@shared/models/warehouse.model';
 import { Departamento, Ciudad, GoogleAddress, DocumentFile } from '@shared/models/shared.model';
@@ -22,62 +19,62 @@ export class StepBasicInfoComponent implements OnInit {
   @Input() warehouse: Warehouse;
   @Input() departamentos: Departamento[];
 
-  ciudades: Ciudad[] = [];
-  searchKey = new Subject<any>();
+  // ciudades: Ciudad[] = [];
+  // searchKey = new Subject<any>();
 
-  daysEnabled = true;
-  timeEnabled = true;
+  cityValueChanged = new Subject<any>();
+  filteredCities: Observable<Ciudad[]>;
 
+  getErrorMessage = getErrorMessage;
   errors: any = {};
 
-  selectedDepartamento: Departamento;
+  // selectedDepartamento: Departamento;
 
   // filteredAddresses: Observable<GoogleAddress[]>;
+
+  addressEnabled = false;
+  addrValueChanged = new Subject();
   filteredAddresses: GoogleAddress[] = [];
-  addrSubj = new Subject();
   currentAddress = new GoogleAddress();
+
   mapLat: number;
   mapLng: number;
   mapZoom: number;
 
 
   constructor(
-    private router: Router,
-    private route: ActivatedRoute,
-    private formBuilder: FormBuilder,
-    private domSanitizer: DomSanitizer,
     private sService: SharedService,
     private mm: ModalManager,
     private ngZone: NgZone,
+    private sharedService: SharedService,
   ) { }
 
   ngOnInit() {
-    this.searchKey
+    this.filteredCities = this.cityValueChanged
       .pipe(
         debounceTime(300),
         distinctUntilChanged(),
-        switchMap(dptoId => {
-          this.mm.showLoadingDialog();
-          return dptoId ? this.sService.getCiudades(dptoId) : of<Ciudad[]>([]);
+        switchMap(value => {
+          return value ? this.sharedService.searchCities({
+            name: value
+          }) : of([]);
         }),
         catchError(err => {
-          console.error(err);
-          return of<Ciudad[]>([]);
+          return of([{
+            id: 1,
+            name: 'Barranquilla',
+            department: {
+              id: 1,
+              name: 'Atlantico'
+            }
+          }]);
         })
-      )
-      .subscribe((ciudades) => {
-        console.log(ciudades);
-        this.ciudades = ciudades;
-        this.mm.closeLoadingDialog();
-      });
+      );
 
-    this.addrSubj
+    this.addrValueChanged
       .pipe(
         debounceTime(300),
-        // switchMap((addr) => {
-        //   return addr ? this.sService.autocompleteAddress(addr, new Subject<any>()) : of([]);
-        // }),
-        // map(val => this.filter(val))
+        distinctUntilChanged(),
       )
       .subscribe((addr: google.maps.places.AutocompletionRequest) => {
         if (!addr) {
@@ -92,39 +89,17 @@ export class StepBasicInfoComponent implements OnInit {
       });
   }
 
+  cityDisplayFn(city?: Ciudad): string | undefined {
+    return city ? city.name : undefined;
+  }
+
   mcDisplayFn(mc: GoogleAddress) {
     return mc ? mc.address : mc;
-  }
-
-  onSubmit() {
-    // this.mm.showLoadingDialog();
-  }
-
-  getErrorMessage(formControl: AbstractControl, error) {
-    if (error && error.length) {
-      return error[0];
-    } else {
-      return StaticMethods.getFormError(formControl);
-    }
   }
 
   onFile(files, i) {
     console.log(files);
     switch (i) {
-      case 0:
-        if (this.warehouse.images.length + files.length > 5) {
-          this.errors.photos = 'Solo se pueden seleccionar máximo 5 archivos';
-        } else {
-          for (let f of files) {
-            f = {
-              file: f,
-              url: URL.createObjectURL(f),
-            };
-            this.warehouse.images = this.warehouse.images.concat(f);
-          }
-        }
-        console.log(this.warehouse.images);
-        break;
       case 1:
         this.warehouse.certificadoLibertadTradicion = {
           file: files,
@@ -149,12 +124,12 @@ export class StepBasicInfoComponent implements OnInit {
     return true;
   }
 
-  departamentoChanged(ev) {
-    console.log(ev);
-    this.warehouse.city = undefined;
-    this.ciudades = [];
-    this.searchKey.next(ev);
-  }
+  // departamentoChanged(ev) {
+  //   console.log(ev);
+  //   this.warehouse.city = undefined;
+  //   this.ciudades = [];
+  //   this.searchKey.next(ev);
+  // }
 
   ciudadChanged(ev: Ciudad) {
     console.log(ev);
@@ -163,25 +138,34 @@ export class StepBasicInfoComponent implements OnInit {
     this.warehouse.lat = undefined;
     this.warehouse.lng = undefined;
     this.currentAddress = new GoogleAddress();
+    this.addressEnabled = false;
+
+    if (!ev) {
+      return;
+    }
+
     this.mm.showLoadingDialog();
     this.sService.autocompleteAddress({
-      input: ev.name,
+      input: this.warehouse.city.name,
       componentRestrictions: {
         country: 'co'
       }
     } as google.maps.places.AutocompletionRequest, (addrs => {
       this.sService.getAddress(addrs[0].place_id, (res) => {
+        console.log('getAddress', res);
         this.mm.closeLoadingDialog();
         this.mapLat = res.lat;
         this.mapLng = res.lng;
         this.mapZoom = 13;
+
+        this.addressEnabled = true;
       });
     }));
   }
 
   addressChanged(ev) {
     console.log(ev);
-    this.filteredAddresses = [];
+    // this.filteredAddresses = [];
     if (!ev) {
       return;
     }
@@ -193,7 +177,7 @@ export class StepBasicInfoComponent implements OnInit {
         country: 'co'
       }
     };
-    this.addrSubj.next(r);
+    this.addrValueChanged.next(r);
   }
 
   addressSelected(event) {

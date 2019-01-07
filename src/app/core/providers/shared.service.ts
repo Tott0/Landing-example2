@@ -11,6 +11,9 @@ import { catchError, tap, map } from 'rxjs/operators';
 import { ModalManager } from './modal-manager';
 import { Ciudad, Departamento, GoogleAddress } from '@shared/models/shared.model';
 import { ParameterType, Parameter } from '@shared/models/warehouse.model';
+import { MapsAPILoader } from '@agm/core';
+
+// declare var google;
 
 @Injectable({
   providedIn: 'root'
@@ -30,8 +33,14 @@ export class SharedService {
 
   constructor(
     private http: HttpClient,
-    private mm: ModalManager
-  ) { }
+    private mm: ModalManager,
+    private mapsAPILoader: MapsAPILoader
+  ) {
+    this.mapsAPILoader.load().then(() => {
+      console.log('GOOGLE API LOADED');
+      // console.log(google);
+    });
+  }
 
   getCiudades(dptoId: number, params?): Observable<Ciudad[]> {
     if (this.ciudades && this.ciudades.length) {
@@ -47,7 +56,7 @@ export class SharedService {
       );
   }
 
-  searchCities(params): Observable<Ciudad[]>{
+  searchCities(params): Observable<Ciudad[]> {
     return this.http.get<Ciudad[]>(`${environment.API_ENDPOINT}/cities${StaticMethods.getParams(params)}`)
       .pipe(
         catchError((err, caught) => {
