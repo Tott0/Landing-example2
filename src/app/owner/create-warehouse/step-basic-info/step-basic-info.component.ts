@@ -2,19 +2,20 @@ import { Component, OnInit, Input, NgZone } from '@angular/core';
 import { StaticMethods, getErrorMessage } from '@core/static-methods';
 import { ModalManager } from '@core/providers/modal-manager';
 import { Warehouse } from '@shared/models/warehouse.model';
-import { Departamento, Ciudad, GoogleAddress, DocumentFile } from '@shared/models/shared.model';
+import { Departamento, Ciudad, GoogleAddress, DocumentFile, CiudadApi } from '@shared/models/shared.model';
 
 import { SharedService } from '@core/providers/shared.service';
 import { Observable, Subject, of } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { debounceTime, catchError, switchMap, distinctUntilChanged, startWith, tap } from 'rxjs/operators';
+import { Completable } from '../create-warehouse.component';
 
 @Component({
   selector: 'app-step-basic-info',
   templateUrl: './step-basic-info.component.html',
   styleUrls: ['./step-basic-info.component.scss']
 })
-export class StepBasicInfoComponent implements OnInit {
+export class StepBasicInfoComponent implements OnInit, Completable {
 
   @Input() warehouse: Warehouse;
   @Input() departamentos: Departamento[];
@@ -57,7 +58,14 @@ export class StepBasicInfoComponent implements OnInit {
         switchMap(value => {
           return value ? this.sharedService.searchCities({
             name: value
-          }) : of([]);
+          }) : of({
+            cities: [],
+            total_count: 0
+          });
+        }),
+        map((res: CiudadApi) => {
+          console.log('cities', res);
+          return res.cities.slice(0, 5);
         }),
         catchError(err => {
           return of([{
@@ -112,15 +120,6 @@ export class StepBasicInfoComponent implements OnInit {
   }
 
   isComplete() {
-    // if (!this.warehouse ||
-    //   !this.warehouse.name ||
-    //   !this.warehouse.address ||
-    //   !this.warehouse.city ||
-    //   !this.warehouse.workingDays.some(wd => wd) ||
-    //   !this.photos.length
-    // ) {
-    //   return false;
-    // }
     return true;
   }
 
@@ -153,12 +152,21 @@ export class StepBasicInfoComponent implements OnInit {
     } as google.maps.places.AutocompletionRequest, (addrs => {
       this.sService.getAddress(addrs[0].place_id, (res) => {
         console.log('getAddress', res);
-        this.mm.closeLoadingDialog();
-        this.mapLat = res.lat;
-        this.mapLng = res.lng;
-        this.mapZoom = 13;
+        this.ngZone.run(() => {
 
-        this.addressEnabled = true;
+          this.mm.closeLoadingDialog();
+
+          this.mapLat = res.lat;
+          this.mapLng = res.lng;
+          this.warehouse.lat = res.lat;
+          this.warehouse.lng = res.lng;
+
+          this.mapZoom = 13;
+
+          this.addressEnabled = true;
+        });
+        // setTimeout(() => {
+        // });
       });
     }));
   }
@@ -185,7 +193,9 @@ export class StepBasicInfoComponent implements OnInit {
     this.filteredAddresses = [];
     this.mm.showLoadingDialog();
     this.sService.getAddress(event, (addr) => {
-      this.mm.closeLoadingDialog();
+      setTimeout(() => {
+        this.mm.closeLoadingDialog();
+      });
       console.log(addr);
       if (addr) {
         this.warehouse.address = addr.address;
@@ -201,6 +211,12 @@ export class StepBasicInfoComponent implements OnInit {
       }
     });
 
+  }
+
+  markerDragEnded(ev) {
+    console.log(ev);
+    this.warehouse.lat = ev.coords.lat;
+    this.warehouse.lng = ev.coords.lng;
   }
 
 }

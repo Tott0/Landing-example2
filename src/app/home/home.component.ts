@@ -314,7 +314,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     clearInterval(this.carouselInterval);
     this.carouselInterval = setInterval(() => {
       this.triggerCarouselRight();
-    }, 15 * 1000);
+    }, 10 * 1000);
   }
 
 }

@@ -10,6 +10,7 @@ import { AuthHeadersInterceptor } from './interceptors/auth-headers.interceptor'
 /*Overlays */
 import { OverlayModule } from '@angular/cdk/overlay';
 import { PdfViewerOverlayService } from '@shared/overlays/file-preview/pdf-viewer-overlay.service';
+import { MAT_STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 
 
 @NgModule({
@@ -31,16 +32,22 @@ import { PdfViewerOverlayService } from '@shared/overlays/file-preview/pdf-viewe
       multi: true
     },
     //
-
+    {
+      provide: MAT_STEPPER_GLOBAL_OPTIONS,
+      useValue: {
+        displayDefaultIndicatorType: false,
+        showError: true
+      }
+    },
     //
     PdfViewerOverlayService,
   ]
 })
 export class CoreModule {
-  constructor (@Optional() @SkipSelf() parentModule: CoreModule) {
+  constructor(@Optional() @SkipSelf() parentModule: CoreModule) {
     if (parentModule) {
       throw new Error(
         'CoreModule is already loaded. Import it in the AppModule only');
     }
   }
- }
+}

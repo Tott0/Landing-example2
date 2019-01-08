@@ -1,5 +1,10 @@
 import { Subject } from 'rxjs';
 
+export interface CiudadApi {
+  cities: Ciudad[];
+  total_count: number;
+}
+
 export class Ciudad {
   id: number;
   name: string;

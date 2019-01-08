@@ -25,7 +25,7 @@
         </mat-select> -->
         <input #autoInput matInput placeholder="Ciudad*" type="text" [(ngModel)]="warehouse.city" (input)="cityValueChanged.next($event.target.value); errors.message = undefined;" [matAutocomplete]="cityAuto">
               <!-- <mat-error *ngIf="errors.city">{{getErrorMessage(city, errors.city)}}</mat-error> -->
-              <mat-autocomplete #cityAuto="matAutocomplete" [displayWith]="cityDisplayFn" autoActiveFirstOption (optionSelected)="ciudadChanged($event.option.value); autoInput.blur()">
+              <mat-autocomplete #cityAuto="matAutocomplete" [displayWith]="cityDisplayFn" autoActiveFirstOption (optionSelected)="autoInput.blur(); ciudadChanged($event.option.value)">
                   <mat-option *ngFor="let city of filteredCities | async" [value]="city">
                     <span>{{ city.name }}, {{ city.department.name }}</span>
                   </mat-option>
@@ -65,7 +65,7 @@
                 <agm-map [latitude]="mapLat" [longitude]="mapLng" [zoom]="mapZoom" [streetViewControl]="false"
                   [zoomControl]="false">
                   <agm-marker *ngIf="warehouse.lat" [latitude]="warehouse.lat" [longitude]="warehouse.lng"
-                    [markerDraggable]="false"></agm-marker>
+                    [markerDraggable]="true" (dragEnd)="markerDragEnded($event)"></agm-marker>
                 </agm-map>
               </div>
             </div>
@@ -83,7 +83,7 @@
           matTextareaAutosize matAutosizeMinRows="3" matAutosizeMaxRows="3"></textarea>
       </mat-form-field>
 
-      <mat-form-field>
+      <mat-form-field class="matricula">
         <input matInput placeholder="Matrícula Inmobiliaria" type="text" [ngModel]="warehouse.matInmobiliaria">
       </mat-form-field>
 

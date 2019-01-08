@@ -252,6 +252,7 @@
       grid-column-gap: 4em;
       align-items: center;
       justify-content: center;
+      margin-top: 1em;
       @include for-tablet-landscape-up {
         grid-template-rows: 1fr;
         grid-template-columns: repeat(3, 1fr);

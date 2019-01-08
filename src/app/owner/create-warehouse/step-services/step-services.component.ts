@@ -6,6 +6,7 @@ import { ModalManager } from '@core/providers/modal-manager';
 
 import { MatTableDataSource } from '@angular/material';
 import { Position, MeasureType, PositionType, Warehouse, ServiceParameter, ServiceType } from '@shared/models/warehouse.model';
+import { Completable } from '../create-warehouse.component';
 
 // TODO services with cost
 @Component({
@@ -13,7 +14,7 @@ import { Position, MeasureType, PositionType, Warehouse, ServiceParameter, Servi
   templateUrl: './step-services.component.html',
   styleUrls: ['./step-services.component.scss']
 })
-export class StepServicesComponent implements OnInit {
+export class StepServicesComponent implements OnInit, Completable {
 
   @Input() warehouse: Warehouse;
   @Input() services: any;

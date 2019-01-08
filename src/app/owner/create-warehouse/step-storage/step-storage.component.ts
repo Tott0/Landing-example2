@@ -1,11 +1,12 @@
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
 import { Validators, FormBuilder, FormGroup, AbstractControl } from '@angular/forms';
 import { StaticMethods } from '@core/static-methods';
 import { ModalManager } from '@core/providers/modal-manager';
 
 import { MatTableDataSource } from '@angular/material';
 import { Position, MeasureType, PositionType, Warehouse, ServiceType, ServiceParameter } from '@shared/models/warehouse.model';
+import { Completable } from '../create-warehouse.component';
 
 // TODO services with cost
 @Component({
@@ -13,7 +14,8 @@ import { Position, MeasureType, PositionType, Warehouse, ServiceType, ServicePar
   templateUrl: './step-storage.component.html',
   styleUrls: ['./step-storage.component.scss']
 })
-export class StepStorageComponent implements OnInit {
+export class StepStorageComponent implements OnInit, Completable {
+  @ViewChild('additionalServicesContent', { read: ElementRef }) additionalServicesContent: ElementRef;
 
   @Input() warehouse: Warehouse;
   @Input() services: any;
@@ -37,8 +39,15 @@ export class StepStorageComponent implements OnInit {
   ngOnInit() {
     this.storageDataSource.data = [];
 
-    
-    this.additionalServices = this.services.filter((s: ServiceParameter) => s.typeService === ServiceType.ADDITIONAL);
+    this.additionalServices = this.services.filter((s: ServiceParameter) => {
+      let show = s.typeService === ServiceType.ADDITIONAL;
+      show = show && s.checked;
+      return show;
+    });
+    if (this.additionalServicesContent) {
+      this.additionalServicesContent.nativeElement.style.setProperty('--rows-number', this.additionalServices.length * 2);
+    }
+
   }
 
   onSubmit() {

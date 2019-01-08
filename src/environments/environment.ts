@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  GOOGLE_API_KEY: 'AIzaSyA-gJsnb0-WqsZy7ZH2qBNuglNUYFBrp4I',
+  GOOGLE_API_KEY: 'AIzaSyBTXShFoqSbulYFTQIr2_zD8Op4Ojyi-2g',
   API_ENDPOINT: 'https://caxtor-tonmil931210.c9users.io/',
 
 };

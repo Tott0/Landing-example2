@@ -24,6 +24,7 @@
     "map map map map" 
     "area area area area" 
     "desc desc desc desc" 
+    "mat mat . ."
     "cert cert cert cert";
     .name {
       grid-area: name;
@@ -48,6 +49,9 @@
     }
     .cert {
       grid-area: cert;
+    }
+    .matricula{
+      grid-area: mat;
     }
     .file-input {
       display: flex;

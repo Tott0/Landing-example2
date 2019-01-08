@@ -147,3 +147,32 @@ export class Position {
     this.dangerous = false;
   }
 }
+
+export const mockWarehouse: Partial<Warehouse> = {
+  name: 'Bodega Test',
+  city: {
+    id: 1,
+    name: 'Barranquilla',
+    department: {
+      id: 1,
+      name: 'Atlántico'
+    }
+  },
+  lat: 10.9838119,
+  lng: -74.8180175,
+  address: 'Calle falsa #123',
+  description: 'Una Descripción para la bódega',
+
+  matInmobiliaria: '1234567899',
+
+  areaSize: 100000,
+  inboundResponseTime: '0',
+  outboundResponseTime: '0',
+  customerAccess: '0',
+  schedulingWindowTime: '0',
+  contactName: 'Nombre Contacto',
+  contactLastName: 'Apellido Contacto',
+  contactPhone: '3022155487',
+  contactEmail: 'email@email.com',
+};
+

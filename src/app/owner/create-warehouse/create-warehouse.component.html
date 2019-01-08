@@ -18,25 +18,36 @@
             <!-- <ng-template matStepperIcon="edit">
               {{stepper.selectedIndex}}
             </ng-template> -->
-            <mat-step [stepControl]="formBasicInfo" [completed]="basicInfo.isComplete()">
+            <mat-step [completed]="isComplete(basicInfo)" state="home">
               <ng-template matStepLabel>Información Básica</ng-template>
               <app-step-basic-info [warehouse]="warehouse" [departamentos]="departamentos"></app-step-basic-info>
             </mat-step>
 
-            <mat-step [stepControl]="formBasicInfo" [completed]="basicInfo.isComplete()">
+            <mat-step [completed]="isComplete(warehouseInfo)" state="home">
               <ng-template matStepLabel>Características de Bódega</ng-template>
               <app-step-warehouse-info [warehouse]="warehouse" [parameters]="parameters"></app-step-warehouse-info>
             </mat-step>
 
-            <mat-step [stepControl]="formBasicInfo" [completed]="storageInfo.isComplete()">
+            <mat-step [completed]="isComplete(servicesInfo)" state="shipping">
               <ng-template matStepLabel>Servicios</ng-template>
               <app-step-services [warehouse]="warehouse" [services]="services"></app-step-services>
             </mat-step>
             
-            <mat-step [stepControl]="formBasicInfo" [completed]="storageInfo.isComplete()">
+            <mat-step [completed]="isComplete(storageInfo)" state="price">
               <ng-template matStepLabel>Almacenamiento y Precios</ng-template>
-              <app-step-storage [warehouse]="warehouse" [services]="services"></app-step-storage>
+              <app-step-storage [warehouse]="warehouse" [services]="services" *ngIf="stepper.selectedIndex === 3"></app-step-storage>
             </mat-step>
+
+             <!-- Icon overrides. -->
+  <ng-template matStepperIcon="home">
+    <mat-icon>home</mat-icon>
+  </ng-template>
+  <ng-template matStepperIcon="shipping">
+    <mat-icon>local_shipping</mat-icon>
+  </ng-template>
+  <ng-template matStepperIcon="price">
+    <mat-icon>insert_chart</mat-icon>
+  </ng-template>
 
           </mat-horizontal-stepper>
         </div>

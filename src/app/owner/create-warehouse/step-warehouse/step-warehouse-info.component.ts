@@ -11,13 +11,14 @@ import { SharedService } from '@core/providers/shared.service';
 import { Observable, Subject, of } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { debounceTime, catchError, switchMap, distinctUntilChanged, startWith, tap } from 'rxjs/operators';
+import { Completable } from '../create-warehouse.component';
 
 @Component({
   selector: 'app-step-warehouse-info',
   templateUrl: './step-warehouse-info.component.html',
   styleUrls: ['./step-warehouse-info.component.scss']
 })
-export class StepWarehouseInfoComponent implements OnInit {
+export class StepWarehouseInfoComponent implements OnInit, Completable {
 
   @Input() warehouse: Warehouse;
   @Input() parameters: any;
@@ -124,16 +125,7 @@ export class StepWarehouseInfoComponent implements OnInit {
   }
 
   isComplete() {
-    // if (!this.warehouse ||
-    //   !this.warehouse.name ||
-    //   !this.warehouse.address ||
-    //   !this.warehouse.city ||
-    //   !this.warehouse.workingDays.some(wd => wd) ||
-    //   !this.photos.length
-    // ) {
-    //   return false;
-    // }
-    return true;
+    return false;
   }
 
   sliderChanged() {

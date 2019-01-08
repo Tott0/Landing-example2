@@ -9,7 +9,7 @@ import { Observable, Subject, of, throwError } from 'rxjs';
 import { catchError, tap, map } from 'rxjs/operators';
 
 import { ModalManager } from './modal-manager';
-import { Ciudad, Departamento, GoogleAddress } from '@shared/models/shared.model';
+import { Ciudad, Departamento, GoogleAddress, CiudadApi } from '@shared/models/shared.model';
 import { ParameterType, Parameter } from '@shared/models/warehouse.model';
 import { MapsAPILoader } from '@agm/core';
 
@@ -56,8 +56,8 @@ export class SharedService {
       );
   }
 
-  searchCities(params): Observable<Ciudad[]> {
-    return this.http.get<Ciudad[]>(`${environment.API_ENDPOINT}/cities${StaticMethods.getParams(params)}`)
+  searchCities(params): Observable<CiudadApi> {
+    return this.http.get<CiudadApi>(`${environment.API_ENDPOINT}/cities${StaticMethods.getParams(params)}`)
       .pipe(
         catchError((err, caught) => {
           this.mm.closeLoadingDialog();

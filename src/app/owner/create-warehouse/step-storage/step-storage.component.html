@@ -135,19 +135,19 @@
     </div>
   </article>
 
-  <article class="step-section extra-services">
+  <article class="step-section extra-services" *ngIf="additionalServices && additionalServices.length">
     <header>
       <span class="title">
         SERVICIOS ADICIONALES
       </span>
     </header>
 
-    <div class="content">
+    <div #additionalServicesContent class="content">
       <ng-container *ngFor="let ser of additionalServices">
         <span class="service-title subtitle">Tarifa {{ser.description}}</span>
         <mat-form-field class="price-item" floatLabel="never">
             <span class="dollar-sign" matPrefix>$</span>
-            <input matInput placeholder="10,000" [(ngModel)]="warehouse.itemHandlingPrice" [disabled]="!ser.checked">
+            <input matInput placeholder="10,000" [(ngModel)]="warehouse.itemHandlingPrice">
           </mat-form-field>
       </ng-container>
     </div>

@@ -106,15 +106,15 @@ mat-table {
 }
 
 .basic-services {
-  --rows-number: 3 * 2;
   .content {
+    --rows-number: 3 * 2;
     grid-template-rows: repeat(var(--rows-number), auto);
   }
 }
 
 .extra-services {
-  --rows-number: 7 * 2;
   .content {
+    --rows-number: 7 * 2;
     grid-template-rows: repeat(var(--rows-number), auto);
   }
 }

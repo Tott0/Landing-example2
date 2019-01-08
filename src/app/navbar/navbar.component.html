@@ -9,7 +9,7 @@
 
         <div class="filler"></div>
 
-        <nav class="sites">
+        <nav class="sites" *ngIf="isAtHome()">
           <ul>
             <!-- <li>
               <a [routerLink]="['']">

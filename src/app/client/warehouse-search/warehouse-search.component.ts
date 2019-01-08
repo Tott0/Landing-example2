@@ -4,7 +4,7 @@ import { Validators, FormBuilder, FormGroup, AbstractControl } from '@angular/fo
 import { ModalManager } from '../../core/providers/modal-manager';
 import { StaticMethods, getErrorMessage } from '@core/static-methods';
 import { ClientService } from '../client.service';
-import { Ciudad } from '@app/shared/models';
+import { Ciudad, CiudadApi } from '@app/shared/models';
 import { Observable, of } from 'rxjs';
 import { debounceTime, map, switchMap, distinctUntilChanged, catchError } from 'rxjs/operators';
 import { SharedService } from '@app/core/providers/shared.service';
@@ -54,9 +54,16 @@ export class WarehouseSearchComponent implements OnInit {
         debounceTime(300),
         distinctUntilChanged(),
         switchMap(value => {
-          return this.sharedService.searchCities({
+          return value ? this.sharedService.searchCities({
             name: value
+          }) : of({
+            cities: [],
+            total_count: 0
           });
+        }),
+        map((res: CiudadApi) => {
+          console.log('cities', res);
+          return res.cities.slice(0, 5);
         }),
         catchError(err => {
           return of([]);

@@ -11,6 +11,11 @@ import { Departamento, Ciudad } from '@shared/models/shared.model';
 import { StepBasicInfoComponent } from './step-basic-info/step-basic-info.component';
 import { StepStorageComponent } from './step-storage/step-storage.component';
 import { StepWarehouseInfoComponent } from './step-warehouse/step-warehouse-info.component';
+import { StepServicesComponent } from './step-services/step-services.component';
+
+export interface Completable {
+  isComplete();
+}
 
 @Component({
   selector: 'app-create-warehouse',
@@ -22,9 +27,6 @@ export class CreateWarehouseComponent implements OnInit {
 
   @ViewChild('stepper') stepper;
 
-  // FIXME
-  formBasicInfo = true;
-
   errors: any = {};
   warehouse: Warehouse = new Warehouse();
 
@@ -32,6 +34,7 @@ export class CreateWarehouseComponent implements OnInit {
 
   @ViewChild(StepBasicInfoComponent) basicInfo: StepBasicInfoComponent;
   @ViewChild(StepWarehouseInfoComponent) warehouseInfo: StepWarehouseInfoComponent;
+  @ViewChild(StepServicesComponent) servicesInfo: StepServicesComponent;
   @ViewChild(StepStorageComponent) storageInfo: StepStorageComponent;
 
   parameters: any = {
@@ -119,6 +122,13 @@ export class CreateWarehouseComponent implements OnInit {
     } else {
       return StaticMethods.getFormError(formControl);
     }
+  }
+
+  isComplete(step: Completable) {
+    if (step) {
+      return step.isComplete();
+    }
+    return false;
   }
 
 }
