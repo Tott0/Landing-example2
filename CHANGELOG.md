@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.23.0"></a>
+# [0.23.0](https://gitlab.com/tott0/caxtor/compare/v0.22.0...v0.23.0) (2019-01-09)
+
+
+### Features
+
+* layout changes ([a48680c](https://gitlab.com/tott0/caxtor/commit/a48680c))
+
+
+
 <a name="0.22.0"></a>
 # [0.22.0](https://gitlab.com/tott0/caxtor/compare/v0.21.0...v0.22.0) (2019-01-08)
 
