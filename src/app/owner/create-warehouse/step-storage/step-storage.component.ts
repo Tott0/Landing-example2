@@ -89,7 +89,7 @@ export class StepStorageComponent implements OnInit, Completable {
   }
 
   isComplete() {
-    return false;
+    return true;
   }
 
 }

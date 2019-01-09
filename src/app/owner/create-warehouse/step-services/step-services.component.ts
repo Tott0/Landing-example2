@@ -37,7 +37,7 @@ export class StepServicesComponent implements OnInit, Completable {
   }
 
   isComplete() {
-    return false;
+    return true;
   }
 
 }

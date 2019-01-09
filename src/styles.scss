@@ -10,8 +10,9 @@
 }
 
 :root {
+  --top-header-logo-height: 96px;
   --top-header-padding: 2em;
-  --top-header-height: calc(72px + var(--top-header-padding));
+  --top-header-height: calc(var(--top-header-logo-height) + var(--top-header-padding));
   --footer-height: 80px;
   --html-font-size-xlg: 14px;
   --html-font-size-lg: 12px;

@@ -11,20 +11,18 @@
       color: $foreground-sec-text;
     }
     .carousel-section {
-      .floating-block {
-        span,
-        p {
-          color: var(--color-light);
-        }
-        button {
-          color: var(--color-light);
-        }
-        .btn-find {
-          background: mat-color($primary, darker);
-        }
-        .btn-list {
-          background: mat-color($primary);
-        }
+      span,
+      p {
+        color: var(--color-light);
+      }
+      button {
+        color: var(--color-light);
+      }
+      .btn-find {
+        background: mat-color($primary, darker);
+      }
+      .btn-list {
+        background: mat-color($primary);
       }
       .carousel-content {
         .content-title {
@@ -167,6 +165,9 @@
         }
       }
     }
+    .sponsors-section{
+      background: mat-color(mat-palette($mat-grey, 200), lighter);
+    }
     .newsletter-section {
       .banner {
         background: mat-color($background, background);
@@ -199,7 +200,7 @@
       li:hover {
         span {
           color: mat-color($primary);
-          border-bottom: solid 1px mat-color($primary);
+          // border-bottom: solid 1px mat-color($primary);
         }
         i {
           color: mat-color($primary);

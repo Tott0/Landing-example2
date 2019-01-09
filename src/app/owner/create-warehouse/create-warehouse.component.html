@@ -34,7 +34,7 @@
             </mat-step>
             
             <mat-step [completed]="isComplete(storageInfo)" state="price">
-              <ng-template matStepLabel>Almacenamiento y Precios</ng-template>
+              <ng-template matStepLabel>Precios</ng-template>
               <app-step-storage [warehouse]="warehouse" [services]="services" *ngIf="stepper.selectedIndex === 3"></app-step-storage>
             </mat-step>
 

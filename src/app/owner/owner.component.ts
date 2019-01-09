@@ -26,7 +26,7 @@ export class OwnerComponent implements OnInit {
     private route: ActivatedRoute,
     private mm: ModalManager,
     private service: OwnerService,
-    private authService: AuthService
+    public authService: AuthService
   ) { }
 
   ngOnInit() {

@@ -3,7 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { ModalManager } from '../../core/providers/modal-manager';
 
 import { AgmMap, MouseEvent } from '@agm/core';
-import { Warehouse, MeasureType, PositionType, Parameter } from '../../shared/models/warehouse.model';
+import { Warehouse, MeasureType, PositionType, Parameter, ServiceParameter } from '../../shared/models/warehouse.model';
 
 import { Observable, Subject, of } from 'rxjs';
 import { switchMap, catchError, debounceTime, merge, tap } from 'rxjs/operators';
@@ -35,6 +35,7 @@ export class MapComponent implements OnInit, OnDestroy {
   zoom = 13;
   warehouses: Warehouse[] = [];
   parameters: any;
+  services: ServiceParameter[] = [];
 
   cityFSbj = new FilterSubject<Ciudad>();
   positionFSbj = new FilterSubject<PositionType>();
@@ -59,10 +60,11 @@ export class MapComponent implements OnInit, OnDestroy {
       AppConstants.isAtMap = true;
     });
     const subscription = this.route.data
-      .subscribe((data: { warehouses: Warehouse[], parameters: any }) => {
+      .subscribe((data: { warehouses: Warehouse[], parameters: any, services: ServiceParameter[] }) => {
         console.log(data);
         this.warehouses = data.warehouses;
         this.parameters = data.parameters;
+        this.services = data.services;
         if (!this.currentFilters) {
           this.currentFilters = {
             cd: +this.route.snapshot.paramMap.get('cd'),

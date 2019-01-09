@@ -14,8 +14,8 @@
 @include mat-core();
 
 // Define the default theme
-$caxtor-primary: mat-palette($mat-light-blue, 500, A200, 900);
-$caxtor-accent:  mat-palette($mat-orange, 500, A200, 800);
+$caxtor-primary: mat-palette($mat-light-blue, 500, 100, 900);
+$caxtor-accent:  mat-palette($mat-orange, 500, A100, 800);
 $caxtor-theme:   mat-light-theme($caxtor-primary, $caxtor-accent);
 
 @mixin component-custom-themes($theme){

@@ -125,7 +125,7 @@ export class StepWarehouseInfoComponent implements OnInit, Completable {
   }
 
   isComplete() {
-    return false;
+    return true;
   }
 
   sliderChanged() {

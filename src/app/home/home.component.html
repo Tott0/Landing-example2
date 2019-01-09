@@ -13,15 +13,17 @@
                 <div class="floating-block">
                   <span class="title" [innerHtml]="car.title"></span>
                   <p [innerHtml]="car.subtitle"></p>
-                  <div class="row">
-                    <button mat-raised-button class="btn-find" [routerLink]="['/temproute_client/temproute_search']">BUSCAR ESPACIO</button>
-                    <button mat-raised-button class="btn-list" [routerLink]="['/temproute_owner']">PUBLICAR ESPACIO</button>
-                  </div>
                 </div>
               </div>
             </div>
           </div>
         </ng-container>
+
+        <div class="row btn-row">
+          <button mat-raised-button class="btn-find" [routerLink]="['/temproute_client/temproute_search']">BUSCAR
+            ESPACIO</button>
+          <button mat-raised-button class="btn-list" [routerLink]="['/temproute_owner/warehouses/create']">PUBLICAR ESPACIO</button>
+        </div>
 
         <div class="index-indicator">
           <span *ngFor="let car of carouselItems; let i = index" [class]="'indicator'" [class.active]="carouselIndex === i">
@@ -91,7 +93,9 @@
         </span>
 
         <p class="desc">
-          Nunca ha sido más fácil, sencillo y flexible buscar un espacio de bodega para tus productos. Crea tu cuenta, accede al botón buscar espacio, selecciona la ciudad que desees y el espacio que necesitas, inmediatamente se te abrirá la red más grande y flexible de almacenamiento del país.
+          Nunca ha sido más fácil, sencillo y flexible buscar un espacio de bodega para tus productos. Crea tu cuenta,
+          accede al botón buscar espacio, selecciona la ciudad que desees y el espacio que necesitas, inmediatamente se
+          te abrirá la red más grande y flexible de almacenamiento del país.
         </p>
 
       </div>
@@ -104,7 +108,10 @@
         </span>
 
         <p class="desc">
-          Puedes comparar de manera sencilla entre todas las opciones de almacenamiento que tengas disponible en la ciudad que escojas. Compara precios, tipos de almacenamiento, servicios adicionales, seguridad, localización y otras opciones que sean importantes para cubrir tu necesidad. Con CAXTOR tu escoges la opción perfecta para ti.
+          Puedes comparar de manera sencilla entre todas las opciones de almacenamiento que tengas disponible en la
+          ciudad que escojas. Compara precios, tipos de almacenamiento, servicios adicionales, seguridad, localización
+          y otras opciones que sean importantes para cubrir tu necesidad. Con CAXTOR tu escoges la opción perfecta para
+          ti.
         </p>
 
       </div>
@@ -117,7 +124,11 @@
         </span>
 
         <p class="desc">
-          ¿Ya escogiste tu mejor opción? Bienvenido a la familia CAXTOR, la forma más inteligente de almacenar para tu negocio. Despreocúpate de los costos ocultos, los tediosos contratos y los largos procesos de contratación. Tendrás todo el control desde la comodidad de tu oficina o tu hogar, controla tu inventario, gestiona tu operación, revisa tus indicadores y solicita la información que necesites. En CAXTOR trabajamos por tu tranquilidad.
+          ¿Ya escogiste tu mejor opción? Bienvenido a la familia CAXTOR, la forma más inteligente de almacenar para tu
+          negocio. Despreocúpate de los costos ocultos, los tediosos contratos y los largos procesos de contratación.
+          Tendrás todo el control desde la comodidad de tu oficina o tu hogar, controla tu inventario, gestiona tu
+          operación, revisa tus indicadores y solicita la información que necesites. En CAXTOR trabajamos por tu
+          tranquilidad.
         </p>
 
       </div>
@@ -157,9 +168,11 @@
               <span class="bold">¿POR QUÉ USAR <span class="highlight">CAXTOR</span>?</span>
             </span>
 
-            <p>Caxtor on demand warehousing, es una plataforma tecnológica que conecta el universo de la oferta y la
-              demanda de quienes buscan y tienen un espacio para almacenar. Con herramientas que facilitan la búsqueda
-              y el manejo de los espacios. </p>
+            <p>CAXTOR es una plataforma tecnológica que te conecta con la red de almacenamiento más grande del país de
+              manera sencilla, rápida y flexible. Te permite acceder a toda tu información y gestionar la operación de
+              tu negocio en un solo lugar. Contaras con un equipo profesional trabajando para ti las 24 horas,
+              desarrollando soluciones para hacer más fácil tu logística. ¡Abrir bodegas será tan fácil como ir de
+              compras en internet! </p>
 
             <!-- <button mat-stroked-button color="primary">Read More</button> -->
 
@@ -175,8 +188,8 @@
 
     <div class="container">
       <span class="main-title">
-        <span class="bold"><span class="highlight">LAS SOLUCIONES CAXTOR</span> SON POSIBLES GRACIAS A</span>
-        <span> UNA PODEROSA PLATAFORMA SOFTWARE</span>
+        <span class="bold"><span class="highlight">CAXTOR BRINDA MÚLTIPLES SOLUCIONES </span> EN UNA </span>
+        <span> PODEROSA PLATAFORMA TECNOLÓGICA</span>
       </span>
 
       <div class="graph">
@@ -246,69 +259,69 @@
   <section class="compare-section">
     <div class="container">
       <span class="main-title">
-        ALMACENAMIENTO TRADICIONAL VS. CAXTOR
+        ALMACENAMIENTO TRADICIONAL VS CAXTOR
       </span>
       <span class="main-subtitle">
         El Almacenamiento bajo demanda con CAXTOR te permite trabajar rápidamente sin complicaciones ni costos elevados
       </span>
       <div class="compare-row">
         <!-- <div class="left"> -->
-          <span class="left table-title">
-            ALMACENAMIENTO TRADICIONAL
-          </span>
-          <span class="table-cell">
-            <span class="cell-title">Compromisos a Largo Plazo</span>
-            <span class="cell-content">Contratos de arrendamiento plurianuales</span>
-          </span>
-          <span class="table-cell">
-              <span class="cell-title">Costos Confusos</span>
-            <span class="cell-content">Tasas complejas que dificultan la planeación</span>
-          </span>
-          <span class="table-cell">
-            <span class="cell-title">Mínimos</span>
-            <span class="cell-content">Costos mínimos de orden mensual</span>
-          </span>
-          <span class="table-cell">
-            <span class="cell-title">Softwares Complejos</span>
-            <span class="cell-content">Softwares complejos que requieren meses de configuración</span>
-          </span>
-          <span class="table-cell">
-            <span class="cell-title">Pobre Organización</span>
-            <span class="cell-content">Múltiples Correos o Contactos para solicitar estado</span>
-          </span>
-          <span class="table-cell">
-            <span class="cell-title">Díficil de Escalar</span>
-            <span class="cell-content">Cada Instalación requiere integraciones <br> y accesos diferentes</span>
-          </span>
+        <span class="left table-title">
+          ALMACENAMIENTO TRADICIONAL
+        </span>
+        <span class="table-cell">
+          <span class="cell-title">Compromisos a largo plazo</span>
+          <span class="cell-content">Contratos de arrendamiento plurianuales</span>
+        </span>
+        <span class="table-cell">
+          <span class="cell-title">Costos confusos</span>
+          <span class="cell-content">Tasas complejas que dificultan la planeación</span>
+        </span>
+        <span class="table-cell">
+          <span class="cell-title">Mínimos</span>
+          <span class="cell-content">Costos mínimos de orden mensual</span>
+        </span>
+        <span class="table-cell">
+          <span class="cell-title">Softwares complejos</span>
+          <span class="cell-content">Softwares complejos que requieren meses de configuración</span>
+        </span>
+        <span class="table-cell">
+          <span class="cell-title">Pobre organización</span>
+          <span class="cell-content">Múltiples correos o contactos para solicitar estado</span>
+        </span>
+        <span class="table-cell">
+          <span class="cell-title">Díficil de escalar</span>
+          <span class="cell-content">Cada instalación requiere integraciones <br> y accesos diferentes</span>
+        </span>
         <!-- </div>
         <div class="right"> -->
-          <span class="right table-title">
-            ALMACENAMIENTO CAXTOR
-          </span>
-          <span class="table-cell">
-            <span class="cell-title"><i class="fas fa-check"></i>Mes a Mes</span>
-            <span class="cell-content">No requiere contratos de largo tiemp <br> Puedes terminar en cualquier momento</span>
-          </span>
-          <span class="table-cell">
-            <span class="cell-title"><i class="fas fa-check"></i>Costos claros</span>
-            <span class="cell-content">Factura digital para claridad en los costos</span>
-          </span>
-          <span class="table-cell">
-            <span class="cell-title"><i class="fas fa-check"></i>Sin mínimos</span>
-            <span class="cell-content">Paga solamente por el espacio que uses, sin espacios vacíos</span>
-          </span>
-          <span class="table-cell">
-            <span class="cell-title"><i class="fas fa-check"></i>Software de fácil uso</span>
-            <span class="cell-content">Aprende en minutos. Mueve inventario en 24 horas</span>
-          </span>
-          <span class="table-cell">
-            <span class="cell-title"><i class="fas fa-check"></i>Manejo de inventario moderno</span>
-            <span class="cell-content">Maneja tu inventario a través de nuestra página web</span>
-          </span>
-          <span class="table-cell">
-            <span class="cell-title"><i class="fas fa-check"></i>Único acceso CAXTOR</span>
-            <span class="cell-content">Trabaja con múltiples bódegas con un unico acceso</span>
-          </span>
+        <span class="right table-title">
+          ALMACENAMIENTO CAXTOR
+        </span>
+        <span class="table-cell">
+          <span class="cell-title"><i class="fas fa-check"></i>mes a mes</span>
+          <span class="cell-content">No requiere contratos de largo tiemp <br> puedes terminar en cualquier momento</span>
+        </span>
+        <span class="table-cell">
+          <span class="cell-title"><i class="fas fa-check"></i>costos claros</span>
+          <span class="cell-content">Factura digital para claridad en los costos</span>
+        </span>
+        <span class="table-cell">
+          <span class="cell-title"><i class="fas fa-check"></i>sin mínimos</span>
+          <span class="cell-content">Paga solamente por el espacio que uses, sin espacios vacíos</span>
+        </span>
+        <span class="table-cell">
+          <span class="cell-title"><i class="fas fa-check"></i>software de fácil uso</span>
+          <span class="cell-content">Aprende en minutos. mueve inventario en 24 horas</span>
+        </span>
+        <span class="table-cell">
+          <span class="cell-title"><i class="fas fa-check"></i>manejo de inventario moderno</span>
+          <span class="cell-content">Maneja tu inventario a través de nuestra página web</span>
+        </span>
+        <span class="table-cell">
+          <span class="cell-title"><i class="fas fa-check"></i>único acceso caxtor</span>
+          <span class="cell-content">Trabaja con múltiples bódegas con un unico acceso</span>
+        </span>
         <!-- </div> -->
       </div>
     </div>
@@ -405,24 +418,22 @@
         NUESTROS CLIENTES
       </span>
       <div class="banners-row">
-        <div class="banner"><span>Ad <br> Banners</span></div>
-        <div class="banner"><span>Ad <br> Banners</span></div>
-        <div class="banner"><span>Ad <br> Banners</span></div>
-        <div class="banner"><span>Ad <br> Banners</span></div>
-        <div class="banner"><span>Ad <br> Banners</span></div>
+        <div class="banner"><span></span></div>
+        <div class="banner"><span></span></div>
+        <div class="banner"><span></span></div>
+        <div class="banner"><span></span></div>
+        <div class="banner"><span></span></div>
       </div>
     </div>
   </section>
 
 
-  <div class="top-footer caxtor-dark-theme">
+  <div class="top-footer caxtor-dark-theme" #footer>
     <div class="container">
 
       <article class="caxtor-info">
 
         <img src="assets/images/caxtor-dark-big.png">
-
-        <p>Nuestra visión es ser la red de almacenamiento más grande de latinoamérica</p>
 
       </article>
 
@@ -457,7 +468,7 @@
         <nav>
           <ul>
             <li>
-              <a routerLink="['/home']">
+              <a (click)="sharedService.scrollToHome.next()">
                 <i class="fas fa-caret-right"></i>
                 <span>
                   INICIO
@@ -465,7 +476,15 @@
               </a>
             </li>
             <li>
-              <a routerLink="['/solutions']">
+              <a (click)="sharedService.scrollToProcess.next()">
+                <i class="fas fa-caret-right"></i>
+                <span>
+                  CÓMO FUNCIONA
+                </span>
+              </a>
+            </li>
+            <li>
+              <a (click)="sharedService.scrollToSolutions.next()">
                 <i class="fas fa-caret-right"></i>
                 <span>
                   SOLUCIONES
@@ -481,10 +500,10 @@
               </a>
             </li>
             <li>
-              <a routerLink="['/contact-us']">
+              <a (click)="sharedService.scrollToNews.next()">
                 <i class="fas fa-caret-right"></i>
                 <span>
-                  CÓMO FUNCIONA
+                  NOTICIAS
                 </span>
               </a>
             </li>

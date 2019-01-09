@@ -95,26 +95,27 @@ export class HomeComponent implements OnInit, OnDestroy {
   @ViewChild('solutionsSection', { read: ElementRef }) solutionsSection: ElementRef;
   @ViewChild('processSection', { read: ElementRef }) processSection: ElementRef;
   @ViewChild('newsSection', { read: ElementRef }) newsSection: ElementRef;
+  @ViewChild('footer', { read: ElementRef }) footer: ElementRef;
 
   carouselItems = [
     {
       id: 1,
       img: 'assets/images/warehouse2.jpg',
       title: 'EL ESPACIO QUE NECESITES <br> DONDE LO NECESITES',
-      subtitle: 'Olvídate de las Cláusulas de Permanencia y Extensos Procesos de Contratación',
+      subtitle: 'Olvídate de las cláusulas de permanencia y extensos procesos de contratación',
       animState: 'normal'
     },
     {
       id: 2,
       img: 'assets/images/warehouse3.jpg',
       title: 'LA PRIMERA RED DE BODEGAS <br> MÁS GRANDE DEL PAÍS',
-      subtitle: 'Encuentra Espacios de Manera Rápida, Sencilla y Flexible en una Sola Plataforma',
+      subtitle: 'Encuentra espacios de manera rápida, sencilla y flexible en una sola plataforma',
     },
     {
       id: 3,
       img: 'assets/images/warehouse4.jpg',
       title: 'CONVIERTE TUS ESPACIOS IMPRODUCTIVOS <br> EN GANANCIAS EXTRAS',
-      subtitle: 'Publica tu Espacio y te Conectamos con tus Próximos Clientes',
+      subtitle: 'Publica tu espacio y te conectamos con tus próximos clientes',
     }
   ];
   carouselIndex = 0;
@@ -204,6 +205,13 @@ export class HomeComponent implements OnInit, OnDestroy {
   ngOnInit() {
     AppConstants.isAtHome = true;
 
+    this.sharedService.scrollToHome.subscribe(() => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+
     this.sharedService.scrollToNews.subscribe(() => {
       window.scrollTo({
         top: this.newsSection.nativeElement.offsetTop - 50,
@@ -221,6 +229,13 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.sharedService.scrollToProcess.subscribe(() => {
       window.scrollTo({
         top: this.processSection.nativeElement.offsetTop - 50,
+        behavior: 'smooth'
+      });
+    });
+
+    this.sharedService.scrollToContact.subscribe(() => {
+      window.scrollTo({
+        top: this.footer.nativeElement.offsetTop,
         behavior: 'smooth'
       });
     });

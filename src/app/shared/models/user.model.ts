@@ -51,11 +51,11 @@ export class WhClient {
 
 export class Person {
   id?: number;
-  name?: String;
-  lastName?: String;
-  identification?: String;
-  phoneNumber?: String;
-  cellPhone?: String;
+  name?: string;
+  lastName?: string;
+  identification?: string;
+  phoneNumber?: string;
+  cellPhone?: string;
 
   get fullName() { return this.name + ' ' + this.lastName; }
 
@@ -65,9 +65,11 @@ export class Person {
 }
 export class Company {
   id: number;
-  name: String;
-  nit: String;
-  phoneNumber: String;
+  name: string;
+  nit: string;
+  phoneNumber: string;
+
+  get fullName() { return this.name; }
 
   constructor(company?: Partial<Company>) {
     Object.assign(this, company);

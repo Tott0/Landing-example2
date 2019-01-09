@@ -51,8 +51,7 @@ mat-toolbar {
       cursor: pointer;
     }
     img {
-      // margin-right: 0.75em;
-      height: 72px;
+      height: var(--top-header-logo-height);
     }
   }
   nav,
@@ -62,7 +61,7 @@ mat-toolbar {
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
-    font-size: 1em;
+    font-size: 0.9em;
     li {
       list-style: none;
       margin: 0 0.75em;

@@ -20,15 +20,13 @@
     font-size: 2.5em;
     font-weight: 700;
     margin-top: 1em;
-    margin-bottom: 0.5em; // .bold {
-    //   font-weight: 500;
-    // }
+    margin-bottom: 1em;
     span {
       width: 100%;
       text-align: center;
     }
   }
-  .main-subtitle{
+  .main-subtitle {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -89,18 +87,22 @@
           width: 100%;
           .title {
             font-weight: 600;
-            font-size: 3em;
+            font-size: 3.5em;
             text-align: center;
           }
           p {
             font-weight: 400;
-            font-size: 1.25em;
+            font-size: 1.5em;
             text-align: center;
           }
-          .row {
-            margin-top: 0.5em;
-            justify-content: center;
-          }
+        }
+        .row.btn-row {
+          margin-top: 0.5em;
+          justify-content: center;
+          position: absolute;
+          left: 50%;
+          bottom: calc(15% + 1em);
+          transform: translateX(-50%);
           button {
             border-radius: 3em;
             padding: 0.2em 2.25em;
@@ -302,7 +304,7 @@
         font-size: 2em; // font-weight: 600;
       }
       .desc {
-        font-size: 1.15em;
+        font-size: 1.5em;
         line-height: 175%;
         font-weight: 400;
         text-align: center;
@@ -341,7 +343,6 @@
       flex: 1 0 0;
       align-items: flex-start;
       font-size: 1.5em;
-      padding-top: 2em;
       padding-left: 2em;
       .title {
         display: flex;
@@ -475,48 +476,46 @@
       }
     }
   }
-  .compare-section{
+  .compare-section {
     position: relative;
-    .compare-row{
+    .compare-row {
       display: grid;
       grid-template-rows: repeat(7, 1fr);
       grid-template-columns: 1fr 1fr;
       grid-auto-flow: column;
       grid-column-gap: 2em;
       font-size: 1.25em;
-      width: 100%;
-      // .left, .right{
+      width: 100%; // .left, .right{
       //   display: flex;
       //   flex-direction: column;
-
-        .table-cell, .table-title{
-          margin: 0.35em 0;
-          &, *{
-            text-align: center;
-          }
-          // min-height: 100px;
-        }
-        .table-title{
-          padding: 2em 0;
-          font-weight: 700;
-        }
-        .table-cell{
-          padding: 1em 0;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: stretch;
-          .cell-title{
-            font-weight: 600;
-            i{
-              margin-right: 0.5em;
-            }
-          }
-          .cell-content{
-            font-weight: 500;
+      .table-cell,
+      .table-title {
+        margin: 0.35em 0;
+        &,
+        * {
+          text-align: center;
+        } // min-height: 100px;
+      }
+      .table-title {
+        padding: 2em 0;
+        font-weight: 700;
+      }
+      .table-cell {
+        padding: 1em 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: stretch;
+        .cell-title {
+          font-weight: 600;
+          i {
+            margin-right: 0.5em;
           }
         }
-      // }
+        .cell-content {
+          font-weight: 500;
+        }
+      } // }
     }
   }
   .reviews-section {
@@ -702,6 +701,7 @@
       align-items: center;
       justify-content: center;
       width: 100%;
+      margin-top: 0.5em;
       .banner {
         height: 192px;
         display: flex;
@@ -787,7 +787,7 @@
       display: grid;
       grid-template-rows: 1fr;
       grid-template-columns: 1.5fr 1fr 1fr 1fr;
-      grid-column-gap: 3em;
+      grid-column-gap: 2em;
       article {
         display: flex;
         flex-direction: column;
@@ -803,8 +803,13 @@
         }
       }
       .caxtor-info {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
         img {
-          height: 90px;
+          width: 100%;
+          height: auto;
         }
         p {
           line-height: 200%;
@@ -829,6 +834,12 @@
             list-style-type: none;
             display: flex;
             flex-direction: column;
+            &:hover {
+              cursor: pointer;
+            }
+            span{
+              transition: 0.2s all ease;
+            }
             a {
               text-decoration: none;
               i {

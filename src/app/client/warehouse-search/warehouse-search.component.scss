@@ -8,37 +8,44 @@
 
 .warehouses {
   // margin-top: 5em !important;
-  margin-bottom: 2em !important;
-  font-size: 1.5em;
+  // margin-bottom: 2em !important;
+  font-size: 1.25em;
   .row {
     display: flex;
-    align-items: stretch;
+    align-items: center;
+    justify-content: center;
     width: 100%;
     .search,
     .map {
-      flex: 0 0 50%; // height: 100%;
+      flex: 0 0 50%; 
+      height: 100%;
     }
     .search {
-      padding: 7em;
-      padding-top: 5em;
+      padding: 7em 12em;
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      justify-content: center;
+
       .title {
         font-size: 2em;
         font-weight: 500;
-        margin-top: 3em;
       }
       form {
         display: flex;
         flex-direction: column;
         align-items: flex-start;
         padding-top: 2em;
+        font-size: 1em;
         mat-form-field {
           font-size: 1em;
           width: 100%;
         }
         button {
-          margin-top: 1em;
-          padding: 0.35em 3em;
-          font-size: 1em;
+          margin-top: 2em;
+          padding: 0.3em 3em;
+          font-size: 0.9em;
+          align-self: center;
         }
       }
     }

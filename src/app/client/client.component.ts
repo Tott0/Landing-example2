@@ -21,7 +21,7 @@ export class ClientComponent implements OnInit {
     private route: ActivatedRoute,
     private mm: ModalManager,
     private cService: ClientService,
-    private authService: AuthService
+    public authService: AuthService
   ) { }
 
   ngOnInit() {

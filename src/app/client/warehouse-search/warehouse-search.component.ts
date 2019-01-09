@@ -4,7 +4,7 @@ import { Validators, FormBuilder, FormGroup, AbstractControl } from '@angular/fo
 import { ModalManager } from '../../core/providers/modal-manager';
 import { StaticMethods, getErrorMessage } from '@core/static-methods';
 import { ClientService } from '../client.service';
-import { Ciudad, CiudadApi } from '@app/shared/models';
+import { Ciudad, CiudadApi, Warehouse } from '@app/shared/models';
 import { Observable, of } from 'rxjs';
 import { debounceTime, map, switchMap, distinctUntilChanged, catchError } from 'rxjs/operators';
 import { SharedService } from '@app/core/providers/shared.service';
@@ -27,6 +27,8 @@ export class WarehouseSearchComponent implements OnInit {
   zoom = 13;
 
   filteredCities: Observable<Ciudad[]>;
+
+  warehouses: Warehouse[] = [];
 
   constructor(
     private router: Router,

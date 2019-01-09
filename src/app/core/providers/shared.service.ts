@@ -27,9 +27,11 @@ export class SharedService {
 
   ciudades: Ciudad[] = [];
 
+  public scrollToHome = new Subject();
   public scrollToSolutions = new Subject();
   public scrollToNews = new Subject();
   public scrollToProcess = new Subject();
+  public scrollToContact = new Subject();
 
   constructor(
     private http: HttpClient,

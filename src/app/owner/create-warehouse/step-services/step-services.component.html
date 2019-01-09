@@ -10,27 +10,27 @@
     <div class="content">
       <mat-form-field class="inbound">
         <mat-select placeholder="Tiempo de Respuesta Solicitudes de Entrada" [(ngModel)]="warehouse.inboundResponseTime">
-          <mat-option [value]="0">Mismo Día</mat-option>
-          <mat-option [value]="1">48 Horas</mat-option>
-          <mat-option [value]="2">72 Horas</mat-option>
+          <mat-option value="0">Mismo Día</mat-option>
+          <mat-option value="1">48 Horas</mat-option>
+          <mat-option value="2">72 Horas</mat-option>
         </mat-select>
       </mat-form-field>
 
       <mat-form-field class="outbound">
         <mat-select placeholder="Tiempo de Respuesta Solicitudes de Salida" [(ngModel)]="warehouse.outboundResponseTime">
-          <mat-option [value]="0">Mismo Día</mat-option>
-          <mat-option [value]="1">48 Horas</mat-option>
-          <mat-option [value]="2">72 Horas</mat-option>
+          <mat-option value="0">Mismo Día</mat-option>
+          <mat-option value="1">48 Horas</mat-option>
+          <mat-option value="2">72 Horas</mat-option>
         </mat-select>
       </mat-form-field>
 
       <div class="access col">
         <span class="subtitle">Permite Acceso del Cliente?</span>
         <mat-button-toggle-group #accessGroup="matButtonToggleGroup" [(ngModel)]="warehouse.customerAccess">
-          <mat-button-toggle [value]="1">
+          <mat-button-toggle value="1">
             Sí
           </mat-button-toggle>
-          <mat-button-toggle [value]="0">
+          <mat-button-toggle value="0">
             No
           </mat-button-toggle>
         </mat-button-toggle-group>
@@ -38,10 +38,10 @@
 
       <mat-form-field class="schedule-window">
         <mat-select placeholder="Tiempo de Anticipación Solicitudes de Ingreso" [(ngModel)]="warehouse.schedulingWindowTime"
-          [disabled]="warehouse.customerAccess !== 1">
-          <mat-option [value]="0">Mismo Día</mat-option>
-          <mat-option [value]="1">48 Horas</mat-option>
-          <mat-option [value]="2">72 Horas</mat-option>
+          [disabled]="warehouse.customerAccess !== '1'">
+          <mat-option value="0">Mismo Día</mat-option>
+          <mat-option value="1">48 Horas</mat-option>
+          <mat-option value="2">72 Horas</mat-option>
         </mat-select>
       </mat-form-field>
 
