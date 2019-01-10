@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.27.1"></a>
+## [0.27.1](https://github.com/Tott0/Landing-example2/compare/v0.27.0...v0.27.1) (2019-01-10)
+
+
+### Bug Fixes
+
+* pipes ([88c762d](https://github.com/Tott0/Landing-example2/commit/88c762d))
+
+
+
 <a name="0.27.0"></a>
 # [0.27.0](https://github.com/Tott0/Landing-example2/compare/v0.26.0...v0.27.0) (2019-01-10)
 
