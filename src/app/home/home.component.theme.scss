@@ -1,0 +1,217 @@
+@import '~@angular/material/theming';
+@mixin home-component-theme($theme) {
+  $primary: map-get($map: $theme, $key: primary);
+  $accent: map-get($map: $theme, $key: accent);
+  $background: map-get($theme, background);
+  $foreground: map-get($theme, foreground);
+  $foreground-text: mat-color($foreground, text);
+  $foreground-sec-text: mat-color($foreground, secondary-text);
+  .home-wrapper {
+    .main-subtitle{
+      color: $foreground-sec-text;
+    }
+    .carousel-section {
+      span,
+      p {
+        color: var(--color-light);
+      }
+      button {
+        color: var(--color-light);
+      }
+      .btn-find {
+        background: mat-color($primary, darker);
+      }
+      .btn-list {
+        background: mat-color($primary);
+      }
+      .carousel-content {
+        .content-title {
+          color: $foreground-text;
+          span {
+            color: mat-color($primary);
+          }
+        }
+        .content-actions {
+          button {
+            border: solid 1px mat-color($primary);
+          }
+        }
+      }
+      .carousel-control {
+        a,
+        span,
+        i {
+          color: mat-color($primary);
+        }
+      }
+    }
+    .info-section {
+      .section-content {
+        color: white;
+      }
+    }
+    .img-shadow-effect,
+    .shadow-overlay {
+      background: transparentize($color: #000000, $amount: 0.25);
+    }
+    .services-section {
+      article.service {
+        border: solid 2px mat-color($foreground, divider);
+        color: mat-color($foreground, text);
+        &.selected {
+          background: mat-color($primary, 800);
+          color: white;
+          transition: background-color 0.15s ease-in;
+        }
+      }
+      .service-desc {
+        .title {
+          color: mat-color($primary, 800);
+        }
+        .desc {
+          color: mat-color($foreground, secondary-text);
+        }
+      }
+    }
+    .trends-section {
+      .bg {
+        background: transparentize(mat-color(mat-palette($mat-grey), 100), $amount: 0.15);
+      }
+      .title {
+        .highlight {
+          color: mat-color($primary, darker);
+        }
+      }
+      button.mat-stroked-button {
+        color: mat-color($primary, darker);
+        border: solid 2px mat-color($primary, darker);
+      }
+    }
+    .solutions-section {
+      .highlight {
+        color: mat-color($primary, darker);
+      }
+      article {
+        p {
+          color: $foreground-text;
+        }
+      }
+    }
+    .compare-section {
+      .table-title {
+        color: var(--color-light);
+      }
+      .table-cell {
+        background: mat-color($background, card);
+        .cell-title {
+          color: $foreground-text;
+          i{
+            color: mat-color($primary, darker);
+          }
+        }
+        .cell-content {
+          color: $foreground-sec-text;
+        }
+      }
+      // .left {
+        .left.table-title {
+          background: var(--color-dark);
+        }
+      // }
+      // .right {
+        .right.table-title {
+          background: mat-color($primary, darker);
+        }
+      // }
+    }
+    .reviews-section {
+      background: mat-color($primary, 900);
+      span {
+        color: var(--color-light);
+      }
+      .reviews-row {
+        .thumb {
+          img {
+            border: solid 2px var(--color-light);
+          }
+        }
+      }
+    }
+    .section-blog {
+      .post {
+        // background: var(--color-dark);
+        .post-body {
+          background: mat-color($background, background);
+        }
+        .post-title {
+          a {
+            color: $foreground-text;
+            &:hover {
+              color: mat-color($primary);
+            }
+          }
+        }
+        .post-text {
+          p,
+          span {
+            color: $foreground-sec-text;
+          }
+          i {
+            color: $foreground-text;
+          }
+        }
+        .mat-flat-button {
+          color: $foreground-text;
+        }
+      }
+    }
+    .sponsors-section{
+      background: mat-color(mat-palette($mat-grey, 200));
+    }
+    .newsletter-section {
+      .banner {
+        background: mat-color($background, background);
+        border: solid 1px mat-color($primary, darker);
+        span {
+          color: mat-color($primary, darker);
+        }
+      }
+      .email-input {
+        input {
+          background: var(--color-light);
+        }
+        button {
+          background: mat-color($accent);
+          color: var(--color-light);
+        }
+      }
+    }
+  }
+  .company-dark-theme.top-footer {
+    background: var(--color-dark);
+    color: var(--color-light);
+    a,
+    h2,
+    p,
+    i {
+      color: var(--color-light);
+    }
+    .quick-links {
+      li:hover {
+        span {
+          color: mat-color($primary);
+          // border-bottom: solid 1px mat-color($primary);
+        }
+        i {
+          color: mat-color($primary);
+        }
+      }
+    }
+    .social {
+      .icon {
+        border: solid 1px var(--color-light);
+        color: var(--color-light);
+      }
+    }
+  }
+}

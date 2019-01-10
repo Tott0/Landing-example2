@@ -1,0 +1,46 @@
+@import '~@angular/material/theming';
+@import '../app/navbar/navbar.component.theme.scss';
+@import '../app/footer/footer.component.theme.scss';
+@import '../app/home/home.component.theme.scss';
+@import '../app/auth/auth.component.theme.scss';
+@import '../app/client/client.component.theme.scss';
+@import '../app/owner/owner.component.theme.scss';
+@import './global.theme.scss';
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// **Be sure that you only ever include this mixin once!**
+@include mat-core();
+
+// Define the default theme
+$company-primary: mat-palette($mat-light-blue, 500, 100, 900);
+$company-accent:  mat-palette($mat-orange, 500, A100, 800);
+$company-theme:   mat-light-theme($company-primary, $company-accent);
+
+@mixin component-custom-themes($theme){
+  @include global-theme($theme);
+  @include navbar-component-theme($theme);
+  @include footer-component-theme($theme);
+  @include home-component-theme($theme);
+  @include auth-component-theme($theme);
+  @include client-component-theme($theme);
+  @include owner-component-theme($theme);
+}
+
+// Include the default theme styles.
+@include angular-material-theme($company-theme);
+@include component-custom-themes($company-theme);
+
+
+// Include the alternative theme styles inside of a block with a CSS class.
+.company-dark-theme {
+  // Define an alternate dark theme.
+  $dark-primary: mat-palette($mat-light-blue);
+  $dark-accent:  mat-palette($mat-light-green, A200, A100, A400);
+  $dark-warn:    mat-palette($mat-deep-orange);
+  $company-dark-theme:   mat-dark-theme($dark-primary, $dark-accent, $dark-warn);
+  
+  @include angular-material-theme($company-dark-theme);
+  @include component-custom-themes($company-dark-theme);
+}

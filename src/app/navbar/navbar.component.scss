@@ -1,52 +1,57 @@
 @import './src/scss/variables.scss';
-:host ::ng-deep {
-  .logo .mat-button-wrapper{
-    display: flex;
-    align-items: center;
-  }
-  .logo .mat-button-focus-overlay {
-    display: none;
-  }
-  .menu-auth .mat-button-wrapper {
-    display: flex;
-    align-items: center;
+::ng-deep {
+  .mat-menu-content button {
+    font-size: 0.75em;
+    .button-text {
+      margin-left: 0.5em;
+    }
   }
 }
 
+header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 999;
+  min-height: var(--top-header-height);
+}
+
+// .transparent {
+  .mat-toolbar {
+    .row {
+      padding: var(--top-header-padding) 0;
+      // padding-top: 2em;
+    }
+  }
+// }
+
 mat-toolbar {
   font-size: 1rem;
-  padding: 0.5em 1.5em;
-  height: auto;
-  background: #FFF;
-  border-bottom: solid 1px transparentize($dark, 0.6);
+  @include for-tablet-landscape-up {
+    height: var(--top-header-height);
+  }
+  .row{
+    margin: 0 auto;
+    @include for-tablet-landscape-up{
+      max-width: 960px;
+    }
+    @include for-desktop-up{
+      max-width: 1180px;
+    }
+    @include for-big-desktop-up{
+      max-width: 1520px;
+    }
+
+  }
   .logo {
-    margin-right: 2vw;
-    font-size: 1em;
+    display: flex;
+    // margin-right: 2em;
     &:hover {
       cursor: pointer;
-      box-shadow: 0 1px 0 0 transparentize($dark, 0.6);
     }
-    img{
-      width: 250px;
-      height: 75px;
-      margin-right: 1em;
-    }
-    span.big-title{
-     font-size: 2em; 
-    }
-    span.title{
-      margin-left: 1.5em;
-      display: block;
-      font-size: 0.65em;
-      word-wrap: break-word;
-      white-space: normal;
-      text-align: left;
-      @include for-desktop-up{
-        max-width: 150px;
-      }
-      @include for-big-desktop-up{
-        max-width: 200px;
-      }
+    img {
+      height: var(--top-header-logo-height);
     }
   }
   nav,
@@ -56,52 +61,56 @@ mat-toolbar {
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
+    font-size: 0.9em;
     li {
       list-style: none;
+      margin: 0 0.75em;
       padding: 0.25em;
-      margin: 0 0.5em;
-      font-size: 0.75em;
       position: relative;
       &:hover {
         cursor: pointer;
-        &:not(.highlight) {
-          a {
-            padding-bottom: 0.2em;
-            border-bottom: solid 1px $dark;
-          }
-        }
+      }
+    }
+  }
+  nav.sites {
+    font-size: 1.5em;
+  }
+  nav.auth {
+    a.btn-login {
+      font-size: 1.5em;
+      border-radius: 3em;
+      padding: 0.5em 0.75em;
+      i {
+        font-size: 0.75em;
       }
     }
   }
   a,
   .title,
   .menu-toggle {
-    color: $dark;
     text-decoration: none;
   }
   .menu-auth {
+    padding: 0;
+    font-size: 1.5em;
     img {
-      height: 2em;
-      width: 2em;
+      height: 1.2em;
+      width: 1.2em;
     }
     .button-text {
       font-size: 1em;
       margin: 0 0.25em;
     }
   }
-  .icounter{
-    font-size: 0.65em;
-    background: $danger;
-    color: $light;
-    right: 0;
-    top: 0;
-    transform: translate(50%, -25%);
-    border-radius: 50%;
-    position: absolute;
-    width: 2em;
-    height: 2em;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+}
+::ng-deep .authMenu{
+  font-size: 1.5em;
+  img {
+    height: 1.2em;
+    width: 1.2em;
+  }
+  .button-text {
+    font-size: 1em;
+    margin: 0 0.25em;
   }
 }

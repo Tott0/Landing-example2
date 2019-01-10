@@ -1,14 +1,13 @@
 import { Injectable, Component, Output } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatDialogConfig, MatSnackBar } from '@angular/material';
 
-import { Observable } from 'rxjs/Observable';
+import { Observable, of } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
-import { LoadingDialog } from '../../shared/dialogs/loading/loading.dialog';
-import { MessageDialog } from '../../shared/dialogs/message/message.dialog';
-import { WarehouseFiltersDialog } from '../../shared/dialogs/warehouse-filters/warehouse-filters.dialog';
+import { LoadingDialog } from '@shared/dialogs/loading/loading.dialog';
+import { MessageDialog } from '@shared/dialogs/message/message.dialog';
 //
-import { ResultSnackbar } from '../../shared/dialogs/result-snackbar/result.snackbar';
+import { ResultSnackbar } from '@shared/dialogs/result-snackbar/result.snackbar';
 
 enum ModalTags {
   LOADING,
@@ -16,7 +15,9 @@ enum ModalTags {
   WAREHOUSE_FILTERS
 }
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class ModalManager {
 
   currentModal: MatDialogRef<any>;
@@ -50,11 +51,9 @@ export class ModalManager {
         .subscribe(() => {
           onClose();
         });
-      return this.currentModal.afterClosed()
-        .do(() => {
-        });
+      return this.currentModal.afterClosed();
     }
-    return Observable.of<any>(undefined);
+    return of<any>(undefined);
   }
 
   closeCurrentModal(): boolean {
@@ -91,14 +90,6 @@ export class ModalManager {
     }
     config.panelClass = ['dialog', 'dialog-rating'];
     return this.createModal(ModalTags.MESSAGE, MessageDialog, config);
-  }
-
-  showWarehouseFiltersDialog(config?: MatDialogConfig): Observable<any> {
-    if (!config) {
-      config = {};
-    }
-    config.panelClass = ['dialog', 'dialog-warehouse-filters'];
-    return this.createModal(ModalTags.WAREHOUSE_FILTERS, WarehouseFiltersDialog, config);
   }
 
   /* snackbars */

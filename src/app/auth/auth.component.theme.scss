@@ -1,0 +1,6 @@
+@import '~@angular/material/theming';
+@mixin auth-component-theme($theme) {
+  $primary: map-get($map: $theme, $key: primary);
+  $background: map-get($theme, background);
+  $foreground: map-get($theme, foreground);
+}

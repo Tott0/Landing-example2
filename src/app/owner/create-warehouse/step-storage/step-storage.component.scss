@@ -1,0 +1,124 @@
+@import './src/scss/variables.scss';
+::ng-deep app-step-storage {
+  .mat-expansion-panel-body {
+    display: flex;
+    flex-direction: column;
+  }
+  .mat-expansion-panel-body {
+    padding: 0;
+  }
+  .block-add {
+    .mat-form-field-wrapper {
+      // padding: 0;
+    }
+  }
+}
+
+mat-table {
+  width: 100%;
+  font-size: 1em;
+  mat-header-cell,
+  mat-cell {
+    text-align: center;
+  }
+  mat-header-cell,
+  mat-cell {
+    font-size: 1.25em;
+    display: flex;
+    justify-content: center;
+  }
+  mat-cell,
+  mat-cell button {
+    font-size: 1em;
+  }
+  .mat-column-actions {
+    .btn-remove {}
+  }
+}
+
+.storage {
+  .block-add {
+    display: grid;
+    grid-template-rows: repeat(5, 1fr);
+    grid-template-columns: repeat(3, 1fr);
+    align-items: center;
+    @include for-tablet-landscape-up {
+      grid-template-rows: repeat(4, 1fr);
+      grid-template-columns: repeat(8, 1fr);
+      grid-template-areas: "type    type    .      cant cant .       cost    cost" ".       height  height .    .    weight  weight  .   " ".       frozen  frozen .    .    danger  danger  .   " ".       .       .      add  add  .       .       .   ";
+    }
+    width: 90%;
+    margin: 0 auto;
+    margin-top: 3em;
+    margin-bottom: 1.5em;
+    padding: 1em 2em;
+    .type {
+      grid-area: type;
+    }
+    .cant {
+      grid-area: cant;
+    }
+    .cost {
+      grid-area: cost;
+    }
+    .height {
+      grid-area: height;
+    }
+    .weight {
+      grid-area: weight;
+    }
+    .frozen {
+      grid-area: frozen;
+    }
+    .danger {
+      grid-area: danger;
+    }
+    .btn-add {
+      grid-area: add;
+    }
+    .btn-add {
+      align-self: center;
+      font-size: 1.15em;
+      padding: 0.2em 1em;
+      font-weight: 600;
+      border-radius: 0.75em;
+    }
+  }
+}
+
+.basic-services,
+.extra-services {
+  .content {
+    display: grid;
+    grid-template-columns: 1fr;
+    align-items: flex-start;
+    justify-content: flex-start;
+  }
+  mat-form-field {
+    max-width: 50%;
+    margin-bottom: 1em;
+  }
+  .subtitle {
+    font-size: 1.15em;
+    font-weight: 400;
+    font-style: normal;
+  }
+}
+
+.basic-services {
+  .content {
+    --rows-number: 3 * 2;
+    grid-template-rows: repeat(var(--rows-number), auto);
+  }
+}
+
+.extra-services {
+  .content {
+    --rows-number: 7 * 2;
+    grid-template-rows: repeat(var(--rows-number), auto);
+  }
+}
+
+.dollar-sign{
+  margin-right: 0.5em;
+}

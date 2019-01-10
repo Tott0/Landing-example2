@@ -1,0 +1,88 @@
+<section class="create-warehouse-step services-info-section">
+
+  <article class="step-section services">
+    <header>
+      <span class="title">
+        SERVICIOS DE LA BÓDEGA
+      </span>
+    </header>
+
+    <div class="content">
+      <mat-form-field class="inbound">
+        <mat-select placeholder="Tiempo de Respuesta Solicitudes de Entrada" [(ngModel)]="warehouse.inboundResponseTime">
+          <mat-option value="0">Mismo Día</mat-option>
+          <mat-option value="1">48 Horas</mat-option>
+          <mat-option value="2">72 Horas</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field class="outbound">
+        <mat-select placeholder="Tiempo de Respuesta Solicitudes de Salida" [(ngModel)]="warehouse.outboundResponseTime">
+          <mat-option value="0">Mismo Día</mat-option>
+          <mat-option value="1">48 Horas</mat-option>
+          <mat-option value="2">72 Horas</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <div class="access col">
+        <span class="subtitle">Permite Acceso del Cliente?</span>
+        <mat-button-toggle-group #accessGroup="matButtonToggleGroup" [(ngModel)]="warehouse.customerAccess">
+          <mat-button-toggle value="1">
+            Sí
+          </mat-button-toggle>
+          <mat-button-toggle value="0">
+            No
+          </mat-button-toggle>
+        </mat-button-toggle-group>
+      </div>
+
+      <mat-form-field class="schedule-window">
+        <mat-select placeholder="Tiempo de Anticipación Solicitudes de Ingreso" [(ngModel)]="warehouse.schedulingWindowTime"
+          [disabled]="warehouse.customerAccess !== '1'">
+          <mat-option value="0">Mismo Día</mat-option>
+          <mat-option value="1">48 Horas</mat-option>
+          <mat-option value="2">72 Horas</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <span class="contact-title subtitle">Información de Contacto</span>
+
+      <mat-form-field class="first-name">
+        <input matInput placeholder="Nombres" [(ngModel)]="warehouse.contactName">
+      </mat-form-field>
+
+      <mat-form-field class="last-name">
+        <input matInput placeholder="Apellidos" [(ngModel)]="warehouse.contactLastName">
+      </mat-form-field>
+
+      <mat-form-field class="phone-number">
+        <input matInput placeholder="Número de Teléfono" [(ngModel)]="warehouse.contactPhone">
+      </mat-form-field>
+
+      <mat-form-field class="email">
+        <input matInput placeholder="Correo Electrónico" [(ngModel)]="warehouse.contactEmail">
+      </mat-form-field>
+
+
+    </div>
+  </article>
+
+  <article class="step-section specs">
+    <header>
+      <span class="title">
+        SERVICIOS DISPONIBLES
+      </span>
+    </header>
+
+    <div class="content">
+
+      <section class="extra-services">
+        <span class="title">SERVICIOS</span>
+        <div class="specs-area">
+          <mat-checkbox *ngFor="let p of additionalServices" [(ngModel)]="p.checked">{{ p.description }}</mat-checkbox>
+        </div>
+      </section>
+
+    </div>
+  </article>
+</section>

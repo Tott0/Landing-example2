@@ -1,71 +1,130 @@
 @import './src/scss/variables.scss';
-  
+@import '~ngx-bar-rating/themes/br-stars-theme';
 *:not(.mat-form-field-label-wrapper) {
   box-sizing: border-box !important;
 }
 
-//FIXME look for proper font sizes
-html {
+:after,
+:before {
+  box-sizing: border-box !important;
+}
+
+:root {
+  --top-header-logo-height: 96px;
+  --top-header-padding: 2em;
+  --top-header-height: calc(var(--top-header-logo-height) + var(--top-header-padding));
+  --footer-height: 80px;
+  --html-font-size-xlg: 14px;
+  --html-font-size-lg: 12px;
+  --html-font-size-md: 12px;
+  --html-font-size-sm: 12px;
+  --color-light: #FAFAFA;
+  --color-dark: #212121;
+  --color-dark-rgb: 23, 23, 23;
+  --color-darkest: #111111;
+  --color-shadow-t: rgba(7, 7, 7, 0.65);
+  --color-danger: #f44336;
+  --color-success: #4CAF50;
+}
+
+html,
+body {
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  h1 {
+    margin: 0 0 1em;
+  }
+  h2 {
+    margin: 0 0 1em;
+  }
+  h3 {
+    margin: 0 0 1em;
+  }
+  h4 {
+    margin: 0 0 1em;
+  }
+  h5 {
+    margin: 0 0 0.75em;
+  }
+  h6 {
+    margin: 0 0 0.75em;
+  }
   @include for-phone-only {
-    font-size: 16px;
+    font-size: var(--html-font-size-sm);
   }
   @include for-tablet-portrait-up {
-    font-size: 16px;
+    font-size: var(--html-font-size-sm);
   }
   @include for-tablet-landscape-up {
-    font-size: 20px;
+    font-size: var(--html-font-size-md);
   }
   @include for-desktop-up {
-    font-size: 20px;
+    font-size: var(--html-font-size-lg);
   }
   @include for-big-desktop-up {
-    font-size: 22px;
+    font-size: var(--html-font-size-xlg);
   }
-  
 }
 
 body {
-  display: flex;
-  min-height: 100vh;
-  flex-direction: column;
-  margin: 0; // background: $dark url(/assets/images/bg.png) repeat;
+  display: block;
+  margin: 0;
 }
 
-app-root {
-  min-height: 100vh;
+.component-wrapper {
+  margin-top: var(--top-header-height);
   display: flex;
+  flex: 1 0 0;
   flex-direction: column;
 }
 
-.main-container {
+.shadow-overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
   align-items: center;
+}
+
+.col {
   display: flex;
   flex-direction: column;
-  width: 100vw;
+  align-items: center;
 }
 
 .container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  
   width: 100%;
-  @include for-desktop-up{
-    width: 1200px !important;
+  margin: 0 auto;
+  align-self: center;
+  @include for-all-phones {
+    max-width: 540px !important;
+  }
+  @include for-tablet-portrait-up {
+    width: 750px !important;
+  }
+  @include for-tablet-landscape-up {
+    width: 950px !important;
+  }
+  @include for-desktop-up {
+    width: 1080px !important;
   }
   @include for-big-desktop-up {
-    width: 1800px !important;
+    width: 1200px !important;
   }
 }
 
 .row {
   display: flex;
   width: 100%;
-}
-
-.col {
-  display: flex;
-  flex-direction: column;
 }
 
 .filler {
@@ -76,39 +135,69 @@ app-root {
   }
 }
 
-.text-vertical-group{
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
-}
-
-.mat-typography {
-  a,
-  p,
-  span,
-  mat-icon.mat-icon,
-  i, .svg-inline--fa,
-  mat-header-cell,
-  mat-cell {
-    line-height: normal;
-    margin: 0;
-    // font-size: 1em;
-  }
-}
-
 .mat-tooltip.tooltip {
   margin: 0;
 }
 
-router-outlet#root-outlet + *{
-  display: flex;
-  flex: 1 0 auto;
-
+.cdk-overlay-backdrop.cdk-overlay-backdrop-showing {
+  &.dark-backdrop {
+    background: var(--color-dark);
+    opacity: 0.85 !important;
+  }
 }
 
-router-outlet:not(#root-outlet) + *{
-  display: flex;
-  width: 100%;
-  height: 100%;
+mat-card.mat-card.bg-title-card {
+  padding: 0;
+  font-size: 1em;
+  border-left: solid 1px $primary-dark;
+  border-right: solid 1px $primary-dark;
+  border-bottom: solid 1px $primary-dark;
+  border-radius: 0.25em;
+  mat-card-header {
+    padding: 0.5em;
+    border-top-left-radius: 0.25em;
+    border-top-right-radius: 0.25em;
+    .mat-card-header-text {
+      margin: 0;
+    }
+    mat-card-title {
+      font-size: 1.15em !important;
+      color: var(--color-light);
+      margin: 0 !important;
+    }
+  }
+  mat-card-content {
+    font-size: 1em;
+    position: relative;
+    .wrapper {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+  }
+}
+
+.text-center {
+  text-align: center;
+}
+
+.bg-image-shadow {
+  &:after {
+    content: "";
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+}
+.bg-image-shadow-hover:hover {
+  &:after {
+    content: "";
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
 }

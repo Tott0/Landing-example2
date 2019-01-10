@@ -1,9 +1,14 @@
-import { Subject } from 'rxjs/Subject';
+import { Subject } from 'rxjs';
+
+export interface CiudadApi {
+  cities: Ciudad[];
+  total_count: number;
+}
 
 export class Ciudad {
   id: number;
   name: string;
-  departamento: Departamento;
+  department: Departamento;
 }
 
 export class Departamento {

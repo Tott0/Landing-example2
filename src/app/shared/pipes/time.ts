@@ -14,8 +14,8 @@ import { Pipe, PipeTransform } from '@angular/core';
   name: 'time'
 })
 export class TimePipe implements PipeTransform {
-  transform(value: number, onlyMins = false) : string {
-    let time = ''
+  transform(value: number, onlyMins = false): string {
+    let time = '';
     if (!onlyMins) {
       time = time + ('0' + Math.floor(value / 3600)).slice(-2) + ':';
       value = value % 3600;

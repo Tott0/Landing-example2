@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
-import { SharedModule } from '../../app/shared/shared.module';
+import { SharedModule } from '@shared/shared.module';
+import { UsedMaterialComponentsModule } from '@shared/modules/used-material-components.module';
 
 import { AuthComponent } from './auth.component';
 
@@ -12,6 +13,7 @@ import { AuthRoutingModule } from './auth.routing';
 @NgModule({
   imports: [
     SharedModule,
+    UsedMaterialComponentsModule,
     AuthRoutingModule
   ],
   declarations: [

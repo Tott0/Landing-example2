@@ -1,18 +1,7 @@
 export class AppConstants {
 
-  static skipGuide = false;
-  static notifyPicoYPlaca = false;
-  static location = {
-    lat: undefined,
-    lng: undefined
-  };
-
-  static get API_ENDPOINT(): string {
-    return {
-      dev: '',
-      prod: ''
-    }.dev;
-  }
+  static isAtHome = false;
+  static isAtMap = false;
 
   static get PAYU() {
     return {
@@ -31,10 +20,6 @@ export class AppConstants {
         accountId: '',
       }
     }.prod;
-  }
-
-  static get GOOGLE_API_KEY(): string {
-    return 'AIzaSyB_TNfE3rG_JOV-3jrDNT04lml2sxPzNUc';
   }
 
   static get dateTranslation() {

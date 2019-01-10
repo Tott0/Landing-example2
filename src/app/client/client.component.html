@@ -1,0 +1,104 @@
+<div class="component-wrapper client-wrapper">
+
+  <div class="container">
+    <span class="title">
+      Panel del Comprador
+    </span>
+    <div class="row">
+      <div class="left">
+
+        <div class="engagements row">
+          <mat-card class="bg-title-card pending-reservas">
+            <mat-card-header>
+              <div class="wrapper">
+                <mat-card-title>
+                  <i class="far fa-calendar-alt"></i>
+                </mat-card-title>
+              </div>
+
+            </mat-card-header>
+            <mat-card-content>
+
+              <div class="wrapper">
+                <span class="amount">{{ 0 }}</span>
+
+                <span class="separator"></span>
+
+                <a routerLink="['engagements']">Reservas en Espera</a>
+              </div>
+            </mat-card-content>
+          </mat-card>
+
+          <mat-card class="bg-title-card upcoming-reservas">
+            <mat-card-header>
+              <div class="wrapper">
+                <mat-card-title>
+                  <i class="far fa-calendar-alt"></i>
+                </mat-card-title>
+              </div>
+
+            </mat-card-header>
+            <mat-card-content>
+
+              <div class="wrapper">
+                <span class="amount">{{ 0 }}</span>
+
+                <span class="separator"></span>
+
+                <a routerLink="['engagements']">Reservas Entrantes</a>
+              </div>
+            </mat-card-content>
+          </mat-card>
+
+          <mat-card class="bg-title-card current-reservas">
+            <mat-card-header>
+              <div class="wrapper">
+                <mat-card-title>
+                  <i class="far fa-calendar-alt"></i>
+                </mat-card-title>
+              </div>
+
+            </mat-card-header>
+            <mat-card-content>
+
+              <div class="wrapper">
+                <span class="amount">{{ 0 }}</span>
+
+                <span class="separator"></span>
+
+                <a routerLink="['engagements']">Reservas en Progreso</a>
+              </div>
+            </mat-card-content>
+          </mat-card>
+        </div>
+
+      </div>
+      <div class="right">
+
+        <mat-card class="bg-title-card profile">
+          <mat-card-header>
+            <div class="wrapper">
+              <mat-card-title>
+                Perfil del Comprador
+              </mat-card-title>
+            </div>
+
+          </mat-card-header>
+          <mat-card-content>
+
+            <div class="wrapper">
+              <span>{{ authService.user.user.profile.fullName }}</span>
+              <button color="primary" mat-raised-button class="btn-edit" [routerLink]="['profile/edit']">
+                Editar Perfil de Comprador</button>
+              <button color="primary" mat-raised-button class="btn-eng" [routerLink]="['engagements']">
+                Reservas
+              </button>
+            </div>
+
+          </mat-card-content>
+        </mat-card>
+      </div>
+
+    </div>
+  </div>
+</div>

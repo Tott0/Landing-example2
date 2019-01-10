@@ -2,11 +2,11 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { Validators, FormBuilder, FormGroup, AbstractControl } from '@angular/forms';
 
-import { AuthService } from '../../app/core/providers/auth.service';
-import { StaticMethods } from '../../app/utils/static-methods';
-import { ModalManager } from '../../app/core/providers/modal-manager';
-import { CustomValidators } from '../../app/shared/custom-validators';
-import { UserType, User } from '../shared/models/user.model';
+import { AuthService } from '@core/providers/auth.service';
+import { StaticMethods } from '@core/static-methods';
+import { ModalManager } from '@core/providers/modal-manager';
+import { CustomValidators } from '@shared/custom-validators';
+import { UserType, User } from '@shared/models/user.model';
 
 @Component({
   selector: 'app-auth',
@@ -47,7 +47,7 @@ export class AuthComponent implements OnInit {
       .subscribe(res => {
         this.mm.closeLoadingDialog();
         if (this.authService.redirectUrl) {
-
+          console.log('redirect', this.authService.redirectUrl);
           this.router.navigate([this.authService.redirectUrl]);
         } else {
           console.log(res);

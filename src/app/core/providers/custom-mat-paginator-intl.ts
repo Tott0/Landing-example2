@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 
 import { MatPaginatorIntl } from '@angular/material';
 
-import { Subject } from 'rxjs/Subject';
+import { Subject } from 'rxjs';
 
 @Injectable()
 export class CustomMatPaginatorIntl extends MatPaginatorIntl {

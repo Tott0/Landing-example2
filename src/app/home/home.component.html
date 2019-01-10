@@ -1,94 +1,552 @@
-<div class="main-container">
+<div class="component-wrapper home-wrapper">
 
-  <div class="carousel">
-    <span> carousel</span>
-  </div>
+  <section class="carousel-section">
+    <!-- <div class="shadow-overlay"></div> -->
+    <div class="carousel">
+      <div class="carousel-inner">
 
-  <section class="container content">
-    <span class="title"> Necesitas: </span>
-    <div class="row actions">
-      <a class="action" routerLink="/temproute_client">
-        Alquilar
-        <br> Espacio
+        <ng-container *ngFor="let car of carouselItems">
+          <div class="carousel-item" [ngClass]="{'active': car.id === carouselItems[carouselIndex].id}"
+            [@slideLeftRight]="car.animState" [style.background-image]="'url('+car.img+')'">
+            <div class="carousel-content">
+              <div class="container">
+                <div class="floating-block">
+                  <span class="title" [innerHtml]="car.title"></span>
+                  <p [innerHtml]="car.subtitle"></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+
+        <div class="row btn-row">
+          <button mat-raised-button class="btn-find">BUSCAR
+            ESPACIO</button>
+          <button mat-raised-button class="btn-list">PUBLICAR ESPACIO</button>
+        </div>
+
+        <div class="index-indicator">
+          <span *ngFor="let car of carouselItems; let i = index" [class]="'indicator'" [class.active]="carouselIndex === i">
+          </span>
+        </div>
+
+      </div>
+
+      <a class="left carousel-control" href="#" (click)="triggerCarouselLeft()">
+        <span><i class="fas fa-angle-left"></i></span>
       </a>
-      <a class="action" routerLink="/temproute_owner">
-        Arrendar
-        <br> Espacio
+      <a class="right carousel-control" href="#" (click)="triggerCarouselRight()">
+        <span><i class="fas fa-angle-right"></i></span>
       </a>
     </div>
+  </section>
 
-    <span class="title"> Los pasos son simples</span>
-    <div class="row steps">
-      <div class="step">
-        <i class="fa fa-search" aria-hidden="true"></i>
-        <span class="title">Busca</span>
-        <span class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-          aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</span>
+  <section class="services-section" #processSection>
+
+    <div class="container">
+
+      <span class="main-title">
+        <span class="bold">¿CÓMO FUNCIONA?</span>
+      </span>
+
+      <div class="services-row">
+
+        <article class="service" id="first-service" (click)="selectedService = 0" [ngClass]="{'selected': selectedService === 0}">
+          <img *ngIf="selectedService === 0" src="assets/images/package-w.png" class="icon">
+          <img *ngIf="selectedService !== 0" src="assets/images/package-b.png" class="icon">
+          <h4 class="service-title">
+            BUSCA ESPACIO
+          </h4>
+        </article>
+
+        <article class="service" id="second-service" (click)="selectedService = 1" [ngClass]="{'selected': selectedService === 1}">
+          <img *ngIf="selectedService === 1" src="assets/images/retail-w.png" class="icon">
+          <img *ngIf="selectedService !== 1" src="assets/images/retail-b.png" class="icon">
+          <h4 class="service-title">
+            COMPARA
+          </h4>
+        </article>
+
+        <article class="service" id="third-service" (click)="selectedService = 2" [ngClass]="{'selected': selectedService === 2}">
+          <img *ngIf="selectedService === 2" src="assets/images/warehouse-w.png" class="icon">
+          <img *ngIf="selectedService !== 2" src="assets/images/warehouse-b.png" class="icon">
+          <h4 class="service-title">
+            CONTRATA
+          </h4>
+        </article>
+
+        <!-- <article class="service" id="third-service" (click)="selectedService = 3" [ngClass]="{'selected': selectedService === 3}">
+          <img *ngIf="selectedService === 3" src="assets/images/truck-w.png" class="icon">
+          <img *ngIf="selectedService !== 3" src="assets/images/truck-b.png" class="icon">
+          <h4 class="service-title">
+            Delivery
+          </h4>
+        </article> -->
+
       </div>
 
-      <div class="step">
-        <i class="fa fa-calendar-plus-o" aria-hidden="true"></i>
-        <span class="title">Reserva</span>
-        <span class="description">Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis
-          aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint</span>
+      <div class="service-desc" *ngIf="selectedService === 0">
+
+        <span class="title">
+          <img src="assets/images/package.png">
+          <span>BUSCA ESPACIO</span>
+        </span>
+
+        <p class="desc">
+          Nunca ha sido más fácil, sencillo y flexible buscar un espacio de bodega para tus productos. Crea tu cuenta,
+          accede al botón buscar espacio, selecciona la ciudad que desees y el espacio que necesitas, inmediatamente se
+          te abrirá la red más grande y flexible de almacenamiento del país.
+        </p>
+
       </div>
 
-      <div class="step">
-        <i class="fa fa-truck" aria-hidden="true"></i>
-        <span class="title">Utiliza</span>
-        <span class="description">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
-          sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Ut enim ad</span>
+      <div class="service-desc" *ngIf="selectedService === 1">
+
+        <span class="title">
+          <img src="assets/images/retail.png">
+          <span>COMPARA</span>
+        </span>
+
+        <p class="desc">
+          Puedes comparar de manera sencilla entre todas las opciones de almacenamiento que tengas disponible en la
+          ciudad que escojas. Compara precios, tipos de almacenamiento, servicios adicionales, seguridad, localización
+          y otras opciones que sean importantes para cubrir tu necesidad. Con COMPANY tu escoges la opción perfecta para
+          ti.
+        </p>
+
       </div>
+
+      <div class="service-desc" *ngIf="selectedService === 2">
+
+        <span class="title">
+          <img src="assets/images/warehouse.png">
+          <span>CONTRATA</span>
+        </span>
+
+        <p class="desc">
+          ¿Ya escogiste tu mejor opción? Bienvenido a la familia COMPANY, la forma más inteligente de almacenar para tu
+          negocio. Despreocúpate de los costos ocultos, los tediosos contratos y los largos procesos de contratación.
+          Tendrás todo el control desde la comodidad de tu oficina o tu hogar, controla tu inventario, gestiona tu
+          operación, revisa tus indicadores y solicita la información que necesites. En COMPANY trabajamos por tu
+          tranquilidad.
+        </p>
+
+      </div>
+
+      <!-- <div class="service-desc" *ngIf="selectedService === 3">
+
+        <span class="title">
+          <img src="assets/images/truck.png">
+          <span>Delivery</span>
+        </span>
+
+        <p class="desc">
+          Etiam id ante ex. Pellentesque aliquet sed mauris id accumsan. Suspendisse purus dui, iaculis in tempor in,
+          posuere sit amet velit. Aenean ante odio, auctor et mollis pharetra, fringilla vitae urna. Maecenas efficitur
+          est at neque aliquet porttitor. Suspendisse eget augue ut orci ullamcorper imperdiet vitae a diam. In hac
+          habitasse platea dictumst. Orci varius natoque penatibus et magnis dis parturient montes.
+        </p>
+
+      </div> -->
+
     </div>
-
-    <span class="title"> Estamos En</span>
-    <div class="row locations">
-      <span class="location">
-        <img class="city-bg" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/Panor%C3%A1mica_general_de_Barranquilla.JPG/260px-Panor%C3%A1mica_general_de_Barranquilla.JPG">
-        <span class="name">Barranquilla</span>
-      </span>
-
-      <span class="location">
-        <img class="city-bg" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Centro-Internacional-Bogot%C3%A1.jpg/250px-Centro-Internacional-Bogot%C3%A1.jpg">
-        <span class="name">Bogotá</span>
-      </span>
-
-      <span class="location">
-        <img class="city-bg" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Cartagena_skyline%2C_Colombia.jpg/266px-Cartagena_skyline%2C_Colombia.jpg">
-        <span class="name">Cartagena</span>
-      </span>
-
-      <span class="location">
-        <img class="city-bg" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c0/Vista_desde_san_antonio.JPG/266px-Vista_desde_san_antonio.JPG">
-        <span class="name">Cali</span>
-      </span>
-
-      <span class="location">
-        <img class="city-bg" src="http://files-asia.gbca.org.au/members/companylogo/placeholder-logo.png">
-        <span class="name">etc</span>
-      </span>
-
-      <span class="location">
-        <img class="city-bg" src="http://files-asia.gbca.org.au/members/companylogo/placeholder-logo.png">
-        <span class="name">etc</span>
-      </span>
-
-      <span class="location">
-        <img class="city-bg" src="http://files-asia.gbca.org.au/members/companylogo/placeholder-logo.png">
-        <span class="name">etc</span>
-      </span>
-
-      <span class="location">
-        <img class="city-bg" src="http://files-asia.gbca.org.au/members/companylogo/placeholder-logo.png">
-        <span class="name">etc</span>
-      </span>
-    </div>
-
-    <span class="link">Ver todas...</span>
 
   </section>
 
-  <div class="carousel logos">
-    <span> carousel logos?</span>
+  <section class="trends-section" #solutionsSection>
+    <div class="bg">
+      <div class="container">
+        <div class="row">
+          <div class="video">
+
+            <img src="assets/images/pc-vid.png">
+
+          </div>
+
+          <div class="desc">
+            <span class="title">
+              <span class="bold">¿POR QUÉ USAR <span class="highlight">COMPANY</span>?</span>
+            </span>
+
+            <p>COMPANY es una plataforma tecnológica que te conecta con la red de almacenamiento más grande del país de
+              manera sencilla, rápida y flexible. Te permite acceder a toda tu información y gestionar la operación de
+              tu negocio en un solo lugar. Contaras con un equipo profesional trabajando para ti las 24 horas,
+              desarrollando soluciones para hacer más fácil tu logística. ¡Abrir bodegas será tan fácil como ir de
+              compras en internet! </p>
+
+            <!-- <button mat-stroked-button color="primary">Read More</button> -->
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </section>
+
+  <section class="solutions-section">
+
+    <div class="container">
+      <span class="main-title">
+        <span class="bold"><span class="highlight">COMPANY BRINDA MÚLTIPLES SOLUCIONES </span> EN UNA </span>
+        <span> PODEROSA PLATAFORMA TECNOLÓGICA</span>
+      </span>
+
+      <div class="graph">
+
+        <article class="operations">
+          <span class="title">
+            Módulo WMS
+            <!-- integrado -->
+          </span>
+          <p>
+            La vida es más fácil con la tecnología de escaneo y WMS basada en la nube.
+          </p>
+        </article>
+
+        <article class="matching">
+          <span class="title">
+            Conecta
+          </span>
+          <p>
+            Te conectamos con el socio apropiado dentro de la red más grande de bodegas del país.
+          </p>
+        </article>
+
+        <article class="billing">
+          <span class="title">
+            Facturación
+          </span>
+          <p>
+            Unificamos las facturas y los pagos de los servicios para todos los socios.
+          </p>
+        </article>
+
+        <article class="analytics">
+          <span class="title">
+            Analítica
+          </span>
+          <p>
+            Has seguimiento, administra y analiza tu operación desde la plataforma.
+          </p>
+        </article>
+
+        <article class="logistics">
+          <span class="title">
+            Reportes Logísticos
+          </span>
+          <p>
+            Generamos los reportes que necesitas para gestionar tu operación.
+          </p>
+        </article>
+
+        <article class="marketplace">
+          <span class="title">
+            Mercado de Aplícaciones
+          </span>
+          <p>
+            Contamos con una red de aplicaciones integradas de servicios complementarios.
+            <!-- del sector logístico y transporte que puedes contratar a un click sin salir de la plataforma -->
+          </p>
+        </article>
+
+        <img class="center" src="assets/images/company-solutions.png">
+
+      </div>
+    </div>
+  </section>
+
+  <section class="compare-section">
+    <div class="container">
+      <span class="main-title">
+        ALMACENAMIENTO TRADICIONAL VS COMPANY
+      </span>
+      <span class="main-subtitle">
+        El Almacenamiento bajo demanda con COMPANY te permite trabajar rápidamente sin complicaciones ni costos elevados
+      </span>
+      <div class="compare-row">
+        <!-- <div class="left"> -->
+        <span class="left table-title">
+          ALMACENAMIENTO TRADICIONAL
+        </span>
+        <span class="table-cell">
+          <span class="cell-title">Compromisos a largo plazo</span>
+          <span class="cell-content">Contratos de arrendamiento plurianuales</span>
+        </span>
+        <span class="table-cell">
+          <span class="cell-title">Costos confusos</span>
+          <span class="cell-content">Tasas complejas que dificultan la planeación</span>
+        </span>
+        <span class="table-cell">
+          <span class="cell-title">Mínimos</span>
+          <span class="cell-content">Costos mínimos de orden mensual</span>
+        </span>
+        <span class="table-cell">
+          <span class="cell-title">Softwares complejos</span>
+          <span class="cell-content">Softwares complejos que requieren meses de configuración</span>
+        </span>
+        <span class="table-cell">
+          <span class="cell-title">Pobre organización</span>
+          <span class="cell-content">Múltiples correos o contactos para solicitar estado</span>
+        </span>
+        <span class="table-cell">
+          <span class="cell-title">Díficil de escalar</span>
+          <span class="cell-content">Cada instalación requiere integraciones <br> y accesos diferentes</span>
+        </span>
+        <!-- </div>
+        <div class="right"> -->
+        <span class="right table-title">
+          ALMACENAMIENTO COMPANY
+        </span>
+        <span class="table-cell">
+          <span class="cell-title"><i class="fas fa-check"></i>mes a mes</span>
+          <span class="cell-content">No requiere contratos de largo tiemp <br> puedes terminar en cualquier momento</span>
+        </span>
+        <span class="table-cell">
+          <span class="cell-title"><i class="fas fa-check"></i>costos claros</span>
+          <span class="cell-content">Factura digital para claridad en los costos</span>
+        </span>
+        <span class="table-cell">
+          <span class="cell-title"><i class="fas fa-check"></i>sin mínimos</span>
+          <span class="cell-content">Paga solamente por el espacio que uses, sin espacios vacíos</span>
+        </span>
+        <span class="table-cell">
+          <span class="cell-title"><i class="fas fa-check"></i>software de fácil uso</span>
+          <span class="cell-content">Aprende en minutos. mueve inventario en 24 horas</span>
+        </span>
+        <span class="table-cell">
+          <span class="cell-title"><i class="fas fa-check"></i>manejo de inventario moderno</span>
+          <span class="cell-content">Maneja tu inventario a través de nuestra página web</span>
+        </span>
+        <span class="table-cell">
+          <span class="cell-title"><i class="fas fa-check"></i>único acceso</span>
+          <span class="cell-content">Trabaja con múltiples bódegas con un unico acceso</span>
+        </span>
+        <!-- </div> -->
+      </div>
+    </div>
+  </section>
+
+  <section class="reviews-section">
+    <div class="container">
+
+      <span class="title">¿POR QUÉ NOS PREFIEREN?</span>
+
+      <div class="reviews-row" #reviewsRow id="reviewsRow">
+
+
+        <button mat-button class="btn-left" *ngIf="!hideRevLeft" (click)="prevReviews()">
+          <i class="fas fa-chevron-left"></i>
+        </button>
+        <button mat-button class="btn-right" *ngIf="!hideRevRight" (click)="nextReviews()">
+          <i class="fas fa-chevron-right"></i>
+        </button>
+
+        <article class="review" *ngFor="let rev of shownReviews" [@fadeInOut]="'in'">
+          <div class="thumb">
+            <img [src]="rev.thumbnail">
+          </div>
+          <div class="desc">
+            <span class="rev">
+              <i class="quote fas fa-quote-left"></i>
+              {{rev.review}}
+            </span>
+
+            <span class="author">
+              {{rev.author}}
+            </span>
+            <span class="position">
+              {{rev.authorPosition}}
+            </span>
+
+            <bar-rating class="rating" [(rate)]="rev.rating" [max]="5" [readOnly]="true" [theme]="'stars'"></bar-rating>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="section-blog" #newsSection>
+    <div class="container">
+
+      <div class="col text-center">
+        <h2 class="title-head"><span class="highlight primary-dark">NOTICIAS</span></h2>
+      </div>
+
+      <div class="latest-blog-posts">
+
+        <article class="post" *ngFor="let post of latestPosts">
+
+          <a routerLink="[post.url]"><img class="img-responsive" [src]="post.img" alt="img"></a>
+
+          <div class="post-body">
+            <h4 class="post-title">
+              <a routerLink="[post.url]">{{ post.title }}</a>
+            </h4>
+            <div class="post-text">
+              <span>
+                <i class="far fa-clock"></i>
+                3 minutes ago, 0 comments
+              </span>
+              <p>{{ post.text }}</p>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="sponsors-section">
+    <div class="container">
+      <span class="title">
+        NOS APOYAN
+      </span>
+      <div class="sponsors-row">
+        <div class="sponsor"><img src="/assets/images/appsco-logo.png"></div>
+        <div class="sponsor"><img src="/assets/images/colciencias-logo.png"></div>
+        <div class="sponsor"><img src="/assets/images/caribetic-logo.png"></div>
+        <div class="sponsor"><img src="/assets/images/todoscolombia-logo.png"></div>
+        <div class="sponsor"><img src="/assets/images/mintic-logo.png"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="newsletter-section">
+    <div class="container">
+      <span class="title">
+        NUESTROS CLIENTES
+      </span>
+      <div class="banners-row">
+        <div class="banner"><span></span></div>
+        <div class="banner"><span></span></div>
+        <div class="banner"><span></span></div>
+        <div class="banner"><span></span></div>
+        <div class="banner"><span></span></div>
+      </div>
+    </div>
+  </section>
+
+
+  <div class="top-footer company-dark-theme" #footer>
+    <div class="container">
+
+      <article class="company-info">
+
+        <img src="assets/images/company-dark-big.png">
+
+      </article>
+
+      <article class="contact-info">
+
+        <h2 class="title">CONTÁCTANOS</h2>
+
+        <span>
+          <i class="fas fa-map-marker-alt"></i>
+          <span>Barranquilla <br> Calle 77 # 59b-61 <br> Oficina 1009</span>
+        </span>
+
+        <span>
+          <i class="fas fa-phone"></i>
+          <span>Tel: 3161002</span>
+        </span>
+
+        <span>
+          <i class="fas fa-envelope"></i>
+          <span>company.team@gmail.com</span>
+        </span>
+
+        <span>
+          <i class="far fa-clock"></i>
+          <span>8:00am - 6:00pm</span>
+        </span>
+
+      </article>
+
+      <article class="quick-links">
+        <h2 class="title">ENLACES RÁPIDOS</h2>
+        <nav>
+          <ul>
+            <li>
+              <a (click)="sharedService.scrollToHome.next()">
+                <i class="fas fa-caret-right"></i>
+                <span>
+                  INICIO
+                </span>
+              </a>
+            </li>
+            <li>
+              <a (click)="sharedService.scrollToProcess.next()">
+                <i class="fas fa-caret-right"></i>
+                <span>
+                  CÓMO FUNCIONA
+                </span>
+              </a>
+            </li>
+            <li>
+              <a (click)="sharedService.scrollToSolutions.next()">
+                <i class="fas fa-caret-right"></i>
+                <span>
+                  SOLUCIONES
+                </span>
+              </a>
+            </li>
+            <li>
+              <a routerLink="['/company']">
+                <i class="fas fa-caret-right"></i>
+                <span>
+                  COMPAÑÍA
+                </span>
+              </a>
+            </li>
+            <li>
+              <a (click)="sharedService.scrollToNews.next()">
+                <i class="fas fa-caret-right"></i>
+                <span>
+                  NOTICIAS
+                </span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </article>
+
+      <article class="social">
+
+        <h2 class="title">SÍGUENOS</h2>
+
+        <a href="https://facebook.com" target="_blank" class="sn">
+          <span class="icon">
+            <i class="fab fa-facebook-f"></i>
+          </span>
+          <span>Facebook</span>
+        </a>
+
+        <a href="https://twitter.com" target="_blank" class="sn">
+          <span class="icon">
+            <i class="fab fa-twitter"></i>
+          </span>
+          <span>Twitter</span>
+        </a>
+
+        <a href="https://plus.google.com" target="_blank" class="sn">
+          <span class="icon">
+            <i class="fab fa-linkedin-in"></i>
+          </span>
+          <span>Linked in</span>
+        </a>
+
+        <a href="https://youtube.com" target="_blank" class="sn">
+          <span class="icon">
+            <i class="fab fa-youtube"></i>
+          </span>
+          <span>Youtube</span>
+        </a>
+
+      </article>
+
+    </div>
+
   </div>
+
 </div>

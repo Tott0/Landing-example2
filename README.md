@@ -1,0 +1,3 @@
+- Se necesita una cuenta de google maps, parece que hace poco cambiaron las reglas y es necesario tener una cuenta con Billing activado para poder usar el mapa (Andrés confirmó esto)
+-------
+- landing todos los cambios

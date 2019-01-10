@@ -1,69 +1,87 @@
-<header>
-  <mat-toolbar>
-    <a mat-button (click)="home()" class="logo">
-      <img src="assets/images/caxtor-logo-smol.png">
-      <!-- <span class="big-title">HORUS</span> -->
-      <!-- <span class="title">Sistema Unificado de Infracciones de Tránsito</span> -->
-    </a>
+<header class="header company-dark-theme">
+  <mat-toolbar class="header-toolbar" [ngClass]="{'transparent': isAtHome()}">
+    <!-- <div class="container"> -->
+      <div class="row">
 
+        <a routerLink="/" class="logo">
+          <img src="assets/images/company-dark-big.png">
+        </a>
 
+        <div class="filler"></div>
 
-    <nav>
-      <ul>
-        <!-- <li *ngIf="canShow(1)">
-            <a routerLink="/infracciones">
-              Soluciones
-            </a>
-          </li>
-          <li *ngIf="canShow(1)">
-            <a routerLink="/infracciones">
-              Empresas
-            </a>
-          </li> -->
-      </ul>
-    </nav>
+        <nav class="sites" *ngIf="isAtHome()">
+          <ul>
+            <!-- <li>
+              <a [routerLink]="['']">
+                INICIO
+              </a>
+            </li> -->
+            <li>
+              <a (click)="sharedService.scrollToProcess.next()">
+                CÓMO FUNCIONA
+              </a>
+            </li>
+            <li>
+              <a (click)="sharedService.scrollToSolutions.next()">
+                SOLUCIONES
+              </a>
+            </li>
+            <li>
+              <a routerLink="/company">
+                COMPAÑÍA
+              </a>
+            </li>
+            <li>
+              <a (click)="sharedService.scrollToNews.next()">
+                NOTICIAS
+              </a>
+            </li>
+            <li>
+              <a (click)="sharedService.scrollToContact.next()">
+                CONTACTO
+              </a>
+            </li>
+          </ul>
+        </nav>
 
-    <div class="filler"></div>
+        <ng-container *ngIf="authService.user">
+          <button mat-button [matMenuTriggerFor]="authMenu" class="menu-auth">
+            <!-- <img src="assets/images/auth_logo.png"> -->
+            <span class="button-text">{{ authService.user.user.profile.fullName }}</span>
+            <i class="fas fa-caret-down fa-lg"></i>
+          </button>
+          <mat-menu #authMenu="matMenu" class="temp-menu" xPosition="after" [class]="'authMenu'">
+            <button mat-menu-item routerLink="/cuenta/perfil" *ngIf="canShow(1)">
+              <i class="fas fa-cog"></i>
+              <span class="button-text">Mi Perfil</span>
+            </button>
+            <button mat-menu-item routerLink="/temproute_client" *ngIf="canShow(2)">
+              <i class="fas fa-cog"></i>
+              <span class="button-text">Panel Cliente</span>
+            </button>
+            <button mat-menu-item routerLink="/temproute_owner" *ngIf="canShow(3)">
+              <i class="fas fa-cog"></i>
+              <span class="button-text">Panel Arrendador</span>
+            </button>
+            <button mat-menu-item (click)="authService.logout()">
+              <i class="fas fa-sign-out-alt"></i>
+              <span class="button-text">Cerrar Sesión</span>
+            </button>
+          </mat-menu>
+        </ng-container>
 
-    <nav>
-      <ul>
-        <li class="link-search">
-          <a routerLink="/temproute_client">
-            Búscar Espacio
-          </a>
-        </li>
-      </ul>
-    </nav>
-
-    <ng-container *ngIf="authService.user">
-      <button mat-button [matMenuTriggerFor]="authMenu" class="menu-auth">
-        <!-- <img src="assets/images/auth_logo.png"> -->
-        <span class="button-text">{{ authService.user.user.profile.fullName }}</span>
-        <i class="fas fa-caret-down fa-lg"></i>
-      </button>
-      <mat-menu #authMenu="matMenu">
-        <button mat-menu-item routerLink="/cuenta/perfil" *ngIf="canShow(1)">
-          <i class="fas fa-cog"></i>
-          <span class="button-text">Mi Perfil</span>
-        </button>
-        <button mat-menu-item routerLink="/temproute_client" *ngIf="canShow(2)">
-          <i class="fas fa-cog"></i>
-          <span class="button-text">Panel Cliente</span>
-        </button>
-        <button mat-menu-item routerLink="/temproute_owner" *ngIf="canShow(3)">
-          <i class="fas fa-cog"></i>
-          <span class="button-text">Panel Arrendador</span>
-        </button>
-        <button mat-menu-item (click)="authService.logout()">
-          <i class="fas fa-sign-out-alt"></i>
-          <span class="button-text">Cerrar Sesión</span>
-        </button>
-      </mat-menu>
-    </ng-container>
-
-    <button mat-button class="btn-login" *ngIf="!authService.user" routerLink="/login">
-      <span class="button-text">Iniciar Sesión</span>
-    </button>
+        <nav class="auth">
+          <ul>
+            <li>
+              <a routerLink="/login" class="btn-login" *ngIf="!authService.user">
+                <i class="fas fa-lock"></i>
+                Ingreso
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    <!-- </div> -->
 
   </mat-toolbar>
 </header>

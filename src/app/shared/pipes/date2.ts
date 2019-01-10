@@ -14,17 +14,17 @@ import { Pipe, PipeTransform } from '@angular/core';
   name: 'date2'
 })
 export class Date2Pipe implements PipeTransform {
-  transform(value: string, showTime = false) : string {
-    let date = new Date(value);
+  transform(value: string, showTime = false): string {
+    const date = new Date(value);
 
     let d = '' + ('0' + date.getDate()).slice(-2) + '.';
     d += ('0' + (date.getMonth() + 1)).slice(-2) + '.';
     d += date.getFullYear();
 
-    if(showTime){
-      let h = date.getHours();
+    if (showTime) {
+      const h = date.getHours();
       d += ' ' + ('0' + (h <= 12 ? h : h - 12)).slice(-2) + ':';
-  
+
       d += ('0' + date.getMinutes()).slice(-2) + ' ';
       d += h < 12 ? 'am' : 'pm';
     }

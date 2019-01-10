@@ -1,0 +1,170 @@
+@import './src/scss/variables.scss';
+::ng-deep app-step-basic-info {
+  .mat-expansion-panel-body {
+    display: flex;
+    flex-direction: column;
+  }
+  .mat-expansion-panel-body {
+    padding: 0;
+  }
+}
+
+::ng-deep ng5-slider{
+  .ng5-slider-span.ng5-slider-pointer{
+    &:focus{
+      outline: none;
+    }
+    &.ng5-slider-active:after{
+      background: #fff;
+    }
+  }
+}
+
+.schedule {
+  .content{
+    padding: 1em 2em;
+  }
+  .days,
+  .time {
+    display: flex;
+    flex-direction: column;
+    mat-radio-group {
+      margin-bottom: 1em;
+    }
+    mat-radio-button {
+      &:not(:last-of-type) {
+        margin-right: 0.5em;
+      }
+    }
+    .title{
+      margin: 0;
+      font-size: 1.25em;
+      font-weight: 500;
+      font-style: normal;
+      margin-left: -0.5em;
+    }
+  }
+  .days {
+    .title{
+      margin-bottom: 0.5em;
+    }
+    .mat-checkbox {
+      margin: 0 1em;
+    }
+  }
+  .time {
+    margin-top: 1em;
+    width: 60%;
+    .slider{
+      margin-bottom: 1.5em;
+    }
+    .row{
+      margin-top: 0.5em;
+    }
+  }
+}
+
+
+.specs {
+  .content {
+    section {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      margin: 1em 0;
+      .title {
+        font-weight: 600;
+        margin-bottom: 0.5em;
+        font-size: 1.5em;
+      }
+      .specs-area {
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-column-gap: 0.5em;
+        grid-row-gap: 0.75em;
+        font-size: 1.25em;
+        padding: 0.5em;
+      }
+      &.accepted-products {
+        .specs-area {
+          grid-template-rows: repeat(3, 1fr);
+        }
+      }
+      &.security {
+        .specs-area {
+          grid-template-rows: repeat(1, 1fr);
+        }
+      }
+      &.certifications {
+        .specs-area {
+          grid-template-rows: repeat(3, 1fr);
+        }
+      }
+      &.extra-services {
+        .specs-area {
+          grid-template-rows: repeat(2, 1fr);
+        }
+      }
+    }
+  }
+}
+
+.media {
+  .desc {
+    margin-top: 1em;
+  }
+  .file-input {
+    margin: 1em 0;
+    display: flex;
+    align-items: center;
+    #fileInput {
+      position: absolute;
+      left: -100vw;
+    }
+  }
+  .photos {
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-column-gap: 0.5em;
+    margin-top: 1em;
+    align-items: flex-start;
+    justify-content: center;
+    grid-template-columns: repeat(5, 1fr);
+    @include for-desktop-up {
+      grid-template-columns: repeat(5, 1fr);
+    }
+    .photo {
+      position: relative;
+      display: flex;
+      align-items: flex-start;
+      img {
+        width: 100%; // max-height: 72px;
+        @include for-desktop-up {
+          // max-height: 144px;
+        }
+      }
+      .remove-btn {
+        z-index: 991;
+        position: absolute;
+        top: 0.25em;
+        right: 0.25em;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        visibility: hidden;
+        opacity: 0;
+        transition: 0.15s all ease;
+        line-height: 0;
+      }
+      &:hover {
+        .remove-btn {
+          visibility: visible;
+          opacity: 1;
+        }
+      }
+    }
+  }
+}

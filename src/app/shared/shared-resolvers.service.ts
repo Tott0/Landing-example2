@@ -1,17 +1,15 @@
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/take';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { merge } from 'rxjs/operators';
 import {
   Router, Resolve, RouterStateSnapshot,
   ActivatedRouteSnapshot
 } from '@angular/router';
 
-import { ModalManager } from '../core/providers/modal-manager';
+import { ModalManager } from '@core/providers/modal-manager';
 
 import { Ciudad, Departamento } from './models/shared.model';
-import { SharedService } from '../core/providers/shared.service';
+import { SharedService } from '@core/providers/shared.service';
 
 // @Injectable()
 // export class CiudadesResolver implements Resolve<Ciudad[]> {

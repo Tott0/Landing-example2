@@ -1,0 +1,35 @@
+@import '~@angular/material/theming';
+@mixin global-theme($theme) {
+  $primary: map-get($map: $theme, $key: primary);
+  $background: map-get($theme, background);
+  $foreground: map-get($theme, foreground);
+  .img-shadow-effect, .shadow-overlay{
+    background: transparentize($color: #000000, $amount: 0.75);
+  }
+
+  .bg-title-card{
+    mat-card-header {
+      background: mat-color($primary, darker);
+    }
+  }
+
+  .highlight.primary{
+    color: mat-color($primary) !important;
+  }
+  .highlight.primary-dark{
+    color: mat-color($primary, darker) !important;
+  }
+
+  .bg-image-shadow, .bg-image-shadow-hover{
+    &:after{
+      background: var(--color-shadow-t);
+    }
+  }
+  .menu-backdrop{
+    background: var(--color-shadow-t);
+  }
+
+  html, body, .component-wrapper{
+    background: mat-color($background, background)
+  }
+}

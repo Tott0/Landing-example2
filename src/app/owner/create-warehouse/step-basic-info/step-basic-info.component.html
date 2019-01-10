@@ -1,0 +1,113 @@
+<section class="create-warehouse-step basic-info-section">
+
+  <article class="step-section basic">
+    <header>
+      <span class="title">
+        INFORMACIÓN BÁSICA
+      </span>
+    </header>
+
+    <div class="content">
+      <mat-form-field class="name">
+        <input matInput placeholder="Nombre de Bodega*" [(ngModel)]="warehouse.name">
+      </mat-form-field>
+
+      <!-- <mat-form-field class="dpto">
+        <mat-select placeholder="Departamento*" (change)="departamentoChanged($event.value)">
+          <mat-option *ngFor="let d of departamentos" [value]="d.id">{{ d.name }}</mat-option>
+        </mat-select>
+      </mat-form-field> -->
+
+      <mat-form-field class="city">
+        <!-- <mat-select placeholder="Ciudad*" [disabled]="ciudades && !ciudades.length" [(ngModel)]="warehouse.city"
+          (change)="ciudadChanged($event.value)">
+          <mat-option *ngFor="let c of ciudades" [value]="c">{{ c.name }}</mat-option>
+        </mat-select> -->
+        <input #autoInput matInput placeholder="Ciudad*" type="text" [(ngModel)]="warehouse.city" (input)="cityValueChanged.next($event.target.value); errors.message = undefined;" [matAutocomplete]="cityAuto">
+              <!-- <mat-error *ngIf="errors.city">{{getErrorMessage(city, errors.city)}}</mat-error> -->
+              <mat-autocomplete #cityAuto="matAutocomplete" [displayWith]="cityDisplayFn" autoActiveFirstOption (optionSelected)="autoInput.blur(); ciudadChanged($event.option.value)">
+                  <mat-option *ngFor="let city of filteredCities | async" [value]="city">
+                    <span>{{ city.name }}, {{ city.department.name }}</span>
+                  </mat-option>
+                </mat-autocomplete>
+      </mat-form-field>
+
+      <mat-form-field class="addr">
+        <input matInput placeholder="Dirección*" [(ngModel)]="currentAddress" [matAutocomplete]="addrAuto" (input)="addressChanged($event.target.value)"
+          [disabled]="!addressEnabled">
+        <mat-autocomplete #addrAuto="matAutocomplete" [displayWith]="mcDisplayFn" (optionSelected)="addressSelected($event.option.value.place_id)">
+          <mat-option *ngFor="let addr of filteredAddresses" [value]="addr">
+            {{ addr.address }}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+
+      <mat-accordion class="map">
+        <mat-expansion-panel [disabled]="false && !warehouse.lat">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              UBICACIÓN EN MAPA
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <ng-template matExpansionPanelContent>
+            <div class="wrapper">
+              <div class="row">
+                <span>
+                  <span class="label">Latitud: </span>
+                  {{ warehouse.lat | number:'1.3-5'}}
+                </span>
+                <span>
+                  <span class="label">Longitud: </span>
+                  {{ warehouse.lng | number:'1.3-5'}}
+                </span>
+              </div>
+              <div class="row">
+                <agm-map [latitude]="mapLat" [longitude]="mapLng" [zoom]="mapZoom" [streetViewControl]="false"
+                  [zoomControl]="false">
+                  <agm-marker *ngIf="warehouse.lat" [latitude]="warehouse.lat" [longitude]="warehouse.lng"
+                    [markerDraggable]="true" (dragEnd)="markerDragEnded($event)"></agm-marker>
+                </agm-map>
+              </div>
+            </div>
+          </ng-template>
+        </mat-expansion-panel>
+      </mat-accordion>
+
+      <mat-form-field class="area">
+        <input matInput placeholder="Tamaño de la Bódega" [(ngModel)]="warehouse.areaSize">
+        <span matSuffix>m<sup>2</sup></span>
+      </mat-form-field>
+
+      <mat-form-field class="desc">
+        <textarea matInput placeholder="Descripción de la bodega (Opcional)" [(ngModel)]="warehouse.description"
+          matTextareaAutosize matAutosizeMinRows="3" matAutosizeMaxRows="3"></textarea>
+      </mat-form-field>
+
+      <mat-form-field class="matricula">
+        <input matInput placeholder="Matrícula Inmobiliaria" type="text" [ngModel]="warehouse.matInmobiliaria">
+      </mat-form-field>
+
+      <div class="cert file-input" [ngClass]="{'has-file': warehouse.certificadoLibertadTradicion}">
+        <input #cltFile class="fileInput" type="file" accept=".pdf" (change)="onFile($event.target.files[0], 1); cltFile.value = ''">
+        <button mat-raised-button (click)="cltFile.click()">
+          <span class="button-text">
+            SELECCIONAR ARCHIVO
+          </span>
+        </button>
+        <span class="placeholder">
+          {{ warehouse.certificadoLibertadTradicion ? warehouse.certificadoLibertadTradicion.name : 'Certificado Libertad y Tradición*' }}
+        </span>
+      </div>
+
+    </div>
+  </article>
+
+  <!-- <mat-expansion-panel [expanded]="true" class="extra">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Información Adicional
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+  </mat-expansion-panel> -->
+
+</section>

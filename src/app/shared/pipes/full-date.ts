@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { AppConstants } from '../../app-constants';
+import { AppConstants } from '@app/app-constants';
 /*
  * Formats Date Value
  * Takes:
@@ -14,14 +14,14 @@ import { AppConstants } from '../../app-constants';
   name: 'fullDate'
 })
 export class FullDatePipe implements PipeTransform {
-  transform(value: string) : string {
-    let date = new Date(value);
+  transform(value: string): string {
+    const date = new Date(value);
 
     let d = '' + ('0' + date.getDate()).slice(-2) + ' de ';
     d += AppConstants.dateTranslation.monthNames[date.getMonth()] + ', ';
     d += date.getFullYear() + ', ';
 
-    let h = date.getHours();
+    const h = date.getHours();
     d += ('0' + (h <= 12 ? h : h - 12)).slice(-2) + ':';
 
     d += ('0' + date.getMinutes()).slice(-2) + ' ';

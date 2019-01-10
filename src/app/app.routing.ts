@@ -7,9 +7,37 @@ import { AuthComponent } from './auth/auth.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import { ForgotComponent } from './auth/forgot/forgot.component';
 
-import { LoginAuthGuard } from './core/providers/auth-guard.service';
+import { LoginAuthGuard } from '@core/providers/auth-guard.service';
 
 const appRoutes: Routes = [
+  {
+    path: 'temproute_client',
+    loadChildren: 'app/client/client.module#ClientModule',
+    // canActivate: [
+    //   LoginAuthGuard,
+    // ],
+  },
+  {
+    path: 'temproute_owner',
+    loadChildren: 'app/owner/owner.module#OwnerModule',
+    canActivate: [
+      LoginAuthGuard,
+    ],
+  },
+  // {
+  //   path: 'temproute_warehouse',
+  //   loadChildren: 'app/warehouse/warehouse.module#WarehouseModule',
+  //   // canActivate: [
+  //   //   LoginAuthGuard,
+  //   // ],
+  // },
+  // {
+  //   path: 'temproute_admin',
+  //   loadChildren: 'app/admin/admin.module#AdminModule',
+  //   // canActivate: [
+  //   //   LoginAuthGuard,
+  //   // ],
+  // },
   { path: 'login', component: AuthComponent },
   { path: 'signup', component: SignupComponent },
   { path: 'forgot', component: ForgotComponent },

@@ -2,13 +2,13 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { Validators, FormBuilder, FormGroup, AbstractControl, FormGroupDirective } from '@angular/forms';
 
-import { AuthService } from '../../../app/core/providers/auth.service';
-import { StaticMethods } from '../../../app/utils/static-methods';
-import { ModalManager } from '../../../app/core/providers/modal-manager';
-import { CustomValidators } from '../../../app/shared/custom-validators';
+import { AuthService } from '@core/providers/auth.service';
+import { StaticMethods } from '@core/static-methods';
+import { ModalManager } from '@core/providers/modal-manager';
+import { CustomValidators } from '@shared/custom-validators';
 
 import { MatSnackBar, MatSnackBarConfig } from '@angular/material';
-import { ResultSnackbar } from '../../shared/dialogs/result-snackbar/result.snackbar';
+import { ResultSnackbar } from '@shared/dialogs/result-snackbar/result.snackbar';
 
 @Component({
   selector: 'app-forgot',

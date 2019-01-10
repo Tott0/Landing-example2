@@ -2,7 +2,9 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 import { AuthService } from '../core/providers/auth.service';
-import { UserType } from '../shared/models/user.model';
+import { UserType } from '@shared/models/user.model';
+import { AppConstants } from '@app/app-constants';
+import { SharedService } from '@core/providers/shared.service';
 
 @Component({
   selector: 'app-navbar',
@@ -17,6 +19,7 @@ export class NavbarComponent implements OnInit {
     public router: Router,
     private route: ActivatedRoute,
     public authService: AuthService,
+    private sharedService: SharedService,
   ) { }
 
   ngOnInit() {
@@ -59,5 +62,9 @@ export class NavbarComponent implements OnInit {
       }
     }
 
+  }
+
+  isAtHome() {
+    return AppConstants.isAtHome;
   }
 }

@@ -5,7 +5,7 @@ import {
   RouterStateSnapshot
 } from '@angular/router';
 import { AuthService } from './auth.service';
-import { UserType } from '../../shared/models/user.model';
+import { UserType } from '@shared/models/user.model';
 import { ModalManager } from './modal-manager';
 
 @Injectable()
@@ -31,7 +31,22 @@ export class LoginAuthGuard implements CanActivate {
     this.authService.check()
       .subscribe(res => {
         console.log('#LoginAuthGuard#succ');
-        this.router.navigate([this.authService.redirectUrl]);
+        const u = this.authService.redirectUrl.split(';');
+        const redUrl: any = {};
+        redUrl.url = u[0];
+        if (u.length > 1) {
+          redUrl.params = {};
+          for (let i = 1; i < u.length; i++) {
+            const temp = u[i].split('=');
+            redUrl.params[temp[0]] = temp[1];
+          }
+        }
+        console.log('redirect', redUrl);
+        if (redUrl.params) {
+          this.router.navigate([redUrl.url, redUrl.params]);
+        } else {
+          this.router.navigate([redUrl.url]);
+        }
       }, err => {
         console.log('#LoginAuthGuard#err');
         this.router.navigate(['/login']);

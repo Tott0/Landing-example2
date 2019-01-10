@@ -1,0 +1,155 @@
+<section class="create-warehouse-step storage-info-section">
+
+  <article class="step-section storage">
+    <header>
+      <span class="title">
+        ÁREAS DE ALMACENAMIENTO
+      </span>
+    </header>
+
+    <div class="content">
+      <mat-table #table [dataSource]="storageDataSource">
+
+        <ng-container matColumnDef="number">
+          <mat-header-cell *matHeaderCellDef> No. </mat-header-cell>
+          <mat-cell *matCellDef="let element; let i = index"> {{ i + 1 }} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="unit">
+          <mat-header-cell *matHeaderCellDef> Tipo Espacio </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{ element.typePosition | t0tPositionType }} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="space">
+          <mat-header-cell *matHeaderCellDef> Espacio Disponible </mat-header-cell>
+          <mat-cell *matCellDef="let element"> <span>{{ element.amount + ' '}} <span [innerHtml]="getMeasure(element.typePosition)"></span></span>
+          </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="price">
+          <mat-header-cell *matHeaderCellDef> Valor ($) </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{ element.price_per_unit | copCurrency }} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="height">
+          <mat-header-cell *matHeaderCellDef> Altura Máxima (m) </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{ element.max_height }}m </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="weight">
+          <mat-header-cell *matHeaderCellDef> Peso Máximo (Kg) </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{ element.max_weight }}kg </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="actions">
+          <mat-header-cell *matHeaderCellDef> </mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            <span class="btn-delete-wrapper" matTooltip="Eliminar" matTooltipPosition="above" [matTooltipClass]="'tooltip'"
+              (click)="$event.stopPropagation();">
+              <button mat-icon-button class="btn-remove" (click)="remove(element.id)">
+                <i class="far fa-trash-alt fa-lg"></i>
+              </button>
+            </span>
+          </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="storageColumns"></mat-header-row>
+        <mat-row *matRowDef="let rowData; columns: storageColumns"></mat-row>
+
+      </mat-table>
+
+      <div class="block-add">
+
+        <mat-form-field class="type">
+          <mat-select placeholder="Tipo de Espacio" [(ngModel)]="newPosition.typePosition">
+            <mat-option [value]="PositionType.FLOOR_CLOSED">Piso Cubierto</mat-option>
+            <mat-option [value]="PositionType.FLOOR_OPEN">Piso Exterior</mat-option>
+            <mat-option [value]="PositionType.RACK">Estantería</mat-option>
+            <!-- <mat-option [value]="PositionType.BOX">Caja</mat-option> -->
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="cant">
+          <input matInput placeholder="Cantidad de Unidades" type="text" [(ngModel)]="newPosition.amount"
+            appForceNumeric>
+          <span matSuffix [innerHtml]="getMeasure()"></span>
+        </mat-form-field>
+
+        <mat-form-field class="cost">
+          <span matPrefix>$ &nbsp;</span>
+          <input matInput placeholder="Costo por unidad" type="text" [(ngModel)]="newPosition.price_per_unit"
+            appForceNumeric>
+        </mat-form-field>
+
+        <mat-form-field class="height">
+          <input matInput placeholder="Altura Máxima" type="number" [(ngModel)]="newPosition.max_height">
+          <span matSuffix>m</span>
+        </mat-form-field>
+
+        <mat-form-field class="weight">
+          <input matInput placeholder="Peso Máximo" type="number" [(ngModel)]="newPosition.max_weight">
+          <span matSuffix>Kg</span>
+        </mat-form-field>
+
+        <mat-checkbox class="frozen" [(ngModel)]="newPosition.refrigerated">Productos Refrigerados</mat-checkbox>
+        <mat-checkbox class="danger" [(ngModel)]="newPosition.dangerous">Materiales Peligrosos</mat-checkbox>
+
+
+        <button class="btn-add" mat-raised-button (click)="addPosition()" [disabled]="isNewPositionInvalid()">
+          AGREGAR
+        </button>
+      </div>
+    </div>
+  </article>
+
+  <article class="step-section services basic-services">
+    <header>
+      <span class="title">
+        SERVICIOS BÁSICOS
+      </span>
+    </header>
+
+    <div class="content">
+      <span class="space-title subtitle">Precio de Manejo por Espacio</span>
+      <mat-form-field class="price-space" floatLabel="never">
+        <span class="dollar-sign" matPrefix>$</span>
+        <input matInput placeholder="30,000" [(ngModel)]="warehouse.spaceHandlingPrice">
+        <span matSuffix>$/Espacio</span>
+      </mat-form-field>
+
+      <span class="case-title subtitle">Precio de Manejo por Caja</span>
+      <mat-form-field class="price-case" floatLabel="never">
+        <span class="dollar-sign" matPrefix>$</span>
+        <input matInput placeholder="10,000" [(ngModel)]="warehouse.caseHandlingPrice">
+        <span matSuffix>$/Caja</span>
+      </mat-form-field>
+
+      <span class="item-title subtitle">Precio de Manejo por Unidad Item</span>
+      <mat-form-field class="price-item" floatLabel="never">
+        <span class="dollar-sign" matPrefix>$</span>
+        <input matInput placeholder="1,000" [(ngModel)]="warehouse.itemHandlingPrice">
+        <span matSuffix>$/Unidad Item</span>
+      </mat-form-field>
+
+
+    </div>
+  </article>
+
+  <article class="step-section extra-services" *ngIf="additionalServices && additionalServices.length">
+    <header>
+      <span class="title">
+        SERVICIOS ADICIONALES
+      </span>
+    </header>
+
+    <div #additionalServicesContent class="content">
+      <ng-container *ngFor="let ser of additionalServices">
+        <span class="service-title subtitle">Tarifa {{ser.description}}</span>
+        <mat-form-field class="price-item" floatLabel="never">
+            <span class="dollar-sign" matPrefix>$</span>
+            <input matInput placeholder="10,000" [(ngModel)]="warehouse.itemHandlingPrice">
+          </mat-form-field>
+      </ng-container>
+    </div>
+  </article>
+</section>

@@ -1,64 +1,50 @@
-import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
-/* App Root */
-import { AppComponent } from './app.component';
-import { LandingComponent } from './landing/landing.component';
-import { FooterComponent } from './footer/footer.component';
-import { NavbarComponent } from './navbar/navbar.component';
-import { NotFoundComponent } from './not-found/not-found.component';
-
-/* Feature Modules */
-import { CoreModule } from './core/core.module';
-import { AuthModule } from './auth/auth.module';
-import { HomeModule } from './home/home.module';
-
-/* Routing Module */
-import { AppRoutingModule } from './app.routing';
-/* */
+/** */
 import { AgmCoreModule } from '@agm/core';
-import {
-  MatSidenavModule, MatListModule, MatChipsModule, MatToolbarModule, MatMenuModule, MatButtonModule,
-  MatProgressBarModule, MatProgressSpinnerModule, MatTooltipModule
-} from '@angular/material';
-import { environment } from '../environments/environment';
-/* */
-import { PdfViewerOverlayComponent } from './shared/overlays/file-preview/pdf-viewer-overlay.component';
-import { PdfViewerModule } from 'ng2-pdf-viewer';
+/** */
+import { AppComponent } from './app.component';
+import { NotFoundComponent } from '@app/not-found/not-found.component';
+import { NavbarComponent } from '@app/navbar/navbar.component';
+import { FooterComponent } from '@app/footer/footer.component';
+//
+import { AuthModule } from '@app/auth/auth.module';
+import { HomeModule } from '@app/home/home.module';
+/** */
+import { environment } from '@env/environment';
+import { CoreModule } from '@app/core/core.module';
+import { AppRoutingModule } from '@app/app.routing';
+import { UsedMaterialComponentsModule } from '@shared/modules/used-material-components.module';
+import { PdfViewerOverlayComponent } from '@shared/overlays/file-preview/pdf-viewer-overlay.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    LandingComponent,
+    NotFoundComponent,
     NavbarComponent,
     FooterComponent,
-    NotFoundComponent,
     PdfViewerOverlayComponent
   ],
   imports: [
     BrowserModule,
+    UsedMaterialComponentsModule,
     BrowserAnimationsModule,
     //
-    MatSidenavModule, MatListModule, MatChipsModule, MatToolbarModule, MatMenuModule, MatButtonModule, MatProgressBarModule,
-    MatProgressSpinnerModule, MatTooltipModule,
     AgmCoreModule.forRoot({
       apiKey: environment.GOOGLE_API_KEY,
       libraries: ['places'],
       region: 'CO',
       language: 'ES'
     }),
-    PdfViewerModule,
     //
     CoreModule,
     AuthModule,
     HomeModule,
-    //
     AppRoutingModule,
   ],
-  providers: [
-  ],
+  providers: [],
   bootstrap: [AppComponent],
   entryComponents: [
     PdfViewerOverlayComponent

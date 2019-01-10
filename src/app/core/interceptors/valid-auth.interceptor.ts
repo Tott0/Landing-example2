@@ -1,12 +1,10 @@
 import { Injectable, Injector } from '@angular/core';
 import { HttpEvent, HttpInterceptor, HttpHandler, HttpRequest, HttpResponse, HttpErrorResponse } from '@angular/common/http';
-import { Observable } from 'rxjs/Observable';
+import { Observable, throwError } from 'rxjs';
 
 import { AuthService } from '../providers/auth.service';
-import { AppConstants } from '../../app-constants';
-
-import 'rxjs/add/operator/do';
-import 'rxjs/add/observable/throw';
+import { environment } from '@env/environment';
+import { tap } from 'rxjs/operators';
 
 @Injectable()
 export class ValidAuthInterceptor implements HttpInterceptor {
@@ -17,9 +15,10 @@ export class ValidAuthInterceptor implements HttpInterceptor {
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const aService: AuthService = this.inj.get(AuthService);
-    if (aService.token && req.url.includes(AppConstants.API_ENDPOINT) && !req.url.includes('/check')) {
+    if (aService.token && req.url.includes(environment.API_ENDPOINT) && !req.url.includes('/check')) {
       return next.handle(req)
-        .do((event) => { },
+      .pipe(
+        tap((event) => { },
         (err: HttpErrorResponse) => {
           if (err instanceof HttpErrorResponse) {
             if (err.status === 401) {
@@ -27,8 +26,9 @@ export class ValidAuthInterceptor implements HttpInterceptor {
               // alert('Sesión Expirada');
             }
           }
-          return Observable.throw(event);
-        });
+          return throwError(event);
+        })
+      );
 
     } else {
       return next.handle(req);

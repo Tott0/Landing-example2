@@ -1,4 +1,4 @@
-import { UserType, User } from '../shared/models/user.model';
+import { UserType, User } from '@shared/models/user.model';
 
 export class Person {
     id: number;
@@ -15,7 +15,6 @@ export class Renter {
 export class Auth {
     token: string;
     user: User;
-    unread_nots?: number;
     role: UserType;
 
     constructor(auth?: Partial<Auth>) {

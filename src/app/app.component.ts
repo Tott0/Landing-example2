@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 import { OnInit } from '@angular/core';
-import { AuthService } from '@app/core';
+import { AuthService } from '@core/providers/auth.service';
 import { Router } from '@angular/router';
 
-import { Observable } from 'rxjs/Observable';
-import { FromEventObservable } from 'rxjs/observable/FromEventObservable';
+import { Observable, fromEvent } from 'rxjs';
 import { ModalManager } from './core/providers/modal-manager';
+import { AppConstants } from './app-constants';
 
 @Component({
   selector: 'app-root',
@@ -13,6 +13,8 @@ import { ModalManager } from './core/providers/modal-manager';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
+
+  isAtMap = () => AppConstants.isAtMap;
 
   constructor(
     public router: Router,
@@ -23,17 +25,17 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    const unloadSub = FromEventObservable.create(window, 'beforeunload').subscribe((event: BeforeUnloadEvent) => {
+    const unloadSub = fromEvent(window, 'beforeunload').subscribe((event: BeforeUnloadEvent) => {
       console.log('beforeunloadsub');
       localStorage.removeItem(sessionStorage.getItem('sessionTag'));
       unloadSub.unsubscribe();
     });
-    const loadSub = FromEventObservable.create(window, 'load').subscribe((event) => {
+    const loadSub = fromEvent(window, 'load').subscribe((event) => {
       console.log('loadsub');
       localStorage.setItem(sessionStorage.getItem('sessionTag'), 'true');
       loadSub.unsubscribe();
     });
-    const subscription = FromEventObservable.create(window, 'storage').subscribe((event: StorageEvent) => {
+    const subscription = fromEvent(window, 'storage').subscribe((event: StorageEvent) => {
       if (!event || !event.key || (!event.key.includes('session') && !event.key.includes('token'))) {
         return;
       }

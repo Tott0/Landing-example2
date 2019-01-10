@@ -1,0 +1,144 @@
+<div class="component-wrapper owner-wrapper">
+
+  <div class="container">
+    <span class="title">
+      Panel del Arrendador
+    </span>
+    <div class="row">
+      <div class="left">
+
+        <div class="row engagements">
+          <mat-card class="bg-title-card pending-reservas">
+            <mat-card-header>
+              <div class="wrapper">
+                <mat-card-title>
+                  <i class="far fa-calendar-alt"></i>
+                </mat-card-title>
+              </div>
+  
+            </mat-card-header>
+            <mat-card-content>
+  
+              <div class="wrapper">
+                <span class="amount">{{ 0 }}</span>
+  
+                <span class="separator"></span>
+  
+                <a routerLink="['engagements']">Reservas en Espera</a>
+              </div>
+            </mat-card-content>
+          </mat-card>
+  
+          <mat-card class="bg-title-card upcoming-reservas">
+            <mat-card-header>
+              <div class="wrapper">
+                <mat-card-title>
+                  <i class="far fa-calendar-alt"></i>
+                </mat-card-title>
+              </div>
+  
+            </mat-card-header>
+            <mat-card-content>
+  
+              <div class="wrapper">
+                <span class="amount">{{ 0 }}</span>
+  
+                <span class="separator"></span>
+  
+                <a routerLink="['engagements']">Reservas Entrantes</a>
+              </div>
+            </mat-card-content>
+          </mat-card>
+  
+          <mat-card class="bg-title-card current-reservas">
+            <mat-card-header>
+              <div class="wrapper">
+                <mat-card-title>
+                  <i class="far fa-calendar-alt"></i>
+                </mat-card-title>
+              </div>
+  
+            </mat-card-header>
+            <mat-card-content>
+  
+              <div class="wrapper">
+                <span class="amount">{{ 0 }}</span>
+  
+                <span class="separator"></span>
+  
+                <a routerLink="['engagements']">Reservas en Progreso</a>
+              </div>
+            </mat-card-content>
+          </mat-card>
+        </div>
+
+        <div class="row warehouses">
+            <mat-card class="bg-title-card warehouses">
+                <mat-card-header>
+                  <div class="wrapper">
+                    <mat-card-title>
+                      Mis Bódegas ({{ paginator.length ? (paginator.length) : '0' }})
+                    </mat-card-title>
+                  </div>
+        
+                </mat-card-header>
+                <mat-card-content>
+        
+                  <div class="wrapper">
+                    <div class="row page">
+                      <ng-container *ngFor="let warehouse of warehouses; let i = index">
+                        <span class="filler no-min" *ngIf="i !== 0"></span>
+                        <div class="warehouse">
+                          <span class="img-wrapper">
+                            <img [src]="warehouse && warehouse.attachments[0].image.url">
+                          </span>
+                          <a class="name" [routerLink]="['/temproute_warehouse', warehouse.id]">{{ warehouse.name }}</a>
+                          <span class="row">
+                            <span class="reviews">
+                              0 Comentarios
+                            </span>
+                          </span>
+                        </div>
+                        <span class="filler no-min" *ngIf="i !== (warehouses.length - 1)"></span>
+                      </ng-container>
+                    </div>
+        
+                    <div class="row actions">
+                      <mat-paginator #paginator [hidePageSize]="true"></mat-paginator>
+                    </div>
+                  </div>
+        
+                </mat-card-content>
+              </mat-card>
+        </div>
+
+      </div>
+      <div class="right">
+
+        <mat-card class="bg-title-card profile">
+          <mat-card-header>
+            <div class="wrapper">
+              <mat-card-title>
+                Perfil del Arrendador
+              </mat-card-title>
+            </div>
+
+          </mat-card-header>
+          <mat-card-content>
+
+            <div class="wrapper">
+              <span>{{ authService.user.user.profile.fullName }}</span>
+              <button color="primary" mat-raised-button class="btn-edit" [routerLink]="['warehouses/create']">
+                CREAR BÓDEGA</button>
+              <button color="primary" mat-raised-button class="btn-eng" [routerLink]="['engagements']">
+                RESERVAS
+              </button>
+            </div>
+
+          </mat-card-content>
+        </mat-card>
+      </div>
+
+    </div>
+  </div>
+</div>

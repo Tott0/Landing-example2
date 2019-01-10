@@ -2,10 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-
 import { LoadingDialog } from './dialogs/loading/loading.dialog';
 import { MessageDialog } from './dialogs/message/message.dialog';
-import { WarehouseFiltersDialog } from './dialogs/warehouse-filters/warehouse-filters.dialog';
 
 import { ResultSnackbar } from './dialogs/result-snackbar/result.snackbar';
 
@@ -13,6 +11,7 @@ import { ForceUppercaseDirective } from './directives/force-uppercase.directive'
 import { ForceNumericDirective } from './directives/force-numeric.directive';
 import { ForceAlphabeticDirective } from './directives/force-alphabetic.directive';
 import { ForceValueDirective } from './directives/force-value.directive';
+import { ForceTimeValueDirective } from './directives/force-time-value.directive';
 
 import { TruncatePipe } from './pipes/truncate';
 import { TimePipe } from './pipes/time';
@@ -20,76 +19,51 @@ import { DatePipe } from './pipes/date';
 import { Date2Pipe } from './pipes/date2';
 import { FullDatePipe } from './pipes/full-date';
 import { CopCurrencyPipe } from './pipes/cop-currency';
-import { PlatePipe } from './pipes/plate';
 import { DecimalPipe } from './pipes/decimal';
-import { DurationPipe } from './pipes/duration';
 import { EnumPositionTypePipe } from './pipes/enum-position-type';
+import { UsedMaterialComponentsModule } from '@shared/modules/used-material-components.module';
 
-/* Material Components */
-import {
-  MatInputModule, MatCheckboxModule, MatButtonModule, MatToolbarModule, MatSidenavModule,
-  MatSelectModule, MatGridListModule, MatIconModule, MatCardModule, MatListModule, MatPaginatorModule,
-  MatTabsModule, MatExpansionModule, MatTooltipModule, MatDialogModule, MatProgressSpinnerModule,
-  MatSnackBarModule, MatDatepickerModule, MatNativeDateModule, MatStepperModule, MatRadioModule, MatChipsModule, MatAutocompleteModule,
-  MatMenuModule, MatTableModule, MatSortModule
-} from '@angular/material';
-
-import { MatPaginatorIntl } from '@angular/material';
-import { CustomMatPaginatorIntl } from '../core/providers/custom-mat-paginator-intl';
+/*Libraries */
+import { BarRatingModule } from 'ngx-bar-rating';
 import { AgmCoreModule } from '@agm/core';
+import { Ng5SliderModule } from 'ng5-slider';
+
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
-    ReactiveFormsModule,
-    AgmCoreModule,
-    MatInputModule, MatCheckboxModule, MatButtonModule, MatToolbarModule, MatSidenavModule,
-    MatSelectModule, MatGridListModule, MatIconModule, MatCardModule, MatListModule, MatPaginatorModule,
-    MatTabsModule, MatExpansionModule, MatTooltipModule, MatDialogModule, MatProgressSpinnerModule,
-    MatSnackBarModule, MatDatepickerModule, MatNativeDateModule, MatStepperModule, MatRadioModule, MatChipsModule,
-    MatAutocompleteModule, MatMenuModule, MatTableModule, MatSortModule,
+    UsedMaterialComponentsModule
   ],
   declarations: [
     //
     LoadingDialog,
     MessageDialog,
-    WarehouseFiltersDialog,
     ResultSnackbar,
     //
     ForceUppercaseDirective,
     ForceNumericDirective,
     ForceAlphabeticDirective,
     ForceValueDirective,
-    //
-    TruncatePipe,
+    ForceTimeValueDirective,
     TimePipe,
-    DatePipe,
     Date2Pipe,
     FullDatePipe,
     CopCurrencyPipe,
-    PlatePipe,
     DecimalPipe,
-    DurationPipe,
     EnumPositionTypePipe,
+    //
   ],
   exports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    AgmCoreModule,
-    //
-    MatInputModule, MatCheckboxModule, MatButtonModule, MatToolbarModule, MatSidenavModule,
-    MatSelectModule, MatGridListModule, MatIconModule, MatCardModule, MatListModule, MatPaginatorModule,
-    MatTabsModule, MatExpansionModule, MatTooltipModule, MatDialogModule, MatProgressSpinnerModule,
-    MatSnackBarModule, MatDatepickerModule, MatNativeDateModule, MatStepperModule, MatRadioModule, MatChipsModule,
-    MatAutocompleteModule, MatMenuModule, MatTableModule, MatSortModule,
-    //
     //
     ForceUppercaseDirective,
     ForceNumericDirective,
     ForceAlphabeticDirective,
     ForceValueDirective,
+    ForceTimeValueDirective,
     //
     TruncatePipe,
     TimePipe,
@@ -97,19 +71,17 @@ import { AgmCoreModule } from '@agm/core';
     Date2Pipe,
     FullDatePipe,
     CopCurrencyPipe,
-    PlatePipe,
     DecimalPipe,
-    DurationPipe,
     EnumPositionTypePipe,
+    //
+    BarRatingModule,
+    AgmCoreModule,
+    Ng5SliderModule,
   ],
   entryComponents: [
     LoadingDialog,
     MessageDialog,
-    WarehouseFiltersDialog,
     ResultSnackbar,
-  ],
-  providers: [
-    { provide: MatPaginatorIntl, useClass: CustomMatPaginatorIntl },
   ]
 })
 export class SharedModule { }
