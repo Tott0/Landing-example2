@@ -2,6 +2,89 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.25.0"></a>
+# [0.25.0](https://github.com/Tott0/Landing-example2/compare/v0.24.0...v0.25.0) (2019-01-10)
+
+
+### Bug Fixes
+
+* package.json ([79a6810](https://github.com/Tott0/Landing-example2/commit/79a6810))
+
+
+### Features
+
+* merge ([f17eec9](https://github.com/Tott0/Landing-example2/commit/f17eec9))
+
+
+
+<a name="0.5.2"></a>
+## [0.5.2](https://github.com/Tott0/Landing-example2/compare/v0.5.1...v0.5.2) (2018-08-03)
+
+
+
+<a name="0.5.1"></a>
+## [0.5.1](https://github.com/Tott0/Landing-example2/compare/v0.5.0...v0.5.1) (2018-05-29)
+
+
+### Bug Fixes
+
+* prod build ([33fde20](https://github.com/Tott0/Landing-example2/commit/33fde20))
+
+
+
+<a name="0.5.0"></a>
+# [0.5.0](https://github.com/Tott0/Landing-example2/compare/v0.4.0...v0.5.0) (2018-05-29)
+
+
+### Bug Fixes
+
+* stopped using mocks ([55ed6ec](https://github.com/Tott0/Landing-example2/commit/55ed6ec))
+
+
+### Features
+
+* readme ([5d6a87e](https://github.com/Tott0/Landing-example2/commit/5d6a87e))
+
+
+
+<a name="0.4.0"></a>
+# [0.4.0](https://github.com/Tott0/Landing-example2/compare/v0.3.0...v0.4.0) (2018-05-04)
+
+
+### Features
+
+* **client:** warehouse add top filters ([bd37a9f](https://github.com/Tott0/Landing-example2/commit/bd37a9f))
+
+
+
+<a name="0.3.0"></a>
+# [0.3.0](https://github.com/Tott0/Landing-example2/compare/v0.1.0...v0.3.0) (2018-05-01)
+
+
+### Bug Fixes
+
+* **auth:** fixes signup and login issues ([d2c24d8](https://github.com/Tott0/Landing-example2/commit/d2c24d8))
+
+
+### Features
+
+* remade navbar, warehouse creation working, warehouse dashboard ([f93a673](https://github.com/Tott0/Landing-example2/commit/f93a673))
+* **owner:** warehouse creation ([3e6d87d](https://github.com/Tott0/Landing-example2/commit/3e6d87d))
+
+
+
+<a name="0.1.0"></a>
+# [0.1.0](https://github.com/Tott0/Landing-example2/compare/ded92d0...v0.1.0) (2018-04-30)
+
+
+### Features
+
+* **admin:** adds renter card to admin dashboard ([a7e4908](https://github.com/Tott0/Landing-example2/commit/a7e4908))
+* **admin:** starts admin dashboard ([d659552](https://github.com/Tott0/Landing-example2/commit/d659552))
+* **renters:** adds renter components ([ded92d0](https://github.com/Tott0/Landing-example2/commit/ded92d0))
+
+
+
 <a name="0.24.0"></a>
 # [0.24.0](https://github.com/Tott0/Landing-example2/compare/v0.23.1...v0.24.0) (2019-01-10)
 
