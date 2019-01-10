@@ -9,7 +9,8 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "build:prod": "ng build --target production --build-optimizer --vendor-chunk",
-    "release": "standard-version && git push --follow-tags"
+    "release": "standard-version && git push --follow-tags",
+    "deploy": "copy .\\_redirects .\\dist\\CaxtorWeb\\ && netlify deploy --dir=dist\\CaxtorWeb --prod"
   },
   "private": true,
   "dependencies": {
