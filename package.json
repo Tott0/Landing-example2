@@ -1,5 +1,5 @@
 {
-  "name": "caxtor-web",
+  "name": "landing-example2",
   "version": "0.23.1",
   "scripts": {
     "ng": "ng",
@@ -10,7 +10,7 @@
     "e2e": "ng e2e",
     "build:prod": "ng build --target production --build-optimizer --vendor-chunk",
     "release": "standard-version && git push --follow-tags",
-    "deploy": "copy .\\_redirects .\\dist\\CaxtorWeb\\ && netlify deploy --dir=dist\\CaxtorWeb --prod"
+    "deploy": "copy .\\_redirects .\\dist\\LandingExample2\\ && netlify deploy --dir=dist\\LandingExample2 --prod"
   },
   "private": true,
   "dependencies": {

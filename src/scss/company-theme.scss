@@ -14,9 +14,9 @@
 @include mat-core();
 
 // Define the default theme
-$caxtor-primary: mat-palette($mat-light-blue, 500, 100, 900);
-$caxtor-accent:  mat-palette($mat-orange, 500, A100, 800);
-$caxtor-theme:   mat-light-theme($caxtor-primary, $caxtor-accent);
+$company-primary: mat-palette($mat-light-blue, 500, 100, 900);
+$company-accent:  mat-palette($mat-orange, 500, A100, 800);
+$company-theme:   mat-light-theme($company-primary, $company-accent);
 
 @mixin component-custom-themes($theme){
   @include global-theme($theme);
@@ -29,18 +29,18 @@ $caxtor-theme:   mat-light-theme($caxtor-primary, $caxtor-accent);
 }
 
 // Include the default theme styles.
-@include angular-material-theme($caxtor-theme);
-@include component-custom-themes($caxtor-theme);
+@include angular-material-theme($company-theme);
+@include component-custom-themes($company-theme);
 
 
 // Include the alternative theme styles inside of a block with a CSS class.
-.caxtor-dark-theme {
+.company-dark-theme {
   // Define an alternate dark theme.
   $dark-primary: mat-palette($mat-light-blue);
   $dark-accent:  mat-palette($mat-light-green, A200, A100, A400);
   $dark-warn:    mat-palette($mat-deep-orange);
-  $caxtor-dark-theme:   mat-dark-theme($dark-primary, $dark-accent, $dark-warn);
+  $company-dark-theme:   mat-dark-theme($dark-primary, $dark-accent, $dark-warn);
   
-  @include angular-material-theme($caxtor-dark-theme);
-  @include component-custom-themes($caxtor-dark-theme);
+  @include angular-material-theme($company-dark-theme);
+  @include component-custom-themes($company-dark-theme);
 }
