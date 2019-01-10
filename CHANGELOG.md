@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.24.0"></a>
+# [0.24.0](https://github.com/Tott0/Landing-example2/compare/v0.23.1...v0.24.0) (2019-01-10)
+
+
+### Features
+
+* all ([794fad5](https://github.com/Tott0/Landing-example2/commit/794fad5))
+* all ([a9ae70f](https://github.com/Tott0/Landing-example2/commit/a9ae70f))
+
+
+
 <a name="0.23.1"></a>
 ## [0.23.1](https://gitlab.com/tott0/company/compare/v0.23.0...v0.23.1) (2019-01-10)
 
