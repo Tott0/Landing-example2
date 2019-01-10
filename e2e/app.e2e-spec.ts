@@ -1,6 +1,6 @@
 import { AppPage } from './app.po';
 
-describe('caxtor-web App', () => {
+describe('LandingExample App', () => {
   let page: AppPage;
 
   beforeEach(() => {
